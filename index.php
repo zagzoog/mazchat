@@ -2,6 +2,12 @@
 // Start the session
 session_start();
 
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit;
+}
+
 // If no session ID exists, create one
 if (!isset($_SESSION['chat_session_id'])) {
     $_SESSION['chat_session_id'] = uniqid() . time();
@@ -107,6 +113,24 @@ $config = require_once 'config.php';
             display: flex;
             align-items: center;
             gap: 8px;
+        }
+        .user-info {
+            padding: 15px;
+            border-bottom: 1px solid #dee2e6;
+            margin-bottom: 15px;
+        }
+        .user-info .username {
+            font-weight: 600;
+            color: #333;
+        }
+        .user-info .logout-btn {
+            color: #dc3545;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .user-info .logout-btn:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -115,16 +139,24 @@ $config = require_once 'config.php';
         <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
             <div class="flex justify-between items-center">
                 <h1 class="text-3xl font-bold text-gray-800">نظام المطابقة الذكي</h1>
-                <button id="newChatBtn" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2">
-                    <i class="fas fa-plus"></i>
-                    محادثة جديدة
-                </button>
+                <div class="flex items-center gap-4">
+                    <span class="text-gray-600">مرحباً، <?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                    <a href="logout.php" class="text-red-600 hover:text-red-700">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </a>
+                </div>
             </div>
         </div>
 
         <div class="flex gap-6">
             <!-- Sidebar -->
             <div id="sidebar" class="sidebar bg-white rounded-lg shadow-lg p-4">
+                <div class="user-info">
+                    <div class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></div>
+                    <a href="logout.php" class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                    </a>
+                </div>
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-xl font-semibold text-gray-800">المحادثات السابقة</h2>
                     <button id="toggleSidebar" class="text-gray-600 hover:text-gray-800">
@@ -143,10 +175,10 @@ $config = require_once 'config.php';
                 </div>
                 
                 <div class="flex gap-4">
-                    <input type="text" id="messageInput" 
+                    <input type="text" id="message-input" 
                            class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                            placeholder="اكتب رسالتك هنا...">
-                    <button id="sendButton" 
+                    <button id="send-button" 
                             class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
                         <i class="fas fa-paper-plane"></i>
                     </button>
@@ -157,32 +189,103 @@ $config = require_once 'config.php';
 
     <script>
         let currentConversationId = null;
+        let currentOffset = 0;
+        let hasMoreConversations = true;
+        let conversationsPerPage = <?php echo $config['conversations_per_page']; ?>;
 
         // Load conversations from the server
-        async function loadConversations() {
+        async function loadConversations(loadMore = false) {
             try {
-                const response = await fetch('api/conversations.php');
-                const conversations = await response.json();
+                if (!loadMore) {
+                    currentOffset = 0;
+                    hasMoreConversations = true;
+                }
+                
+                const response = await fetch(`api/conversations.php?limit=${conversationsPerPage}&offset=${currentOffset}`);
+                const data = await response.json();
+                console.log('Conversations API Response:', data); // Debug log
+                
+                const conversations = data.conversations;
+                hasMoreConversations = data.hasMore;
                 
                 const sidebar = document.querySelector('.sidebar');
-                sidebar.innerHTML = `
-                    <div class="sidebar-header">
-                        <h2>المحادثات</h2>
-                        <button onclick="createNewConversation()" class="new-chat-btn">
-                            <i class="fas fa-plus"></i> محادثة جديدة
-                        </button>
-                    </div>
-                    <div class="conversations-list">
-                        ${conversations.map(conv => `
-                            <div class="conversation-item ${conv.id === currentConversationId ? 'active' : ''}" 
-                                 onclick="loadConversation('${conv.id}')">
-                                <div class="conversation-title">${conv.title}</div>
-                                <div class="conversation-preview">${conv.last_message || ''}</div>
-                                <div class="conversation-time">${new Date(conv.updated_at).toLocaleString('ar-SA')}</div>
+                let conversationsList = loadMore ? 
+                    document.querySelector('.conversations-list') : 
+                    document.createElement('div');
+                
+                if (!loadMore) {
+                    sidebar.innerHTML = `
+                        <div class="user-info">
+                            <div class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></div>
+                            <a href="logout.php" class="logout-btn">
+                                <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                            </a>
+                        </div>
+                        <div class="sidebar-header">
+                            <h2>المحادثات</h2>
+                            <button onclick="createNewConversation()" class="new-chat-btn">
+                                <i class="fas fa-plus"></i> محادثة جديدة
+                            </button>
+                        </div>
+                        <div class="conversations-list"></div>
+                    `;
+                    conversationsList = sidebar.querySelector('.conversations-list');
+                }
+                
+                if (!conversations || conversations.length === 0) {
+                    console.log('No conversations found'); // Debug log
+                    conversationsList.innerHTML = '<div class="text-gray-500 text-center py-4">لا توجد محادثات</div>';
+                    return;
+                }
+                
+                const newConversations = conversations.map(conv => {
+                    console.log('Processing conversation:', conv); // Debug log
+                    // Format the date
+                    const date = new Date(conv.updated_at);
+                    const formattedDate = date.toLocaleDateString('ar-SA', {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    });
+                    
+                    // Get first line of the message
+                    const firstLine = conv.last_message ? 
+                        conv.last_message.split('\n')[0].substring(0, 50) + 
+                        (conv.last_message.split('\n')[0].length > 50 ? '...' : '') : 
+                        'بدون رسائل';
+                    
+                    return `
+                        <div class="conversation-item ${conv.id === currentConversationId ? 'active' : ''}" 
+                             onclick="loadConversation('${conv.id}')">
+                            <div class="flex justify-between items-start mb-1">
+                                <div class="conversation-title font-semibold">${conv.title}</div>
+                                <div class="conversation-time text-sm text-gray-500">${formattedDate}</div>
                             </div>
-                        `).join('')}
-                    </div>
-                `;
+                            <div class="conversation-preview text-sm text-gray-600">${firstLine}</div>
+                        </div>
+                    `;
+                }).join('');
+                
+                if (loadMore) {
+                    conversationsList.insertAdjacentHTML('beforeend', newConversations);
+                } else {
+                    conversationsList.innerHTML = newConversations;
+                }
+                
+                // Add Load More button if there are more conversations
+                if (hasMoreConversations) {
+                    const loadMoreBtn = document.createElement('button');
+                    loadMoreBtn.className = 'w-full mt-4 p-2 text-center text-indigo-600 hover:text-indigo-800 font-semibold';
+                    loadMoreBtn.innerHTML = '<i class="fas fa-chevron-down"></i> تحميل المزيد';
+                    loadMoreBtn.onclick = () => {
+                        currentOffset += conversationsPerPage;
+                        loadConversations(true);
+                    };
+                    conversationsList.appendChild(loadMoreBtn);
+                }
+                
             } catch (error) {
                 console.error('Error loading conversations:', error);
                 showError('حدث خطأ أثناء تحميل المحادثات');
@@ -219,14 +322,14 @@ $config = require_once 'config.php';
                 const response = await fetch(`api/messages.php?conversation_id=${conversationId}`);
                 const messages = await response.json();
                 
-                const chatMessages = document.querySelector('.chat-messages');
-                chatMessages.innerHTML = messages.map(msg => `
+                const chatContainer = document.getElementById('chatContainer');
+                chatContainer.innerHTML = messages.map(msg => `
                     <div class="message ${msg.is_user ? 'user' : 'assistant'}">
                         <div class="message-content">${msg.content}</div>
                     </div>
                 `).join('');
                 
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                chatContainer.scrollTop = chatContainer.scrollHeight;
                 await loadConversations(); // Refresh sidebar
             } catch (error) {
                 console.error('Error loading conversation:', error);
@@ -247,13 +350,13 @@ $config = require_once 'config.php';
             
             try {
                 // Add user message to chat
-                const chatMessages = document.querySelector('.chat-messages');
-                chatMessages.innerHTML += `
+                const chatContainer = document.getElementById('chatContainer');
+                chatContainer.innerHTML += `
                     <div class="message user">
                         <div class="message-content">${message}</div>
                     </div>
                 `;
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                chatContainer.scrollTop = chatContainer.scrollHeight;
                 
                 // Save user message to database
                 await fetch('api/messages.php', {
@@ -289,26 +392,38 @@ $config = require_once 'config.php';
                 }
                 
                 // Add AI response to chat
-                chatMessages.innerHTML += `
+                chatContainer.innerHTML += `
                     <div class="message assistant">
                         <div class="message-content">${data.response}</div>
                     </div>
                 `;
                 
                 // Save AI response to database
-                await fetch('api/messages.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        conversation_id: currentConversationId,
-                        content: data.response,
-                        is_user: false
-                    })
-                });
+                try {
+                    const saveResponse = await fetch('api/messages.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            conversation_id: currentConversationId,
+                            content: data.response,
+                            is_user: false  // Explicitly set as boolean false
+                        })
+                    });
+                    
+                    if (!saveResponse.ok) {
+                        const errorData = await saveResponse.json();
+                        throw new Error(errorData.error || 'Failed to save AI response');
+                    }
+                    
+                    console.log('AI response saved successfully');
+                } catch (error) {
+                    console.error('Error saving AI response:', error);
+                    showError('حدث خطأ أثناء حفظ رد المساعد');
+                }
                 
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+                chatContainer.scrollTop = chatContainer.scrollHeight;
                 await loadConversations(); // Refresh sidebar
             } catch (error) {
                 console.error('Error sending message:', error);
@@ -331,6 +446,9 @@ $config = require_once 'config.php';
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             loadConversations();
+            
+            // Add click event listener for send button
+            document.getElementById('send-button').addEventListener('click', sendMessage);
             
             // Handle enter key in message input
             document.getElementById('message-input').addEventListener('keypress', (e) => {
