@@ -15,302 +15,330 @@ $config = require_once 'config.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محلل المطابقة الذكي</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>نظام المطابقة الذكي</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #343541;
-            color: #fff;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
         }
         .chat-container {
-            max-width: 800px;
-            margin: 0 auto;
             height: calc(100vh - 180px);
-            overflow-y: auto;
         }
         .message {
-            padding: 24px 8px;
-            border-bottom: 1px solid #4a4b53;
+            max-width: 80%;
         }
-        .message.user {
-            background-color: #343541;
+        .user-message {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
         }
-        .message.assistant {
-            background-color: #444654;
+        .bot-message {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        .message-content {
-            max-width: 768px;
-            margin: 0 auto;
-            padding: 0 16px;
+        .sidebar {
+            width: 300px;
+            transition: all 0.3s ease;
         }
-        .input-container {
+        .sidebar.collapsed {
+            width: 60px;
+        }
+        .conversation-item {
+            transition: all 0.2s ease;
+        }
+        .conversation-item:hover {
+            background-color: rgba(102, 126, 234, 0.1);
+        }
+        .conversation-item.active {
+            background-color: rgba(102, 126, 234, 0.2);
+        }
+        /* Error message styling */
+        .error-message {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: #343541;
-            border-top: 1px solid #4a4b53;
-            padding: 24px 8px;
+            top: 20px;
+            right: 20px;
+            background-color: #ff4444;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            animation: slideIn 0.3s ease-out;
         }
-        .input-wrapper {
-            max-width: 768px;
-            margin: 0 auto;
-            position: relative;
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
         }
-        .input-box {
-            width: 100%;
-            padding: 12px 45px 12px 16px;
-            border-radius: 12px;
-            border: 1px solid #565869;
-            background-color: #40414f;
-            color: #fff;
-            font-size: 16px;
-            line-height: 1.5;
-            resize: none;
-            max-height: 200px;
-            text-align: right;
+        /* Sidebar styling */
+        .sidebar {
+            width: 300px;
+            height: 100vh;
+            background-color: #f8f9fa;
+            border-left: 1px solid #dee2e6;
+            padding: 20px;
+            overflow-y: auto;
         }
-        .input-box:focus {
-            outline: none;
-            border-color: #ff6b6b;
+        .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
-        .send-button {
-            position: absolute;
-            left: 8px;
-            bottom: 8px;
-            background-color: #ff6b6b;
+        .sidebar-header h2 {
+            margin: 0;
+            color: #333;
+        }
+        .new-chat-btn {
+            background-color: #007bff;
             color: white;
             border: none;
-            border-radius: 6px;
             padding: 8px 16px;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .send-button:hover {
-            background-color: #ff5252;
-        }
-        .send-button:disabled {
-            background-color: #565869;
-            cursor: not-allowed;
-        }
-        .welcome-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            text-align: center;
-            padding: 24px;
-        }
-        .welcome-title {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            background: linear-gradient(to right, #ff6b6b, #ff8787);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .welcome-subtitle {
-            font-size: 18px;
-            color: #c5c5d2;
-            margin-bottom: 32px;
-            max-width: 600px;
-            line-height: 1.6;
-        }
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 24px;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .feature-card {
-            background-color: #444654;
-            border-radius: 12px;
-            padding: 24px;
-            text-align: right;
-            transition: transform 0.2s;
-        }
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-        .feature-title {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: #ff6b6b;
-        }
-        .feature-description {
-            color: #c5c5d2;
-            line-height: 1.6;
-        }
-        .heart-icon {
-            font-size: 24px;
-            margin-bottom: 16px;
-            color: #ff6b6b;
-        }
-        .loader {
-            display: none;
-            padding: 24px 8px;
-            background-color: #444654;
-        }
-        .loader-content {
-            max-width: 768px;
-            margin: 0 auto;
-            padding: 0 16px;
             display: flex;
             align-items: center;
-            gap: 12px;
-        }
-        .loader-dots {
-            display: flex;
-            gap: 4px;
-        }
-        .loader-dot {
-            width: 8px;
-            height: 8px;
-            background-color: #ff6b6b;
-            border-radius: 50%;
-            animation: bounce 1.4s infinite ease-in-out;
-        }
-        .loader-dot:nth-child(1) { animation-delay: -0.32s; }
-        .loader-dot:nth-child(2) { animation-delay: -0.16s; }
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
-        .loader-text {
-            color: #c5c5d2;
-            font-size: 16px;
-        }
+            gap: 8px;
     </style>
 </head>
-<body>
-    <div class="chat-container" id="messages">
-        <div class="welcome-container" id="welcome">
-            <div class="heart-icon">❤️</div>
-            <h1 class="welcome-title">محلل المطابقة الذكي</h1>
-            <p class="welcome-subtitle">خبير العلاقات المدعوم بالبيانات. أقوم بتحليل السمات الشخصية والتفضيلات وعوامل التوافق لمساعدتك في العثور على شريك حياتك المثالي.</p>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <h3 class="feature-title">تحليل الشخصية</h3>
-                    <p class="feature-description">تحليل عميق للسمات الشخصية وأنماط التواصل وتفضيلات العلاقات لتحديد التطابق المناسب.</p>
-                </div>
-                <div class="feature-card">
-                    <h3 class="feature-title">رؤى مدفوعة بالبيانات</h3>
-                    <p class="feature-description">استخدام خوارزميات متقدمة وبيانات العلاقات لتقديم توصيات توافق مدعومة علمياً.</p>
-                </div>
-                <div class="feature-card">
-                    <h3 class="feature-title">توجيه مخصص</h3>
-                    <p class="feature-description">نصائح واستراتيجيات علاقات مخصصة بناءً على ملفك الشخصي الفريد وأهداف علاقاتك.</p>
-                </div>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+            <div class="flex justify-between items-center">
+                <h1 class="text-3xl font-bold text-gray-800">نظام المطابقة الذكي</h1>
+                <button id="newChatBtn" class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center gap-2">
+                    <i class="fas fa-plus"></i>
+                    محادثة جديدة
+                </button>
             </div>
         </div>
-    </div>
-    
-    <div class="loader" id="loader">
-        <div class="loader-content">
-            <div class="loader-dots">
-                <div class="loader-dot"></div>
-                <div class="loader-dot"></div>
-                <div class="loader-dot"></div>
+
+        <div class="flex gap-6">
+            <!-- Sidebar -->
+            <div id="sidebar" class="sidebar bg-white rounded-lg shadow-lg p-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-xl font-semibold text-gray-800">المحادثات السابقة</h2>
+                    <button id="toggleSidebar" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div id="conversationsList" class="space-y-2">
+                    <!-- Conversations will be added here dynamically -->
+                </div>
             </div>
-            <div class="loader-text">جاري تحليل رسالتك...</div>
-        </div>
-    </div>
-    
-    <div class="input-container">
-        <div class="input-wrapper">
-            <textarea 
-                id="messageInput" 
-                class="input-box" 
-                placeholder="أخبرني عن شريك حياتك المثالي أو اطلب نصيحة في العلاقات..." 
-                rows="1"
-                onInput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px'"
-            ></textarea>
-            <button id="sendButton" class="send-button" onclick="sendMessage()">إرسال</button>
+
+            <!-- Main Chat Area -->
+            <div class="flex-1 bg-white rounded-lg shadow-lg p-6">
+                <div id="chatContainer" class="chat-container overflow-y-auto mb-4 space-y-4">
+                    <!-- Messages will be added here -->
+                </div>
+                
+                <div class="flex gap-4">
+                    <input type="text" id="messageInput" 
+                           class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                           placeholder="اكتب رسالتك هنا...">
+                    <button id="sendButton" 
+                            class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        const messageInput = document.getElementById('messageInput');
-        const messagesContainer = document.getElementById('messages');
-        const welcomeContainer = document.getElementById('welcome');
-        const sendButton = document.getElementById('sendButton');
-        const loader = document.getElementById('loader');
+        let currentConversationId = null;
 
-        messageInput.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                sendMessage();
-            }
-        });
-
-        async function sendMessage() {
-            const message = messageInput.value.trim();
-            if (!message) return;
-
-            // Disable input and button while sending
-            messageInput.disabled = true;
-            sendButton.disabled = true;
-
-            // Hide welcome screen
-            welcomeContainer.style.display = 'none';
-
-            // Add user message
-            addMessage('user', message);
-            messageInput.value = '';
-            messageInput.style.height = 'auto';
-
-            // Show loader
-            loader.style.display = 'block';
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
+        // Load conversations from the server
+        async function loadConversations() {
             try {
+                const response = await fetch('api/conversations.php');
+                const conversations = await response.json();
+                
+                const sidebar = document.querySelector('.sidebar');
+                sidebar.innerHTML = `
+                    <div class="sidebar-header">
+                        <h2>المحادثات</h2>
+                        <button onclick="createNewConversation()" class="new-chat-btn">
+                            <i class="fas fa-plus"></i> محادثة جديدة
+                        </button>
+                    </div>
+                    <div class="conversations-list">
+                        ${conversations.map(conv => `
+                            <div class="conversation-item ${conv.id === currentConversationId ? 'active' : ''}" 
+                                 onclick="loadConversation('${conv.id}')">
+                                <div class="conversation-title">${conv.title}</div>
+                                <div class="conversation-preview">${conv.last_message || ''}</div>
+                                <div class="conversation-time">${new Date(conv.updated_at).toLocaleString('ar-SA')}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } catch (error) {
+                console.error('Error loading conversations:', error);
+                showError('حدث خطأ أثناء تحميل المحادثات');
+            }
+        }
+
+        // Create a new conversation
+        async function createNewConversation() {
+            try {
+                const response = await fetch('api/conversations.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        title: 'محادثة جديدة'
+                    })
+                });
+                
+                const conversation = await response.json();
+                currentConversationId = conversation.id;
+                await loadConversations();
+                await loadConversation(conversation.id);
+            } catch (error) {
+                console.error('Error creating conversation:', error);
+                showError('حدث خطأ أثناء إنشاء محادثة جديدة');
+            }
+        }
+
+        // Load a specific conversation
+        async function loadConversation(conversationId) {
+            try {
+                currentConversationId = conversationId;
+                const response = await fetch(`api/messages.php?conversation_id=${conversationId}`);
+                const messages = await response.json();
+                
+                const chatMessages = document.querySelector('.chat-messages');
+                chatMessages.innerHTML = messages.map(msg => `
+                    <div class="message ${msg.is_user ? 'user' : 'assistant'}">
+                        <div class="message-content">${msg.content}</div>
+                    </div>
+                `).join('');
+                
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                await loadConversations(); // Refresh sidebar
+            } catch (error) {
+                console.error('Error loading conversation:', error);
+                showError('حدث خطأ أثناء تحميل المحادثة');
+            }
+        }
+
+        // Send a message
+        async function sendMessage() {
+            const messageInput = document.getElementById('message-input');
+            const message = messageInput.value.trim();
+            
+            if (!message) return;
+            
+            if (!currentConversationId) {
+                await createNewConversation();
+            }
+            
+            try {
+                // Add user message to chat
+                const chatMessages = document.querySelector('.chat-messages');
+                chatMessages.innerHTML += `
+                    <div class="message user">
+                        <div class="message-content">${message}</div>
+                    </div>
+                `;
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                
+                // Save user message to database
+                await fetch('api/messages.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        conversation_id: currentConversationId,
+                        content: message,
+                        is_user: true
+                    })
+                });
+                
+                // Clear input
+                messageInput.value = '';
+                
+                // Send to AI and get response
                 const response = await fetch('send_message.php', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
+                        'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ message })
+                    body: JSON.stringify({
+                        message: message
+                    })
                 });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
+                
                 const data = await response.json();
                 
-                // Hide loader before adding the response
-                loader.style.display = 'none';
+                if (data.error) {
+                    throw new Error(data.error);
+                }
                 
-                addMessage('assistant', data.response);
+                // Add AI response to chat
+                chatMessages.innerHTML += `
+                    <div class="message assistant">
+                        <div class="message-content">${data.response}</div>
+                    </div>
+                `;
+                
+                // Save AI response to database
+                await fetch('api/messages.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        conversation_id: currentConversationId,
+                        content: data.response,
+                        is_user: false
+                    })
+                });
+                
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                await loadConversations(); // Refresh sidebar
             } catch (error) {
-                // Hide loader before showing error
-                loader.style.display = 'none';
-                addMessage('assistant', 'عذراً، واجهت خطأ. يرجى المحاولة مرة أخرى.');
-            } finally {
-                // Re-enable input and button
-                messageInput.disabled = false;
-                sendButton.disabled = false;
-                messageInput.focus();
+                console.error('Error sending message:', error);
+                showError('عذراً، واجهت خطأ. يرجى المحاولة مرة أخرى.');
             }
         }
 
-        function addMessage(role, content) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${role}`;
+        // Show error message
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            document.body.appendChild(errorDiv);
             
-            const messageContent = document.createElement('div');
-            messageContent.className = 'message-content';
-            messageContent.textContent = content;
-            
-            messageDiv.appendChild(messageContent);
-            messagesContainer.appendChild(messageDiv);
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 3000);
         }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadConversations();
+            
+            // Handle enter key in message input
+            document.getElementById('message-input').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
     </script>
 </body>
 </html> 
