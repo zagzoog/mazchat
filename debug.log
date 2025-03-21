@@ -4790,3 +4790,471 @@ string
 string
 [2025-03-21 21:51:05] Final JSON Response Length
 3352
+[2025-03-21 22:56:04] === New Request Debug Log ===
+[2025-03-21 22:56:04] Request Data
+Array
+(
+    [message] => hi
+    [sessionId] => 67ddecf8c51c01742597368
+)
+
+[2025-03-21 22:56:04] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 22:56:05] === Response Debug Info ===
+[2025-03-21 22:56:05] HTTP Code
+200
+[2025-03-21 22:56:05] Response Length
+181
+[2025-03-21 22:56:05] Response Type
+string
+[2025-03-21 22:56:05] First 1000 chars
+مرحبًا! كيف يمكنني مساعدتك اليوم؟ إذا كان لديك استفسار حول العثور على شريك مثالي، فلا تتردد في طرحه.
+[2025-03-21 22:56:05] Last 1000 chars
+مرحبًا! كيف يمكنني مساعدتك اليوم؟ إذا كان لديك استفسار حول العثور على شريك مثالي، فلا تتردد في طرحه.
+[2025-03-21 22:56:05] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 792
+    [request_size] => 246
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 1.757775
+    [namelookup_time] => 0.06089
+    [connect_time] => 0.154309
+    [pretransfer_time] => 0.357828
+    [size_upload] => 54
+    [size_download] => 181
+    [speed_download] => 102
+    [speed_upload] => 30
+    [download_content_length] => -1
+    [upload_content_length] => 54
+    [starttransfer_time] => 1.756828
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.80.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 53990
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 357687
+    [connect_time_us] => 154309
+    [namelookup_time_us] => 60890
+    [pretransfer_time_us] => 357828
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1756828
+    [total_time_us] => 1757775
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 22:56:05] === JSON Parsing Debug ===
+[2025-03-21 22:56:05] JSON Parse Error
+4
+[2025-03-21 22:56:05] JSON Parse Error Message
+Syntax error
+[2025-03-21 22:56:05] Response Data Type
+NULL
+[2025-03-21 22:56:05] === String Response Processing ===
+[2025-03-21 22:56:05] === Markdown Formatting Debug ===
+[2025-03-21 22:56:05] Input Text Length
+181
+[2025-03-21 22:56:05] Input Text Type
+string
+[2025-03-21 22:56:05] Output Text Length
+182
+[2025-03-21 22:56:05] Output Text Type
+string
+[2025-03-21 22:56:05] Formatted Response Length
+182
+[2025-03-21 22:56:05] Formatted Response Type
+string
+[2025-03-21 22:56:05] Final JSON Response Length
+198
+[2025-03-21 22:56:17] === New Request Debug Log ===
+[2025-03-21 22:56:17] Request Data
+Array
+(
+    [message] => Give me a list of Saudi girls in their 30s
+    [sessionId] => 67ddecf8c51c01742597368
+)
+
+[2025-03-21 22:56:17] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 22:56:40] === Response Debug Info ===
+[2025-03-21 22:56:40] HTTP Code
+200
+[2025-03-21 22:56:40] Response Length
+3861
+[2025-03-21 22:56:40] Response Type
+string
+[2025-03-21 22:56:40] First 1000 chars
+إليك قائمة بالفتيات السعوديات في الثلاثينات من عمرهن:
+
+### 1. Uufh
+
+🔹 **العمر:** 21 <br>
+📍 **الموقع:** جدة، السعودية <br>
+🎓 **المؤهل العلمي:** غير موضح <br>
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025 <br>
+<br>
+📌 **الشخصية:**   
+شخصية تسعى لتحقيق رؤى جديدة ولديها طموح كبير في الحياة. تفضل طريقة تفكير متميزة وابتكارية لعلاقتها بالشخص المناسب.
+
+💑 **ما تبحث عنه:**   
+تهتم بالبحث عن شخص يمكن أن يكون له أهداف وطموحات مماثلة.
+
+🔗 **رابط الملف الشخصي:**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2030368)
+<br>
+
+---
+
+### 2. ÎÇÇÇÇÇáÏíÉ 222
+
+🔹 **العمر:** 39 <br>
+📍 **الموقع:** المدينة المنورة، السعودية <br>
+🎓 **المؤهل الع�
+[2025-03-21 22:56:40] Last 1000 chars
+�ا](https://www.zwjate.com/zwjate/detail.php?userNumber=2030234)
+<br>
+
+---
+
+### 5. Ssma
+
+🔹 **العمر:** 39 <br>
+📍 **الموقع:** جدة، السعودية <br>
+🎓 **المؤهل العلمي:** بكالوريوس <br>
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025 <br>
+<br>
+📌 **الشخصية:**  
+تظهر شخصية عاطفية وحنونة، تقدر العلاقات العائلية وتبحث عن شريك يشاركها نفس القيم.
+
+💑 **ما تبحث عنه:**  
+تسعى للعثور على شخص يشاركها القيم الأسرية والتطلعات الحياتية.
+
+🔗 **رابط الملف الشخصي:**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2024741)
+<br>
+
+---
+
+إذا كان لديك أي استفسار آخر أو تحتاج لمزيد من التفاصيل، فلا تتردد في السؤال! وإذا أعجبتك المحادثة، يمكنك مشاركة الصفحة مع أصدقائك.
+[2025-03-21 22:56:40] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 788
+    [request_size] => 286
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 23.447837
+    [namelookup_time] => 0.001012
+    [connect_time] => 0.10342
+    [pretransfer_time] => 0.201181
+    [size_upload] => 94
+    [size_download] => 3861
+    [speed_download] => 164
+    [speed_upload] => 4
+    [download_content_length] => -1
+    [upload_content_length] => 94
+    [starttransfer_time] => 23.443659
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.80.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 54006
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 201009
+    [connect_time_us] => 103420
+    [namelookup_time_us] => 1012
+    [pretransfer_time_us] => 201181
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 23443659
+    [total_time_us] => 23447837
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 22:56:40] === JSON Parsing Debug ===
+[2025-03-21 22:56:40] JSON Parse Error
+4
+[2025-03-21 22:56:40] JSON Parse Error Message
+Syntax error
+[2025-03-21 22:56:40] Response Data Type
+NULL
+[2025-03-21 22:56:40] === String Response Processing ===
+[2025-03-21 22:56:40] === Markdown Formatting Debug ===
+[2025-03-21 22:56:40] Input Text Length
+3564
+[2025-03-21 22:56:40] Input Text Type
+string
+[2025-03-21 22:56:40] Output Text Length
+3935
+[2025-03-21 22:56:40] Output Text Type
+string
+[2025-03-21 22:56:40] Formatted Response Length
+3935
+[2025-03-21 22:56:40] Formatted Response Type
+string
+[2025-03-21 22:56:40] Final JSON Response Length
+3951
+[2025-03-21 23:05:30] === New Request Debug Log ===
+[2025-03-21 23:05:30] Request Data
+Array
+(
+    [message] => Hello
+    [sessionId] => 67ddecf8c51c01742597368
+)
+
+[2025-03-21 23:05:30] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 23:05:32] === Response Debug Info ===
+[2025-03-21 23:05:32] HTTP Code
+200
+[2025-03-21 23:05:32] Response Length
+182
+[2025-03-21 23:05:32] Response Type
+string
+[2025-03-21 23:05:32] First 1000 chars
+مرحبًا! كيف يمكنني مساعدتك اليوم؟ إذا كان لديك أي استفسار حول البحث عن شريك حياتك، فلا تتردد في طرحه.
+[2025-03-21 23:05:32] Last 1000 chars
+مرحبًا! كيف يمكنني مساعدتك اليوم؟ إذا كان لديك أي استفسار حول البحث عن شريك حياتك، فلا تتردد في طرحه.
+[2025-03-21 23:05:32] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 791
+    [request_size] => 249
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 1.513847
+    [namelookup_time] => 0.037089
+    [connect_time] => 0.132739
+    [pretransfer_time] => 0.232353
+    [size_upload] => 57
+    [size_download] => 182
+    [speed_download] => 120
+    [speed_upload] => 37
+    [download_content_length] => -1
+    [upload_content_length] => 57
+    [starttransfer_time] => 1.513813
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.96.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 55248
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 232261
+    [connect_time_us] => 132739
+    [namelookup_time_us] => 37089
+    [pretransfer_time_us] => 232353
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1513813
+    [total_time_us] => 1513847
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 23:05:32] === JSON Parsing Debug ===
+[2025-03-21 23:05:32] JSON Parse Error
+4
+[2025-03-21 23:05:32] JSON Parse Error Message
+Syntax error
+[2025-03-21 23:05:32] Response Data Type
+NULL
+[2025-03-21 23:05:32] === String Response Processing ===
+[2025-03-21 23:05:32] === Markdown Formatting Debug ===
+[2025-03-21 23:05:32] Input Text Length
+182
+[2025-03-21 23:05:32] Input Text Type
+string
+[2025-03-21 23:05:32] Output Text Length
+183
+[2025-03-21 23:05:32] Output Text Type
+string
+[2025-03-21 23:05:32] Formatted Response Length
+183
+[2025-03-21 23:05:32] Formatted Response Type
+string
+[2025-03-21 23:05:32] Final JSON Response Length
+199
+[2025-03-21 23:05:41] === New Request Debug Log ===
+[2025-03-21 23:05:41] Request Data
+Array
+(
+    [message] => Give me a list of Saudi girls in their 30s
+    [sessionId] => 67ddecf8c51c01742597368
+)
+
+[2025-03-21 23:05:41] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 23:06:06] === Response Debug Info ===
+[2025-03-21 23:06:06] HTTP Code
+200
+[2025-03-21 23:06:06] Response Length
+3835
+[2025-03-21 23:06:06] Response Type
+string
+[2025-03-21 23:06:06] First 1000 chars
+إليك قائمة بالفتيات السعوديات في الثلاثينات من عمرهن:
+
+### 1. **ÎÇÇÇÇÇáÏíÉ 222**
+
+🔹 **العمر:** 39 <br>
+📍 **الموقع:** المدينة المنورة، السعودية  <br>
+🎓 **المؤهل العلمي:** ماجستير  <br>
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025  <br>
+<br>
+📌 **الشخصية:**  
+تظهر شخصية مثقفة ومتعلمة، تشعر بالراحة في المناقشات الجادة ولديها قدرة على التواصل بفعالية.
+
+💑 **ما تبحث عنه:**  
+تبحث عن شريك ملتزم ويشاركها القيم والمبادئ.
+
+🔗 **رابط الملف الشخصي:**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2020271)
+<br>
+
+---
+
+### 2. **Ssma**
+
+🔹 **العمر:** 39 <br>
+📍 **الموقع:** جدة، السعودية <br>
+🎓 **المؤهل العلمي:** بكالوريوس <br>
+🕵️‍♂️ **آ�
+[2025-03-21 23:06:06] Last 1000 chars
+**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2028061)
+<br>
+
+---
+
+### 5. **ÍäÇägfgghananty**
+
+🔹 **العمر:** 32 <br>
+📍 **الموقع:** 重庆، السعودية <br>
+🎓 **المؤهل العلمي:** بكالوريوس <br>
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025 <br>
+<br>
+📌 **الشخصية:**  
+شخصية لطيفة تبحث عن علاقة مليئة بالسعادة والاحترام المتبادل. 
+
+💑 **ما تبحث عنه:**  
+تفضل البحث عن شريك ذو قيم ومبادئ قوية, يسعى لبناء مستقبل مشترك.
+
+🔗 **رابط الملف الشخصي:**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2030234)
+<br>
+
+---
+
+إذا كان لديك أي استفسار آخر أو تحتاج لمزيد من التفاصيل، فلا تتردد في السؤال! وإذا أعجبتك المحادثة، يمكنك مشاركة الصفحة مع أصدقائك.
+[2025-03-21 23:06:06] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 788
+    [request_size] => 286
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 25.318997
+    [namelookup_time] => 0.001133
+    [connect_time] => 0.095573
+    [pretransfer_time] => 0.194647
+    [size_upload] => 94
+    [size_download] => 3835
+    [speed_download] => 151
+    [speed_upload] => 3
+    [download_content_length] => -1
+    [upload_content_length] => 94
+    [starttransfer_time] => 25.31895
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.96.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 55262
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 194536
+    [connect_time_us] => 95573
+    [namelookup_time_us] => 1133
+    [pretransfer_time_us] => 194647
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 25318950
+    [total_time_us] => 25318997
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 23:06:06] === JSON Parsing Debug ===
+[2025-03-21 23:06:06] JSON Parse Error
+4
+[2025-03-21 23:06:06] JSON Parse Error Message
+Syntax error
+[2025-03-21 23:06:06] Response Data Type
+NULL
+[2025-03-21 23:06:06] === String Response Processing ===
+[2025-03-21 23:06:06] === Markdown Formatting Debug ===
+[2025-03-21 23:06:06] Input Text Length
+3532
+[2025-03-21 23:06:06] Input Text Type
+string
+[2025-03-21 23:06:06] Output Text Length
+3906
+[2025-03-21 23:06:06] Output Text Type
+string
+[2025-03-21 23:06:06] Formatted Response Length
+3906
+[2025-03-21 23:06:06] Formatted Response Type
+string
+[2025-03-21 23:06:06] Final JSON Response Length
+3922

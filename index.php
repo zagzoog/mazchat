@@ -121,9 +121,46 @@ $config = require_once 'config.php';
         .sidebar {
             width: 300px;
             transition: all 0.3s ease;
+            position: relative;
         }
         .sidebar.collapsed {
             width: 60px;
+        }
+        .sidebar.collapsed .sidebar-content {
+            display: none;
+        }
+        .sidebar.collapsed .sidebar-header {
+            justify-content: center;
+        }
+        .sidebar.collapsed .toggle-sidebar {
+            transform: rotate(180deg);
+        }
+        .sidebar.collapsed .user-info {
+            display: none;
+        }
+        .sidebar.collapsed h2 {
+            display: none;
+        }
+        .toggle-sidebar {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        .toggle-sidebar:hover {
+            background-color: #f3f4f6;
+        }
+        .toggle-sidebar i {
+            font-size: 1.25rem;
+            transition: transform 0.3s ease;
+        }
+        .sidebar.collapsed + .main-content {
+            margin-right: 60px;
         }
         .conversation-item {
             transition: all 0.2s ease;
@@ -204,6 +241,35 @@ $config = require_once 'config.php';
         .user-info .logout-btn:hover {
             text-decoration: underline;
         }
+        @media (max-width: 768px) {
+            .sidebar {
+                position: fixed;
+                z-index: 50;
+                height: 100vh;
+                width: 100%;
+                transform: translateX(100%);
+                background-color: white;
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .main-content {
+                margin-right: 0 !important;
+                width: 100%;
+            }
+            .sidebar.collapsed {
+                width: 100%;
+            }
+            .sidebar.collapsed .sidebar-content {
+                display: block;
+            }
+            .sidebar.collapsed .user-info {
+                display: block;
+            }
+            .sidebar.collapsed h2 {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-100">
@@ -211,8 +277,16 @@ $config = require_once 'config.php';
         <!-- Header -->
         <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
             <div class="flex justify-between items-center">
-                <h1 class="text-3xl font-bold text-gray-800">نظام المطابقة الذكي</h1>
                 <div class="flex items-center gap-4">
+                    <button id="toggleSidebar" class="toggle-sidebar p-2 hover:bg-gray-100 rounded-lg transition-transform">
+                        <i class="fas fa-bars text-gray-600"></i>
+                    </button>
+                    <h1 class="text-3xl font-bold text-gray-800">نظام المطابقة الذكي</h1>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="profile.php" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-user-circle"></i> الملف الشخصي
+                    </a>
                     <span class="text-gray-600">مرحباً، <?php echo htmlspecialchars($_SESSION['username']); ?></span>
                     <a href="logout.php" class="text-red-600 hover:text-red-700">
                         <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
@@ -223,18 +297,15 @@ $config = require_once 'config.php';
 
         <div class="flex gap-6">
             <!-- Sidebar -->
-            <div id="sidebar" class="sidebar bg-white rounded-lg shadow-lg p-4">
+            <div class="sidebar bg-white rounded-lg shadow-lg p-4">
                 <div class="user-info">
                     <div class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></div>
                     <a href="logout.php" class="logout-btn">
                         <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
                     </a>
                 </div>
-                <div class="flex justify-between items-center mb-4">
+                <div class="sidebar-header flex justify-between items-center mb-4">
                     <h2 class="text-xl font-semibold text-gray-800">المحادثات السابقة</h2>
-                    <button id="toggleSidebar" class="text-gray-600 hover:text-gray-800">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
                 </div>
                 <div id="conversationsList" class="space-y-2">
                     <!-- Conversations will be added here dynamically -->
@@ -403,8 +474,6 @@ $config = require_once 'config.php';
                 
                 const chatContainer = document.getElementById('chatContainer');
                 chatContainer.innerHTML = messages.map(msg => {
-                    // For user messages, trim and replace newlines
-                    // For AI messages, only replace newlines without trimming
                     const formattedContent = msg.is_user ? 
                         msg.content.trim().replace(/\n/g, '<br>') : 
                         msg.content.replace(/\n/g, '<br>');
@@ -417,6 +486,12 @@ $config = require_once 'config.php';
                 
                 chatContainer.scrollTop = chatContainer.scrollHeight;
                 await loadConversations(); // Refresh sidebar
+
+                // Close sidebar on mobile after selecting a conversation
+                if (window.innerWidth <= 768) {
+                    const sidebar = document.querySelector('.sidebar');
+                    sidebar.classList.remove('open');
+                }
             } catch (error) {
                 console.error('Error loading conversation:', error);
                 showError('حدث خطأ أثناء تحميل المحادثة');
@@ -582,6 +657,51 @@ $config = require_once 'config.php';
                     sendMessage();
                 }
             });
+        });
+
+        // Update the sidebar toggle functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebar = document.querySelector('.sidebar');
+            const toggleButton = document.getElementById('toggleSidebar');
+            
+            // Set initial state for mobile
+            if (window.innerWidth <= 768) {
+                sidebar.classList.add('collapsed');
+            }
+            
+            toggleButton.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.toggle('open');
+                } else {
+                    sidebar.classList.toggle('collapsed');
+                }
+            });
+
+            // Close sidebar on mobile when clicking outside
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768 && 
+                    !sidebar.contains(e.target) && 
+                    !toggleButton.contains(e.target) &&
+                    sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                }
+            });
+
+            // Close sidebar when selecting a conversation on mobile
+            document.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768 && 
+                    e.target.closest('.conversation-item') && 
+                    sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                }
+            });
+        });
+
+        // Auto-resize textarea
+        const textarea = document.getElementById('message-input');
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
         });
     </script>
 </body>

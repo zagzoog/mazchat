@@ -21,6 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['username'] = $username;
                     
+                    // Get user's email
+                    $stmt = $db->prepare("SELECT email FROM users WHERE id = ?");
+                    $stmt->execute([$user['id']]);
+                    $userData = $stmt->fetch();
+                    $_SESSION['email'] = $userData['email'];
+                    
                     // Update last login
                     $stmt = $db->prepare("UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ?");
                     $stmt->execute([$user['id']]);
