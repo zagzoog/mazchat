@@ -5258,3 +5258,222 @@ string
 string
 [2025-03-21 23:06:06] Final JSON Response Length
 3922
+[2025-03-21 23:29:18] === New Request Debug Log ===
+[2025-03-21 23:29:18] Request Data
+Array
+(
+    [message] => Give me a list of Saudi girls in their 30s
+    [sessionId] => 67ddf3c7113f71742599111
+)
+
+[2025-03-21 23:29:18] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 23:29:35] === Response Debug Info ===
+[2025-03-21 23:29:35] HTTP Code
+200
+[2025-03-21 23:29:35] Response Length
+309
+[2025-03-21 23:29:35] Response Type
+string
+[2025-03-21 23:29:35] First 1000 chars
+يبدو أن هناك مشكلة في الوصول إلى قاعدة البيانات. إذا كنت بحاجة إلى مساعدتي في أي شيء آخر أو إذا كانت لديك تفاصيل إضافية حول ما تبحث عنه، يرجى إخباري. سأكون سعيدًا بمساعدتك!
+[2025-03-21 23:29:35] Last 1000 chars
+يبدو أن هناك مشكلة في الوصول إلى قاعدة البيانات. إذا كنت بحاجة إلى مساعدتي في أي شيء آخر أو إذا كانت لديك تفاصيل إضافية حول ما تبحث عنه، يرجى إخباري. سأكون سعيدًا بمساعدتك!
+[2025-03-21 23:29:35] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 784
+    [request_size] => 286
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 16.992171
+    [namelookup_time] => 0.064335
+    [connect_time] => 0.152401
+    [pretransfer_time] => 0.249891
+    [size_upload] => 94
+    [size_download] => 309
+    [speed_download] => 18
+    [speed_upload] => 5
+    [download_content_length] => -1
+    [upload_content_length] => 94
+    [starttransfer_time] => 16.992126
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.16.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 57218
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 249801
+    [connect_time_us] => 152401
+    [namelookup_time_us] => 64335
+    [pretransfer_time_us] => 249891
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 16992126
+    [total_time_us] => 16992171
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 23:29:35] === JSON Parsing Debug ===
+[2025-03-21 23:29:35] JSON Parse Error
+4
+[2025-03-21 23:29:35] JSON Parse Error Message
+Syntax error
+[2025-03-21 23:29:35] Response Data Type
+NULL
+[2025-03-21 23:29:35] === String Response Processing ===
+[2025-03-21 23:29:35] === Markdown Formatting Debug ===
+[2025-03-21 23:29:35] Input Text Length
+309
+[2025-03-21 23:29:35] Input Text Type
+string
+[2025-03-21 23:29:35] Output Text Length
+310
+[2025-03-21 23:29:35] Output Text Type
+string
+[2025-03-21 23:29:35] Formatted Response Length
+310
+[2025-03-21 23:29:35] Formatted Response Type
+string
+[2025-03-21 23:29:35] Final JSON Response Length
+326
+[2025-03-21 23:41:35] === New Request Debug Log ===
+[2025-03-21 23:41:35] Request Data
+Array
+(
+    [message] => Give me a list of Saudi girls in their 30s
+    [sessionId] => 67ddf7e0b77e81742600160
+)
+
+[2025-03-21 23:41:35] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 23:41:51] === Response Debug Info ===
+[2025-03-21 23:41:51] HTTP Code
+200
+[2025-03-21 23:41:51] Response Length
+3593
+[2025-03-21 23:41:51] Response Type
+string
+[2025-03-21 23:41:51] First 1000 chars
+توجد العديد من الفتيات السعوديات في الثلاثينات. فيما يلي قائمة مختارة:
+
+### 1. **اسم المستخدم:** ÝÇÚáíä ÎíÑ  
+🔹 **العمر:** 39  
+📍 **الموقع:** حائل  
+🎓 **المؤهل العلمي:** بكالوريوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025  
+<br>
+📌 **الشخصية:** يبدو أن هذه الشخصية تبحث عن شريك متفهم، حيث تميل إلى العلاقات الجادة والمستقرة. تحب أن تعبر عن مشاعرها وتقدّر الحوارات العميقة.  
+<br>
+💑 **ما تبحث عنه:** تبحث عن شخص يمكنه فهم احتياجاتها ويمتلك رؤية مشابهة للحياة.  
+🔗 **رابط الملف الشخصي:** [رابط الملف الشخصي](https://www.zwjate.com/zwjate/detail.php?userNumber=2026813)  
+<br>
+<hr>
+
+### 2. **اسم المستخدم:** QW451  
+🔹 **العمر:** 36  
+
+[2025-03-21 23:41:51] Last 1000 chars
+�ه:** تهتم بإيجاد شريك يشاركها الطموحات والأحلام.  
+🔗 **رابط الملف الشخصي:** [رابط الملف الشخصي](https://www.zwjate.com/zwjate/detail.php?userNumber=2020425)  
+<br>
+<hr>
+
+### 5. **اسم المستخدم:** ÓäÝæÑå ❤️  
+🔹 **العمر:** 37  
+📍 **الموقع:** جده  
+🎓 **المؤهل العلمي:** بكالوريوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025  
+<br>
+📌 **الشخصية:** تتمتع بشخصية مليئة بالطاقة والحيوية.  
+<br>
+💑 **ما تبحث عنه:** تبحث عن شريك يقدّر الحياة ويشاركها الأفكار والمشاعر.  
+🔗 **رابط الملف الشخصي:** [رابط الملف الشخصي](https://www.zwjate.com/zwjate/detail.php?userNumber=2020726)  
+<br>
+<hr>
+
+إذا كان لديك أي استفسارات إضافية أو تحتاج لتفاصيل أخرى، فلا تتردد في طرحها!
+[2025-03-21 23:41:51] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 788
+    [request_size] => 286
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 15.268099
+    [namelookup_time] => 0.154296
+    [connect_time] => 0.261692
+    [pretransfer_time] => 0.363225
+    [size_upload] => 94
+    [size_download] => 3593
+    [speed_download] => 235
+    [speed_upload] => 6
+    [download_content_length] => -1
+    [upload_content_length] => 94
+    [starttransfer_time] => 15.26685
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.16.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 58425
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 363137
+    [connect_time_us] => 261692
+    [namelookup_time_us] => 154296
+    [pretransfer_time_us] => 363225
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 15266850
+    [total_time_us] => 15268099
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 23:41:51] === JSON Parsing Debug ===
+[2025-03-21 23:41:51] JSON Parse Error
+4
+[2025-03-21 23:41:51] JSON Parse Error Message
+Syntax error
+[2025-03-21 23:41:51] Response Data Type
+NULL
+[2025-03-21 23:41:51] === String Response Processing ===
+[2025-03-21 23:41:51] === Markdown Formatting Debug ===
+[2025-03-21 23:41:51] Input Text Length
+3320
+[2025-03-21 23:41:51] Input Text Type
+string
+[2025-03-21 23:41:51] Output Text Length
+3641
+[2025-03-21 23:41:51] Output Text Type
+string
+[2025-03-21 23:41:51] Formatted Response Length
+3641
+[2025-03-21 23:41:51] Formatted Response Type
+string
+[2025-03-21 23:41:51] Final JSON Response Length
+3657

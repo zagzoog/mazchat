@@ -33,7 +33,35 @@ $config = require_once 'config.php';
             min-height: 100vh;
         }
         .chat-container {
-            height: calc(100vh - 180px);
+            height: calc(100vh - 280px);
+            min-height: 200px;
+            max-height: calc(100vh - 300px);
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .chat-input-container {
+            position: sticky;
+            bottom: 0;
+            background-color: white;
+            padding: 1rem;
+            border-top: 1px solid #e5e7eb;
+            margin-top: auto;
+        }
+        @media (max-height: 600px) {
+            .chat-container {
+                height: calc(100vh - 260px);
+                min-height: 150px;
+            }
+        }
+        @media (max-height: 500px) {
+            .chat-container {
+                height: calc(100vh - 240px);
+                min-height: 100px;
+            }
         }
         .message {
             max-width: 80%;
@@ -96,6 +124,23 @@ $config = require_once 'config.php';
             margin-right: auto;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
             width: fit-content;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
         }
         .loading-dots {
             display: flex;
@@ -124,21 +169,18 @@ $config = require_once 'config.php';
             position: relative;
         }
         .sidebar.collapsed {
-            width: 60px;
+            width: 0;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
         }
         .sidebar.collapsed .sidebar-content {
             display: none;
         }
         .sidebar.collapsed .sidebar-header {
-            justify-content: center;
-        }
-        .sidebar.collapsed .toggle-sidebar {
-            transform: rotate(180deg);
-        }
-        .sidebar.collapsed .user-info {
             display: none;
         }
-        .sidebar.collapsed h2 {
+        .sidebar.collapsed .user-info {
             display: none;
         }
         .toggle-sidebar {
@@ -160,16 +202,20 @@ $config = require_once 'config.php';
             transition: transform 0.3s ease;
         }
         .sidebar.collapsed + .main-content {
-            margin-right: 60px;
+            margin-right: 0;
         }
         .conversation-item {
-            transition: all 0.2s ease;
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 0.5rem;
         }
         .conversation-item:hover {
-            background-color: rgba(102, 126, 234, 0.1);
+            background-color: #f3f4f6;
         }
         .conversation-item.active {
-            background-color: rgba(102, 126, 234, 0.2);
+            background-color: #eef2ff;
         }
         /* Error message styling */
         .error-message {
@@ -258,16 +304,7 @@ $config = require_once 'config.php';
                 width: 100%;
             }
             .sidebar.collapsed {
-                width: 100%;
-            }
-            .sidebar.collapsed .sidebar-content {
-                display: block;
-            }
-            .sidebar.collapsed .user-info {
-                display: block;
-            }
-            .sidebar.collapsed h2 {
-                display: block;
+                transform: translateX(100%);
             }
         }
     </style>
@@ -289,7 +326,7 @@ $config = require_once 'config.php';
                     </a>
                     <span class="text-gray-600">مرحباً، <?php echo htmlspecialchars($_SESSION['username']); ?></span>
                     <a href="logout.php" class="text-red-600 hover:text-red-700">
-                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
+                        <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </div>
             </div>
@@ -298,12 +335,7 @@ $config = require_once 'config.php';
         <div class="flex gap-6">
             <!-- Sidebar -->
             <div class="sidebar bg-white rounded-lg shadow-lg p-4">
-                <div class="user-info">
-                    <div class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></div>
-                    <a href="logout.php" class="logout-btn">
-                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-                    </a>
-                </div>
+                
                 <div class="sidebar-header flex justify-between items-center mb-4">
                     <h2 class="text-xl font-semibold text-gray-800">المحادثات السابقة</h2>
                 </div>
@@ -313,19 +345,21 @@ $config = require_once 'config.php';
             </div>
 
             <!-- Main Chat Area -->
-            <div class="flex-1 bg-white rounded-lg shadow-lg p-6">
-                <div id="chatContainer" class="chat-container overflow-y-auto mb-4 space-y-4">
+            <div class="flex-1 bg-white rounded-lg shadow-lg flex flex-col">
+                <div id="chatContainer" class="chat-container">
                     <!-- Messages will be added here -->
                 </div>
                 
-                <div class="flex gap-4">
-                    <input type="text" id="message-input" 
-                           class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                           placeholder="اكتب رسالتك هنا...">
-                    <button id="send-button" 
-                            class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
+                <div class="chat-input-container">
+                    <div class="flex gap-4">
+                        <input type="text" id="message-input" 
+                               class="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                               placeholder="اكتب رسالتك هنا...">
+                        <button id="send-button" 
+                                class="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -360,12 +394,7 @@ $config = require_once 'config.php';
                 
                 if (!loadMore) {
                     sidebar.innerHTML = `
-                        <div class="user-info">
-                            <div class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></div>
-                            <a href="logout.php" class="logout-btn">
-                                <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-                            </a>
-                        </div>
+                        
                         <div class="sidebar-header">
                             <h2>المحادثات</h2>
                             <button onclick="createNewConversation()" class="new-chat-btn">
@@ -469,10 +498,25 @@ $config = require_once 'config.php';
         async function loadConversation(conversationId) {
             try {
                 currentConversationId = conversationId;
+                
+                // Show loading indicator with overlay
+                const chatContainer = document.getElementById('chatContainer');
+                chatContainer.innerHTML = `
+                    <div class="loading-overlay">
+                        <div class="loading-indicator">
+                            <div class="loading-dots">
+                                <div class="loading-dot"></div>
+                                <div class="loading-dot"></div>
+                                <div class="loading-dot"></div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
                 const response = await fetch(`api/messages.php?conversation_id=${conversationId}`);
                 const messages = await response.json();
                 
-                const chatContainer = document.getElementById('chatContainer');
+                // Clear loading indicator and show messages
                 chatContainer.innerHTML = messages.map(msg => {
                     const formattedContent = msg.is_user ? 
                         msg.content.trim().replace(/\n/g, '<br>') : 
@@ -495,6 +539,13 @@ $config = require_once 'config.php';
             } catch (error) {
                 console.error('Error loading conversation:', error);
                 showError('حدث خطأ أثناء تحميل المحادثة');
+                // Clear loading indicator and show error message
+                const chatContainer = document.getElementById('chatContainer');
+                chatContainer.innerHTML = `
+                    <div class="message assistant">
+                        <div class="message-content">عذراً، حدث خطأ أثناء تحميل المحادثة. يرجى المحاولة مرة أخرى.</div>
+                    </div>
+                `;
             }
         }
 
