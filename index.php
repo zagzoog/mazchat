@@ -24,6 +24,7 @@ $config = require_once 'config.php';
     <title>نظام المطابقة الذكي</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
         body {
@@ -36,14 +37,86 @@ $config = require_once 'config.php';
         }
         .message {
             max-width: 80%;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 1rem;
+            position: relative;
         }
-        .user-message {
+        .message.user {
+            margin-left: auto;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
+            border-bottom-left-radius: 0.25rem;
         }
-        .bot-message {
+        .message.assistant {
+            margin-right: auto;
             background: white;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-bottom-right-radius: 0.25rem;
+        }
+        .message-content {
+            word-wrap: break-word;
+        }
+        .message-content code {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        .message-content pre {
+            background-color: rgba(0, 0, 0, 0.1);
+            padding: 1em;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .message-content pre code {
+            background-color: transparent;
+            padding: 0;
+        }
+        .message-content p {
+            margin: 0.5em 0;
+        }
+        .message-content ul, .message-content ol {
+            margin: 0.5em 0;
+            padding-right: 1.5em;
+        }
+        .message-content blockquote {
+            border-right: 4px solid rgba(0, 0, 0, 0.2);
+            padding-right: 1em;
+            margin: 0.5em 0;
+            color: rgba(0, 0, 0, 0.7);
+        }
+        .loading-indicator {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 1rem;
+            margin-right: auto;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            width: fit-content;
+        }
+        .loading-dots {
+            display: flex;
+            gap: 0.25rem;
+        }
+        .loading-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            background: #667eea;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out;
+        }
+        .loading-dot:nth-child(1) { animation-delay: -0.32s; }
+        .loading-dot:nth-child(2) { animation-delay: -0.16s; }
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+        .send-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
         }
         .sidebar {
             width: 300px;
@@ -192,6 +265,7 @@ $config = require_once 'config.php';
         let currentOffset = 0;
         let hasMoreConversations = true;
         let conversationsPerPage = <?php echo $config['conversations_per_page']; ?>;
+        let isSending = false;
 
         // Load conversations from the server
         async function loadConversations(loadMore = false) {
@@ -269,6 +343,11 @@ $config = require_once 'config.php';
                 }).join('');
                 
                 if (loadMore) {
+                    // Remove the Load More button if it exists
+                    const existingLoadMoreBtn = conversationsList.querySelector('.load-more-btn');
+                    if (existingLoadMoreBtn) {
+                        existingLoadMoreBtn.remove();
+                    }
                     conversationsList.insertAdjacentHTML('beforeend', newConversations);
                 } else {
                     conversationsList.innerHTML = newConversations;
@@ -277,7 +356,7 @@ $config = require_once 'config.php';
                 // Add Load More button if there are more conversations
                 if (hasMoreConversations) {
                     const loadMoreBtn = document.createElement('button');
-                    loadMoreBtn.className = 'w-full mt-4 p-2 text-center text-indigo-600 hover:text-indigo-800 font-semibold';
+                    loadMoreBtn.className = 'load-more-btn w-full mt-4 p-2 text-center text-indigo-600 hover:text-indigo-800 font-semibold';
                     loadMoreBtn.innerHTML = '<i class="fas fa-chevron-down"></i> تحميل المزيد';
                     loadMoreBtn.onclick = () => {
                         currentOffset += conversationsPerPage;
@@ -323,11 +402,18 @@ $config = require_once 'config.php';
                 const messages = await response.json();
                 
                 const chatContainer = document.getElementById('chatContainer');
-                chatContainer.innerHTML = messages.map(msg => `
-                    <div class="message ${msg.is_user ? 'user' : 'assistant'}">
-                        <div class="message-content">${msg.content}</div>
-                    </div>
-                `).join('');
+                chatContainer.innerHTML = messages.map(msg => {
+                    // For user messages, trim and replace newlines
+                    // For AI messages, only replace newlines without trimming
+                    const formattedContent = msg.is_user ? 
+                        msg.content.trim().replace(/\n/g, '<br>') : 
+                        msg.content.replace(/\n/g, '<br>');
+                    return `
+                        <div class="message ${msg.is_user ? 'user' : 'assistant'}">
+                            <div class="message-content">${marked.parse(formattedContent)}</div>
+                        </div>
+                    `;
+                }).join('');
                 
                 chatContainer.scrollTop = chatContainer.scrollHeight;
                 await loadConversations(); // Refresh sidebar
@@ -339,7 +425,13 @@ $config = require_once 'config.php';
 
         // Send a message
         async function sendMessage() {
+            // Prevent double sending
+            if (isSending) {
+                return;
+            }
+            
             const messageInput = document.getElementById('message-input');
+            const sendButton = document.getElementById('send-button');
             const message = messageInput.value.trim();
             
             if (!message) return;
@@ -349,11 +441,31 @@ $config = require_once 'config.php';
             }
             
             try {
+                isSending = true;  // Set sending flag
+                
+                // Disable input and button
+                messageInput.disabled = true;
+                sendButton.disabled = true;
+                
                 // Add user message to chat
                 const chatContainer = document.getElementById('chatContainer');
+                // For user message, trim and replace newlines
+                const formattedUserMessage = message.trim().replace(/\n/g, '<br>');
                 chatContainer.innerHTML += `
                     <div class="message user">
-                        <div class="message-content">${message}</div>
+                        <div class="message-content">${marked.parse(formattedUserMessage)}</div>
+                    </div>
+                `;
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                
+                // Add loading indicator
+                chatContainer.innerHTML += `
+                    <div class="loading-indicator">
+                        <div class="loading-dots">
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
+                        </div>
                     </div>
                 `;
                 chatContainer.scrollTop = chatContainer.scrollHeight;
@@ -391,10 +503,18 @@ $config = require_once 'config.php';
                     throw new Error(data.error);
                 }
                 
+                // Remove loading indicator before adding AI response
+                const loadingIndicator = chatContainer.querySelector('.loading-indicator');
+                if (loadingIndicator) {
+                    loadingIndicator.remove();
+                }
+                
                 // Add AI response to chat
+                // For AI response, only replace newlines without trimming
+                const formattedAIResponse = data.response.replace(/\n/g, '<br>');
                 chatContainer.innerHTML += `
                     <div class="message assistant">
-                        <div class="message-content">${data.response}</div>
+                        <div class="message-content">${marked.parse(formattedAIResponse)}</div>
                     </div>
                 `;
                 
@@ -408,7 +528,7 @@ $config = require_once 'config.php';
                         body: JSON.stringify({
                             conversation_id: currentConversationId,
                             content: data.response,
-                            is_user: false  // Explicitly set as boolean false
+                            is_user: false
                         })
                     });
                     
@@ -428,6 +548,12 @@ $config = require_once 'config.php';
             } catch (error) {
                 console.error('Error sending message:', error);
                 showError('عذراً، واجهت خطأ. يرجى المحاولة مرة أخرى.');
+            } finally {
+                // Re-enable input and button
+                messageInput.disabled = false;
+                sendButton.disabled = false;
+                messageInput.focus();
+                isSending = false;  // Reset sending flag
             }
         }
 

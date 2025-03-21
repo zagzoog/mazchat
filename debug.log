@@ -2815,3 +2815,1978 @@ string
 string
 [2025-03-21 17:31:37] Final JSON Response Length
 585
+[2025-03-21 21:12:53] === New Request Debug Log ===
+[2025-03-21 21:12:53] Request Data
+Array
+(
+    [message] => Hello
+    [sessionId] => 67dda167c64d71742578023
+)
+
+[2025-03-21 21:12:53] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:12:55] === Response Debug Info ===
+[2025-03-21 21:12:55] HTTP Code
+200
+[2025-03-21 21:12:55] Response Length
+61
+[2025-03-21 21:12:55] Response Type
+string
+[2025-03-21 21:12:55] First 1000 chars
+مرحباً! كيف يمكنني مساعدتك اليوم؟
+[2025-03-21 21:12:55] Last 1000 chars
+مرحباً! كيف يمكنني مساعدتك اليوم؟
+[2025-03-21 21:12:55] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 783
+    [request_size] => 249
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 1.765905
+    [namelookup_time] => 0.071744
+    [connect_time] => 0.170395
+    [pretransfer_time] => 0.369705
+    [size_upload] => 57
+    [size_download] => 61
+    [speed_download] => 34
+    [speed_upload] => 32
+    [download_content_length] => -1
+    [upload_content_length] => 57
+    [starttransfer_time] => 1.765857
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.48.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 57227
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 369615
+    [connect_time_us] => 170395
+    [namelookup_time_us] => 71744
+    [pretransfer_time_us] => 369705
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1765857
+    [total_time_us] => 1765905
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:12:55] === JSON Parsing Debug ===
+[2025-03-21 21:12:55] JSON Parse Error
+4
+[2025-03-21 21:12:55] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:12:55] Response Data Type
+NULL
+[2025-03-21 21:12:55] === String Response Processing ===
+[2025-03-21 21:12:55] === Markdown Formatting Debug ===
+[2025-03-21 21:12:55] Input Text Length
+61
+[2025-03-21 21:12:55] Input Text Type
+string
+[2025-03-21 21:12:55] Output Text Length
+62
+[2025-03-21 21:12:55] Output Text Type
+string
+[2025-03-21 21:12:55] Formatted Response Length
+62
+[2025-03-21 21:12:55] Formatted Response Type
+string
+[2025-03-21 21:12:55] Final JSON Response Length
+78
+[2025-03-21 21:13:57] === New Request Debug Log ===
+[2025-03-21 21:13:57] Request Data
+Array
+(
+    [message] => Hello
+    [sessionId] => 67dda167c64d71742578023
+)
+
+[2025-03-21 21:13:57] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:13:59] === Response Debug Info ===
+[2025-03-21 21:13:59] HTTP Code
+200
+[2025-03-21 21:13:59] Response Length
+224
+[2025-03-21 21:13:59] Response Type
+string
+[2025-03-21 21:13:59] First 1000 chars
+مرحباً! كيف يمكنني مساعدتك اليوم؟ إذا كان لديك أي استفسار أو بحاجة إلى مساعدة في العثور على شريك مثالي، فلا تتردد في إخباري!
+[2025-03-21 21:13:59] Last 1000 chars
+مرحباً! كيف يمكنني مساعدتك اليوم؟ إذا كان لديك أي استفسار أو بحاجة إلى مساعدة في العثور على شريك مثالي، فلا تتردد في إخباري!
+[2025-03-21 21:13:59] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 787
+    [request_size] => 249
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 1.730957
+    [namelookup_time] => 0.000936
+    [connect_time] => 0.089686
+    [pretransfer_time] => 0.204073
+    [size_upload] => 57
+    [size_download] => 224
+    [speed_download] => 129
+    [speed_upload] => 32
+    [download_content_length] => -1
+    [upload_content_length] => 57
+    [starttransfer_time] => 1.730928
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.48.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 57317
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 203975
+    [connect_time_us] => 89686
+    [namelookup_time_us] => 936
+    [pretransfer_time_us] => 204073
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1730928
+    [total_time_us] => 1730957
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:13:59] === JSON Parsing Debug ===
+[2025-03-21 21:13:59] JSON Parse Error
+4
+[2025-03-21 21:13:59] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:13:59] Response Data Type
+NULL
+[2025-03-21 21:13:59] === String Response Processing ===
+[2025-03-21 21:13:59] === Markdown Formatting Debug ===
+[2025-03-21 21:13:59] Input Text Length
+224
+[2025-03-21 21:13:59] Input Text Type
+string
+[2025-03-21 21:13:59] Output Text Length
+225
+[2025-03-21 21:13:59] Output Text Type
+string
+[2025-03-21 21:13:59] Formatted Response Length
+225
+[2025-03-21 21:13:59] Formatted Response Type
+string
+[2025-03-21 21:13:59] Final JSON Response Length
+241
+[2025-03-21 21:14:13] === New Request Debug Log ===
+[2025-03-21 21:14:13] Request Data
+Array
+(
+    [message] => Hello
+    [sessionId] => 67dda167c64d71742578023
+)
+
+[2025-03-21 21:14:13] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:14:14] === Response Debug Info ===
+[2025-03-21 21:14:14] HTTP Code
+200
+[2025-03-21 21:14:14] Response Length
+185
+[2025-03-21 21:14:14] Response Type
+string
+[2025-03-21 21:14:14] First 1000 chars
+مرحباً مجددًا! إذا كان لديك أي استفسار أو موضوع تحتاج إلى مناقشته، فلا تتردد في طرحه. أنا هنا لمساعدتك!
+[2025-03-21 21:14:14] Last 1000 chars
+مرحباً مجددًا! إذا كان لديك أي استفسار أو موضوع تحتاج إلى مناقشته، فلا تتردد في طرحه. أنا هنا لمساعدتك!
+[2025-03-21 21:14:14] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 789
+    [request_size] => 249
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 1.589846
+    [namelookup_time] => 0.003975
+    [connect_time] => 0.284603
+    [pretransfer_time] => 0.384677
+    [size_upload] => 57
+    [size_download] => 185
+    [speed_download] => 116
+    [speed_upload] => 35
+    [download_content_length] => -1
+    [upload_content_length] => 57
+    [starttransfer_time] => 1.589804
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.48.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 57334
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 384575
+    [connect_time_us] => 284603
+    [namelookup_time_us] => 3975
+    [pretransfer_time_us] => 384677
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1589804
+    [total_time_us] => 1589846
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:14:14] === JSON Parsing Debug ===
+[2025-03-21 21:14:14] JSON Parse Error
+4
+[2025-03-21 21:14:14] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:14:14] Response Data Type
+NULL
+[2025-03-21 21:14:14] === String Response Processing ===
+[2025-03-21 21:14:14] === Markdown Formatting Debug ===
+[2025-03-21 21:14:14] Input Text Length
+185
+[2025-03-21 21:14:14] Input Text Type
+string
+[2025-03-21 21:14:14] Output Text Length
+186
+[2025-03-21 21:14:14] Output Text Type
+string
+[2025-03-21 21:14:14] Formatted Response Length
+186
+[2025-03-21 21:14:14] Formatted Response Type
+string
+[2025-03-21 21:14:14] Final JSON Response Length
+202
+[2025-03-21 21:14:14] === New Request Debug Log ===
+[2025-03-21 21:14:14] Request Data
+Array
+(
+    [message] => Hello
+    [sessionId] => 67dda167c64d71742578023
+)
+
+[2025-03-21 21:14:14] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:14:16] === Response Debug Info ===
+[2025-03-21 21:14:16] HTTP Code
+200
+[2025-03-21 21:14:16] Response Length
+153
+[2025-03-21 21:14:16] Response Type
+string
+[2025-03-21 21:14:16] First 1000 chars
+مرحباً! كيف يمكنني مساعدتك اليوم؟ إذا كان لديك أي سؤال أو استفسار، فلا تتردد في طرحه.
+[2025-03-21 21:14:16] Last 1000 chars
+مرحباً! كيف يمكنني مساعدتك اليوم؟ إذا كان لديك أي سؤال أو استفسار، فلا تتردد في طرحه.
+[2025-03-21 21:14:16] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 781
+    [request_size] => 249
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 1.413761
+    [namelookup_time] => 0.001054
+    [connect_time] => 0.093064
+    [pretransfer_time] => 0.197664
+    [size_upload] => 57
+    [size_download] => 153
+    [speed_download] => 108
+    [speed_upload] => 40
+    [download_content_length] => -1
+    [upload_content_length] => 57
+    [starttransfer_time] => 1.412833
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.48.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 57337
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 197576
+    [connect_time_us] => 93064
+    [namelookup_time_us] => 1054
+    [pretransfer_time_us] => 197664
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1412833
+    [total_time_us] => 1413761
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:14:16] === JSON Parsing Debug ===
+[2025-03-21 21:14:16] JSON Parse Error
+4
+[2025-03-21 21:14:16] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:14:16] Response Data Type
+NULL
+[2025-03-21 21:14:16] === String Response Processing ===
+[2025-03-21 21:14:16] === Markdown Formatting Debug ===
+[2025-03-21 21:14:16] Input Text Length
+153
+[2025-03-21 21:14:16] Input Text Type
+string
+[2025-03-21 21:14:16] Output Text Length
+154
+[2025-03-21 21:14:16] Output Text Type
+string
+[2025-03-21 21:14:16] Formatted Response Length
+154
+[2025-03-21 21:14:16] Formatted Response Type
+string
+[2025-03-21 21:14:16] Final JSON Response Length
+170
+[2025-03-21 21:17:11] === New Request Debug Log ===
+[2025-03-21 21:17:11] Request Data
+Array
+(
+    [message] => Hi
+    [sessionId] => 67dda167c64d71742578023
+)
+
+[2025-03-21 21:17:11] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:17:12] === Response Debug Info ===
+[2025-03-21 21:17:12] HTTP Code
+200
+[2025-03-21 21:17:12] Response Length
+187
+[2025-03-21 21:17:12] Response Type
+string
+[2025-03-21 21:17:12] First 1000 chars
+مرحبًا! كيف يمكنني مساعدتك اليوم؟ إذا كان لديك أي سؤال أو شيء معين ترغب في مناقشته، فلا تتردد في إخباري.
+[2025-03-21 21:17:12] Last 1000 chars
+مرحبًا! كيف يمكنني مساعدتك اليوم؟ إذا كان لديك أي سؤال أو شيء معين ترغب في مناقشته، فلا تتردد في إخباري.
+[2025-03-21 21:17:12] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 791
+    [request_size] => 246
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 1.506986
+    [namelookup_time] => 0.004411
+    [connect_time] => 0.101017
+    [pretransfer_time] => 0.195198
+    [size_upload] => 54
+    [size_download] => 187
+    [speed_download] => 124
+    [speed_upload] => 35
+    [download_content_length] => -1
+    [upload_content_length] => 54
+    [starttransfer_time] => 1.506953
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.48.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 58203
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 195104
+    [connect_time_us] => 101017
+    [namelookup_time_us] => 4411
+    [pretransfer_time_us] => 195198
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1506953
+    [total_time_us] => 1506986
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:17:12] === JSON Parsing Debug ===
+[2025-03-21 21:17:12] JSON Parse Error
+4
+[2025-03-21 21:17:12] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:17:12] Response Data Type
+NULL
+[2025-03-21 21:17:12] === String Response Processing ===
+[2025-03-21 21:17:12] === Markdown Formatting Debug ===
+[2025-03-21 21:17:12] Input Text Length
+187
+[2025-03-21 21:17:12] Input Text Type
+string
+[2025-03-21 21:17:12] Output Text Length
+188
+[2025-03-21 21:17:12] Output Text Type
+string
+[2025-03-21 21:17:12] Formatted Response Length
+188
+[2025-03-21 21:17:12] Formatted Response Type
+string
+[2025-03-21 21:17:12] Final JSON Response Length
+204
+[2025-03-21 21:17:22] === New Request Debug Log ===
+[2025-03-21 21:17:22] Request Data
+Array
+(
+    [message] => My name is mohammed
+    [sessionId] => 67dda167c64d71742578023
+)
+
+[2025-03-21 21:17:22] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:17:24] === Response Debug Info ===
+[2025-03-21 21:17:24] HTTP Code
+200
+[2025-03-21 21:17:24] Response Length
+200
+[2025-03-21 21:17:24] Response Type
+string
+[2025-03-21 21:17:24] First 1000 chars
+مرحبًا محمد! كيف يمكنني مساعدتك اليوم؟ إذا كنت تبحث عن ملفات تعريف أو لديك أي استفسار آخر، فلا تتردد في إخباري.
+[2025-03-21 21:17:24] Last 1000 chars
+مرحبًا محمد! كيف يمكنني مساعدتك اليوم؟ إذا كنت تبحث عن ملفات تعريف أو لديك أي استفسار آخر، فلا تتردد في إخباري.
+[2025-03-21 21:17:24] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 789
+    [request_size] => 263
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 1.865631
+    [namelookup_time] => 0.000824
+    [connect_time] => 0.092384
+    [pretransfer_time] => 0.228444
+    [size_upload] => 71
+    [size_download] => 200
+    [speed_download] => 107
+    [speed_upload] => 38
+    [download_content_length] => -1
+    [upload_content_length] => 71
+    [starttransfer_time] => 1.865575
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.48.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 58212
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 228356
+    [connect_time_us] => 92384
+    [namelookup_time_us] => 824
+    [pretransfer_time_us] => 228444
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1865575
+    [total_time_us] => 1865631
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:17:24] === JSON Parsing Debug ===
+[2025-03-21 21:17:24] JSON Parse Error
+4
+[2025-03-21 21:17:24] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:17:24] Response Data Type
+NULL
+[2025-03-21 21:17:24] === String Response Processing ===
+[2025-03-21 21:17:24] === Markdown Formatting Debug ===
+[2025-03-21 21:17:24] Input Text Length
+200
+[2025-03-21 21:17:24] Input Text Type
+string
+[2025-03-21 21:17:24] Output Text Length
+201
+[2025-03-21 21:17:24] Output Text Type
+string
+[2025-03-21 21:17:24] Formatted Response Length
+201
+[2025-03-21 21:17:24] Formatted Response Type
+string
+[2025-03-21 21:17:24] Final JSON Response Length
+217
+[2025-03-21 21:17:44] === New Request Debug Log ===
+[2025-03-21 21:17:44] Request Data
+Array
+(
+    [message] => What are you best at?
+    [sessionId] => 67dda167c64d71742578023
+)
+
+[2025-03-21 21:17:44] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:17:46] === Response Debug Info ===
+[2025-03-21 21:17:46] HTTP Code
+200
+[2025-03-21 21:17:46] Response Length
+514
+[2025-03-21 21:17:46] Response Type
+string
+[2025-03-21 21:17:46] First 1000 chars
+أنا متخصص في مساعدتك في العثور على شريك حياتك المثالي من خلال تحليل البيانات والبحث في الملفات الشخصية. يمكنني مساعدتك في تنفيذ استعلامات ذكية للوصول إلى نتائج دقيقة، وتحليل الرسائل لفهم الشخصية والتفضيلات. إذا كان لديك تفاصيل معينة حول ما تبحث عنه في شريك، يمكنني البدء في مساعدتك.
+[2025-03-21 21:17:46] Last 1000 chars
+أنا متخصص في مساعدتك في العثور على شريك حياتك المثالي من خلال تحليل البيانات والبحث في الملفات الشخصية. يمكنني مساعدتك في تنفيذ استعلامات ذكية للوصول إلى نتائج دقيقة، وتحليل الرسائل لفهم الشخصية والتفضيلات. إذا كان لديك تفاصيل معينة حول ما تبحث عنه في شريك، يمكنني البدء في مساعدتك.
+[2025-03-21 21:17:46] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 791
+    [request_size] => 265
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 2.067307
+    [namelookup_time] => 0.004053
+    [connect_time] => 0.191864
+    [pretransfer_time] => 0.287837
+    [size_upload] => 73
+    [size_download] => 514
+    [speed_download] => 248
+    [speed_upload] => 35
+    [download_content_length] => -1
+    [upload_content_length] => 73
+    [starttransfer_time] => 2.065685
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.48.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 58222
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 287738
+    [connect_time_us] => 191864
+    [namelookup_time_us] => 4053
+    [pretransfer_time_us] => 287837
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 2065685
+    [total_time_us] => 2067307
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:17:46] === JSON Parsing Debug ===
+[2025-03-21 21:17:46] JSON Parse Error
+4
+[2025-03-21 21:17:46] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:17:46] Response Data Type
+NULL
+[2025-03-21 21:17:46] === String Response Processing ===
+[2025-03-21 21:17:46] === Markdown Formatting Debug ===
+[2025-03-21 21:17:46] Input Text Length
+514
+[2025-03-21 21:17:46] Input Text Type
+string
+[2025-03-21 21:17:46] Output Text Length
+515
+[2025-03-21 21:17:46] Output Text Type
+string
+[2025-03-21 21:17:46] Formatted Response Length
+515
+[2025-03-21 21:17:46] Formatted Response Type
+string
+[2025-03-21 21:17:46] Final JSON Response Length
+531
+[2025-03-21 21:18:11] === New Request Debug Log ===
+[2025-03-21 21:18:11] Request Data
+Array
+(
+    [message] => I am looking for a saudi girl in her 30s
+    [sessionId] => 67dda167c64d71742578023
+)
+
+[2025-03-21 21:18:11] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:18:13] === Response Debug Info ===
+[2025-03-21 21:18:13] HTTP Code
+200
+[2025-03-21 21:18:13] Response Length
+413
+[2025-03-21 21:18:13] Response Type
+string
+[2025-03-21 21:18:13] First 1000 chars
+لتوفير نتائج دقيقة، سأحتاج إلى بعض التفاصيل الإضافية:
+
+1. هل لديك تفضيلات معينة مثل مستوى التعليم أو المدينة؟
+2. هل تفضل أي صفات معينة في شخصيتها أو اهتماماتها؟
+
+بمجرد أن أكون لدي معلومات أكثر، سأقوم بالبحث عن الملفات المناسبة لك.
+[2025-03-21 21:18:13] Last 1000 chars
+لتوفير نتائج دقيقة، سأحتاج إلى بعض التفاصيل الإضافية:
+
+1. هل لديك تفضيلات معينة مثل مستوى التعليم أو المدينة؟
+2. هل تفضل أي صفات معينة في شخصيتها أو اهتماماتها؟
+
+بمجرد أن أكون لدي معلومات أكثر، سأقوم بالبحث عن الملفات المناسبة لك.
+[2025-03-21 21:18:13] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 787
+    [request_size] => 284
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 2.024898
+    [namelookup_time] => 0.043864
+    [connect_time] => 0.146745
+    [pretransfer_time] => 0.274573
+    [size_upload] => 92
+    [size_download] => 413
+    [speed_download] => 203
+    [speed_upload] => 45
+    [download_content_length] => -1
+    [upload_content_length] => 92
+    [starttransfer_time] => 2.024864
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.64.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 58234
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 274478
+    [connect_time_us] => 146745
+    [namelookup_time_us] => 43864
+    [pretransfer_time_us] => 274573
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 2024864
+    [total_time_us] => 2024898
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:18:13] === JSON Parsing Debug ===
+[2025-03-21 21:18:13] JSON Parse Error
+4
+[2025-03-21 21:18:13] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:18:13] Response Data Type
+NULL
+[2025-03-21 21:18:13] === String Response Processing ===
+[2025-03-21 21:18:13] === Markdown Formatting Debug ===
+[2025-03-21 21:18:13] Input Text Length
+408
+[2025-03-21 21:18:13] Input Text Type
+string
+[2025-03-21 21:18:13] Output Text Length
+409
+[2025-03-21 21:18:13] Output Text Type
+string
+[2025-03-21 21:18:13] Formatted Response Length
+409
+[2025-03-21 21:18:13] Formatted Response Type
+string
+[2025-03-21 21:18:13] Final JSON Response Length
+425
+[2025-03-21 21:18:22] === New Request Debug Log ===
+[2025-03-21 21:18:22] Request Data
+Array
+(
+    [message] => No
+    [sessionId] => 67dda167c64d71742578023
+)
+
+[2025-03-21 21:18:22] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:18:38] === Response Debug Info ===
+[2025-03-21 21:18:38] HTTP Code
+200
+[2025-03-21 21:18:38] Response Length
+3535
+[2025-03-21 21:18:38] Response Type
+string
+[2025-03-21 21:18:38] First 1000 chars
+إليك مجموعة من الفتيات السعوديات في الثلاثينات من العمر:
+
+---
+
+🔹 **اسم المستخدم:**  ÃæÊÇÑ ÇáÞáæÈ  
+🔹 **العمر:** 36  
+📍 **الموقع:**  المدينة المنورة  
+🎓 **المؤهل العلمي:** دبلوم  
+🕵️‍♂️ **آخر تسجيل دخول:** 22/03/2025  
+
+📌 **الشخصية:**  
+تبدو هذه الفتاة شخصًا اجتماعيًا يهتم بالتواصل مع الآخرين. تمتلك شخصية مفتوحة وتحب التعبير عن نفسها.
+
+💑 **ما تبحث عنه:**  
+تفضل البحث عن شخص يشاركها نفس اهتماماتها ويكون لديه عقل متفتح.
+
+🔗 **رابط الملف الشخصي:**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=1651325)
+
+---
+
+🔹 **اسم المستخدم:**  íÇÑÈ ÇáäÕíÈ ÇáØíÈ123  
+🔹 **العمر:** 33  
+📍 **الموقع:**  جدة  
+🎓 **المؤ
+[2025-03-21 21:18:38] Last 1000 chars
+ تبحث عنه:**  
+تفضل شريكًا يكون مخلصًا وصادقًا.
+
+🔗 **رابط الملف الشخصي:**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2021886)
+
+---
+
+🔹 **اسم المستخدم:**  ÎáæÏ567  
+🔹 **العمر:** 38  
+📍 **الموقع:**  الدمام  
+🎓 **المؤهل العلمي:** بكاليوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 22/03/2025  
+
+📌 **الشخصية:**  
+شخصية مفعمة بالحيوية والمغامرة. تحب الاستمتاع بحياتها.
+
+💑 **ما تبحث عنه:**  
+تبحث عن علاقة مليئة بالتحديات والمغامرات.
+
+🔗 **رابط الملف الشخصي:**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2014453)
+
+---
+
+إذا كنت بحاجة إلى المزيد من المساعدة، لا تتردد في إخباري! وإذا أعجبتك المحادثة، شارك الصفحة مع أصدقائك.
+[2025-03-21 21:18:38] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 792
+    [request_size] => 246
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 15.730202
+    [namelookup_time] => 0.001004
+    [connect_time] => 0.112057
+    [pretransfer_time] => 0.221668
+    [size_upload] => 54
+    [size_download] => 3535
+    [speed_download] => 224
+    [speed_upload] => 3
+    [download_content_length] => -1
+    [upload_content_length] => 54
+    [starttransfer_time] => 15.730141
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.64.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 58243
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 221569
+    [connect_time_us] => 112057
+    [namelookup_time_us] => 1004
+    [pretransfer_time_us] => 221668
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 15730141
+    [total_time_us] => 15730202
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:18:38] === JSON Parsing Debug ===
+[2025-03-21 21:18:38] JSON Parse Error
+4
+[2025-03-21 21:18:38] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:18:38] Response Data Type
+NULL
+[2025-03-21 21:18:38] === String Response Processing ===
+[2025-03-21 21:18:38] === Markdown Formatting Debug ===
+[2025-03-21 21:18:38] Input Text Length
+3226
+[2025-03-21 21:18:38] Input Text Type
+string
+[2025-03-21 21:18:38] Output Text Length
+3568
+[2025-03-21 21:18:38] Output Text Type
+string
+[2025-03-21 21:18:38] Formatted Response Length
+3568
+[2025-03-21 21:18:38] Formatted Response Type
+string
+[2025-03-21 21:18:38] Final JSON Response Length
+3584
+[2025-03-21 21:25:17] === New Request Debug Log ===
+[2025-03-21 21:25:17] Request Data
+Array
+(
+    [message] => Hello, My name is mohammed. I am looking for a girl from Saudi in her 30s
+    [sessionId] => 67dda167c64d71742578023
+)
+
+[2025-03-21 21:25:17] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:25:33] === Response Debug Info ===
+[2025-03-21 21:25:33] HTTP Code
+200
+[2025-03-21 21:25:33] Response Length
+3422
+[2025-03-21 21:25:33] Response Type
+string
+[2025-03-21 21:25:33] First 1000 chars
+إليك مجموعة من الفتيات السعوديات في الثلاثينات من العمر:
+
+---
+
+🔹 **اسم المستخدم:** ÃæÊÇÑ ÇáÞáæÈ  
+🔹 **العمر:** 36  
+📍 **الموقع:**  مكة  
+🎓 **المؤهل العلمي:** بكاليوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025  
+
+📌 **الشخصية:**  
+تبدو هذه الفتاة شغوفة بالحياة وعطوفة. تبحث عن شريك يتمتع بحس الفكاهة ويشاركتها في الاهتمامات.
+
+💑 **ما تبحث عنه:**  
+تفضل شريكًا يتسم بالتفاهم والحنان.
+
+🔗 **رابط الملف الشخصي:**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=1651325)
+
+---
+
+🔹 **اسم المستخدم:** Nada_1998  
+🔹 **العمر:** 29  
+📍 **الموقع:** جدة  
+🎓 **المؤهل العلمي:** بكاليوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025  
+
+📌 **�
+[2025-03-21 21:25:33] Last 1000 chars
+��� **رابط الملف الشخصي:**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=1959282)
+
+---
+
+🔹 **اسم المستخدم:**  ÃãíÒÉó  
+🔹 **العمر:** 29  
+📍 **الموقع:** المدينة المنورة  
+🎓 **المؤهل العلمي:** بكاليوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025  
+
+📌 **الشخصية:**  
+تبدو شخصية مفعمة بالحياة وتمتلك حسًا رائعًا للأمور الحياتية.
+
+💑 **ما تبحث عنه:**  
+تبحث عن شخص يشاركها شغف الحياة ويكون متحمسًا لتحقيق الأهداف.
+
+🔗 **رابط الملف الشخصي:**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2029146)
+
+---
+
+إذا كنت بحاجة لمزيد من النتائج أو تفاصيل إضافية، فلا تتردد في إخباري! وإذا أعجبتك المحادثة، شارك الصفحة مع أصدقائك.
+[2025-03-21 21:25:33] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 786
+    [request_size] => 318
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 16.279599
+    [namelookup_time] => 0.066247
+    [connect_time] => 0.15896
+    [pretransfer_time] => 0.271598
+    [size_upload] => 125
+    [size_download] => 3422
+    [speed_download] => 210
+    [speed_upload] => 7
+    [download_content_length] => -1
+    [upload_content_length] => 125
+    [starttransfer_time] => 16.279555
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.80.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 60268
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 271494
+    [connect_time_us] => 158960
+    [namelookup_time_us] => 66247
+    [pretransfer_time_us] => 271598
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 16279555
+    [total_time_us] => 16279599
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:25:33] === JSON Parsing Debug ===
+[2025-03-21 21:25:33] JSON Parse Error
+4
+[2025-03-21 21:25:33] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:25:33] Response Data Type
+NULL
+[2025-03-21 21:25:33] === String Response Processing ===
+[2025-03-21 21:25:33] === Markdown Formatting Debug ===
+[2025-03-21 21:25:33] Input Text Length
+3113
+[2025-03-21 21:25:33] Input Text Type
+string
+[2025-03-21 21:25:33] Output Text Length
+3455
+[2025-03-21 21:25:33] Output Text Type
+string
+[2025-03-21 21:25:33] Formatted Response Length
+3455
+[2025-03-21 21:25:33] Formatted Response Type
+string
+[2025-03-21 21:25:33] Final JSON Response Length
+3471
+[2025-03-21 21:33:24] === New Request Debug Log ===
+[2025-03-21 21:33:24] Request Data
+Array
+(
+    [message] => Hello, My name is mohammed. I am looking for a girl from Saudi in her 30s
+    [sessionId] => 67ddd9f2bfba21742592498
+)
+
+[2025-03-21 21:33:24] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:33:27] === Response Debug Info ===
+[2025-03-21 21:33:27] HTTP Code
+200
+[2025-03-21 21:33:27] Response Length
+614
+[2025-03-21 21:33:27] Response Type
+string
+[2025-03-21 21:33:27] First 1000 chars
+مرحبًا محمد! سأحتاج إلى بعض المعلومات الإضافية لتضييق نطاق البحث عمن تبحث عنها. هل يمكنك توضيح ما يلي:
+
+1. هل تفضل عرق معين أو منطقة معينة في السعودية (مثل مدينة معينة)؟
+2. هل لديك تفضيلات معينة بشأن المؤهلات العلمية أو الوظيفة؟
+3. هل تفضل أي صفات شخصية معينة في شريكتك المستقبلية؟
+
+المزيد من التفاصيل سيساعدني في إيجاد الملف الشخصي المناسب لك!
+[2025-03-21 21:33:27] Last 1000 chars
+مرحبًا محمد! سأحتاج إلى بعض المعلومات الإضافية لتضييق نطاق البحث عمن تبحث عنها. هل يمكنك توضيح ما يلي:
+
+1. هل تفضل عرق معين أو منطقة معينة في السعودية (مثل مدينة معينة)؟
+2. هل لديك تفضيلات معينة بشأن المؤهلات العلمية أو الوظيفة؟
+3. هل تفضل أي صفات شخصية معينة في شريكتك المستقبلية؟
+
+المزيد من التفاصيل سيساعدني في إيجاد الملف الشخصي المناسب لك!
+[2025-03-21 21:33:27] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 785
+    [request_size] => 318
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 2.570624
+    [namelookup_time] => 0.155066
+    [connect_time] => 0.243859
+    [pretransfer_time] => 0.351186
+    [size_upload] => 125
+    [size_download] => 614
+    [speed_download] => 238
+    [speed_upload] => 48
+    [download_content_length] => -1
+    [upload_content_length] => 125
+    [starttransfer_time] => 2.570581
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.64.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 61338
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 351097
+    [connect_time_us] => 243859
+    [namelookup_time_us] => 155066
+    [pretransfer_time_us] => 351186
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 2570581
+    [total_time_us] => 2570624
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:33:27] === JSON Parsing Debug ===
+[2025-03-21 21:33:27] JSON Parse Error
+4
+[2025-03-21 21:33:27] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:33:27] Response Data Type
+NULL
+[2025-03-21 21:33:27] === String Response Processing ===
+[2025-03-21 21:33:27] === Markdown Formatting Debug ===
+[2025-03-21 21:33:27] Input Text Length
+608
+[2025-03-21 21:33:27] Input Text Type
+string
+[2025-03-21 21:33:27] Output Text Length
+609
+[2025-03-21 21:33:27] Output Text Type
+string
+[2025-03-21 21:33:27] Formatted Response Length
+609
+[2025-03-21 21:33:27] Formatted Response Type
+string
+[2025-03-21 21:33:27] Final JSON Response Length
+625
+[2025-03-21 21:33:42] === New Request Debug Log ===
+[2025-03-21 21:33:42] Request Data
+Array
+(
+    [message] => no
+    [sessionId] => 67ddd9f2bfba21742592498
+)
+
+[2025-03-21 21:33:42] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:33:58] === Response Debug Info ===
+[2025-03-21 21:33:58] HTTP Code
+200
+[2025-03-21 21:33:58] Response Length
+3713
+[2025-03-21 21:33:58] Response Type
+string
+[2025-03-21 21:33:58] First 1000 chars
+ها هي مجموعة من الملفات الشخصية لنساء سعوديات في الثلاثينيات:
+
+---
+
+🔹 **اسم المستخدم:** Farah5__  
+🔹 **العمر:** ٣٠  
+📍 **الموقع:** القطيف، السعودية  
+🎓 **المؤهل العلمي:** بكالوريوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025  
+
+📌 **الشخصية:**  
+تبدو فارا شخص ذو شخصية رائعة تبحث عن شريك يدرك قيمتها. تفضل شريكاً فخوراً ومدركاً لأهمية التواصل الجيد.  
+
+💑 **ما تبحث عنه:**  
+من خلال الرسائل، تهتم بشخص ذو تفكير عميق وذاتي.
+
+🔗 **رابط الملف الشخصي:**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2012434)
+
+---
+
+🔹 **اسم المستخدم:** ÌÑÍ ÞáÈ  
+🔹 **العمر:** ٣٨  
+📍 **الموقع:** الطائف، السعودية  
+🎓 **المؤهل العل
+[2025-03-21 21:33:58] Last 1000 chars
+�ي:**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2014453)
+
+---
+
+🔹 **اسم المستخدم:** ããíÒÉó  
+🔹 **العمر:** ٢٩  
+📍 **الموقع:** جده، السعودية  
+🎓 **المؤهل العلمي:** بكاليوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025  
+
+📌 **الشخصية:**  
+شخصية مرحة تحب الحياة وتبحث عن شخص يشاركها الاهتمامات.
+
+💑 **ما تبحث عنه:**  
+تهتم بشخص يفهم معاني الحياة الراقية ويشاركه اللحظات الممتعة.
+
+🔗 **رابط الملف الشخصي:**  
+[اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2029146)
+
+---
+
+إذا كانت لديك أي اهتمامات أو استفسارات إضافية حول أي من هذه الملفات، فلا تتردد في إخباري! وإذا أعجبك ما رأيته، يمكنك مشاركة الصفحة مع أصدقائك! 
+[2025-03-21 21:33:58] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 793
+    [request_size] => 246
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 16.778163
+    [namelookup_time] => 0.004191
+    [connect_time] => 0.114135
+    [pretransfer_time] => 0.222522
+    [size_upload] => 54
+    [size_download] => 3713
+    [speed_download] => 221
+    [speed_upload] => 3
+    [download_content_length] => -1
+    [upload_content_length] => 54
+    [starttransfer_time] => 16.777159
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.64.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 61349
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 222400
+    [connect_time_us] => 114135
+    [namelookup_time_us] => 4191
+    [pretransfer_time_us] => 222522
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 16777159
+    [total_time_us] => 16778163
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:33:58] === JSON Parsing Debug ===
+[2025-03-21 21:33:58] JSON Parse Error
+4
+[2025-03-21 21:33:58] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:33:58] Response Data Type
+NULL
+[2025-03-21 21:33:58] === String Response Processing ===
+[2025-03-21 21:33:58] === Markdown Formatting Debug ===
+[2025-03-21 21:33:58] Input Text Length
+3404
+[2025-03-21 21:33:58] Input Text Type
+string
+[2025-03-21 21:33:58] Output Text Length
+3746
+[2025-03-21 21:33:58] Output Text Type
+string
+[2025-03-21 21:33:58] Formatted Response Length
+3746
+[2025-03-21 21:33:58] Formatted Response Type
+string
+[2025-03-21 21:33:58] Final JSON Response Length
+3762
+[2025-03-21 21:36:17] === New Request Debug Log ===
+[2025-03-21 21:36:17] Request Data
+Array
+(
+    [message] => Hi
+    [sessionId] => 67ddd9f2bfba21742592498
+)
+
+[2025-03-21 21:36:17] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:36:18] === Response Debug Info ===
+[2025-03-21 21:36:18] HTTP Code
+200
+[2025-03-21 21:36:18] Response Length
+61
+[2025-03-21 21:36:18] Response Type
+string
+[2025-03-21 21:36:18] First 1000 chars
+مرحبًا! كيف يمكنني مساعدتك اليوم؟
+[2025-03-21 21:36:18] Last 1000 chars
+مرحبًا! كيف يمكنني مساعدتك اليوم؟
+[2025-03-21 21:36:18] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 786
+    [request_size] => 246
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 1.322939
+    [namelookup_time] => 0.004412
+    [connect_time] => 0.292259
+    [pretransfer_time] => 0.398218
+    [size_upload] => 54
+    [size_download] => 61
+    [speed_download] => 46
+    [speed_upload] => 40
+    [download_content_length] => -1
+    [upload_content_length] => 54
+    [starttransfer_time] => 1.32291
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.64.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 61404
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 398084
+    [connect_time_us] => 292259
+    [namelookup_time_us] => 4412
+    [pretransfer_time_us] => 398218
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1322910
+    [total_time_us] => 1322939
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:36:18] === JSON Parsing Debug ===
+[2025-03-21 21:36:18] JSON Parse Error
+4
+[2025-03-21 21:36:18] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:36:18] Response Data Type
+NULL
+[2025-03-21 21:36:18] === String Response Processing ===
+[2025-03-21 21:36:18] === Markdown Formatting Debug ===
+[2025-03-21 21:36:18] Input Text Length
+61
+[2025-03-21 21:36:18] Input Text Type
+string
+[2025-03-21 21:36:18] Output Text Length
+62
+[2025-03-21 21:36:18] Output Text Type
+string
+[2025-03-21 21:36:18] Formatted Response Length
+62
+[2025-03-21 21:36:18] Formatted Response Type
+string
+[2025-03-21 21:36:18] Final JSON Response Length
+78
+[2025-03-21 21:38:21] === New Request Debug Log ===
+[2025-03-21 21:38:21] Request Data
+Array
+(
+    [message] => Hi
+    [sessionId] => 67ddd9f2bfba21742592498
+)
+
+[2025-03-21 21:38:21] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:38:22] === Response Debug Info ===
+[2025-03-21 21:38:22] HTTP Code
+200
+[2025-03-21 21:38:22] Response Length
+169
+[2025-03-21 21:38:22] Response Type
+string
+[2025-03-21 21:38:22] First 1000 chars
+مرحبًا مرة أخرى! كيف يمكنني مساعدتك اليوم؟ إذا كان لديك أي سؤال أو استفسار، فلا تتردد في طرحه.
+[2025-03-21 21:38:22] Last 1000 chars
+مرحبًا مرة أخرى! كيف يمكنني مساعدتك اليوم؟ إذا كان لديك أي سؤال أو استفسار، فلا تتردد في طرحه.
+[2025-03-21 21:38:22] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 786
+    [request_size] => 246
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 1.36499
+    [namelookup_time] => 0.004304
+    [connect_time] => 0.11289
+    [pretransfer_time] => 0.215835
+    [size_upload] => 54
+    [size_download] => 169
+    [speed_download] => 123
+    [speed_upload] => 39
+    [download_content_length] => -1
+    [upload_content_length] => 54
+    [starttransfer_time] => 1.364941
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.64.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 61637
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 215746
+    [connect_time_us] => 112890
+    [namelookup_time_us] => 4304
+    [pretransfer_time_us] => 215835
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1364941
+    [total_time_us] => 1364990
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:38:22] === JSON Parsing Debug ===
+[2025-03-21 21:38:22] JSON Parse Error
+4
+[2025-03-21 21:38:22] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:38:22] Response Data Type
+NULL
+[2025-03-21 21:38:22] === String Response Processing ===
+[2025-03-21 21:38:22] === Markdown Formatting Debug ===
+[2025-03-21 21:38:22] Input Text Length
+169
+[2025-03-21 21:38:22] Input Text Type
+string
+[2025-03-21 21:38:22] Output Text Length
+170
+[2025-03-21 21:38:22] Output Text Type
+string
+[2025-03-21 21:38:22] Formatted Response Length
+170
+[2025-03-21 21:38:22] Formatted Response Type
+string
+[2025-03-21 21:38:22] Final JSON Response Length
+186
+[2025-03-21 21:39:52] === New Request Debug Log ===
+[2025-03-21 21:39:52] Request Data
+Array
+(
+    [message] => Hi
+    [sessionId] => 67ddd9f2bfba21742592498
+)
+
+[2025-03-21 21:39:52] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:39:55] === Response Debug Info ===
+[2025-03-21 21:39:55] HTTP Code
+200
+[2025-03-21 21:39:55] Response Length
+206
+[2025-03-21 21:39:55] Response Type
+string
+[2025-03-21 21:39:55] First 1000 chars
+مرحبًا! يبدو أنك تكرر "مرحبًا". إذا كنت بحاجة إلى مساعدة أو لديك أي استفسارات، فلا تتردد في طرحها. أنا هنا لمساعدتك!
+[2025-03-21 21:39:55] Last 1000 chars
+مرحبًا! يبدو أنك تكرر "مرحبًا". إذا كنت بحاجة إلى مساعدة أو لديك أي استفسارات، فلا تتردد في طرحها. أنا هنا لمساعدتك!
+[2025-03-21 21:39:55] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 787
+    [request_size] => 246
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 3.184243
+    [namelookup_time] => 0.036475
+    [connect_time] => 0.124527
+    [pretransfer_time] => 0.224699
+    [size_upload] => 54
+    [size_download] => 206
+    [speed_download] => 64
+    [speed_upload] => 16
+    [download_content_length] => -1
+    [upload_content_length] => 54
+    [starttransfer_time] => 3.1842
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.112.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 61730
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 224603
+    [connect_time_us] => 124527
+    [namelookup_time_us] => 36475
+    [pretransfer_time_us] => 224699
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 3184200
+    [total_time_us] => 3184243
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:39:55] === JSON Parsing Debug ===
+[2025-03-21 21:39:55] JSON Parse Error
+4
+[2025-03-21 21:39:55] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:39:55] Response Data Type
+NULL
+[2025-03-21 21:39:55] === String Response Processing ===
+[2025-03-21 21:39:55] === Markdown Formatting Debug ===
+[2025-03-21 21:39:55] Input Text Length
+206
+[2025-03-21 21:39:55] Input Text Type
+string
+[2025-03-21 21:39:55] Output Text Length
+207
+[2025-03-21 21:39:55] Output Text Type
+string
+[2025-03-21 21:39:55] Formatted Response Length
+207
+[2025-03-21 21:39:55] Formatted Response Type
+string
+[2025-03-21 21:39:55] Final JSON Response Length
+225
+[2025-03-21 21:41:35] === New Request Debug Log ===
+[2025-03-21 21:41:35] Request Data
+Array
+(
+    [message] => Give me a list of Saudi girls in their 30s
+    [sessionId] => 67ddd9f2bfba21742592498
+)
+
+[2025-03-21 21:41:35] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:41:53] === Response Debug Info ===
+[2025-03-21 21:41:53] HTTP Code
+200
+[2025-03-21 21:41:53] Response Length
+3353
+[2025-03-21 21:41:53] Response Type
+string
+[2025-03-21 21:41:53] First 1000 chars
+إليك قائمة بالفتيات السعوديات في الثلاثينيات من أعمارهن:
+
+### 1.  ÕãÊí¡
+🔹 **العمر:** ٣٧  
+📍 **الموقع:**  جده، السعودية  
+🎓 **المؤهل العلمي:** بكالوريوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 17/03/2025  
+
+📌 **الشخصية:**  
+يبدو أن ÕãÊí¡ شخص طموح يسعى لتحقيق نجاحات في حياته، وتحمل صفات مهنية مميزة.   
+
+💑 **ما تبحث عنه:**  
+تُفضل شخصًا يتسم بالاستقرار والقدرة على النقاش الإيجابي.
+
+🔗 **رابط الملف الشخصي:** [اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=1677808)
+
+---
+
+### 2.  Farah5__
+🔹 **العمر:** ٣٠  
+📍 **الموقع:**  جدة، السعودية  
+🎓 **المؤهل العلمي:** بكالوريوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 17/03/2025  
+
+📌 **الشخصية:*
+[2025-03-21 21:41:53] Last 1000 chars
+�دير متبادل.   
+
+💑 **ما تبحث عنه:**  
+تفضل شخصًا مشاعر مستقر ويتفهم احتياجاتها.
+
+🔗 **رابط الملف الشخصي:** [اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2029146)
+
+---
+
+### 5.  Ỏاحظت 
+🔹 **العمر:** ٣٨  
+📍 **الموقع:**  بريدة، السعودية  
+🎓 **المؤهل العلمي:** بكالوريوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 17/03/2025  
+
+📌 **الشخصية:**  
+تحب التحديات وتسعى دائمًا لتحقيق أهدافها، تتمتع بروح الإيجابية.   
+
+💑 **ما تبحث عنه:**  
+تبحث عن شخص متفهم ومحترم يشاركها طموحاتها.
+
+🔗 **رابط الملف الشخصي:** [اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2014453)
+
+---
+
+إذا كان لديك أسئلة أو تحتاج لمزيد من المعلومات، فلا تتردد في طرحها!
+[2025-03-21 21:41:53] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 786
+    [request_size] => 286
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 17.384158
+    [namelookup_time] => 0.000829
+    [connect_time] => 0.091976
+    [pretransfer_time] => 0.190251
+    [size_upload] => 94
+    [size_download] => 3353
+    [speed_download] => 192
+    [speed_upload] => 5
+    [download_content_length] => -1
+    [upload_content_length] => 94
+    [starttransfer_time] => 17.379216
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.112.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 61793
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 190109
+    [connect_time_us] => 91976
+    [namelookup_time_us] => 829
+    [pretransfer_time_us] => 190251
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 17379216
+    [total_time_us] => 17384158
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:41:53] === JSON Parsing Debug ===
+[2025-03-21 21:41:53] JSON Parse Error
+4
+[2025-03-21 21:41:53] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:41:53] Response Data Type
+NULL
+[2025-03-21 21:41:53] === String Response Processing ===
+[2025-03-21 21:41:53] === Markdown Formatting Debug ===
+[2025-03-21 21:41:53] Input Text Length
+3068
+[2025-03-21 21:41:53] Input Text Type
+string
+[2025-03-21 21:41:53] Output Text Length
+3422
+[2025-03-21 21:41:53] Output Text Type
+string
+[2025-03-21 21:41:53] Formatted Response Length
+3422
+[2025-03-21 21:41:53] Formatted Response Type
+string
+[2025-03-21 21:41:53] Final JSON Response Length
+3438
+[2025-03-21 21:44:39] === New Request Debug Log ===
+[2025-03-21 21:44:39] Request Data
+Array
+(
+    [message] => Give me a list of Saudi girls in their 30s
+    [sessionId] => 67ddd9f2bfba21742592498
+)
+
+[2025-03-21 21:44:39] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:44:58] === Response Debug Info ===
+[2025-03-21 21:44:58] HTTP Code
+200
+[2025-03-21 21:44:58] Response Length
+3089
+[2025-03-21 21:44:58] Response Type
+string
+[2025-03-21 21:44:58] First 1000 chars
+إليك قائمة بالفتيات السعوديات في الثلاثينيات من أعمارهن:
+
+### 1.  ÕãÊí¡ 
+🔹 **العمر:** ٣٧  
+📍 **الموقع:**  جده، السعودية  
+🎓 **المؤهل العلمي:** بكالوريوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 17/03/2025  
+
+📌 **الشخصية:**  
+يبدو أن ÕãÊí¡ شخص طموح يسعى لتحقيق نجاحات في حياته.   
+
+💑 **ما تبحث عنه:**  
+تُفضل شخصًا يتمتع بالاستقرار والقدرة على النقاش الإيجابي.
+
+🔗 **رابط الملف الشخصي:** [اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=1677808)
+
+---
+
+### 2.  Nada_1998 
+🔹 **العمر:** ٢٩  
+📍 **الموقع:**  جدة، السعودية  
+🎓 **المؤهل العلمي:** بكالوريوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 17/03/2025  
+
+📌 **الشخصية:**  
+تبدو Nada شخصية مرحة �
+[2025-03-21 21:44:58] Last 1000 chars
+7/03/2025  
+
+📌 **الشخصية:**  
+تحب العلاقات ذات المعنى وترغب في مشاركة حياتها.   
+
+💑 **ما تبحث عنه:**  
+تبحث عن شخص متفاهم ومحتمل.
+
+🔗 **رابط الملف الشخصي:** [اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2014453)
+
+---
+
+### 5.  ããíÒÉó
+🔹 **العمر:** ٢٩  
+📍 **الموقع:**  جدة، السعودية  
+🎓 **المؤهل العلمي:** بكالوريوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 17/03/2025  
+
+📌 **الشخصية:**  
+شخصية فعالة تحب التجارب الجديدة.   
+
+💑 **ما تبحث عنه:**  
+ترغب في شريك مغامر ومشجع.
+
+🔗 **رابط الملف الشخصي:** [اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2029146)
+
+---
+
+إذا كنت بحاجة إلى المزيد من المعلومات أو لديك أسئلة أخرى، فلا تتردد في طرحها!
+[2025-03-21 21:44:58] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 786
+    [request_size] => 286
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 18.278229
+    [namelookup_time] => 0.001089
+    [connect_time] => 0.09437
+    [pretransfer_time] => 0.189631
+    [size_upload] => 94
+    [size_download] => 3089
+    [speed_download] => 168
+    [speed_upload] => 5
+    [download_content_length] => -1
+    [upload_content_length] => 94
+    [starttransfer_time] => 18.274549
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.112.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 62071
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 189540
+    [connect_time_us] => 94370
+    [namelookup_time_us] => 1089
+    [pretransfer_time_us] => 189631
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 18274549
+    [total_time_us] => 18278229
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:44:58] === JSON Parsing Debug ===
+[2025-03-21 21:44:58] JSON Parse Error
+4
+[2025-03-21 21:44:58] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:44:58] Response Data Type
+NULL
+[2025-03-21 21:44:58] === String Response Processing ===
+[2025-03-21 21:44:58] === Markdown Formatting Debug ===
+[2025-03-21 21:44:58] Input Text Length
+2807
+[2025-03-21 21:44:58] Input Text Type
+string
+[2025-03-21 21:44:58] Output Text Length
+3161
+[2025-03-21 21:44:58] Output Text Type
+string
+[2025-03-21 21:44:58] Formatted Response Length
+3161
+[2025-03-21 21:44:58] Formatted Response Type
+string
+[2025-03-21 21:44:58] Final JSON Response Length
+3177
+[2025-03-21 21:50:43] === New Request Debug Log ===
+[2025-03-21 21:50:43] Request Data
+Array
+(
+    [message] => Give me a list of Saudi girls in their 30s
+    [sessionId] => 67ddd9f2bfba21742592498
+)
+
+[2025-03-21 21:50:43] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-21 21:51:05] === Response Debug Info ===
+[2025-03-21 21:51:05] HTTP Code
+200
+[2025-03-21 21:51:05] Response Length
+3265
+[2025-03-21 21:51:05] Response Type
+string
+[2025-03-21 21:51:05] First 1000 chars
+إليك قائمة بالفتيات السعوديات في الثلاثينيات من أعمارهن:
+
+### 1.  ãÑãÑíÊå
+🔹 **العمر:** 30  
+📍 **الموقع:**  المدينة المنورة، السعودية  
+🎓 **المؤهل العلمي:** بكالوريوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025  
+
+📌 **الشخصية:**  
+شخصية مرحة وتحب الحياة، تبحث عن شريك يفهم احتياجاتها ويدعم طموحاتها.  
+
+💑 **ما تبحث عنه:**  
+تفضل شخصًا يكون لديه تفهم ومرونة في التعامل.
+
+🔗 **رابط الملف الشخصي:** [اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2030381)
+
+
+---
+
+### 2.  Farah5__
+🔹 **العمر:** 30  
+📍 **الموقع:**  جدة، السعودية  
+🎓 **المؤهل العلمي:** بكالوريوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025  
+
+📌 **الشخصية:**  
+تبدو
+[2025-03-21 21:51:05] Last 1000 chars
+�جتماعيًا وتحب التعاون مع الآخرين.
+
+💑 **ما تبحث عنه:**  
+تبحث عن شخص مستقيم وذي أخلاق عالية.
+
+🔗 **رابط الملف الشخصي:** [اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2014453)
+
+---
+
+### 5.  ããíÒÉó
+🔹 **العمر:** 29  
+📍 **الموقع:**  جدة، السعودية  
+🎓 **المؤهل العلمي:** بكالوريوس  
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025  
+
+📌 **الشخصية:**  
+شخصية ملهمة تتمتع بشغف واهتمام بالعمل التطوعي.
+
+💑 **ما تبحث عنه:**  
+تبحث عن شخص يشاركها قيمها ويؤمن بمبادئ التضامن.
+
+🔗 **رابط الملف الشخصي:** [اضغط هنا](https://www.zwjate.com/zwjate/detail.php?userNumber=2029146)
+
+---
+
+إذا كان لديك أي استفسار أو تحتاج إلى معلومات إضافية، لا تتردد في طرحها!
+[2025-03-21 21:51:05] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 786
+    [request_size] => 286
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 22.088345
+    [namelookup_time] => 0.066686
+    [connect_time] => 0.152293
+    [pretransfer_time] => 0.244923
+    [size_upload] => 94
+    [size_download] => 3265
+    [speed_download] => 147
+    [speed_upload] => 4
+    [download_content_length] => -1
+    [upload_content_length] => 94
+    [starttransfer_time] => 22.088312
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.112.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 62300
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 244834
+    [connect_time_us] => 152293
+    [namelookup_time_us] => 66686
+    [pretransfer_time_us] => 244923
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 22088312
+    [total_time_us] => 22088345
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-21 21:51:05] === JSON Parsing Debug ===
+[2025-03-21 21:51:05] JSON Parse Error
+4
+[2025-03-21 21:51:05] JSON Parse Error Message
+Syntax error
+[2025-03-21 21:51:05] Response Data Type
+NULL
+[2025-03-21 21:51:05] === String Response Processing ===
+[2025-03-21 21:51:05] === Markdown Formatting Debug ===
+[2025-03-21 21:51:05] Input Text Length
+2982
+[2025-03-21 21:51:05] Input Text Type
+string
+[2025-03-21 21:51:05] Output Text Length
+3336
+[2025-03-21 21:51:05] Output Text Type
+string
+[2025-03-21 21:51:05] Formatted Response Length
+3336
+[2025-03-21 21:51:05] Formatted Response Type
+string
+[2025-03-21 21:51:05] Final JSON Response Length
+3352
