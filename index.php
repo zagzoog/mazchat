@@ -332,14 +332,42 @@ $config = require_once 'config.php';
             padding: 1rem;
             border-bottom: 1px solid #e5e7eb;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.2s ease;
             margin-bottom: 0.5rem;
+            position: relative;
+            background-color: white;
         }
         .conversation-item:hover {
             background-color: #f3f4f6;
+            transform: translateX(-5px);
+            z-index: 1;
+        }
+        .conversation-item:hover::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background-color: #4f46e5;
+            border-radius: 0 4px 4px 0;
+            z-index: 2;
         }
         .conversation-item.active {
             background-color: #eef2ff;
+            transform: translateX(-5px);
+            z-index: 1;
+        }
+        .conversation-item.active::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background-color: #4f46e5;
+            border-radius: 0 4px 4px 0;
+            z-index: 2;
         }
         .conversation-title {
             color: #374151;
@@ -444,10 +472,10 @@ $config = require_once 'config.php';
                     // Store the footer before updating the sidebar
                     const footer = sidebar.querySelector('.sidebar-footer');
                     
-                    // Update the sidebar content
+                    // Update the sidebar content with proper structure
                     sidebar.innerHTML = `
-                        <div class="sidebar-header">
-                            <h2>المحادثات</h2>
+                        <div class="sidebar-header flex justify-between items-center mb-4">
+                            <h2 class="text-xl font-semibold text-gray-800">المحادثات السابقة</h2>
                             <button onclick="createNewConversation()" class="new-chat-btn">
                                 <i class="fas fa-plus"></i> محادثة جديدة
                             </button>
@@ -464,14 +492,14 @@ $config = require_once 'config.php';
                 }
                 
                 if (!conversations || conversations.length === 0) {
-                    console.log('No conversations found'); // Debug log
                     conversationsList.innerHTML = '<div class="text-gray-500 text-center py-4">لا توجد محادثات</div>';
                     return;
                 }
                 
-                const newConversations = conversations.map(conv => {
-                    console.log('Processing conversation:', conv); // Debug log
-                    // Format the date
+                // Create a document fragment to build the conversations list
+                const fragment = document.createDocumentFragment();
+                
+                conversations.forEach(conv => {
                     const date = new Date(conv.updated_at);
                     const formattedDate = date.toLocaleDateString('ar-SA', {
                         year: 'numeric',
@@ -481,33 +509,37 @@ $config = require_once 'config.php';
                         minute: '2-digit'
                     });
                     
-                    // Get first line of the message
                     const firstLine = conv.last_message ? 
                         conv.last_message.split('\n')[0].substring(0, 50) + 
                         (conv.last_message.split('\n')[0].length > 50 ? '...' : '') : 
                         'بدون رسائل';
                     
-                    return `
-                        <div class="conversation-item ${conv.id === currentConversationId ? 'active' : ''}" 
-                             onclick="loadConversation('${conv.id}')">
-                            <div class="flex justify-between items-start mb-1">
-                                <div class="conversation-title font-semibold">${conv.title}</div>
-                                <div class="conversation-time text-sm text-gray-500">${formattedDate}</div>
-                            </div>
-                            <div class="conversation-preview text-sm text-gray-600">${firstLine}</div>
+                    const conversationDiv = document.createElement('div');
+                    conversationDiv.className = `conversation-item ${conv.id === currentConversationId ? 'active' : ''}`;
+                    conversationDiv.onclick = () => loadConversation(conv.id);
+                    
+                    conversationDiv.innerHTML = `
+                        <div class="flex justify-between items-start mb-1">
+                            <div class="conversation-title font-semibold">${conv.title}</div>
+                            <div class="conversation-time text-sm text-gray-500">${formattedDate}</div>
                         </div>
+                        <div class="conversation-preview text-sm text-gray-600">${firstLine}</div>
                     `;
-                }).join('');
+                    
+                    fragment.appendChild(conversationDiv);
+                });
                 
                 if (loadMore) {
-                    // Remove the Load More button if it exists
                     const existingLoadMoreBtn = conversationsList.querySelector('.load-more-btn');
                     if (existingLoadMoreBtn) {
                         existingLoadMoreBtn.remove();
                     }
-                    conversationsList.insertAdjacentHTML('beforeend', newConversations);
+                    conversationsList.appendChild(fragment);
                 } else {
-                    conversationsList.innerHTML = newConversations;
+                    // Clear the container first
+                    conversationsList.innerHTML = '';
+                    // Then add the new conversations
+                    conversationsList.appendChild(fragment);
                 }
                 
                 // Add Load More button if there are more conversations
