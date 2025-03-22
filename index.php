@@ -614,66 +614,76 @@ $config = require_once 'config.php';
                         </div>
                     `;
                 }).join('');
-                
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-                await loadConversations(); // Refresh sidebar
 
-                // Close sidebar on mobile after selecting a conversation
-                if (window.innerWidth <= 768) {
-                    const sidebar = document.querySelector('.sidebar');
-                    sidebar.classList.remove('open');
+                // Scroll to the latest message
+                const lastMessage = chatContainer.lastElementChild;
+                if (lastMessage) {
+                    lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
+
+                // Update active state in conversations list
+                document.querySelectorAll('.conversation-item').forEach(item => {
+                    item.classList.remove('active');
+                    if (item.getAttribute('onclick').includes(conversationId)) {
+                        item.classList.add('active');
+                    }
+                });
+
             } catch (error) {
                 console.error('Error loading conversation:', error);
                 showError('حدث خطأ أثناء تحميل المحادثة');
-                // Clear loading indicator and show error message
-                const chatContainer = document.getElementById('chatContainer');
-                chatContainer.innerHTML = `
-                    <div class="message assistant">
-                        <div class="message-content">عذراً، حدث خطأ أثناء تحميل المحادثة. يرجى المحاولة مرة أخرى.</div>
-                    </div>
-                `;
             }
         }
 
         // Send a message
         async function sendMessage() {
-            // Prevent double sending
-            if (isSending) {
-                return;
-            }
-            
             const messageInput = document.getElementById('message-input');
-            const sendButton = document.getElementById('send-button');
             const message = messageInput.value.trim();
             
             if (!message) return;
             
-            if (!currentConversationId) {
-                await createNewConversation();
-            }
-            
             try {
-                isSending = true;  // Set sending flag
-                
-                // Disable input and button
+                // Create new conversation if none exists
+                if (!currentConversationId) {
+                    const response = await fetch('api/conversations.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            title: 'محادثة جديدة'
+                        })
+                    });
+                    
+                    const data = await response.json();
+                    if (data.error) {
+                        throw new Error(data.error);
+                    }
+                    currentConversationId = data.id;
+                    await loadConversations();
+                }
+
+                // Clear input and disable
+                messageInput.value = '';
                 messageInput.disabled = true;
-                sendButton.disabled = true;
                 
                 // Add user message to chat
                 const chatContainer = document.getElementById('chatContainer');
-                // For user message, trim and replace newlines
-                const formattedUserMessage = message.trim().replace(/\n/g, '<br>');
-                chatContainer.innerHTML += `
-                    <div class="message user">
-                        <div class="message-content">${marked.parse(formattedUserMessage)}</div>
-                    </div>
+                const userMessageDiv = document.createElement('div');
+                userMessageDiv.className = 'message user';
+                userMessageDiv.innerHTML = `
+                    <div class="message-content">${marked.parse(message.replace(/\n/g, '<br>'))}</div>
                 `;
-                chatContainer.scrollTop = chatContainer.scrollHeight;
+                chatContainer.appendChild(userMessageDiv);
                 
-                // Add loading indicator
-                chatContainer.innerHTML += `
-                    <div class="loading-indicator">
+                // Scroll to the user's message
+                userMessageDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                // Show typing indicator
+                const typingIndicator = document.createElement('div');
+                typingIndicator.className = 'message assistant';
+                typingIndicator.innerHTML = `
+                    <div class="message-content">
                         <div class="loading-dots">
                             <div class="loading-dot"></div>
                             <div class="loading-dot"></div>
@@ -681,10 +691,13 @@ $config = require_once 'config.php';
                         </div>
                     </div>
                 `;
-                chatContainer.scrollTop = chatContainer.scrollHeight;
+                chatContainer.appendChild(typingIndicator);
                 
-                // Save user message to database
-                await fetch('api/messages.php', {
+                // Scroll to the typing indicator
+                typingIndicator.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                // Send message to server
+                const response = await fetch('api/messages.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -696,77 +709,57 @@ $config = require_once 'config.php';
                     })
                 });
                 
-                // Clear input
-                messageInput.value = '';
+                const data = await response.json();
+                console.log('API Response:', data); // Debug log
                 
-                // Send to AI and get response
-                const response = await fetch('send_message.php', {
+                // Remove typing indicator
+                typingIndicator.remove();
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+
+                // Get AI response
+                const aiResponse = await fetch('send_message.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        message: message
+                        message: message,
+                        conversation_id: currentConversationId
                     })
                 });
-                
-                const data = await response.json();
-                
-                if (data.error) {
-                    throw new Error(data.error);
-                }
-                
-                // Remove loading indicator before adding AI response
-                const loadingIndicator = chatContainer.querySelector('.loading-indicator');
-                if (loadingIndicator) {
-                    loadingIndicator.remove();
+
+                const aiData = await aiResponse.json();
+                console.log('AI Response:', aiData); // Debug log
+
+                if (aiData.error) {
+                    throw new Error(aiData.error);
                 }
                 
                 // Add AI response to chat
-                // For AI response, only replace newlines without trimming
-                const formattedAIResponse = data.response.replace(/\n/g, '<br>');
-                chatContainer.innerHTML += `
-                    <div class="message assistant">
-                        <div class="message-content">${marked.parse(formattedAIResponse)}</div>
-                    </div>
+                const aiMessageDiv = document.createElement('div');
+                aiMessageDiv.className = 'message assistant';
+                aiMessageDiv.innerHTML = `
+                    <div class="message-content">${marked.parse(aiData.response.replace(/\n/g, '<br>'))}</div>
                 `;
+                chatContainer.appendChild(aiMessageDiv);
                 
-                // Save AI response to database
-                try {
-                    const saveResponse = await fetch('api/messages.php', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            conversation_id: currentConversationId,
-                            content: data.response,
-                            is_user: false
-                        })
-                    });
-                    
-                    if (!saveResponse.ok) {
-                        const errorData = await saveResponse.json();
-                        throw new Error(errorData.error || 'Failed to save AI response');
-                    }
-                    
-                    console.log('AI response saved successfully');
-                } catch (error) {
-                    console.error('Error saving AI response:', error);
-                    showError('حدث خطأ أثناء حفظ رد المساعد');
-                }
+                // Scroll to the AI's response
+                aiMessageDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 
-                chatContainer.scrollTop = chatContainer.scrollHeight;
-                await loadConversations(); // Refresh sidebar
+                // Re-enable input
+                messageInput.disabled = false;
+                messageInput.focus();
+                
+                // Refresh conversations list to show the new conversation
+                await loadConversations();
+                
             } catch (error) {
                 console.error('Error sending message:', error);
-                showError('عذراً، واجهت خطأ. يرجى المحاولة مرة أخرى.');
-            } finally {
-                // Re-enable input and button
+                showError('حدث خطأ أثناء إرسال الرسالة');
                 messageInput.disabled = false;
-                sendButton.disabled = false;
-                messageInput.focus();
-                isSending = false;  // Reset sending flag
             }
         }
 
