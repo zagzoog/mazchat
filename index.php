@@ -312,21 +312,21 @@ $config = require_once 'config.php';
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
         <!-- Header -->
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+        <div class="bg-white shadow-md p-4 mb-8">
             <div class="flex justify-between items-center">
-                <div class="flex items-center gap-4">
-                    <button id="toggleSidebar" class="toggle-sidebar p-2 hover:bg-gray-100 rounded-lg transition-transform">
-                        <i class="fas fa-bars text-gray-600"></i>
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <button id="toggle-sidebar" class="text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-bars"></i>
                     </button>
-                    <h1 class="text-3xl font-bold text-gray-800">نظام المطابقة الذكي</h1>
+                    <h1 class="text-xl font-bold text-gray-800">نظام المطابقة الذكي</h1>
                 </div>
-                <div class="flex items-center gap-4">
-                    <a href="profile.php" class="text-gray-600 hover:text-gray-800">
-                        <i class="fas fa-user-circle"></i> الملف الشخصي
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <a href="dashboard.php" class="text-blue-600 hover:text-blue-800">
+                        <i class="fas fa-chart-line"></i> لوحة التحكم
                     </a>
                     <span class="text-gray-600">مرحباً، <?php echo htmlspecialchars($_SESSION['username']); ?></span>
-                    <a href="logout.php" class="text-red-600 hover:text-red-700">
-                        <i class="fas fa-sign-out-alt"></i>
+                    <a href="logout.php" class="text-red-600 hover:text-red-800">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
                     </a>
                 </div>
             </div>
@@ -713,7 +713,7 @@ $config = require_once 'config.php';
         // Update the sidebar toggle functionality
         document.addEventListener('DOMContentLoaded', () => {
             const sidebar = document.querySelector('.sidebar');
-            const toggleButton = document.getElementById('toggleSidebar');
+            const toggleButton = document.getElementById('toggle-sidebar');
             
             // Set initial state for mobile
             if (window.innerWidth <= 768) {

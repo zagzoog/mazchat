@@ -27,16 +27,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $userData = $stmt->fetch();
                     $_SESSION['email'] = $userData['email'];
                     
-                    // Update last login
-                    $stmt = $db->prepare("UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ?");
+                    // Check if user has an active membership
+                    $stmt = $db->prepare("SELECT type FROM memberships WHERE user_id = ? AND end_date >= CURRENT_DATE ORDER BY start_date DESC LIMIT 1");
                     $stmt->execute([$user['id']]);
+                    $membership = $stmt->fetch();
+                    
+                    if (!$membership) {
+                        // Create free membership if none exists
+                        $start_date = date('Y-m-d');
+                        $end_date = date('Y-m-d', strtotime('+1 year'));
+                        
+                        $stmt = $db->prepare("INSERT INTO memberships (user_id, type, start_date, end_date) VALUES (?, 'free', ?, ?)");
+                        $stmt->execute([$user['id'], $start_date, $end_date]);
+                    }
+                    
+                    $_SESSION['membership_type'] = $membership ? $membership['type'] : 'free';
                     
                     header('Location: index.php');
                     exit;
                 } else {
+                    error_log("Login failed for username: " . $username);
                     $error = 'اسم المستخدم أو كلمة المرور غير صحيحة';
                 }
             } catch (Exception $e) {
+                error_log("Login error: " . $e->getMessage());
                 $error = 'حدث خطأ أثناء تسجيل الدخول';
             }
         } elseif ($_POST['action'] === 'register') {
@@ -73,11 +87,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             $error = 'البريد الإلكتروني موجود مسبقاً';
                         } else {
                             // Create new user
-                            $user_id = uniqid();
                             $hashed_password = password_hash($password, PASSWORD_DEFAULT);
                             
-                            $stmt = $db->prepare("INSERT INTO users (id, username, email, password) VALUES (?, ?, ?, ?)");
-                            $stmt->execute([$user_id, $username, $email, $hashed_password]);
+                            $stmt = $db->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
+                            $stmt->execute([$username, $email, $hashed_password]);
+                            
+                            // Get the new user's ID
+                            $user_id = $db->lastInsertId();
+                            
+                            // Create free membership for the new user
+                            $start_date = date('Y-m-d');
+                            $end_date = date('Y-m-d', strtotime('+1 year'));
+                            
+                            $stmt = $db->prepare("INSERT INTO memberships (user_id, type, start_date, end_date) VALUES (?, 'free', ?, ?)");
+                            $stmt->execute([$user_id, $start_date, $end_date]);
                             
                             $success = 'تم إنشاء الحساب بنجاح. يمكنك الآن تسجيل الدخول.';
                             

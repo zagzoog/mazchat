@@ -1,0 +1,15 @@
+[22-Mar-2025 01:19:37 Europe/London] PHP Fatal error:  Uncaught Error: Class "Model" not found in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\User.php:2
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php(11): require_once()
+#1 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\User.php on line 2
+[22-Mar-2025 01:19:45 Europe/London] PHP Fatal error:  Uncaught Error: Class "Model" not found in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\User.php:2
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php(11): require_once()
+#1 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\User.php on line 2
+[22-Mar-2025 01:19:57 Europe/London] PHP Fatal error:  Uncaught Error: Class "Model" not found in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\User.php:2
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php(11): require_once()
+#1 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\User.php on line 2

@@ -37,7 +37,10 @@ try {
                 SELECT c.*, 
                        (SELECT content FROM messages 
                         WHERE conversation_id = c.id 
-                        ORDER BY created_at DESC LIMIT 1) as last_message
+                        ORDER BY created_at DESC LIMIT 1) as last_message,
+                       (SELECT created_at FROM messages 
+                        WHERE conversation_id = c.id 
+                        ORDER BY created_at DESC LIMIT 1) as last_message_time
                 FROM conversations c
                 WHERE c.user_id = ?
                 ORDER BY c.updated_at DESC
@@ -65,17 +68,17 @@ try {
                 throw new Exception("Title is required");
             }
             
-            $conversation_id = uniqid();
             $stmt = $db->prepare("
-                INSERT INTO conversations (id, user_id, title)
-                VALUES (?, ?, ?)
+                INSERT INTO conversations (user_id, title)
+                VALUES (?, ?)
             ");
             
             $stmt->execute([
-                $conversation_id,
                 $_SESSION['user_id'],
                 $data['title']
             ]);
+            
+            $conversation_id = $db->lastInsertId();
             
             echo json_encode([
                 'id' => $conversation_id,
@@ -89,6 +92,7 @@ try {
             echo json_encode(['error' => 'Method not allowed']);
     }
 } catch (Exception $e) {
+    error_log("Error in conversations API: " . $e->getMessage());
     http_response_code(500);
     echo json_encode(['error' => $e->getMessage()]);
 } 
