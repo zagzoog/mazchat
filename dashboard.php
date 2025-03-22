@@ -26,6 +26,39 @@ $config = require_once 'config.php';
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
         }
+        /* Add dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1000;
+            border-radius: 0.5rem;
+            padding: 0.5rem 0;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-item {
+            color: #374151;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.2s;
+        }
+        .dropdown-item:hover {
+            background-color: #f3f4f6;
+        }
+        .dropdown-item i {
+            margin-left: 0.5rem;
+            width: 1.25rem;
+            text-align: center;
+        }
         .stats-card {
             background: white;
             border-radius: 1rem;
@@ -72,13 +105,32 @@ $config = require_once 'config.php';
     <div class="container mx-auto px-4 py-8">
         <!-- Header -->
         <div class="flex justify-between items-center mb-8">
-            <h1 class="text-3xl font-bold text-gray-800">لوحة التحكم</h1>
+            <div class="flex items-center">
+                <div class="dropdown">
+                    <button class="flex items-center text-gray-600 hover:text-gray-800">
+                        <i class="fas fa-bars text-xl"></i>
+                        <span class="mr-2">القائمة</span>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="dashboard.php" class="dropdown-item">
+                            <i class="fas fa-chart-line"></i>
+                            لوحة التحكم
+                        </a>
+                        <a href="profile.php" class="dropdown-item">
+                            <i class="fas fa-user"></i>
+                            الملف الشخصي
+                        </a>
+                        <a href="logout.php" class="dropdown-item text-red-600 hover:text-red-700">
+                            <i class="fas fa-sign-out-alt"></i>
+                            تسجيل الخروج
+                        </a>
+                    </div>
+                </div>
+                <h1 class="text-3xl font-bold text-gray-800 mr-4">لوحة التحكم</h1>
+            </div>
             <div class="flex items-center space-x-4 space-x-reverse">
                 <a href="index.php" class="text-blue-600 hover:text-blue-800">
                     <i class="fas fa-arrow-right"></i> العودة للدردشة
-                </a>
-                <a href="logout.php" class="text-red-600 hover:text-red-800">
-                    <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
                 </a>
             </div>
         </div>

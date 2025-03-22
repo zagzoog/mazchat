@@ -2610,3 +2610,3227 @@ Context: {
     "top_topics": []
 }
 --------------------------------------------------------------------------------
+[22-Mar-2025 10:49:37 Europe/London] Logger initialized successfully
+[2025-03-22 10:49:37] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:37] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:40] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:40] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:42] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:44] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 10:49:51 Europe/London] Logger initialized successfully
+[2025-03-22 10:49:51] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:51] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:53] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:53] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:55] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:49:58] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 10:50:03 Europe/London] Logger initialized successfully
+[2025-03-22 10:50:03] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:03] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:05] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:05] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:07] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:50:09] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 10:54:32 Europe/London] Logger initialized successfully
+[2025-03-22 10:54:32] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:32] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:34] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:34] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:36] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 10:54:38 Europe/London] Logger initialized successfully
+[2025-03-22 10:54:38] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:38] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:40] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:40] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:42] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 10:54:44 Europe/London] Logger initialized successfully
+[2025-03-22 10:54:44] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:44] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:46] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:46] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:48] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 10:54:50 Europe/London] Logger initialized successfully
+[2025-03-22 10:54:50] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:50] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:52] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:52] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:54] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:54:56] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 10:59:53 Europe/London] Logger initialized successfully
+[2025-03-22 10:59:53] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:59:53] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:59:55] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 10:59:55] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 10:59:57] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:00] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:00:10 Europe/London] Logger initialized successfully
+[2025-03-22 11:00:10] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:10] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:12] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:12] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:14] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:00:16] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:01:11 Europe/London] Logger initialized successfully
+[2025-03-22 11:01:11] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:11] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:13] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:13] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:15] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:01:17 Europe/London] Logger initialized successfully
+[2025-03-22 11:01:17] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:17] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:19] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:19] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:21] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:23] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:01:24 Europe/London] Logger initialized successfully
+[2025-03-22 11:01:24] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:24] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:26] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:26] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:28] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:01:30] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:04:35 Europe/London] Logger initialized successfully
+[2025-03-22 11:04:35] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:35] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:37] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:37] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:39] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:04:41] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:05:36 Europe/London] Logger initialized successfully
+[2025-03-22 11:05:36] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:36] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:38] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:38] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:40] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:05:42] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:06:13 Europe/London] Logger initialized successfully
+[2025-03-22 11:06:13] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:13] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:15] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:15] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:17] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:06:19 Europe/London] Logger initialized successfully
+[2025-03-22 11:06:19] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:19] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:21] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:21] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:23] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 8,
+    "total_questions": 30,
+    "total_words": "515"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:06:25] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 8,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 8,
+        "total_questions": 30,
+        "total_words": "515"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 8,
+            "questions": 30,
+            "words": "515"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:11:53 Europe/London] Logger initialized successfully
+[2025-03-22 11:11:53] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:53] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:55] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:55] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:57] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 32,
+    "total_words": "516"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 32,
+    "total_words": "516"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:11:59] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 9,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 9,
+        "total_questions": 32,
+        "total_words": "516"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 9,
+            "questions": 32,
+            "words": "516"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:15:20 Europe/London] Logger initialized successfully
+[2025-03-22 11:15:20] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:20] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:22] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:22] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:24] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 34,
+    "total_words": "612"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 34,
+    "total_words": "612"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:26] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 9,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 9,
+        "total_questions": 34,
+        "total_words": "612"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 9,
+            "questions": 34,
+            "words": "612"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:15:52 Europe/London] Logger initialized successfully
+[2025-03-22 11:15:52] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:52] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:54] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:54] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:56] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 34,
+    "total_words": "612"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 34,
+    "total_words": "612"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 9,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 9,
+        "total_questions": 34,
+        "total_words": "612"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 9,
+            "questions": 34,
+            "words": "612"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:15:58 Europe/London] Logger initialized successfully
+[2025-03-22 11:15:58] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:15:58] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:00] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:00] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:02] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 34,
+    "total_words": "612"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 34,
+    "total_words": "612"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 9,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 9,
+        "total_questions": 34,
+        "total_words": "612"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 9,
+            "questions": 34,
+            "words": "612"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:16:04 Europe/London] Logger initialized successfully
+[2025-03-22 11:16:04] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:04] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:06] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:06] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:08] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 34,
+    "total_words": "612"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 34,
+    "total_words": "612"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:16:10] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 9,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 9,
+        "total_questions": 34,
+        "total_words": "612"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 9,
+            "questions": 34,
+            "words": "612"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 11:21:52 Europe/London] Logger initialized successfully
+[2025-03-22 11:21:52] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:52] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:54] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:54] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:56] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 34,
+    "total_words": "612"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 34,
+    "total_words": "612"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 11:21:58] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 9,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 9,
+        "total_questions": 34,
+        "total_words": "612"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 9,
+            "questions": 34,
+            "words": "612"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 14:33:21 Europe/London] Logger initialized successfully
+[2025-03-22 14:33:21] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:21] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:23] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:23] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:25] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 34,
+    "total_words": "612"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 9,
+    "total_questions": 34,
+    "total_words": "612"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 14:33:27] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 9,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 9,
+        "total_questions": 34,
+        "total_words": "612"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 9,
+            "questions": 34,
+            "words": "612"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 15:06:37 Europe/London] Logger initialized successfully
+[2025-03-22 15:06:37] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:37] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:39] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:39] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:41] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 11,
+    "total_questions": 40,
+    "total_words": "798"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 11,
+    "total_questions": 40,
+    "total_words": "798"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:06:43] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 11,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 11,
+        "total_questions": 40,
+        "total_words": "798"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 11,
+            "questions": 40,
+            "words": "798"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 15:10:46 Europe/London] Logger initialized successfully
+[2025-03-22 15:10:46] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:46] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:48] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:48] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:50] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 12,
+    "total_questions": 42,
+    "total_words": "799"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 12,
+    "total_questions": 42,
+    "total_words": "799"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:52] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 12,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 12,
+        "total_questions": 42,
+        "total_words": "799"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 12,
+            "questions": 42,
+            "words": "799"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------
+[22-Mar-2025 15:10:54 Europe/London] Logger initialized successfully
+[2025-03-22 15:10:54] [INFO] Session data
+Context: {
+    "session_id": "gl88f6nq5uquamg6aqn7rspcql",
+    "session_data": {
+        "user_id": 1,
+        "username": "admin",
+        "email": "admin@admin.com",
+        "membership_type": "free",
+        "chat_session_id": "67de12ee3bfb01742607086"
+    },
+    "cookies": {
+        "PHPSESSID": "gl88f6nq5uquamg6aqn7rspcql"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:54] [INFO] Starting dashboard data fetch
+Context: {
+    "user_id": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:56] [INFO] Database connection successful
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:56] [INFO] User verified
+Context: {
+    "user": {
+        "id": 1,
+        "username": "admin"
+    }
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:10:58] [INFO] Database connection established
+Context: {
+    "class": "Membership"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Database connection established
+Context: {
+    "class": "UsageStats"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Fetching current membership
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Current membership retrieved
+Context: {
+    "id": 1,
+    "user_id": 1,
+    "type": "free",
+    "start_date": "2025-03-22",
+    "end_date": "2026-03-22",
+    "created_at": "2025-03-22 03:36:50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Fetching monthly stats
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Monthly stats retrieved
+Context: {
+    "total_conversations": 12,
+    "total_questions": 42,
+    "total_words": "799"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Fetching daily stats
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Daily stats retrieved
+Context: {
+    "count": 1
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Fetching top topics
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] No top topics found, using empty array
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Top topics retrieved
+Context: {
+    "count": 0
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Fetching monthly limit
+Context: {
+    "membership_type": "free"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Monthly limit retrieved
+Context: {
+    "limit": "50"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Fetching current month's usage
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Current month usage retrieved
+Context: {
+    "total_conversations": 12,
+    "total_questions": 42,
+    "total_words": "799"
+}
+--------------------------------------------------------------------------------
+[2025-03-22 15:11:00] [INFO] Sending response
+Context: {
+    "membership": {
+        "type": "free",
+        "monthly_limit": "50",
+        "current_usage": 12,
+        "start_date": "2025-03-22",
+        "end_date": "2026-03-22"
+    },
+    "stats": {
+        "total_conversations": 12,
+        "total_questions": 42,
+        "total_words": "799"
+    },
+    "daily_stats": [
+        {
+            "date": "2025-03-22",
+            "conversations": 12,
+            "questions": 42,
+            "words": "799"
+        }
+    ],
+    "top_topics": []
+}
+--------------------------------------------------------------------------------

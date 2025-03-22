@@ -33,9 +33,7 @@ $config = require_once 'config.php';
             min-height: 100vh;
         }
         .chat-container {
-            height: calc(100vh - 280px);
             min-height: 200px;
-            max-height: calc(100vh - 300px);
             overflow-y: auto;
             padding: 1rem;
             display: flex;
@@ -165,6 +163,12 @@ $config = require_once 'config.php';
         }
         .sidebar {
             width: 300px;
+            background-color: #f8f9fa;
+            border-left: 1px solid #dee2e6;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
             transition: all 0.3s ease;
             position: relative;
         }
@@ -180,7 +184,7 @@ $config = require_once 'config.php';
         .sidebar.collapsed .sidebar-header {
             display: none;
         }
-        .sidebar.collapsed .user-info {
+        .sidebar.collapsed .sidebar-footer {
             display: none;
         }
         .toggle-sidebar {
@@ -204,50 +208,34 @@ $config = require_once 'config.php';
         .sidebar.collapsed + .main-content {
             margin-right: 0;
         }
-        .conversation-item {
-            padding: 1rem;
-            border-bottom: 1px solid #e5e7eb;
-            cursor: pointer;
-            transition: background-color 0.2s;
-            margin-bottom: 0.5rem;
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
         }
-        .conversation-item:hover {
+        .sidebar-footer {
+            padding: 15px 0;
+            border-top: 1px solid #dee2e6;
+            margin-top: auto;
+        }
+        .profile-link {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            color: #374151;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+        .profile-link:hover {
             background-color: #f3f4f6;
         }
-        .conversation-item.active {
-            background-color: #eef2ff;
+        .profile-link i {
+            margin-left: 10px;
+            font-size: 1.2rem;
+            color: #4f46e5;
         }
-        /* Error message styling */
-        .error-message {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #ff4444;
-            color: white;
-            padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            animation: slideIn 0.3s ease-out;
-        }
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-        /* Sidebar styling */
-        .sidebar {
-            width: 300px;
-            height: 100vh;
-            background-color: #f8f9fa;
-            border-left: 1px solid #dee2e6;
-            padding: 20px;
-            overflow-y: auto;
+        .profile-link span {
+            font-weight: 500;
         }
         .sidebar-header {
             display: flex;
@@ -307,40 +295,100 @@ $config = require_once 'config.php';
                 transform: translateX(100%);
             }
         }
+        /* Add dropdown styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            z-index: 1000;
+            border-radius: 0.5rem;
+            padding: 0.5rem 0;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .dropdown-item {
+            color: #374151;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.2s;
+        }
+        .dropdown-item:hover {
+            background-color: #f3f4f6;
+        }
+        .dropdown-item i {
+            margin-left: 0.5rem;
+            width: 1.25rem;
+            text-align: center;
+        }
+        .conversation-item {
+            padding: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            margin-bottom: 0.5rem;
+        }
+        .conversation-item:hover {
+            background-color: #f3f4f6;
+        }
+        .conversation-item.active {
+            background-color: #eef2ff;
+        }
+        .conversation-title {
+            color: #374151;
+            font-weight: 600;
+        }
+        .conversation-time {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        .conversation-preview {
+            color: #6b7280;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
     </style>
 </head>
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
         <!-- Header -->
-        <div class="bg-white shadow-md p-4 mb-8">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-4 space-x-reverse">
-                    <button id="toggle-sidebar" class="text-gray-600 hover:text-gray-800">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                    <h1 class="text-xl font-bold text-gray-800">نظام المطابقة الذكي</h1>
-                </div>
-                <div class="flex items-center space-x-4 space-x-reverse">
-                    <a href="dashboard.php" class="text-blue-600 hover:text-blue-800">
-                        <i class="fas fa-chart-line"></i> لوحة التحكم
-                    </a>
-                    <span class="text-gray-600">مرحباً، <?php echo htmlspecialchars($_SESSION['username']); ?></span>
-                    <a href="logout.php" class="text-red-600 hover:text-red-800">
-                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
-                    </a>
-                </div>
+        <div class="flex justify-between items-center mb-8">
+            <div class="flex items-center">
+                <button class="toggle-sidebar text-gray-600 hover:text-gray-800">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1 class="text-3xl font-bold text-gray-800 mr-4">المحادثة الذكية</h1>
+            </div>
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <a href="dashboard.php" class="text-blue-600 hover:text-blue-800">
+                    <i class="fas fa-chart-line"></i> لوحة التحكم
+                </a>
             </div>
         </div>
 
         <div class="flex gap-6">
             <!-- Sidebar -->
             <div class="sidebar bg-white rounded-lg shadow-lg p-4">
-                
                 <div class="sidebar-header flex justify-between items-center mb-4">
                     <h2 class="text-xl font-semibold text-gray-800">المحادثات السابقة</h2>
                 </div>
-                <div id="conversationsList" class="space-y-2">
-                    <!-- Conversations will be added here dynamically -->
+                <div class="sidebar-content">
+                    <div id="conversationsList" class="space-y-2">
+                        <!-- Conversations will be added here dynamically -->
+                    </div>
+                </div>
+                <div class="sidebar-footer">
+                    <a href="profile.php" class="profile-link">
+                        <i class="fas fa-user-circle"></i>
+                        <span><?php echo htmlspecialchars($_SESSION['username']); ?></span>
+                    </a>
                 </div>
             </div>
 
@@ -393,16 +441,25 @@ $config = require_once 'config.php';
                     document.createElement('div');
                 
                 if (!loadMore) {
+                    // Store the footer before updating the sidebar
+                    const footer = sidebar.querySelector('.sidebar-footer');
+                    
+                    // Update the sidebar content
                     sidebar.innerHTML = `
-                        
                         <div class="sidebar-header">
                             <h2>المحادثات</h2>
                             <button onclick="createNewConversation()" class="new-chat-btn">
                                 <i class="fas fa-plus"></i> محادثة جديدة
                             </button>
                         </div>
-                        <div class="conversations-list"></div>
+                        <div class="sidebar-content">
+                            <div class="conversations-list"></div>
+                        </div>
                     `;
+                    
+                    // Restore the footer
+                    sidebar.appendChild(footer);
+                    
                     conversationsList = sidebar.querySelector('.conversations-list');
                 }
                 
@@ -499,16 +556,14 @@ $config = require_once 'config.php';
             try {
                 currentConversationId = conversationId;
                 
-                // Show loading indicator with overlay
+                // Show loading indicator without overlay
                 const chatContainer = document.getElementById('chatContainer');
                 chatContainer.innerHTML = `
-                    <div class="loading-overlay">
-                        <div class="loading-indicator">
-                            <div class="loading-dots">
-                                <div class="loading-dot"></div>
-                                <div class="loading-dot"></div>
-                                <div class="loading-dot"></div>
-                            </div>
+                    <div class="loading-indicator">
+                        <div class="loading-dots">
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
+                            <div class="loading-dot"></div>
                         </div>
                     </div>
                 `;
@@ -713,7 +768,7 @@ $config = require_once 'config.php';
         // Update the sidebar toggle functionality
         document.addEventListener('DOMContentLoaded', () => {
             const sidebar = document.querySelector('.sidebar');
-            const toggleButton = document.getElementById('toggle-sidebar');
+            const toggleButton = document.querySelector('.toggle-sidebar');
             
             // Set initial state for mobile
             if (window.innerWidth <= 768) {
