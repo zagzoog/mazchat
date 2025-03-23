@@ -397,7 +397,7 @@ $config = require_once 'config.php';
         // Payment functions
         async function initiatePayment(membershipType) {
             try {
-                const response = await fetch('api/create_payment.php', {
+                const response = await fetch('/chat/api/create_payment.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

@@ -2,6 +2,7 @@
 session_start();
 header('Content-Type: application/json; charset=utf-8');
 require_once '../db_config.php';
+require_once '../app/models/Membership.php';
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
@@ -12,6 +13,7 @@ if (!isset($_SESSION['user_id'])) {
 
 try {
     $db = getDBConnection();
+    $membership = new Membership();
     
     switch ($_SERVER['REQUEST_METHOD']) {
         case 'GET':
@@ -62,6 +64,14 @@ try {
             break;
             
         case 'POST':
+            // Check if user has reached their monthly limit
+            if (!$membership->checkUsageLimit($_SESSION['user_id'])) {
+                error_log("User " . $_SESSION['user_id'] . " has reached their monthly conversation limit");
+                http_response_code(403);
+                echo json_encode(['error' => 'You have reached your monthly conversation limit. Please upgrade your membership to continue.']);
+                exit;
+            }
+            
             // Create new conversation
             $data = json_decode(file_get_contents('php://input'), true);
             if (!isset($data['title'])) {

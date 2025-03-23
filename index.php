@@ -465,7 +465,7 @@ $config = require_once 'config.php';
                         <div class="sidebar-header flex justify-between items-center mb-4">
                             <h2 class="text-xl font-semibold text-gray-800">المحادثات السابقة</h2>
                             <button onclick="createNewConversation()" class="new-chat-btn">
-                                <i class="fas fa-plus"></i> محادثة جديدة
+                                <i class="fas fa-plus"></i>
                             </button>
                         </div>
                         <div class="sidebar-content">
@@ -562,10 +562,32 @@ $config = require_once 'config.php';
                     })
                 });
                 
-                const conversation = await response.json();
-                currentConversationId = conversation.id;
+                const data = await response.json();
+                
+                if (response.status === 403) {
+                    // Show limit reached message in the chat area
+                    const chatContainer = document.getElementById('chatContainer');
+                    chatContainer.innerHTML = `
+                        <div class="flex flex-col items-center justify-center h-full text-center p-8">
+                            <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 rounded-lg max-w-lg">
+                                <p class="font-bold mb-2">لقد وصلت إلى الحد الأقصى للمحادثات الشهري</p>
+                                <p class="mb-4">قم بترقية عضويتك للاستمرار في إنشاء محادثات جديدة</p>
+                                <button onclick="showUpgradeModal()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+                                    <i class="fas fa-crown"></i> ترقية العضوية
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                if (data.error) {
+                    throw new Error(data.error);
+                }
+                
+                currentConversationId = data.id;
                 await loadConversations();
-                await loadConversation(conversation.id);
+                await loadConversation(data.id);
             } catch (error) {
                 console.error('Error creating conversation:', error);
                 showError('حدث خطأ أثناء إنشاء محادثة جديدة');
@@ -657,6 +679,24 @@ $config = require_once 'config.php';
                     });
                     
                     const data = await response.json();
+                    
+                    if (response.status === 403) {
+                        // Show limit reached message in the chat area
+                        const chatContainer = document.getElementById('chatContainer');
+                        chatContainer.innerHTML = `
+                            <div class="flex flex-col items-center justify-center h-full text-center p-8">
+                                <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 rounded-lg max-w-lg">
+                                    <p class="font-bold mb-2">لقد وصلت إلى الحد الأقصى للمحادثات الشهري</p>
+                                    <p class="mb-4">قم بترقية عضويتك للاستمرار في إنشاء محادثات جديدة</p>
+                                    <button onclick="showUpgradeModal()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+                                        <i class="fas fa-crown"></i> ترقية العضوية
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        return;
+                    }
+                    
                     if (data.error) {
                         throw new Error(data.error);
                     }
