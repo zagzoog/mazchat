@@ -504,6 +504,7 @@ $config = require_once 'config.php';
                     
                     const conversationDiv = document.createElement('div');
                     conversationDiv.className = `conversation-item ${conv.id === currentConversationId ? 'active' : ''}`;
+                    conversationDiv.dataset.conversationId = conv.id;
                     conversationDiv.onclick = () => loadConversation(conv.id);
                     
                     conversationDiv.innerHTML = `
@@ -589,10 +590,22 @@ $config = require_once 'config.php';
                 `;
                 
                 const response = await fetch(`api/messages.php?conversation_id=${conversationId}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
                 const messages = await response.json();
                 
                 // Clear loading indicator and show messages
+                if (!Array.isArray(messages) || messages.length === 0) {
+                    chatContainer.innerHTML = '<div class="message assistant"><div class="message-content">No messages found in this conversation.</div></div>';
+                    return;
+                }
+
                 chatContainer.innerHTML = messages.map(msg => {
+                    if (!msg || typeof msg.content !== 'string') {
+                        console.error('Invalid message format:', msg);
+                        return '';
+                    }
                     const formattedContent = msg.is_user ? 
                         msg.content.trim().replace(/\n/g, '<br>') : 
                         msg.content.replace(/\n/g, '<br>');
@@ -601,7 +614,7 @@ $config = require_once 'config.php';
                             <div class="message-content">${marked.parse(formattedContent)}</div>
                         </div>
                     `;
-                }).join('');
+                }).filter(Boolean).join('');
 
                 // Scroll to the latest message
                 const lastMessage = chatContainer.lastElementChild;
@@ -612,7 +625,7 @@ $config = require_once 'config.php';
                 // Update active state in conversations list
                 document.querySelectorAll('.conversation-item').forEach(item => {
                     item.classList.remove('active');
-                    if (item.getAttribute('onclick').includes(conversationId)) {
+                    if (item.dataset.conversationId === conversationId) {
                         item.classList.add('active');
                     }
                 });

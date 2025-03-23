@@ -12,3 +12,17 @@ Context: {
 --------------------------------------------------------------------------------
 [2025-03-23 11:15:24] [WARNING] Unauthorized access attempt - No user_id in session
 --------------------------------------------------------------------------------
+[23-Mar-2025 11:18:04 Europe/London] Logger initialized successfully
+[2025-03-23 11:18:04] [INFO] Session data
+Context: {
+    "session_id": "410r8jbocq7unm37iank3tdvbp",
+    "session_data": [],
+    "cookies": {
+        "PHPSESSID": "410r8jbocq7unm37iank3tdvbp"
+    },
+    "session_path": "C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\/..\/sessions",
+    "session_status": 2
+}
+--------------------------------------------------------------------------------
+[2025-03-23 11:18:04] [WARNING] Unauthorized access attempt - No user_id in session
+--------------------------------------------------------------------------------
