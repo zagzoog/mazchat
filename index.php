@@ -49,18 +49,6 @@ $config = require_once 'config.php';
             border-top: 1px solid #e5e7eb;
             margin-top: auto;
         }
-        @media (max-height: 600px) {
-            .chat-container {
-                height: calc(100vh - 260px);
-                min-height: 150px;
-            }
-        }
-        @media (max-height: 500px) {
-            .chat-container {
-                height: calc(100vh - 240px);
-                min-height: 100px;
-            }
-        }
         .message {
             max-width: 80%;
             margin: 1rem 0;

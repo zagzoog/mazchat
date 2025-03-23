@@ -181,6 +181,24 @@ if ($jsonError !== JSON_ERROR_NONE) {
         }
         
         debug_log("Final JSON Response Length", strlen($jsonResponse));
+        
+        // Store the AI response in the database
+        require_once 'db_config.php';
+        require_once 'app/models/Message.php';
+        
+        try {
+            $messageModel = new Message();
+            $messageModel->create(
+                $data['conversation_id'],
+                $_SESSION['user_id'],
+                $formattedResponse,
+                'assistant'
+            );
+        } catch (Exception $e) {
+            error_log("Error storing AI response: " . $e->getMessage());
+            // Don't throw the error to the client, just log it
+        }
+        
         echo $jsonResponse;
     } catch (Exception $e) {
         debug_log("Error processing string response", $e->getMessage());
@@ -259,6 +277,24 @@ try {
     }
     
     debug_log("Final JSON Response Length", strlen($jsonResponse));
+    
+    // Store the AI response in the database
+    require_once 'db_config.php';
+    require_once 'app/models/Message.php';
+    
+    try {
+        $messageModel = new Message();
+        $messageModel->create(
+            $data['conversation_id'],
+            $_SESSION['user_id'],
+            $responseContent,
+            'assistant'
+        );
+    } catch (Exception $e) {
+        error_log("Error storing AI response: " . $e->getMessage());
+        // Don't throw the error to the client, just log it
+    }
+    
     echo $jsonResponse;
 } catch (Exception $e) {
     debug_log("Error sending response", $e->getMessage());
