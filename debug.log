@@ -9256,3 +9256,140 @@ string
 string
 [2025-03-23 11:22:08] Final JSON Response Length
 3965
+[2025-03-23 11:34:33] === New Request Debug Log ===
+[2025-03-23 11:34:33] Request Data
+Array
+(
+    [message] => Give me a list of Bahrain girls in their 30s
+    [sessionId] => 67df4dc38a2821742687683
+)
+
+[2025-03-23 11:34:33] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-23 11:34:52] === Response Debug Info ===
+[2025-03-23 11:34:52] HTTP Code
+200
+[2025-03-23 11:34:52] Response Length
+3765
+[2025-03-23 11:34:52] Response Type
+string
+[2025-03-23 11:34:52] First 1000 chars
+إليك قائمة ببعض الفتيات البحرينيات في الثلاثينات من العمر:
+
+1. <br>
+🔹 **اسم المستخدم:**  Al-hanan9  <br>
+🔹 **العمر:** ٣٠  <br>
+📍 **الموقع:** البحرين  <br>
+🎓 **المؤهل العلمي:** بكاليروس  <br>
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025  <br>
+<br>
+📌 **الشخصية:**  <br>
+يبدو أنها شخصية لطيفة وتسعى للتواصل الإيجابي مع الآخرين، حيث تبحث عن شخص يشترك معها في الاهتمامات.  <br>
+<br>
+💑 **ما تبحث عنه:**  <br>
+تبحث عن شخص مستقر ولديه قيم ومبادئ جيدة.  <br>
+<br>
+🔗 **رابط الملف الشخصي:**  <br>
+[رابط الملف الشخصي](https://www.zwjate.com/zwjate/detail.php?userNumber=1948088) 
+<hr>
+
+2. <br>
+🔹 **اسم المستخدم:**  AJWA34  <br>
+🔹 **العمر:** ٣ ذو علاقة.  <br>
+📍 **الموقع:** ال�
+[2025-03-23 11:34:52] Last 1000 chars
+� الحياة.  <br>
+<br>
+🔗 **رابط الملف الشخصي:**  <br>
+[رابط الملف الشخصي](https://www.zwjate.com/zwjate/detail.php?userNumber=2025416) 
+<hr>
+
+5. <br>
+🔹 **اسم المستخدم:**  bkk12zz  <br>
+🔹 **العمر:** ٣٣  <br>
+📍 **الموقع:**  البحرين  <br>
+🎓 **المؤهل العلمي:** بكاليروس  <br>
+🕵️‍♂️ **آخر تسجيل دخول:** 18/03/2025  <br>
+<br>
+📌 **الشخصية:**  <br>
+تظهر بروح مرحة وتحب الضحك والتواصل مع الآخرين.  <br>
+<br>
+💑 **ما تبحث عنه:**  <br>
+تبحث عن شخص يشاركها الضحك والعلاقات الجيدة.  <br>
+<br>
+🔗 **رابط الملف الشخصي:**  <br>
+[رابط الملف الشخصي](https://www.zwjate.com/zwjate/detail.php?userNumber=1955838) 
+<hr>
+
+إذا كنت تحتاج إلى المزيد من الخيارات أو تخصيص البحث بشكل مختلف، لا تتردد في إخباري!
+[2025-03-23 11:34:52] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 787
+    [request_size] => 288
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 18.793488
+    [namelookup_time] => 0.066105
+    [connect_time] => 0.163651
+    [pretransfer_time] => 0.419518
+    [size_upload] => 96
+    [size_download] => 3765
+    [speed_download] => 200
+    [speed_upload] => 5
+    [download_content_length] => -1
+    [upload_content_length] => 96
+    [starttransfer_time] => 18.792289
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.112.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 51223
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 419427
+    [connect_time_us] => 163651
+    [namelookup_time_us] => 66105
+    [pretransfer_time_us] => 419518
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 18792289
+    [total_time_us] => 18793488
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-23 11:34:52] === JSON Parsing Debug ===
+[2025-03-23 11:34:52] JSON Parse Error
+4
+[2025-03-23 11:34:52] JSON Parse Error Message
+Syntax error
+[2025-03-23 11:34:52] Response Data Type
+NULL
+[2025-03-23 11:34:52] === String Response Processing ===
+[2025-03-23 11:34:52] === Markdown Formatting Debug ===
+[2025-03-23 11:34:52] Input Text Length
+3458
+[2025-03-23 11:34:52] Input Text Type
+string
+[2025-03-23 11:34:52] Output Text Length
+3779
+[2025-03-23 11:34:52] Output Text Type
+string
+[2025-03-23 11:34:52] Formatted Response Length
+3779
+[2025-03-23 11:34:52] Formatted Response Type
+string
+[2025-03-23 11:34:52] Final JSON Response Length
+3795
