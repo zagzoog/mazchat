@@ -1,10 +1,4 @@
 <?php
-// Load custom PHP configuration
-ini_set('error_log', __DIR__ . '/../logs/php_errors.log');
-ini_set('session.save_path', __DIR__ . '/../sessions');
-ini_set('display_errors', 0);
-ini_set('log_errors', 1);
-error_reporting(E_ALL);
 
 session_start();
 require_once __DIR__ . '/../db_config.php';
