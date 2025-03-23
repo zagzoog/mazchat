@@ -26,10 +26,14 @@ $config = require_once 'config.php';
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <?php if ($config['development_mode']): ?>
-        <script src="/chat/public/js/chat.dev.js"></script>
+        <script src="/chat/public/js/chat.dev.js" defer></script>
     <?php else: ?>
-        <script src="/chat/public/js/chat.js"></script>
+        <script src="/chat/public/js/chat.js" defer></script>
     <?php endif; ?>
+    <script>
+        // Only keep the conversationsPerPage variable since it needs to be dynamic from PHP
+        window.conversationsPerPage = <?php echo json_encode($config['conversations_per_page']); ?>;
+    </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
         body {
@@ -164,19 +168,19 @@ $config = require_once 'config.php';
             flex-direction: column;
             transition: all 0.3s ease;
             position: relative;
+            visibility: visible;
+            transform: translateX(0);
         }
         .sidebar.collapsed {
             width: 0;
             padding: 0;
             margin: 0;
             overflow: hidden;
+            visibility: hidden;
+            transform: translateX(100%);
         }
-        .sidebar.collapsed .sidebar-content {
-            display: none;
-        }
-        .sidebar.collapsed .sidebar-header {
-            display: none;
-        }
+        .sidebar.collapsed .sidebar-content,
+        .sidebar.collapsed .sidebar-header,
         .sidebar.collapsed .sidebar-footer {
             display: none;
         }
@@ -276,6 +280,7 @@ $config = require_once 'config.php';
                 width: 100%;
                 transform: translateX(100%);
                 background-color: white;
+                visibility: visible;
             }
             .sidebar.open {
                 transform: translateX(0);
@@ -895,23 +900,41 @@ $config = require_once 'config.php';
                     sendMessage();
                 }
             });
-        });
 
-        // Update the sidebar toggle functionality
-        document.addEventListener('DOMContentLoaded', () => {
+            // Sidebar toggle functionality
             const sidebar = document.querySelector('.sidebar');
             const toggleButton = document.querySelector('.toggle-sidebar');
+            
+            if (!sidebar || !toggleButton) {
+                console.error('Sidebar or toggle button not found');
+                return;
+            }
             
             // Set initial state for mobile
             if (window.innerWidth <= 768) {
                 sidebar.classList.add('collapsed');
+                sidebar.classList.remove('open');
             }
             
-            toggleButton.addEventListener('click', () => {
+            // Toggle sidebar on button click
+            toggleButton.addEventListener('click', (e) => {
+                e.stopPropagation();
                 if (window.innerWidth <= 768) {
                     sidebar.classList.toggle('open');
+                    sidebar.classList.remove('collapsed');
                 } else {
                     sidebar.classList.toggle('collapsed');
+                    sidebar.classList.remove('open');
+                }
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.add('collapsed');
+                    sidebar.classList.remove('open');
+                } else {
+                    sidebar.classList.remove('open');
                 }
             });
 
@@ -922,6 +945,7 @@ $config = require_once 'config.php';
                     !toggleButton.contains(e.target) &&
                     sidebar.classList.contains('open')) {
                     sidebar.classList.remove('open');
+                    sidebar.classList.add('collapsed');
                 }
             });
 
@@ -931,6 +955,7 @@ $config = require_once 'config.php';
                     e.target.closest('.conversation-item') && 
                     sidebar.classList.contains('open')) {
                     sidebar.classList.remove('open');
+                    sidebar.classList.add('collapsed');
                 }
             });
         });

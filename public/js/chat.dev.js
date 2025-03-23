@@ -21,7 +21,10 @@ async function loadConversations(loadMore = false) {
             hasMoreConversations = true;
         }
         
-        const response = await fetch(`api/conversations.php?limit=${conversationsPerPage}&offset=${currentOffset}`);
+        const response = await fetch(`/chat/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
+        if (!response.ok) {
+            throw new Error('Failed to load conversations');
+        }
         const data = await response.json();
         logger.debug('Conversations API Response:', data);
         
@@ -106,7 +109,7 @@ async function loadConversations(loadMore = false) {
             loadMoreBtn.className = 'load-more-btn w-full mt-4 p-2 text-center text-indigo-600 hover:text-indigo-800 font-semibold';
             loadMoreBtn.innerHTML = '<i class="fas fa-chevron-down"></i> تحميل المزيد';
             loadMoreBtn.onclick = () => {
-                currentOffset += conversationsPerPage;
+                currentOffset += window.conversationsPerPage;
                 loadConversations(true);
             };
             conversationsList.appendChild(loadMoreBtn);
@@ -114,7 +117,7 @@ async function loadConversations(loadMore = false) {
         
     } catch (error) {
         logger.error('Error loading conversations:', error);
-        showError('حدث خطأ أثناء تحميل المحادثات');
+        showError('Failed to load conversations');
     }
 }
 
@@ -137,18 +140,7 @@ async function createNewConversation() {
         
         if (response.status === 403) {
             logger.warn('User reached conversation limit');
-            const chatContainer = document.getElementById('chatContainer');
-            chatContainer.innerHTML = `
-                <div class="flex flex-col items-center justify-center h-full text-center p-8">
-                    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 rounded-lg max-w-lg">
-                        <p class="font-bold mb-2">لقد وصلت إلى الحد الأقصى للمحادثات الشهري</p>
-                        <p class="mb-4">قم بترقية عضويتك للاستمرار في إنشاء محادثات جديدة</p>
-                        <button onclick="showUpgradeModal()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
-                            <i class="fas fa-crown"></i> ترقية العضوية
-                        </button>
-                    </div>
-                </div>
-            `;
+            showUpgradeModal();
             return;
         }
         
@@ -196,7 +188,7 @@ async function loadConversation(conversationId) {
 
         chatContainer.innerHTML = messages.map(msg => {
             if (!msg || typeof msg.content !== 'string') {
-                logger.warn('Invalid message format:', msg);
+                logger.error('Invalid message format:', msg);
                 return '';
             }
             const formattedContent = msg.is_user ? 
@@ -240,7 +232,7 @@ async function sendMessage() {
     
     if (!currentConversationId) {
         try {
-            logger.debug('Creating new conversation for message');
+            logger.debug('No active conversation, creating new one');
             const response = await fetch('/chat/api/conversations.php', {
                 method: 'POST',
                 headers: {
@@ -253,22 +245,11 @@ async function sendMessage() {
             
             if (response.status === 403) {
                 logger.warn('User reached conversation limit');
-                const chatArea = document.getElementById('chatContainer');
-                chatArea.innerHTML = `
-                    <div class="alert alert-warning text-center mb-3">
-                        <h5 class="mb-2">لقد وصلت إلى الحد الأقصى من المحادثات الشهرية</h5>
-                        <p class="mb-2">قم بترقية عضويتك للاستمرار في استخدام المحادثات</p>
-                        <button class="btn btn-primary" onclick="showUpgradeModal()">
-                            ترقية العضوية
-                        </button>
-                    </div>
-                `;
+                showUpgradeModal();
                 return;
             }
             
             const data = await response.json();
-            logger.debug('Create conversation response:', data);
-            
             if (data.error) {
                 throw new Error(data.error);
             }
@@ -287,16 +268,7 @@ async function sendMessage() {
         const response = await fetch('/chat/api/check_question_limit.php');
         if (response.status === 403) {
             logger.warn('User reached question limit');
-            const chatArea = document.getElementById('chatContainer');
-            chatArea.innerHTML += `
-                <div class="alert alert-warning text-center mb-3">
-                    <h5 class="mb-2">لقد وصلت إلى الحد الأقصى من الأسئلة الشهرية</h5>
-                    <p class="mb-2">قم بترقية عضويتك للاستمرار في طرح الأسئلة</p>
-                    <button class="btn btn-primary" onclick="showUpgradeModal()">
-                        ترقية العضوية
-                    </button>
-                </div>
-            `;
+            showUpgradeModal();
             return;
         }
     } catch (error) {
@@ -324,8 +296,6 @@ async function sendMessage() {
         }
         
         const data = await response.json();
-        logger.debug('Send message response:', data);
-        
         if (data.error) {
             throw new Error(data.error);
         }
@@ -362,29 +332,16 @@ async function sendMessage() {
         
         if (!aiResponse.ok) {
             const errorData = await aiResponse.json();
-            logger.debug('AI response error:', errorData);
-            
             if (aiResponse.status === 403 && errorData.limit_reached) {
-                logger.warn('User reached limit during AI response');
-                const chatArea = document.getElementById('chatContainer');
-                chatArea.innerHTML += `
-                    <div class="flex flex-col items-center justify-center text-center p-8">
-                        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 rounded-lg max-w-lg">
-                            <p class="font-bold mb-2">لقد وصلت إلى الحد الأقصى ${errorData.limit_type === 'questions' ? 'للأسئلة' : 'للمحادثات'} الشهري</p>
-                            <p class="mb-4">قم بترقية عضويتك للاستمرار في ${errorData.limit_type === 'questions' ? 'طرح الأسئلة' : 'إنشاء محادثات جديدة'}</p>
-                            <button onclick="showUpgradeModal()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
-                                <i class="fas fa-crown"></i> ترقية العضوية
-                            </button>
-                        </div>
-                    </div>
-                `;
+                logger.warn('User reached limit:', errorData.limit_type);
+                showUpgradeModal();
                 return;
             }
             throw new Error(errorData.error || 'Failed to get AI response');
         }
         
         const aiData = await aiResponse.json();
-        logger.debug('AI response data:', aiData);
+        logger.debug('AI response received:', aiData);
         
         if (aiData.error) {
             throw new Error(aiData.error);
@@ -413,7 +370,7 @@ async function sendMessage() {
 
 // Show error message
 function showError(message) {
-    logger.error('Showing error:', message);
+    logger.error('Showing error message:', message);
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
     errorDiv.textContent = message;
@@ -423,72 +380,6 @@ function showError(message) {
         errorDiv.remove();
     }, 3000);
 }
-
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    logger.info('Initializing chat application');
-    loadConversations();
-    
-    document.getElementById('send-button').addEventListener('click', sendMessage);
-    
-    document.getElementById('message-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
-
-    // Add textarea auto-resize functionality
-    const textarea = document.getElementById('message-input');
-    if (textarea) {
-        textarea.addEventListener('input', function() {
-            this.style.height = 'auto';
-            this.style.height = (this.scrollHeight) + 'px';
-        });
-    }
-});
-
-// Sidebar functionality
-document.addEventListener('DOMContentLoaded', () => {
-    logger.debug('Initializing sidebar');
-    const sidebar = document.querySelector('.sidebar');
-    const toggleButton = document.querySelector('.toggle-sidebar');
-    
-    if (window.innerWidth <= 768) {
-        sidebar.classList.add('collapsed');
-    }
-    
-    toggleButton.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-            sidebar.classList.toggle('open');
-        } else {
-            sidebar.classList.toggle('collapsed');
-        }
-    });
-
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768 && 
-            !sidebar.contains(e.target) && 
-            !toggleButton.contains(e.target) &&
-            sidebar.classList.contains('open')) {
-            sidebar.classList.remove('open');
-        }
-    });
-
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768 && 
-            e.target.closest('.conversation-item') && 
-            sidebar.classList.contains('open')) {
-            sidebar.classList.remove('open');
-        }
-    });
-});
-
-// Auto-resize textarea
-// const textarea = document.getElementById('message-input');
-// textarea.addEventListener('input', function() {
-//     this.style.height = 'auto';
-//     this.style.height = (this.scrollHeight) + 'px';
-// });
 
 // Modal functions
 function showUpgradeModal() {
@@ -504,7 +395,7 @@ function hideUpgradeModal() {
 // Payment functions
 async function initiatePayment(membershipType) {
     try {
-        logger.debug('Initiating payment for membership type:', membershipType);
+        logger.debug('Initiating payment for:', membershipType);
         const response = await fetch('/chat/api/create_payment.php', {
             method: 'POST',
             headers: {
@@ -525,4 +416,103 @@ async function initiatePayment(membershipType) {
         logger.error('Error initiating payment:', error);
         showError('حدث خطأ أثناء إنشاء الدفع');
     }
-} 
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+    logger.info('Initializing chat application');
+    loadConversations();
+    
+    // Add click event listener for send button
+    document.getElementById('send-button').addEventListener('click', sendMessage);
+    
+    // Handle enter key in message input
+    document.getElementById('message-input').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Sidebar toggle functionality
+    const sidebar = document.querySelector('.sidebar');
+    const toggleButton = document.querySelector('.toggle-sidebar');
+    
+    if (!sidebar || !toggleButton) {
+        logger.error('Sidebar or toggle button not found');
+        return;
+    }
+    
+    // Set initial state for mobile
+    if (window.innerWidth <= 768) {
+        sidebar.classList.add('collapsed');
+        sidebar.classList.remove('open');
+    }
+    
+    // Toggle sidebar on button click
+    toggleButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        logger.debug('Toggle button clicked');
+        
+        if (window.innerWidth <= 768) {
+            // Mobile view
+            if (sidebar.classList.contains('open')) {
+                sidebar.classList.remove('open');
+                sidebar.classList.add('collapsed');
+            } else {
+                sidebar.classList.remove('collapsed');
+                sidebar.classList.add('open');
+            }
+        } else {
+            // Desktop view
+            if (sidebar.classList.contains('collapsed')) {
+                sidebar.classList.remove('collapsed');
+            } else {
+                sidebar.classList.add('collapsed');
+            }
+        }
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        logger.debug('Window resized:', window.innerWidth);
+        if (window.innerWidth <= 768) {
+            sidebar.classList.add('collapsed');
+            sidebar.classList.remove('open');
+        } else {
+            sidebar.classList.remove('open');
+            // Preserve collapsed state on desktop
+            if (!sidebar.classList.contains('collapsed')) {
+                sidebar.classList.add('collapsed');
+            }
+        }
+    });
+
+    // Close sidebar on mobile when clicking outside
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768 && 
+            !sidebar.contains(e.target) && 
+            !toggleButton.contains(e.target) &&
+            sidebar.classList.contains('open')) {
+            sidebar.classList.remove('open');
+            sidebar.classList.add('collapsed');
+        }
+    });
+
+    // Close sidebar when selecting a conversation on mobile
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 768 && 
+            e.target.closest('.conversation-item') && 
+            sidebar.classList.contains('open')) {
+            sidebar.classList.remove('open');
+            sidebar.classList.add('collapsed');
+        }
+    });
+
+    // Auto-resize textarea
+    const textarea = document.getElementById('message-input');
+    textarea.addEventListener('input', function() {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
+    });
+}); 
