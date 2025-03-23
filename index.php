@@ -691,12 +691,14 @@ $config = require_once 'config.php';
                         // User has reached their conversation limit
                         const chatArea = document.getElementById('chatContainer');
                         chatArea.innerHTML = `
-                            <div class="alert alert-warning text-center mb-3">
-                                <h5 class="mb-2">لقد وصلت إلى الحد الأقصى من المحادثات الشهرية</h5>
-                                <p class="mb-2">قم بترقية عضويتك للاستمرار في استخدام المحادثات</p>
-                                <button class="btn btn-primary" onclick="openUpgradeModal()">
-                                    ترقية العضوية
-                                </button>
+                            <div class="flex flex-col items-center justify-center h-full text-center p-8">
+                                <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 rounded-lg max-w-lg">
+                                    <p class="font-bold mb-2">لقد وصلت إلى الحد الأقصى من المحادثات الشهرية</p>
+                                    <p class="mb-4">قم بترقية عضويتك للاستمرار في استخدام المحادثات</p>
+                                    <button onclick="showUpgradeModal()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+                                        <i class="fas fa-crown"></i> ترقية العضوية
+                                    </button>
+                                </div>
                             </div>
                         `;
                         return;
@@ -723,12 +725,14 @@ $config = require_once 'config.php';
                     // User has reached their question limit
                     const chatArea = document.getElementById('chatContainer');
                     chatArea.innerHTML += `
-                        <div class="alert alert-warning text-center mb-3">
-                            <h5 class="mb-2">لقد وصلت إلى الحد الأقصى من الأسئلة الشهرية</h5>
-                            <p class="mb-2">قم بترقية عضويتك للاستمرار في طرح الأسئلة</p>
-                            <button class="btn btn-primary" onclick="openUpgradeModal()">
-                                ترقية العضوية
-                            </button>
+                        <div class="flex flex-col items-center justify-center text-center p-8">
+                            <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 rounded-lg max-w-lg">
+                                <p class="font-bold mb-2">لقد وصلت إلى الحد الأقصى من الأسئلة الشهرية</p>
+                                <p class="mb-4">قم بترقية عضويتك للاستمرار في طرح الأسئلة</p>
+                                <button onclick="showUpgradeModal()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+                                    <i class="fas fa-crown"></i> ترقية العضوية
+                                </button>
+                            </div>
                         </div>
                     `;
                     return;

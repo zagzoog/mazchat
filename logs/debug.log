@@ -346,3 +346,50 @@
 [2025-03-23 22:26:20] [INFO] Sending response {"membership":{"type":"free","monthly_limit":"50","question_limit":"102","current_usage":50,"current_questions":"69","start_date":"2025-03-22","end_date":"2026-03-22"},"stats":{"total_conversations":50,"total_questions":"69","total_words":"2388"},"daily_stats":[{"date":"2025-03-22","conversations":12,"questions":"21","words":"799"},{"date":"2025-03-23","conversations":26,"questions":"43","words":"1300"},{"date":"2025-03-24","conversations":1,"questions":"5","words":"289"}],"top_topics":[]}
 [2025-03-23 22:26:48] [info] Database connection established {"class":"Membership"}
 [2025-03-23 22:27:09] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:29:29] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:29:34] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:29:46] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:29:58] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:30:18] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:30:26] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:31:50] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:31:56] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:32:07] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:32:15] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:34:25] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:34:31] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:34:43] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:34:48] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:34:52] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:34:58] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:35:01] [INFO] Session data {"session_id":"9i3a60t7mtjl4nsnl80qri279n","session_data":{"user_id":1,"username":"admin","email":"admin@admin.com","membership_type":"free","chat_session_id":"67e081bb635711742766523"},"cookies":{"PHPSESSID":"9i3a60t7mtjl4nsnl80qri279n"},"session_path":"C:\/Users\/zagzo\/Downloads\/UniServerZ\/tmp","session_status":2}
+[2025-03-23 22:35:01] [INFO] Starting dashboard data fetch {"user_id":1}
+[2025-03-23 22:35:03] [INFO] Database connection successful
+[2025-03-23 22:35:03] [INFO] User verified {"user":{"id":1,"username":"admin"}}
+[2025-03-23 22:35:05] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:35:07] [info] Database connection established {"class":"UsageStats"}
+[2025-03-23 22:35:07] [INFO] Fetching current membership
+[2025-03-23 22:35:07] [INFO] Current membership retrieved {"id":1,"user_id":1,"type":"free","start_date":"2025-03-22","end_date":"2026-03-22","created_at":"2025-03-22 03:36:50"}
+[2025-03-23 22:35:07] [INFO] Fetching monthly stats
+[2025-03-23 22:35:07] [INFO] Monthly stats retrieved {"total_conversations":50,"total_questions":"69","total_words":"2388"}
+[2025-03-23 22:35:07] [INFO] Fetching daily stats
+[2025-03-23 22:35:07] [INFO] Daily stats retrieved {"count":3}
+[2025-03-23 22:35:07] [INFO] Fetching top topics
+[2025-03-23 22:35:07] [INFO] No top topics found, using empty array
+[2025-03-23 22:35:07] [INFO] Top topics retrieved {"count":0}
+[2025-03-23 22:35:07] [INFO] Fetching monthly limit {"membership_type":"free"}
+[2025-03-23 22:35:07] [INFO] Monthly limit retrieved {"limit":"50"}
+[2025-03-23 22:35:07] [INFO] Fetching question limit {"membership_type":"free"}
+[2025-03-23 22:35:07] [INFO] Question limit retrieved {"limit":"102"}
+[2025-03-23 22:35:07] [INFO] Fetching current month's usage
+[2025-03-23 22:35:07] [INFO] Current month usage retrieved {"total_conversations":50,"total_questions":"69","total_words":"2388"}
+[2025-03-23 22:35:07] [INFO] Sending response {"membership":{"type":"free","monthly_limit":"50","question_limit":"102","current_usage":50,"current_questions":"69","start_date":"2025-03-22","end_date":"2026-03-22"},"stats":{"total_conversations":50,"total_questions":"69","total_words":"2388"},"daily_stats":[{"date":"2025-03-22","conversations":12,"questions":"21","words":"799"},{"date":"2025-03-23","conversations":26,"questions":"43","words":"1300"},{"date":"2025-03-24","conversations":1,"questions":"5","words":"289"}],"top_topics":[]}
+[2025-03-23 22:35:11] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:35:15] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:35:22] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:37:47] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:37:52] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:38:08] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:38:13] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:38:45] [info] Database connection established {"class":"Message"}
+[2025-03-23 22:38:50] [info] Database connection established {"class":"Message"}
