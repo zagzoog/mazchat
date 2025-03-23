@@ -31,7 +31,6 @@ $config = require_once 'config.php';
         <script src="/chat/public/js/chat.js" defer></script>
     <?php endif; ?>
     <script>
-        // Only keep the conversationsPerPage variable since it needs to be dynamic from PHP
         window.conversationsPerPage = <?php echo json_encode($config['conversations_per_page']); ?>;
     </script>
     <style>
@@ -160,50 +159,19 @@ $config = require_once 'config.php';
         }
         .sidebar {
             width: 300px;
-            background-color: #f8f9fa;
+            background-color: white;
             border-left: 1px solid #dee2e6;
             padding: 20px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            transition: all 0.3s ease;
             position: relative;
-            visibility: visible;
-            transform: translateX(0);
-        }
-        .sidebar.collapsed {
-            width: 0;
-            padding: 0;
-            margin: 0;
-            overflow: hidden;
-            visibility: hidden;
-            transform: translateX(100%);
-        }
-        .sidebar.collapsed .sidebar-content,
-        .sidebar.collapsed .sidebar-header,
-        .sidebar.collapsed .sidebar-footer {
-            display: none;
+            margin-right: 20px;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
         .toggle-sidebar {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-        .toggle-sidebar:hover {
-            background-color: #f3f4f6;
-        }
-        .toggle-sidebar i {
-            font-size: 1.25rem;
-            transition: transform 0.3s ease;
-        }
-        .sidebar.collapsed + .main-content {
-            margin-right: 0;
+            display: none;
         }
         .sidebar-content {
             flex: 1;
@@ -278,9 +246,12 @@ $config = require_once 'config.php';
                 z-index: 50;
                 height: 100vh;
                 width: 100%;
+                max-width: 300px;
                 transform: translateX(100%);
                 background-color: white;
-                visibility: visible;
+                margin-right: 0;
+                border-radius: 0;
+                box-shadow: 4px 0 6px -1px rgba(0, 0, 0, 0.1);
             }
             .sidebar.open {
                 transform: translateX(0);
@@ -288,9 +259,6 @@ $config = require_once 'config.php';
             .main-content {
                 margin-right: 0 !important;
                 width: 100%;
-            }
-            .sidebar.collapsed {
-                transform: translateX(100%);
             }
         }
         /* Add dropdown styles */
@@ -385,24 +353,24 @@ $config = require_once 'config.php';
 <body class="bg-gray-100">
     <div class="container mx-auto px-4 py-8">
         <!-- Header -->
-        <div class="flex justify-between items-center mb-8">
+        <div class="flex justify-between items-center mb-6">
             <div class="flex items-center">
-                <button class="toggle-sidebar text-gray-600 hover:text-gray-800">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <h1 class="text-3xl font-bold text-gray-800 mr-4">المحادثة الذكية</h1>
+                <h1 class="text-2xl font-bold text-gray-800">المحادثة</h1>
             </div>
-            <div class="flex items-center space-x-4 space-x-reverse">
-                <a href="dashboard.php" class="text-blue-600 hover:text-blue-800">
+            <div class="flex items-center">
+                <a href="dashboard.php" class="text-blue-600 hover:text-blue-800 ml-4">
                     <i class="fas fa-chart-line"></i> لوحة التحكم
                 </a>
+                <button class="toggle-sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
 
         <div class="flex gap-6">
             <!-- Sidebar -->
-            <div class="sidebar bg-white rounded-lg shadow-lg p-4">
-                <div class="sidebar-header flex justify-between items-center mb-4">
+            <div class="sidebar">
+                <div class="sidebar-header">
                     <h2 class="text-xl font-semibold text-gray-800">المحادثات السابقة</h2>
                 </div>
                 <div class="sidebar-content">
@@ -474,10 +442,12 @@ $config = require_once 'config.php';
         </div>
     </div>
 
+    <!-- Pass PHP variables to JavaScript -->
     <script>
-        // Only keep the conversationsPerPage variable since it needs to be dynamic from PHP
-        let conversationsPerPage = <?php echo json_encode($config['conversations_per_page']); ?>;
+        window.conversationsPerPage = <?php echo json_encode($config['conversations_per_page']); ?>;
+    </script>
 
+    <script>
         // Load conversations from the server
         async function loadConversations(loadMore = false) {
             try {
@@ -889,19 +859,18 @@ $config = require_once 'config.php';
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
-            loadConversations();
-            
             // Add click event listener for send button
             document.getElementById('send-button').addEventListener('click', sendMessage);
             
             // Handle enter key in message input
             document.getElementById('message-input').addEventListener('keypress', (e) => {
-                if (e.key === 'Enter') {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
                     sendMessage();
                 }
             });
 
-            // Sidebar toggle functionality
+            // Mobile sidebar toggle functionality
             const sidebar = document.querySelector('.sidebar');
             const toggleButton = document.querySelector('.toggle-sidebar');
             
@@ -910,31 +879,11 @@ $config = require_once 'config.php';
                 return;
             }
             
-            // Set initial state for mobile
-            if (window.innerWidth <= 768) {
-                sidebar.classList.add('collapsed');
-                sidebar.classList.remove('open');
-            }
-            
-            // Toggle sidebar on button click
+            // Toggle sidebar on button click (mobile only)
             toggleButton.addEventListener('click', (e) => {
                 e.stopPropagation();
                 if (window.innerWidth <= 768) {
                     sidebar.classList.toggle('open');
-                    sidebar.classList.remove('collapsed');
-                } else {
-                    sidebar.classList.toggle('collapsed');
-                    sidebar.classList.remove('open');
-                }
-            });
-
-            // Handle window resize
-            window.addEventListener('resize', () => {
-                if (window.innerWidth <= 768) {
-                    sidebar.classList.add('collapsed');
-                    sidebar.classList.remove('open');
-                } else {
-                    sidebar.classList.remove('open');
                 }
             });
 
@@ -945,7 +894,6 @@ $config = require_once 'config.php';
                     !toggleButton.contains(e.target) &&
                     sidebar.classList.contains('open')) {
                     sidebar.classList.remove('open');
-                    sidebar.classList.add('collapsed');
                 }
             });
 
@@ -955,7 +903,6 @@ $config = require_once 'config.php';
                     e.target.closest('.conversation-item') && 
                     sidebar.classList.contains('open')) {
                     sidebar.classList.remove('open');
-                    sidebar.classList.add('collapsed');
                 }
             });
         });

@@ -212,11 +212,13 @@ async function sendMessage() {
     
     if (!message) return;
     
+    // Disable input and button while sending
     messageInput.disabled = true;
     document.getElementById('send-button').disabled = true;
     
-    if (!currentConversationId) {
-        try {
+    try {
+        // Check if we have an active conversation
+        if (!currentConversationId) {
             const response = await fetch('/chat/api/conversations.php', {
                 method: 'POST',
                 headers: {
@@ -227,9 +229,14 @@ async function sendMessage() {
                 })
             });
             
-            if (response.status === 403) {
-                showUpgradeModal();
-                return;
+            if (!response.ok) {
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    const data = await response.json();
+                    throw new Error(data.error || 'Failed to create conversation');
+                } else {
+                    throw new Error('Server error occurred');
+                }
             }
             
             const data = await response.json();
@@ -239,26 +246,9 @@ async function sendMessage() {
             
             currentConversationId = data.id;
             await loadConversations();
-        } catch (error) {
-            console.error('Error creating conversation:', error);
-            showError('حدث خطأ أثناء إنشاء المحادثة');
-            return;
         }
-    }
-    
-    try {
-        const response = await fetch('/chat/api/check_question_limit.php');
-        if (response.status === 403) {
-            showUpgradeModal();
-            return;
-        }
-    } catch (error) {
-        console.error('Error checking question limit:', error);
-        showError('حدث خطأ أثناء التحقق من حد الأسئلة');
-        return;
-    }
-    
-    try {
+        
+        // Send the message
         const response = await fetch('/chat/api/messages.php', {
             method: 'POST',
             headers: {
@@ -272,7 +262,13 @@ async function sendMessage() {
         });
         
         if (!response.ok) {
-            throw new Error('Failed to send message');
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const data = await response.json();
+                throw new Error(data.error || 'Failed to send message');
+            } else {
+                throw new Error('Server error occurred');
+            }
         }
         
         const data = await response.json();
@@ -280,9 +276,11 @@ async function sendMessage() {
             throw new Error(data.error);
         }
         
+        // Clear input and reload conversation
         messageInput.value = '';
         await loadConversation(currentConversationId);
         
+        // Show loading indicator for AI response
         const chatContainer = document.getElementById('chatContainer');
         chatContainer.innerHTML += `
             <div class="message assistant">
@@ -298,6 +296,7 @@ async function sendMessage() {
             </div>
         `;
         
+        // Get AI response
         const aiResponse = await fetch('/chat/send_message.php', {
             method: 'POST',
             headers: {
@@ -310,12 +309,13 @@ async function sendMessage() {
         });
         
         if (!aiResponse.ok) {
-            const errorData = await aiResponse.json();
-            if (aiResponse.status === 403 && errorData.limit_reached) {
-                showUpgradeModal();
-                return;
+            const contentType = aiResponse.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const errorData = await aiResponse.json();
+                throw new Error(errorData.error || 'Failed to get AI response');
+            } else {
+                throw new Error('Server error occurred');
             }
-            throw new Error(errorData.error || 'Failed to get AI response');
         }
         
         const aiData = await aiResponse.json();
@@ -323,21 +323,25 @@ async function sendMessage() {
             throw new Error(aiData.error);
         }
         
+        // Remove loading indicator and add AI response
         const loadingIndicator = chatContainer.querySelector('.loading-indicator').closest('.message');
         loadingIndicator.remove();
         
+        // Add AI response
         chatContainer.innerHTML += `
             <div class="message assistant">
                 <div class="message-content">${marked.parse(aiData.response)}</div>
             </div>
         `;
         
+        // Scroll to the latest message
         chatContainer.scrollTop = chatContainer.scrollHeight;
         
     } catch (error) {
         console.error('Error sending message:', error);
-        showError('حدث خطأ أثناء إرسال الرسالة');
+        showError(error.message || 'حدث خطأ أثناء إرسال الرسالة');
     } finally {
+        // Re-enable input and button
         messageInput.disabled = false;
         document.getElementById('send-button').disabled = false;
         messageInput.focus();
@@ -399,80 +403,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('message-input').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             sendMessage();
-        }
-    });
-
-    // Sidebar toggle functionality
-    const sidebar = document.querySelector('.sidebar');
-    const toggleButton = document.querySelector('.toggle-sidebar');
-    
-    if (!sidebar || !toggleButton) {
-        console.error('Sidebar or toggle button not found');
-        return;
-    }
-    
-    // Set initial state for mobile
-    if (window.innerWidth <= 768) {
-        sidebar.classList.add('collapsed');
-        sidebar.classList.remove('open');
-    }
-    
-    // Toggle sidebar on button click
-    toggleButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        if (window.innerWidth <= 768) {
-            // Mobile view
-            if (sidebar.classList.contains('open')) {
-                sidebar.classList.remove('open');
-                sidebar.classList.add('collapsed');
-            } else {
-                sidebar.classList.remove('collapsed');
-                sidebar.classList.add('open');
-            }
-        } else {
-            // Desktop view
-            if (sidebar.classList.contains('collapsed')) {
-                sidebar.classList.remove('collapsed');
-            } else {
-                sidebar.classList.add('collapsed');
-            }
-        }
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        if (window.innerWidth <= 768) {
-            sidebar.classList.add('collapsed');
-            sidebar.classList.remove('open');
-        } else {
-            sidebar.classList.remove('open');
-            // Preserve collapsed state on desktop
-            if (!sidebar.classList.contains('collapsed')) {
-                sidebar.classList.add('collapsed');
-            }
-        }
-    });
-
-    // Close sidebar on mobile when clicking outside
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768 && 
-            !sidebar.contains(e.target) && 
-            !toggleButton.contains(e.target) &&
-            sidebar.classList.contains('open')) {
-            sidebar.classList.remove('open');
-            sidebar.classList.add('collapsed');
-        }
-    });
-
-    // Close sidebar when selecting a conversation on mobile
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768 && 
-            e.target.closest('.conversation-item') && 
-            sidebar.classList.contains('open')) {
-            sidebar.classList.remove('open');
-            sidebar.classList.add('collapsed');
         }
     });
 

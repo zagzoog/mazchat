@@ -113,3 +113,236 @@
 [2025-03-23 21:50:51] [INFO] Fetching current month's usage
 [2025-03-23 21:50:51] [INFO] Current month usage retrieved
 [2025-03-23 21:50:51] [INFO] Sending response
+[2025-03-23 21:58:04] [info] Database connection established
+[2025-03-23 21:58:08] [info] Database connection established
+[2025-03-23 21:59:57] [info] Database connection established
+[2025-03-23 22:00:01] [info] Database connection established
+[2025-03-23 22:00:26] [info] Database connection established
+[2025-03-23 22:00:31] [info] Database connection established
+[2025-03-23 22:00:35] [info] Database connection established
+[2025-03-23 22:00:39] [info] Database connection established
+[2025-03-23 22:00:43] [info] Database connection established
+[2025-03-23 22:00:47] [info] Database connection established
+[2025-03-23 22:01:48] [info] Database connection established
+[2025-03-23 22:01:52] [info] Database connection established
+[2025-03-23 22:02:35] [info] Database connection established
+[2025-03-23 22:02:39] [info] Database connection established
+[2025-03-23 22:05:11] [info] Database connection established
+[2025-03-23 22:05:15] [info] Database connection established
+[2025-03-23 22:05:19] [info] Database connection established
+[2025-03-23 22:05:28] [info] Database connection established
+[2025-03-23 22:05:37] [INFO] Session data
+[2025-03-23 22:05:37] [INFO] Starting dashboard data fetch
+[2025-03-23 22:05:39] [INFO] Database connection successful
+[2025-03-23 22:05:39] [INFO] User verified
+[2025-03-23 22:05:41] [info] Database connection established
+[2025-03-23 22:05:43] [info] Database connection established
+[2025-03-23 22:05:43] [INFO] Fetching current membership
+[2025-03-23 22:05:43] [INFO] Current membership retrieved
+[2025-03-23 22:05:43] [INFO] Fetching monthly stats
+[2025-03-23 22:05:43] [INFO] Monthly stats retrieved
+[2025-03-23 22:05:43] [INFO] Fetching daily stats
+[2025-03-23 22:05:43] [INFO] Daily stats retrieved
+[2025-03-23 22:05:43] [INFO] Fetching top topics
+[2025-03-23 22:05:43] [INFO] No top topics found, using empty array
+[2025-03-23 22:05:43] [INFO] Top topics retrieved
+[2025-03-23 22:05:43] [INFO] Fetching monthly limit
+[2025-03-23 22:05:43] [INFO] Monthly limit retrieved
+[2025-03-23 22:05:43] [INFO] Fetching question limit
+[2025-03-23 22:05:43] [INFO] Question limit retrieved
+[2025-03-23 22:05:43] [INFO] Fetching current month's usage
+[2025-03-23 22:05:43] [INFO] Current month usage retrieved
+[2025-03-23 22:05:43] [INFO] Sending response
+[2025-03-23 22:05:49] [info] Database connection established
+[2025-03-23 22:05:53] [info] Database connection established
+[2025-03-23 22:06:22] [info] Database connection established
+[2025-03-23 22:06:26] [info] Database connection established
+[2025-03-23 22:08:04] [info] Database connection established
+[2025-03-23 22:08:08] [info] Database connection established
+[2025-03-23 22:08:31] [info] Database connection established
+[2025-03-23 22:09:22] [info] Database connection established
+[2025-03-23 22:09:26] [info] Database connection established
+[2025-03-23 22:09:31] [info] Database connection established
+[2025-03-23 22:09:35] [info] Database connection established
+[2025-03-23 22:10:07] [info] Database connection established
+[2025-03-23 22:10:12] [info] Database connection established
+[2025-03-23 22:10:12] [INFO] Session data
+[2025-03-23 22:10:12] [INFO] Starting dashboard data fetch
+[2025-03-23 22:10:14] [INFO] Database connection successful
+[2025-03-23 22:10:14] [INFO] User verified
+[2025-03-23 22:10:16] [info] Database connection established
+[2025-03-23 22:10:18] [info] Database connection established
+[2025-03-23 22:10:18] [INFO] Fetching current membership
+[2025-03-23 22:10:18] [INFO] Current membership retrieved
+[2025-03-23 22:10:18] [INFO] Fetching monthly stats
+[2025-03-23 22:10:18] [INFO] Monthly stats retrieved
+[2025-03-23 22:10:18] [INFO] Fetching daily stats
+[2025-03-23 22:10:18] [INFO] Daily stats retrieved
+[2025-03-23 22:10:18] [INFO] Fetching top topics
+[2025-03-23 22:10:18] [INFO] No top topics found, using empty array
+[2025-03-23 22:10:18] [INFO] Top topics retrieved
+[2025-03-23 22:10:18] [INFO] Fetching monthly limit
+[2025-03-23 22:10:18] [INFO] Monthly limit retrieved
+[2025-03-23 22:10:18] [INFO] Fetching question limit
+[2025-03-23 22:10:18] [INFO] Question limit retrieved
+[2025-03-23 22:10:18] [INFO] Fetching current month's usage
+[2025-03-23 22:10:18] [INFO] Current month usage retrieved
+[2025-03-23 22:10:18] [INFO] Sending response
+[2025-03-23 22:10:49] [INFO] Session data
+[2025-03-23 22:10:49] [INFO] Starting dashboard data fetch
+[2025-03-23 22:10:51] [INFO] Database connection successful
+[2025-03-23 22:10:51] [INFO] User verified
+[2025-03-23 22:10:53] [info] Database connection established
+[2025-03-23 22:10:55] [info] Database connection established
+[2025-03-23 22:10:55] [INFO] Fetching current membership
+[2025-03-23 22:10:55] [INFO] Current membership retrieved
+[2025-03-23 22:10:55] [INFO] Fetching monthly stats
+[2025-03-23 22:10:55] [INFO] Monthly stats retrieved
+[2025-03-23 22:10:55] [INFO] Fetching daily stats
+[2025-03-23 22:10:55] [INFO] Daily stats retrieved
+[2025-03-23 22:10:55] [INFO] Fetching top topics
+[2025-03-23 22:10:55] [INFO] No top topics found, using empty array
+[2025-03-23 22:10:55] [INFO] Top topics retrieved
+[2025-03-23 22:10:55] [INFO] Fetching monthly limit
+[2025-03-23 22:10:55] [INFO] Monthly limit retrieved
+[2025-03-23 22:10:55] [INFO] Fetching question limit
+[2025-03-23 22:10:55] [INFO] Question limit retrieved
+[2025-03-23 22:10:55] [INFO] Fetching current month's usage
+[2025-03-23 22:10:55] [INFO] Current month usage retrieved
+[2025-03-23 22:10:55] [INFO] Sending response
+[2025-03-23 22:10:59] [info] Database connection established
+[2025-03-23 22:11:04] [info] Database connection established
+[2025-03-23 22:11:08] [INFO] Session data
+[2025-03-23 22:11:08] [INFO] Starting dashboard data fetch
+[2025-03-23 22:11:10] [INFO] Database connection successful
+[2025-03-23 22:11:10] [INFO] User verified
+[2025-03-23 22:11:12] [info] Database connection established
+[2025-03-23 22:11:14] [info] Database connection established
+[2025-03-23 22:11:14] [INFO] Fetching current membership
+[2025-03-23 22:11:14] [INFO] Current membership retrieved
+[2025-03-23 22:11:14] [INFO] Fetching monthly stats
+[2025-03-23 22:11:14] [INFO] Monthly stats retrieved
+[2025-03-23 22:11:14] [INFO] Fetching daily stats
+[2025-03-23 22:11:14] [INFO] Daily stats retrieved
+[2025-03-23 22:11:14] [INFO] Fetching top topics
+[2025-03-23 22:11:14] [INFO] No top topics found, using empty array
+[2025-03-23 22:11:14] [INFO] Top topics retrieved
+[2025-03-23 22:11:14] [INFO] Fetching monthly limit
+[2025-03-23 22:11:14] [INFO] Monthly limit retrieved
+[2025-03-23 22:11:14] [INFO] Fetching question limit
+[2025-03-23 22:11:14] [INFO] Question limit retrieved
+[2025-03-23 22:11:14] [INFO] Fetching current month's usage
+[2025-03-23 22:11:14] [INFO] Current month usage retrieved
+[2025-03-23 22:11:14] [INFO] Sending response
+[2025-03-23 22:11:18] [info] Database connection established
+[2025-03-23 22:11:22] [info] Database connection established
+[2025-03-23 22:11:27] [info] Database connection established
+[2025-03-23 22:11:37] [info] Database connection established
+[2025-03-23 22:11:50] [info] Database connection established
+[2025-03-23 22:11:54] [info] Database connection established
+[2025-03-23 22:11:58] [info] Database connection established
+[2025-03-23 22:12:00] [info] Database connection established
+[2025-03-23 22:12:02] [info] Database connection established
+[2025-03-23 22:12:04] [info] Database connection established
+[2025-03-23 22:12:06] [info] Database connection established
+[2025-03-23 22:12:08] [info] Database connection established
+[2025-03-23 22:14:29] [info] Database connection established
+[2025-03-23 22:14:33] [info] Database connection established
+[2025-03-23 22:14:35] [info] Database connection established
+[2025-03-23 22:14:44] [info] Database connection established
+[2025-03-23 22:14:46] [info] Database connection established
+[2025-03-23 22:14:48] [info] Database connection established
+[2025-03-23 22:16:39] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:16:44] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:16:46] [info] Database connection established {"class":"Message"}
+[2025-03-23 22:16:56] [info] Database connection established {"class":"Message"}
+[2025-03-23 22:16:58] [info] Database connection established {"class":"UsageStats"}
+[2025-03-23 22:17:00] [info] Database connection established {"class":"Message"}
+[2025-03-23 22:17:02] [info] Database connection established {"class":"UsageStats"}
+[2025-03-23 22:17:04] [info] Database connection established {"class":"Message"}
+[2025-03-23 22:17:06] [info] Database connection established {"class":"Message"}
+[2025-03-23 22:17:08] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:17:26] [info] Database connection established {"class":"Message"}
+[2025-03-23 22:17:28] [info] Database connection established {"class":"UsageStats"}
+[2025-03-23 22:17:30] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:17:50] [info] Database connection established {"class":"Message"}
+[2025-03-23 22:17:52] [info] Database connection established {"class":"UsageStats"}
+[2025-03-23 22:21:14] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:21:18] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:21:22] [INFO] Session data {"session_id":"9i3a60t7mtjl4nsnl80qri279n","session_data":{"user_id":1,"username":"admin","email":"admin@admin.com","membership_type":"free","chat_session_id":"67e081bb635711742766523"},"cookies":{"PHPSESSID":"9i3a60t7mtjl4nsnl80qri279n"},"session_path":"C:\/Users\/zagzo\/Downloads\/UniServerZ\/tmp","session_status":2}
+[2025-03-23 22:21:22] [INFO] Starting dashboard data fetch {"user_id":1}
+[2025-03-23 22:21:24] [INFO] Database connection successful
+[2025-03-23 22:21:24] [INFO] User verified {"user":{"id":1,"username":"admin"}}
+[2025-03-23 22:21:26] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:21:28] [info] Database connection established {"class":"UsageStats"}
+[2025-03-23 22:21:28] [INFO] Fetching current membership
+[2025-03-23 22:21:28] [INFO] Current membership retrieved {"id":1,"user_id":1,"type":"free","start_date":"2025-03-22","end_date":"2026-03-22","created_at":"2025-03-22 03:36:50"}
+[2025-03-23 22:21:28] [INFO] Fetching monthly stats
+[2025-03-23 22:21:28] [INFO] Monthly stats retrieved {"total_conversations":50,"total_questions":"69","total_words":"2388"}
+[2025-03-23 22:21:28] [INFO] Fetching daily stats
+[2025-03-23 22:21:28] [INFO] Daily stats retrieved {"count":3}
+[2025-03-23 22:21:28] [INFO] Fetching top topics
+[2025-03-23 22:21:28] [INFO] No top topics found, using empty array
+[2025-03-23 22:21:28] [INFO] Top topics retrieved {"count":0}
+[2025-03-23 22:21:28] [INFO] Fetching monthly limit {"membership_type":"free"}
+[2025-03-23 22:21:28] [INFO] Monthly limit retrieved {"limit":"50"}
+[2025-03-23 22:21:28] [INFO] Fetching question limit {"membership_type":"free"}
+[2025-03-23 22:21:28] [INFO] Question limit retrieved {"limit":"102"}
+[2025-03-23 22:21:28] [INFO] Fetching current month's usage
+[2025-03-23 22:21:28] [INFO] Current month usage retrieved {"total_conversations":50,"total_questions":"69","total_words":"2388"}
+[2025-03-23 22:21:28] [INFO] Sending response {"membership":{"type":"free","monthly_limit":"50","question_limit":"102","current_usage":50,"current_questions":"69","start_date":"2025-03-22","end_date":"2026-03-22"},"stats":{"total_conversations":50,"total_questions":"69","total_words":"2388"},"daily_stats":[{"date":"2025-03-22","conversations":12,"questions":"21","words":"799"},{"date":"2025-03-23","conversations":26,"questions":"43","words":"1300"},{"date":"2025-03-24","conversations":1,"questions":"5","words":"289"}],"top_topics":[]}
+[2025-03-23 22:21:36] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:21:40] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:23:28] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:23:34] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:23:39] [info] Database connection established {"class":"Message"}
+[2025-03-23 22:25:16] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:25:24] [info] Database connection established {"class":"Message"}
+[2025-03-23 22:25:29] [info] Database connection established {"class":"Message"}
+[2025-03-23 22:25:43] [info] Database connection established {"class":"Message"}
+[2025-03-23 22:25:56] [INFO] Session data {"session_id":"9i3a60t7mtjl4nsnl80qri279n","session_data":{"user_id":1,"username":"admin","email":"admin@admin.com","membership_type":"free","chat_session_id":"67e081bb635711742766523"},"cookies":{"PHPSESSID":"9i3a60t7mtjl4nsnl80qri279n"},"session_path":"C:\/Users\/zagzo\/Downloads\/UniServerZ\/tmp","session_status":2}
+[2025-03-23 22:25:56] [INFO] Starting dashboard data fetch {"user_id":1}
+[2025-03-23 22:25:58] [INFO] Database connection successful
+[2025-03-23 22:25:58] [INFO] User verified {"user":{"id":1,"username":"admin"}}
+[2025-03-23 22:26:00] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:26:02] [info] Database connection established {"class":"UsageStats"}
+[2025-03-23 22:26:02] [INFO] Fetching current membership
+[2025-03-23 22:26:02] [INFO] Current membership retrieved {"id":1,"user_id":1,"type":"free","start_date":"2025-03-22","end_date":"2026-03-22","created_at":"2025-03-22 03:36:50"}
+[2025-03-23 22:26:02] [INFO] Fetching monthly stats
+[2025-03-23 22:26:02] [INFO] Monthly stats retrieved {"total_conversations":50,"total_questions":"69","total_words":"2388"}
+[2025-03-23 22:26:02] [INFO] Fetching daily stats
+[2025-03-23 22:26:02] [INFO] Daily stats retrieved {"count":3}
+[2025-03-23 22:26:02] [INFO] Fetching top topics
+[2025-03-23 22:26:02] [INFO] No top topics found, using empty array
+[2025-03-23 22:26:02] [INFO] Top topics retrieved {"count":0}
+[2025-03-23 22:26:02] [INFO] Fetching monthly limit {"membership_type":"free"}
+[2025-03-23 22:26:02] [INFO] Monthly limit retrieved {"limit":"50"}
+[2025-03-23 22:26:02] [INFO] Fetching question limit {"membership_type":"free"}
+[2025-03-23 22:26:02] [INFO] Question limit retrieved {"limit":"102"}
+[2025-03-23 22:26:02] [INFO] Fetching current month's usage
+[2025-03-23 22:26:02] [INFO] Current month usage retrieved {"total_conversations":50,"total_questions":"69","total_words":"2388"}
+[2025-03-23 22:26:02] [INFO] Sending response {"membership":{"type":"free","monthly_limit":"50","question_limit":"102","current_usage":50,"current_questions":"69","start_date":"2025-03-22","end_date":"2026-03-22"},"stats":{"total_conversations":50,"total_questions":"69","total_words":"2388"},"daily_stats":[{"date":"2025-03-22","conversations":12,"questions":"21","words":"799"},{"date":"2025-03-23","conversations":26,"questions":"43","words":"1300"},{"date":"2025-03-24","conversations":1,"questions":"5","words":"289"}],"top_topics":[]}
+[2025-03-23 22:26:14] [INFO] Session data {"session_id":"9i3a60t7mtjl4nsnl80qri279n","session_data":{"user_id":1,"username":"admin","email":"admin@admin.com","membership_type":"free","chat_session_id":"67e081bb635711742766523"},"cookies":{"PHPSESSID":"9i3a60t7mtjl4nsnl80qri279n"},"session_path":"C:\/Users\/zagzo\/Downloads\/UniServerZ\/tmp","session_status":2}
+[2025-03-23 22:26:14] [INFO] Starting dashboard data fetch {"user_id":1}
+[2025-03-23 22:26:16] [INFO] Database connection successful
+[2025-03-23 22:26:16] [INFO] User verified {"user":{"id":1,"username":"admin"}}
+[2025-03-23 22:26:18] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:26:20] [info] Database connection established {"class":"UsageStats"}
+[2025-03-23 22:26:20] [INFO] Fetching current membership
+[2025-03-23 22:26:20] [INFO] Current membership retrieved {"id":1,"user_id":1,"type":"free","start_date":"2025-03-22","end_date":"2026-03-22","created_at":"2025-03-22 03:36:50"}
+[2025-03-23 22:26:20] [INFO] Fetching monthly stats
+[2025-03-23 22:26:20] [INFO] Monthly stats retrieved {"total_conversations":50,"total_questions":"69","total_words":"2388"}
+[2025-03-23 22:26:20] [INFO] Fetching daily stats
+[2025-03-23 22:26:20] [INFO] Daily stats retrieved {"count":3}
+[2025-03-23 22:26:20] [INFO] Fetching top topics
+[2025-03-23 22:26:20] [INFO] No top topics found, using empty array
+[2025-03-23 22:26:20] [INFO] Top topics retrieved {"count":0}
+[2025-03-23 22:26:20] [INFO] Fetching monthly limit {"membership_type":"free"}
+[2025-03-23 22:26:20] [INFO] Monthly limit retrieved {"limit":"50"}
+[2025-03-23 22:26:20] [INFO] Fetching question limit {"membership_type":"free"}
+[2025-03-23 22:26:20] [INFO] Question limit retrieved {"limit":"102"}
+[2025-03-23 22:26:20] [INFO] Fetching current month's usage
+[2025-03-23 22:26:20] [INFO] Current month usage retrieved {"total_conversations":50,"total_questions":"69","total_words":"2388"}
+[2025-03-23 22:26:20] [INFO] Sending response {"membership":{"type":"free","monthly_limit":"50","question_limit":"102","current_usage":50,"current_questions":"69","start_date":"2025-03-22","end_date":"2026-03-22"},"stats":{"total_conversations":50,"total_questions":"69","total_words":"2388"},"daily_stats":[{"date":"2025-03-22","conversations":12,"questions":"21","words":"799"},{"date":"2025-03-23","conversations":26,"questions":"43","words":"1300"},{"date":"2025-03-24","conversations":1,"questions":"5","words":"289"}],"top_topics":[]}
+[2025-03-23 22:26:48] [info] Database connection established {"class":"Membership"}
+[2025-03-23 22:27:09] [info] Database connection established {"class":"Membership"}

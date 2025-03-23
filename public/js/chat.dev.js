@@ -226,13 +226,14 @@ async function sendMessage() {
     
     if (!message) return;
     
-    logger.debug('Sending message:', message);
+    // Disable input and button while sending
     messageInput.disabled = true;
     document.getElementById('send-button').disabled = true;
     
-    if (!currentConversationId) {
-        try {
-            logger.debug('No active conversation, creating new one');
+    try {
+        // Check if we have an active conversation
+        if (!currentConversationId) {
+            logger.debug('Creating new conversation');
             const response = await fetch('/chat/api/conversations.php', {
                 method: 'POST',
                 headers: {
@@ -243,42 +244,31 @@ async function sendMessage() {
                 })
             });
             
-            if (response.status === 403) {
-                logger.warn('User reached conversation limit');
-                showUpgradeModal();
-                return;
+            if (!response.ok) {
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    const data = await response.json();
+                    logger.error('Failed to create conversation:', data.error);
+                    throw new Error(data.error || 'Failed to create conversation');
+                } else {
+                    logger.error('Server error occurred while creating conversation');
+                    throw new Error('Server error occurred');
+                }
             }
             
             const data = await response.json();
             if (data.error) {
+                logger.error('Error in conversation creation response:', data.error);
                 throw new Error(data.error);
             }
             
             currentConversationId = data.id;
+            logger.info('Created new conversation:', currentConversationId);
             await loadConversations();
-        } catch (error) {
-            logger.error('Error creating conversation:', error);
-            showError('حدث خطأ أثناء إنشاء المحادثة');
-            return;
         }
-    }
-    
-    try {
-        logger.debug('Checking question limit');
-        const response = await fetch('/chat/api/check_question_limit.php');
-        if (response.status === 403) {
-            logger.warn('User reached question limit');
-            showUpgradeModal();
-            return;
-        }
-    } catch (error) {
-        logger.error('Error checking question limit:', error);
-        showError('حدث خطأ أثناء التحقق من حد الأسئلة');
-        return;
-    }
-    
-    try {
-        logger.debug('Sending message to server');
+        
+        // Send the message
+        logger.debug('Sending message:', message);
         const response = await fetch('/chat/api/messages.php', {
             method: 'POST',
             headers: {
@@ -292,17 +282,28 @@ async function sendMessage() {
         });
         
         if (!response.ok) {
-            throw new Error('Failed to send message');
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const data = await response.json();
+                logger.error('Failed to send message:', data.error);
+                throw new Error(data.error || 'Failed to send message');
+            } else {
+                logger.error('Server error occurred while sending message');
+                throw new Error('Server error occurred');
+            }
         }
         
         const data = await response.json();
         if (data.error) {
+            logger.error('Error in message response:', data.error);
             throw new Error(data.error);
         }
         
+        // Clear input and reload conversation
         messageInput.value = '';
         await loadConversation(currentConversationId);
         
+        // Show loading indicator for AI response
         const chatContainer = document.getElementById('chatContainer');
         chatContainer.innerHTML += `
             <div class="message assistant">
@@ -318,6 +319,7 @@ async function sendMessage() {
             </div>
         `;
         
+        // Get AI response
         logger.debug('Getting AI response');
         const aiResponse = await fetch('/chat/send_message.php', {
             method: 'POST',
@@ -331,37 +333,42 @@ async function sendMessage() {
         });
         
         if (!aiResponse.ok) {
-            const errorData = await aiResponse.json();
-            if (aiResponse.status === 403 && errorData.limit_reached) {
-                logger.warn('User reached limit:', errorData.limit_type);
-                showUpgradeModal();
-                return;
+            const contentType = aiResponse.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const errorData = await aiResponse.json();
+                logger.error('Failed to get AI response:', errorData.error);
+                throw new Error(errorData.error || 'Failed to get AI response');
+            } else {
+                logger.error('Server error occurred while getting AI response');
+                throw new Error('Server error occurred');
             }
-            throw new Error(errorData.error || 'Failed to get AI response');
         }
         
         const aiData = await aiResponse.json();
-        logger.debug('AI response received:', aiData);
-        
         if (aiData.error) {
+            logger.error('Error in AI response:', aiData.error);
             throw new Error(aiData.error);
         }
         
+        // Remove loading indicator and add AI response
         const loadingIndicator = chatContainer.querySelector('.loading-indicator').closest('.message');
         loadingIndicator.remove();
         
+        // Add AI response
         chatContainer.innerHTML += `
             <div class="message assistant">
                 <div class="message-content">${marked.parse(aiData.response)}</div>
             </div>
         `;
         
+        // Scroll to the latest message
         chatContainer.scrollTop = chatContainer.scrollHeight;
         
     } catch (error) {
         logger.error('Error sending message:', error);
-        showError('حدث خطأ أثناء إرسال الرسالة');
+        showError(error.message || 'حدث خطأ أثناء إرسال الرسالة');
     } finally {
+        // Re-enable input and button
         messageInput.disabled = false;
         document.getElementById('send-button').disabled = false;
         messageInput.focus();
@@ -430,82 +437,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('message-input').addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             sendMessage();
-        }
-    });
-
-    // Sidebar toggle functionality
-    const sidebar = document.querySelector('.sidebar');
-    const toggleButton = document.querySelector('.toggle-sidebar');
-    
-    if (!sidebar || !toggleButton) {
-        logger.error('Sidebar or toggle button not found');
-        return;
-    }
-    
-    // Set initial state for mobile
-    if (window.innerWidth <= 768) {
-        sidebar.classList.add('collapsed');
-        sidebar.classList.remove('open');
-    }
-    
-    // Toggle sidebar on button click
-    toggleButton.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        logger.debug('Toggle button clicked');
-        
-        if (window.innerWidth <= 768) {
-            // Mobile view
-            if (sidebar.classList.contains('open')) {
-                sidebar.classList.remove('open');
-                sidebar.classList.add('collapsed');
-            } else {
-                sidebar.classList.remove('collapsed');
-                sidebar.classList.add('open');
-            }
-        } else {
-            // Desktop view
-            if (sidebar.classList.contains('collapsed')) {
-                sidebar.classList.remove('collapsed');
-            } else {
-                sidebar.classList.add('collapsed');
-            }
-        }
-    });
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-        logger.debug('Window resized:', window.innerWidth);
-        if (window.innerWidth <= 768) {
-            sidebar.classList.add('collapsed');
-            sidebar.classList.remove('open');
-        } else {
-            sidebar.classList.remove('open');
-            // Preserve collapsed state on desktop
-            if (!sidebar.classList.contains('collapsed')) {
-                sidebar.classList.add('collapsed');
-            }
-        }
-    });
-
-    // Close sidebar on mobile when clicking outside
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768 && 
-            !sidebar.contains(e.target) && 
-            !toggleButton.contains(e.target) &&
-            sidebar.classList.contains('open')) {
-            sidebar.classList.remove('open');
-            sidebar.classList.add('collapsed');
-        }
-    });
-
-    // Close sidebar when selecting a conversation on mobile
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768 && 
-            e.target.closest('.conversation-item') && 
-            sidebar.classList.contains('open')) {
-            sidebar.classList.remove('open');
-            sidebar.classList.add('collapsed');
         }
     });
 
