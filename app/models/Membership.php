@@ -100,13 +100,52 @@ class Membership extends Model {
         $stmt->execute([$membership['type'] . '_monthly_limit']);
         $monthlyLimit = $stmt->fetchColumn();
         
-        // Get current month's usage
+        if (!$monthlyLimit) {
+            // Set default limits if not found in settings
+            $monthlyLimit = $membership['type'] === 'free' ? 50 : 
+                           ($membership['type'] === 'basic' ? 100 : 999999);
+        }
+        
+        // Get current month's usage directly from conversations table
         $stmt = $db->prepare(
-            'SELECT COUNT(*) FROM conversations WHERE user_id = ? AND created_at >= DATE_FORMAT(CURRENT_DATE, "%Y-%m-01")'
+            'SELECT COUNT(*) FROM conversations 
+             WHERE user_id = ? 
+             AND DATE_FORMAT(created_at, "%Y-%m") = DATE_FORMAT(CURRENT_DATE, "%Y-%m")'
         );
         $stmt->execute([$userId]);
         $currentUsage = $stmt->fetchColumn();
         
+        error_log("Checking conversation limit for user $userId: current usage = $currentUsage, limit = $monthlyLimit");
         return $currentUsage < $monthlyLimit;
+    }
+
+    public function checkQuestionLimit($userId) {
+        $membership = $this->getCurrentMembership($userId);
+        $db = getDBConnection();
+        
+        // Get question limit from settings
+        $stmt = $db->prepare(
+            'SELECT setting_value FROM admin_settings WHERE setting_key = ?'
+        );
+        $stmt->execute([$membership['type'] . '_question_limit']);
+        $questionLimit = $stmt->fetchColumn();
+        
+        if (!$questionLimit) {
+            // Set default limits if not found in settings
+            $questionLimit = $membership['type'] === 'free' ? 500 : 
+                           ($membership['type'] === 'basic' ? 2000 : 999999);
+        }
+        
+        // Get current month's question usage from usage_stats table
+        $stmt = $db->prepare(
+            'SELECT COUNT(*) FROM usage_stats 
+             WHERE user_id = ? 
+             AND DATE_FORMAT(created_at, "%Y-%m") = DATE_FORMAT(CURRENT_DATE, "%Y-%m")'
+        );
+        $stmt->execute([$userId]);
+        $currentUsage = $stmt->fetchColumn();
+        
+        error_log("Checking question limit for user $userId: current usage = $currentUsage, limit = $questionLimit");
+        return $currentUsage < $questionLimit;
     }
 } 

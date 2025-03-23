@@ -68,6 +68,17 @@ if (!isset($data['message'])) {
     exit;
 }
 
+// Check question limit before processing
+require_once 'app/models/Membership.php';
+$membership = new Membership();
+
+if (!$membership->checkQuestionLimit($_SESSION['user_id'])) {
+    error_log("User " . $_SESSION['user_id'] . " has reached their monthly question limit");
+    http_response_code(403);
+    echo json_encode(['error' => 'You have reached your monthly question limit. Please upgrade your membership to continue.'], JSON_UNESCAPED_UNICODE);
+    exit;
+}
+
 $message = sanitize_utf8($data['message']);
 
 // Use the existing session ID or create a new one if it doesn't exist

@@ -4,23 +4,33 @@ require_once __DIR__ . '/Model.php';
 class UsageStats extends Model {
     protected $table = 'usage_stats';
     
-    public function getMonthlyStats($userId, $month = null) {
+    public function getMonthlyStats($userId, $month) {
         try {
-            if (!$month) {
-                $month = date('Y-m');
-            }
-            
+            // Get total conversations directly from conversations table
             $stmt = $this->db->prepare(
-                'SELECT 
-                    COUNT(DISTINCT conversation_id) as total_conversations,
-                    COUNT(*) as total_questions,
-                    SUM(word_count) as total_words
-                FROM usage_stats
+                'SELECT COUNT(*) as total_conversations 
+                FROM conversations 
                 WHERE user_id = ? 
                 AND DATE_FORMAT(created_at, "%Y-%m") = ?'
             );
             $stmt->execute([$userId, $month]);
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            $conversations = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            // Get total questions and words from usage_stats
+            $stmt = $this->db->prepare(
+                'SELECT COUNT(*) as total_questions, SUM(word_count) as total_words 
+                FROM usage_stats 
+                WHERE user_id = ? 
+                AND DATE_FORMAT(created_at, "%Y-%m") = ?'
+            );
+            $stmt->execute([$userId, $month]);
+            $stats = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            return [
+                'total_conversations' => $conversations['total_conversations'],
+                'total_questions' => $stats['total_questions'] ?: 0,
+                'total_words' => $stats['total_words'] ?: 0
+            ];
         } catch (Exception $e) {
             error_log("Error getting monthly stats: " . $e->getMessage());
             return null;

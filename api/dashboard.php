@@ -90,7 +90,8 @@ try {
     // Get monthly stats
     try {
         Logger::log('Fetching monthly stats', 'INFO');
-        $monthlyStats = $usageStats->getMonthlyStats($userId);
+        $currentMonth = date('Y-m');
+        $monthlyStats = $usageStats->getMonthlyStats($userId, $currentMonth);
         if (!$monthlyStats) {
             Logger::log('No monthly stats found, using defaults', 'INFO');
             $monthlyStats = [
@@ -153,6 +154,27 @@ try {
         Logger::log('Monthly limit error', 'ERROR', ['message' => $e->getMessage()]);
         throw new Exception('Failed to get monthly limit: ' . $e->getMessage());
     }
+
+    // Get question limit from settings
+    try {
+        Logger::log('Fetching question limit', 'INFO', ['membership_type' => $currentMembership['type']]);
+        $stmt = $db->prepare(
+            'SELECT setting_value FROM admin_settings WHERE setting_key = ?'
+        );
+        $stmt->execute([$currentMembership['type'] . '_question_limit']);
+        $questionLimit = $stmt->fetchColumn();
+        
+        if (!$questionLimit) {
+            Logger::log('No question limit found in settings, using defaults', 'INFO');
+            // Set default limits if not found in settings
+            $questionLimit = $currentMembership['type'] === 'free' ? 500 : 
+                           ($currentMembership['type'] === 'basic' ? 2000 : 999999);
+        }
+        Logger::log('Question limit retrieved', 'INFO', ['limit' => $questionLimit]);
+    } catch (Exception $e) {
+        Logger::log('Question limit error', 'ERROR', ['message' => $e->getMessage()]);
+        throw new Exception('Failed to get question limit: ' . $e->getMessage());
+    }
     
     // Get current month's usage
     try {
@@ -161,7 +183,7 @@ try {
         $currentUsage = $usageStats->getMonthlyStats($userId, $currentMonth);
         if (!$currentUsage) {
             Logger::log('No current month usage found, using defaults', 'INFO');
-            $currentUsage = ['total_conversations' => 0];
+            $currentUsage = ['total_conversations' => 0, 'total_questions' => 0];
         }
         Logger::log('Current month usage retrieved', 'INFO', $currentUsage);
     } catch (Exception $e) {
@@ -173,7 +195,9 @@ try {
         'membership' => [
             'type' => $currentMembership['type'],
             'monthly_limit' => $monthlyLimit,
+            'question_limit' => $questionLimit,
             'current_usage' => $currentUsage['total_conversations'],
+            'current_questions' => $currentUsage['total_questions'],
             'start_date' => $currentMembership['start_date'],
             'end_date' => $currentMembership['end_date']
         ],

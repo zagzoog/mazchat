@@ -141,8 +141,10 @@ $config = require_once 'config.php';
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-gray-600">نوع العضوية: <span id="membership-type" class="font-semibold"></span></p>
-                    <p class="text-gray-600">الحد الشهري: <span id="monthly-limit" class="font-semibold"></span></p>
-                    <p class="text-gray-600">الاستخدام الحالي: <span id="current-usage" class="font-semibold"></span></p>
+                    <p class="text-gray-600">الحد الشهري للمحادثات: <span id="monthly-limit" class="font-semibold"></span></p>
+                    <p class="text-gray-600">الحد الشهري للأسئلة: <span id="question-limit" class="font-semibold"></span></p>
+                    <p class="text-gray-600">المحادثات المستخدمة: <span id="current-usage" class="font-semibold"></span></p>
+                    <p class="text-gray-600">الأسئلة المستخدمة: <span id="current-questions" class="font-semibold"></span></p>
                 </div>
                 <div class="space-x-4 space-x-reverse">
                     <button onclick="showUpgradeModal()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
@@ -251,7 +253,9 @@ $config = require_once 'config.php';
                 // Update membership info
                 document.getElementById('membership-type').textContent = data.membership.type;
                 document.getElementById('monthly-limit').textContent = data.membership.monthly_limit;
+                document.getElementById('question-limit').textContent = data.membership.question_limit;
                 document.getElementById('current-usage').textContent = data.membership.current_usage;
+                document.getElementById('current-questions').textContent = data.membership.current_questions;
                 
                 // Update statistics
                 document.getElementById('total-conversations').textContent = data.stats.total_conversations;

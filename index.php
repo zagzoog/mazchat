@@ -665,80 +665,78 @@ $config = require_once 'config.php';
             
             if (!message) return;
             
-            try {
-                // Create new conversation if none exists
-                if (!currentConversationId) {
-                    const response = await fetch('api/conversations.php', {
+            // Disable input and button while sending
+            messageInput.disabled = true;
+            document.getElementById('send-button').disabled = true;
+            
+            // Check if we have an active conversation
+            if (!currentConversationId) {
+                try {
+                    const response = await fetch('/chat/api/conversations.php', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify({
-                            title: 'محادثة جديدة'
+                            title: message.substring(0, 50) + '...'
                         })
                     });
                     
-                    const data = await response.json();
-                    
                     if (response.status === 403) {
-                        // Show limit reached message in the chat area
-                        const chatContainer = document.getElementById('chatContainer');
-                        chatContainer.innerHTML = `
-                            <div class="flex flex-col items-center justify-center h-full text-center p-8">
-                                <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 rounded-lg max-w-lg">
-                                    <p class="font-bold mb-2">لقد وصلت إلى الحد الأقصى للمحادثات الشهري</p>
-                                    <p class="mb-4">قم بترقية عضويتك للاستمرار في إنشاء محادثات جديدة</p>
-                                    <button onclick="showUpgradeModal()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
-                                        <i class="fas fa-crown"></i> ترقية العضوية
-                                    </button>
-                                </div>
+                        // User has reached their conversation limit
+                        const chatArea = document.getElementById('chatContainer');
+                        chatArea.innerHTML = `
+                            <div class="alert alert-warning text-center mb-3">
+                                <h5 class="mb-2">لقد وصلت إلى الحد الأقصى من المحادثات الشهرية</h5>
+                                <p class="mb-2">قم بترقية عضويتك للاستمرار في استخدام المحادثات</p>
+                                <button class="btn btn-primary" onclick="openUpgradeModal()">
+                                    ترقية العضوية
+                                </button>
                             </div>
                         `;
                         return;
                     }
                     
+                    const data = await response.json();
                     if (data.error) {
                         throw new Error(data.error);
                     }
+                    
                     currentConversationId = data.id;
                     await loadConversations();
+                } catch (error) {
+                    console.error('Error creating conversation:', error);
+                    showError('حدث خطأ أثناء إنشاء المحادثة');
+                    return;
                 }
-
-                // Clear input and disable
-                messageInput.value = '';
-                messageInput.disabled = true;
-                
-                // Add user message to chat
-                const chatContainer = document.getElementById('chatContainer');
-                const userMessageDiv = document.createElement('div');
-                userMessageDiv.className = 'message user';
-                userMessageDiv.innerHTML = `
-                    <div class="message-content">${marked.parse(message.replace(/\n/g, '<br>'))}</div>
-                `;
-                chatContainer.appendChild(userMessageDiv);
-                
-                // Scroll to the user's message
-                userMessageDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-                // Show typing indicator
-                const typingIndicator = document.createElement('div');
-                typingIndicator.className = 'message assistant';
-                typingIndicator.innerHTML = `
-                    <div class="message-content">
-                        <div class="loading-dots">
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
+            }
+            
+            // Check question limit before sending message
+            try {
+                const response = await fetch('/chat/api/check_question_limit.php');
+                if (response.status === 403) {
+                    // User has reached their question limit
+                    const chatArea = document.getElementById('chatContainer');
+                    chatArea.innerHTML += `
+                        <div class="alert alert-warning text-center mb-3">
+                            <h5 class="mb-2">لقد وصلت إلى الحد الأقصى من الأسئلة الشهرية</h5>
+                            <p class="mb-2">قم بترقية عضويتك للاستمرار في طرح الأسئلة</p>
+                            <button class="btn btn-primary" onclick="openUpgradeModal()">
+                                ترقية العضوية
+                            </button>
                         </div>
-                    </div>
-                `;
-                chatContainer.appendChild(typingIndicator);
-                
-                // Scroll to the typing indicator
-                typingIndicator.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-                // Send message to server
-                const response = await fetch('api/messages.php', {
+                    `;
+                    return;
+                }
+            } catch (error) {
+                console.error('Error checking question limit:', error);
+                showError('حدث خطأ أثناء التحقق من حد الأسئلة');
+                return;
+            }
+            
+            // Send the message
+            try {
+                const response = await fetch('/chat/api/messages.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -750,18 +748,37 @@ $config = require_once 'config.php';
                     })
                 });
                 
+                if (!response.ok) {
+                    throw new Error('Failed to send message');
+                }
+                
                 const data = await response.json();
-                console.log('API Response:', data); // Debug log
-                
-                // Remove typing indicator
-                typingIndicator.remove();
-                
                 if (data.error) {
                     throw new Error(data.error);
                 }
-
+                
+                // Clear input and reload conversation
+                messageInput.value = '';
+                await loadConversation(currentConversationId);
+                
+                // Show loading indicator for AI response
+                const chatContainer = document.getElementById('chatContainer');
+                chatContainer.innerHTML += `
+                    <div class="message assistant">
+                        <div class="message-content">
+                            <div class="loading-indicator">
+                                <div class="loading-dots">
+                                    <div class="loading-dot"></div>
+                                    <div class="loading-dot"></div>
+                                    <div class="loading-dot"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
                 // Get AI response
-                const aiResponse = await fetch('send_message.php', {
+                const aiResponse = await fetch('/chat/send_message.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -771,36 +788,38 @@ $config = require_once 'config.php';
                         conversation_id: currentConversationId
                     })
                 });
-
+                
+                if (!aiResponse.ok) {
+                    throw new Error('Failed to get AI response');
+                }
+                
                 const aiData = await aiResponse.json();
-                console.log('AI Response:', aiData); // Debug log
-
                 if (aiData.error) {
                     throw new Error(aiData.error);
                 }
                 
-                // Add AI response to chat
-                const aiMessageDiv = document.createElement('div');
-                aiMessageDiv.className = 'message assistant';
-                aiMessageDiv.innerHTML = `
-                    <div class="message-content">${marked.parse(aiData.response.replace(/\n/g, '<br>'))}</div>
+                // Remove loading indicator and add AI response
+                const loadingIndicator = chatContainer.querySelector('.loading-indicator').closest('.message');
+                loadingIndicator.remove();
+                
+                // Add AI response
+                chatContainer.innerHTML += `
+                    <div class="message assistant">
+                        <div class="message-content">${marked.parse(aiData.response)}</div>
+                    </div>
                 `;
-                chatContainer.appendChild(aiMessageDiv);
                 
-                // Scroll to the AI's response
-                aiMessageDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                
-                // Re-enable input
-                messageInput.disabled = false;
-                messageInput.focus();
-                
-                // Refresh conversations list to show the new conversation
-                await loadConversations();
+                // Scroll to the latest message
+                chatContainer.scrollTop = chatContainer.scrollHeight;
                 
             } catch (error) {
                 console.error('Error sending message:', error);
                 showError('حدث خطأ أثناء إرسال الرسالة');
+            } finally {
+                // Re-enable input and button
                 messageInput.disabled = false;
+                document.getElementById('send-button').disabled = false;
+                messageInput.focus();
             }
         }
 

@@ -11,7 +11,10 @@ CREATE TABLE IF NOT EXISTS admin_settings (
 INSERT IGNORE INTO admin_settings (setting_key, setting_value) VALUES
 ('free_monthly_limit', '50'),
 ('basic_monthly_limit', '100'),
-('premium_monthly_limit', '999999');
+('premium_monthly_limit', '999999'),
+('free_question_limit', '500'),
+('basic_question_limit', '2000'),
+('premium_question_limit', '999999');
 
 -- Check and create memberships table if it doesn't exist
 CREATE TABLE IF NOT EXISTS memberships (
