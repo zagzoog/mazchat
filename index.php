@@ -429,6 +429,41 @@ $config = require_once 'config.php';
         </div>
     </div>
 
+    <!-- Upgrade Modal -->
+    <div id="upgrade-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-lg p-6 max-w-md mx-auto mt-20">
+            <h2 class="text-xl font-semibold mb-4">ترقية العضوية</h2>
+            <div class="space-y-4">
+                <div class="border rounded p-4">
+                    <h3 class="font-semibold">العضوية الأساسية</h3>
+                    <p class="text-gray-600">$9.99/شهرياً</p>
+                    <ul class="mt-2 space-y-1">
+                        <li><i class="fas fa-check text-green-500"></i> 100 محادثة شهرياً</li>
+                        <li><i class="fas fa-check text-green-500"></i> دعم البريد الإلكتروني</li>
+                    </ul>
+                    <button onclick="initiatePayment('basic')" class="mt-4 w-full bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                        اختيار
+                    </button>
+                </div>
+                <div class="border rounded p-4">
+                    <h3 class="font-semibold">العضوية المميزة</h3>
+                    <p class="text-gray-600">$19.99/شهرياً</p>
+                    <ul class="mt-2 space-y-1">
+                        <li><i class="fas fa-check text-green-500"></i> محادثات غير محدودة</li>
+                        <li><i class="fas fa-check text-green-500"></i> دعم مباشر</li>
+                        <li><i class="fas fa-check text-green-500"></i> ميزات متقدمة</li>
+                    </ul>
+                    <button onclick="initiatePayment('premium')" class="mt-4 w-full bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+                        اختيار
+                    </button>
+                </div>
+            </div>
+            <button onclick="hideUpgradeModal()" class="mt-4 w-full bg-gray-200 text-gray-800 px-4 py-2 rounded hover:bg-gray-300">
+                إلغاء
+            </button>
+        </div>
+    </div>
+
     <script>
         let currentConversationId = null;
         let currentOffset = 0;
@@ -911,6 +946,38 @@ $config = require_once 'config.php';
             this.style.height = 'auto';
             this.style.height = (this.scrollHeight) + 'px';
         });
+
+        // Modal functions
+        function showUpgradeModal() {
+            document.getElementById('upgrade-modal').classList.remove('hidden');
+        }
+        
+        function hideUpgradeModal() {
+            document.getElementById('upgrade-modal').classList.add('hidden');
+        }
+        
+        // Payment functions
+        async function initiatePayment(membershipType) {
+            try {
+                const response = await fetch('/chat/api/create_payment.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ membership_type: membershipType })
+                });
+                
+                const data = await response.json();
+                if (data.success) {
+                    window.location.href = data.paypal_url;
+                } else {
+                    showError('حدث خطأ أثناء إنشاء الدفع');
+                }
+            } catch (error) {
+                console.error('Error initiating payment:', error);
+                showError('حدث خطأ أثناء إنشاء الدفع');
+            }
+        }
     </script>
 </body>
 </html> 
