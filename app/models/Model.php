@@ -12,9 +12,9 @@ class Model {
             if (!$this->db) {
                 throw new Exception('Database connection failed');
             }
-            Logger::log('Database connection established', 'INFO', ['class' => get_class($this)]);
+            Logger::info('Database connection established', ['class' => get_class($this)]);
         } catch (Exception $e) {
-            Logger::log('Database connection error', 'ERROR', [
+            Logger::error('Database connection error', [
                 'class' => get_class($this),
                 'message' => $e->getMessage()
             ]);
@@ -25,10 +25,10 @@ class Model {
     protected function beginTransaction() {
         try {
             $result = $this->db->beginTransaction();
-            Logger::log('Transaction started', 'INFO', ['class' => get_class($this)]);
+            Logger::info('Transaction started', ['class' => get_class($this)]);
             return $result;
         } catch (Exception $e) {
-            Logger::log('Transaction start error', 'ERROR', [
+            Logger::error('Transaction start error', [
                 'class' => get_class($this),
                 'message' => $e->getMessage()
             ]);
@@ -39,10 +39,10 @@ class Model {
     protected function commit() {
         try {
             $result = $this->db->commit();
-            Logger::log('Transaction committed', 'INFO', ['class' => get_class($this)]);
+            Logger::info('Transaction committed', ['class' => get_class($this)]);
             return $result;
         } catch (Exception $e) {
-            Logger::log('Transaction commit error', 'ERROR', [
+            Logger::error('Transaction commit error', [
                 'class' => get_class($this),
                 'message' => $e->getMessage()
             ]);
@@ -53,10 +53,10 @@ class Model {
     protected function rollBack() {
         try {
             $result = $this->db->rollBack();
-            Logger::log('Transaction rolled back', 'INFO', ['class' => get_class($this)]);
+            Logger::info('Transaction rolled back', ['class' => get_class($this)]);
             return $result;
         } catch (Exception $e) {
-            Logger::log('Transaction rollback error', 'ERROR', [
+            Logger::error('Transaction rollback error', [
                 'class' => get_class($this),
                 'message' => $e->getMessage()
             ]);
@@ -68,14 +68,14 @@ class Model {
         try {
             $stmt = $this->db->prepare($sql);
             $stmt->execute($params);
-            Logger::log('Query executed', 'INFO', [
+            Logger::info('Query executed', [
                 'class' => get_class($this),
                 'sql' => $sql,
                 'params' => $params
             ]);
             return $stmt;
         } catch (Exception $e) {
-            Logger::log('Query error', 'ERROR', [
+            Logger::error('Query error', [
                 'class' => get_class($this),
                 'sql' => $sql,
                 'params' => $params,

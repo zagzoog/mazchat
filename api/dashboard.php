@@ -8,14 +8,6 @@ require_once __DIR__ . '/../app/models/User.php';
 require_once __DIR__ . '/../app/models/Membership.php';
 require_once __DIR__ . '/../app/models/UsageStats.php';
 
-// Initialize logger
-try {
-    Logger::init();
-} catch (Exception $e) {
-    error_log("Failed to initialize logger: " . $e->getMessage());
-    // Continue execution even if logger fails
-}
-
 header('Content-Type: application/json');
 
 // Log session information

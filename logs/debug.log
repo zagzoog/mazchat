@@ -1,0 +1,55 @@
+[2025-03-23 21:17:13] [info] Database connection established
+[2025-03-23 21:17:17] [info] Database connection established
+[2025-03-23 21:17:22] [info] Database connection established
+[2025-03-23 21:19:40] [INFO] Session data
+[2025-03-23 21:19:40] [INFO] Starting dashboard data fetch
+[2025-03-23 21:19:42] [INFO] Database connection successful
+[2025-03-23 21:19:42] [INFO] User verified
+[2025-03-23 21:19:44] [info] Database connection established
+[2025-03-23 21:19:46] [info] Database connection established
+[2025-03-23 21:19:46] [INFO] Fetching current membership
+[2025-03-23 21:19:46] [INFO] Current membership retrieved
+[2025-03-23 21:19:46] [INFO] Fetching monthly stats
+[2025-03-23 21:19:46] [INFO] Monthly stats retrieved
+[2025-03-23 21:19:46] [INFO] Fetching daily stats
+[2025-03-23 21:19:46] [INFO] Daily stats retrieved
+[2025-03-23 21:19:46] [INFO] Fetching top topics
+[2025-03-23 21:19:46] [INFO] No top topics found, using empty array
+[2025-03-23 21:19:46] [INFO] Top topics retrieved
+[2025-03-23 21:19:46] [INFO] Fetching monthly limit
+[2025-03-23 21:19:46] [INFO] Monthly limit retrieved
+[2025-03-23 21:19:46] [INFO] Fetching question limit
+[2025-03-23 21:19:46] [INFO] Question limit retrieved
+[2025-03-23 21:19:46] [INFO] Fetching current month's usage
+[2025-03-23 21:19:46] [INFO] Current month usage retrieved
+[2025-03-23 21:19:46] [INFO] Sending response
+[2025-03-23 21:19:54] [info] Database connection established
+[2025-03-23 21:19:59] [info] Database connection established
+[2025-03-23 21:25:29] [info] Database connection established
+[2025-03-23 21:25:33] [info] Database connection established
+[2025-03-23 21:25:33] [INFO] Session data
+[2025-03-23 21:25:33] [INFO] Starting dashboard data fetch
+[2025-03-23 21:25:35] [INFO] Database connection successful
+[2025-03-23 21:25:35] [INFO] User verified
+[2025-03-23 21:25:37] [info] Database connection established
+[2025-03-23 21:25:39] [info] Database connection established
+[2025-03-23 21:25:39] [INFO] Fetching current membership
+[2025-03-23 21:25:39] [INFO] Current membership retrieved
+[2025-03-23 21:25:39] [INFO] Fetching monthly stats
+[2025-03-23 21:25:39] [INFO] Monthly stats retrieved
+[2025-03-23 21:25:39] [INFO] Fetching daily stats
+[2025-03-23 21:25:39] [INFO] Daily stats retrieved
+[2025-03-23 21:25:39] [INFO] Fetching top topics
+[2025-03-23 21:25:39] [INFO] No top topics found, using empty array
+[2025-03-23 21:25:39] [INFO] Top topics retrieved
+[2025-03-23 21:25:39] [INFO] Fetching monthly limit
+[2025-03-23 21:25:39] [INFO] Monthly limit retrieved
+[2025-03-23 21:25:39] [INFO] Fetching question limit
+[2025-03-23 21:25:39] [INFO] Question limit retrieved
+[2025-03-23 21:25:39] [INFO] Fetching current month's usage
+[2025-03-23 21:25:39] [INFO] Current month usage retrieved
+[2025-03-23 21:25:39] [INFO] Sending response
+[2025-03-23 21:25:50] [info] Database connection established
+[2025-03-23 21:25:54] [info] Database connection established
+[2025-03-23 21:25:56] [info] Database connection established
+[2025-03-23 21:25:58] [info] Database connection established

@@ -25,6 +25,11 @@ $config = require_once 'config.php';
     <link href="/chat/public/css/styles.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <?php if ($config['development_mode']): ?>
+        <script src="/chat/public/js/chat.dev.js"></script>
+    <?php else: ?>
+        <script src="/chat/public/js/chat.js"></script>
+    <?php endif; ?>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
         body {
@@ -465,11 +470,8 @@ $config = require_once 'config.php';
     </div>
 
     <script>
-        let currentConversationId = null;
-        let currentOffset = 0;
-        let hasMoreConversations = true;
-        let conversationsPerPage = <?php echo $config['conversations_per_page']; ?>;
-        let isSending = false;
+        // Only keep the conversationsPerPage variable since it needs to be dynamic from PHP
+        let conversationsPerPage = <?php echo json_encode($config['conversations_per_page']); ?>;
 
         // Load conversations from the server
         async function loadConversations(loadMore = false) {
@@ -479,9 +481,11 @@ $config = require_once 'config.php';
                     hasMoreConversations = true;
                 }
                 
-                const response = await fetch(`api/conversations.php?limit=${conversationsPerPage}&offset=${currentOffset}`);
+                const response = await fetch(`/chat/api/conversations.php?limit=${conversationsPerPage}&offset=${currentOffset}`);
+                if (!response.ok) {
+                    throw new Error('Failed to load conversations');
+                }
                 const data = await response.json();
-                console.log('Conversations API Response:', data); // Debug log
                 
                 const conversations = data.conversations;
                 hasMoreConversations = data.hasMore;
@@ -492,10 +496,8 @@ $config = require_once 'config.php';
                     document.createElement('div');
                 
                 if (!loadMore) {
-                    // Store the footer before updating the sidebar
                     const footer = sidebar.querySelector('.sidebar-footer');
                     
-                    // Update the sidebar content with proper structure
                     sidebar.innerHTML = `
                         <div class="sidebar-header flex justify-between items-center mb-4">
                             <h2 class="text-xl font-semibold text-gray-800">المحادثات السابقة</h2>
@@ -508,9 +510,7 @@ $config = require_once 'config.php';
                         </div>
                     `;
                     
-                    // Restore the footer
                     sidebar.appendChild(footer);
-                    
                     conversationsList = sidebar.querySelector('.conversations-list');
                 }
                 
@@ -519,7 +519,6 @@ $config = require_once 'config.php';
                     return;
                 }
                 
-                // Create a document fragment to build the conversations list
                 const fragment = document.createDocumentFragment();
                 
                 conversations.forEach(conv => {
@@ -560,13 +559,10 @@ $config = require_once 'config.php';
                     }
                     conversationsList.appendChild(fragment);
                 } else {
-                    // Clear the container first
                     conversationsList.innerHTML = '';
-                    // Then add the new conversations
                     conversationsList.appendChild(fragment);
                 }
                 
-                // Add Load More button if there are more conversations
                 if (hasMoreConversations) {
                     const loadMoreBtn = document.createElement('button');
                     loadMoreBtn.className = 'load-more-btn w-full mt-4 p-2 text-center text-indigo-600 hover:text-indigo-800 font-semibold';
@@ -577,10 +573,9 @@ $config = require_once 'config.php';
                     };
                     conversationsList.appendChild(loadMoreBtn);
                 }
-                
             } catch (error) {
                 console.error('Error loading conversations:', error);
-                showError('حدث خطأ أثناء تحميل المحادثات');
+                showError('Failed to load conversations');
             }
         }
 
