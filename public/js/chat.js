@@ -128,7 +128,18 @@ async function createNewConversation() {
         const data = await response.json();
         
         if (response.status === 403) {
-            showUpgradeModal();
+            const chatArea = document.getElementById('chatContainer');
+            chatArea.innerHTML = `
+                <div class="flex flex-col items-center justify-center h-full text-center p-8">
+                    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 rounded-lg max-w-lg">
+                        <p class="font-bold mb-2">لقد وصلت إلى الحد الأقصى من المحادثات الشهرية</p>
+                        <p class="mb-4">قم بترقية عضويتك للاستمرار في استخدام المحادثات</p>
+                        <button onclick="showUpgradeModal()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+                            <i class="fas fa-crown"></i> ترقية العضوية
+                        </button>
+                    </div>
+                </div>
+            `;
             return;
         }
         
@@ -219,33 +230,10 @@ async function sendMessage() {
     try {
         // Check if we have an active conversation
         if (!currentConversationId) {
-            const response = await fetch('/chat/api/conversations.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    title: message.substring(0, 50) + '...'
-                })
-            });
-            
-            if (!response.ok) {
-                const contentType = response.headers.get('content-type');
-                if (contentType && contentType.includes('application/json')) {
-                    const data = await response.json();
-                    throw new Error(data.error || 'Failed to create conversation');
-                } else {
-                    throw new Error('Server error occurred');
-                }
+            await createNewConversation();
+            if (!currentConversationId) {
+                return; // If createNewConversation failed, it will have shown the limit message
             }
-            
-            const data = await response.json();
-            if (data.error) {
-                throw new Error(data.error);
-            }
-            
-            currentConversationId = data.id;
-            await loadConversations();
         }
         
         // Send the message

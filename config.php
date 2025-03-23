@@ -1,6 +1,6 @@
 <?php
 // Environment configuration
-define('ENVIRONMENT', 'test'); // Changed from 'test' to 'production'
+define('ENVIRONMENT', 'production'); // Changed from 'test' to 'production'
 
 // Webhook URLs
 $config = [
