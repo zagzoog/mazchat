@@ -10774,3 +10774,187 @@ string
 string
 [2025-03-23 20:04:42] Final JSON Response Length
 180
+[2025-03-23 20:38:44] === New Request Debug Log ===
+[2025-03-23 20:38:44] Request Data
+Array
+(
+    [message] => Hello
+    [sessionId] => 67e05cac05e661742757036
+)
+
+[2025-03-23 20:38:44] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-23 20:38:45] === Response Debug Info ===
+[2025-03-23 20:38:45] HTTP Code
+200
+[2025-03-23 20:38:45] Response Length
+165
+[2025-03-23 20:38:45] Response Type
+string
+[2025-03-23 20:38:45] First 1000 chars
+مرحبًا مرة أخرى! كيف يمكنني مساعدتك اليوم؟ إذا كنت تبحث عن شيء معين، فلا تتردد في طرح سؤالك.
+[2025-03-23 20:38:45] Last 1000 chars
+مرحبًا مرة أخرى! كيف يمكنني مساعدتك اليوم؟ إذا كنت تبحث عن شيء معين، فلا تتردد في طرح سؤالك.
+[2025-03-23 20:38:45] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 779
+    [request_size] => 249
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 1.278351
+    [namelookup_time] => 0.060141
+    [connect_time] => 0.177199
+    [pretransfer_time] => 0.283479
+    [size_upload] => 57
+    [size_download] => 165
+    [speed_download] => 129
+    [speed_upload] => 44
+    [download_content_length] => -1
+    [upload_content_length] => 57
+    [starttransfer_time] => 1.276596
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.80.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 62304
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 283331
+    [connect_time_us] => 177199
+    [namelookup_time_us] => 60141
+    [pretransfer_time_us] => 283479
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1276596
+    [total_time_us] => 1278351
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-23 20:38:45] === JSON Parsing Debug ===
+[2025-03-23 20:38:45] JSON Parse Error
+4
+[2025-03-23 20:38:45] JSON Parse Error Message
+Syntax error
+[2025-03-23 20:38:45] Response Data Type
+NULL
+[2025-03-23 20:38:45] === String Response Processing ===
+[2025-03-23 20:38:45] === Markdown Formatting Debug ===
+[2025-03-23 20:38:45] Input Text Length
+165
+[2025-03-23 20:38:45] Input Text Type
+string
+[2025-03-23 20:38:45] Output Text Length
+166
+[2025-03-23 20:38:45] Output Text Type
+string
+[2025-03-23 20:38:45] Formatted Response Length
+166
+[2025-03-23 20:38:45] Formatted Response Type
+string
+[2025-03-23 20:38:45] Final JSON Response Length
+182
+[2025-03-23 20:39:17] === New Request Debug Log ===
+[2025-03-23 20:39:17] Request Data
+Array
+(
+    [message] => I am looking for Misiar
+    [sessionId] => 67e05cac05e661742757036
+)
+
+[2025-03-23 20:39:17] Webhook URL
+https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+[2025-03-23 20:39:19] === Response Debug Info ===
+[2025-03-23 20:39:19] HTTP Code
+200
+[2025-03-23 20:39:19] Response Length
+454
+[2025-03-23 20:39:19] Response Type
+string
+[2025-03-23 20:39:19] First 1000 chars
+هل ترغب في البحث عن ملفات تعريف للأشخاص الذين يقبلون زواج المسيار؟ إذا كان الأمر كذلك، هل يمكنك توفير بعض المعلومات الإضافية، مثل الجنس (ذكر أو أنثى) أو العمر المطلوب أو الجنسية أو المدينة التي تفضلها؟ ستساعدني هذه التفاصيل في تقديم نتائج دقيقة أكثر.
+[2025-03-23 20:39:19] Last 1000 chars
+هل ترغب في البحث عن ملفات تعريف للأشخاص الذين يقبلون زواج المسيار؟ إذا كان الأمر كذلك، هل يمكنك توفير بعض المعلومات الإضافية، مثل الجنس (ذكر أو أنثى) أو العمر المطلوب أو الجنسية أو المدينة التي تفضلها؟ ستساعدني هذه التفاصيل في تقديم نتائج دقيقة أكثر.
+[2025-03-23 20:39:19] cURL Info
+Array
+(
+    [url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [content_type] => text/html; charset=utf-8
+    [http_code] => 200
+    [header_size] => 790
+    [request_size] => 267
+    [filetime] => -1
+    [ssl_verify_result] => 20
+    [redirect_count] => 0
+    [total_time] => 1.669885
+    [namelookup_time] => 0.003544
+    [connect_time] => 0.100031
+    [pretransfer_time] => 0.227704
+    [size_upload] => 75
+    [size_download] => 454
+    [speed_download] => 271
+    [speed_upload] => 44
+    [download_content_length] => -1
+    [upload_content_length] => 75
+    [starttransfer_time] => 1.66984
+    [redirect_time] => 0
+    [redirect_url] => 
+    [primary_ip] => 104.21.80.1
+    [certinfo] => Array
+        (
+        )
+
+    [primary_port] => 443
+    [local_ip] => 192.168.0.104
+    [local_port] => 62342
+    [http_version] => 3
+    [protocol] => 2
+    [ssl_verifyresult] => 0
+    [scheme] => HTTPS
+    [appconnect_time_us] => 227611
+    [connect_time_us] => 100031
+    [namelookup_time_us] => 3544
+    [pretransfer_time_us] => 227704
+    [redirect_time_us] => 0
+    [starttransfer_time_us] => 1669840
+    [total_time_us] => 1669885
+    [effective_method] => POST
+    [capath] => 
+    [cainfo] => 
+)
+
+[2025-03-23 20:39:19] === JSON Parsing Debug ===
+[2025-03-23 20:39:19] JSON Parse Error
+4
+[2025-03-23 20:39:19] JSON Parse Error Message
+Syntax error
+[2025-03-23 20:39:19] Response Data Type
+NULL
+[2025-03-23 20:39:19] === String Response Processing ===
+[2025-03-23 20:39:19] === Markdown Formatting Debug ===
+[2025-03-23 20:39:19] Input Text Length
+454
+[2025-03-23 20:39:19] Input Text Type
+string
+[2025-03-23 20:39:19] Output Text Length
+455
+[2025-03-23 20:39:19] Output Text Type
+string
+[2025-03-23 20:39:19] Formatted Response Length
+455
+[2025-03-23 20:39:19] Formatted Response Type
+string
+[2025-03-23 20:39:19] Final JSON Response Length
+471
