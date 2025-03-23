@@ -43,14 +43,16 @@ try {
                 conversation_id,
                 message_id,
                 word_count,
+                message_type,
                 created_at
-            ) VALUES (?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?)
         ");
         $stmt->execute([
             $message['user_id'],
             $message['conversation_id'],
             $message['id'],
             $wordCount,
+            $message['role'],
             $message['created_at']
         ]);
         

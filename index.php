@@ -790,7 +790,24 @@ $config = require_once 'config.php';
                 });
                 
                 if (!aiResponse.ok) {
-                    throw new Error('Failed to get AI response');
+                    const errorData = await aiResponse.json();
+                    if (aiResponse.status === 403 && errorData.limit_reached) {
+                        // User has reached their limit
+                        const chatArea = document.getElementById('chatContainer');
+                        chatArea.innerHTML += `
+                            <div class="flex flex-col items-center justify-center text-center p-8">
+                                <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 rounded-lg max-w-lg">
+                                    <p class="font-bold mb-2">لقد وصلت إلى الحد الأقصى ${errorData.limit_type === 'questions' ? 'للأسئلة' : 'للمحادثات'} الشهري</p>
+                                    <p class="mb-4">قم بترقية عضويتك للاستمرار في ${errorData.limit_type === 'questions' ? 'طرح الأسئلة' : 'إنشاء محادثات جديدة'}</p>
+                                    <button onclick="showUpgradeModal()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
+                                        <i class="fas fa-crown"></i> ترقية العضوية
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        return;
+                    }
+                    throw new Error(errorData.error || 'Failed to get AI response');
                 }
                 
                 const aiData = await aiResponse.json();

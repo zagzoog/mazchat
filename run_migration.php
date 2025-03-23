@@ -14,6 +14,7 @@ try {
             message_id INT UNSIGNED NOT NULL,
             word_count INT UNSIGNED NOT NULL DEFAULT 0,
             topic VARCHAR(255) NULL,
+            message_type ENUM('user', 'assistant') NOT NULL DEFAULT 'user',
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
             FOREIGN KEY (conversation_id) REFERENCES conversations(id) ON DELETE CASCADE,

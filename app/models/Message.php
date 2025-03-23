@@ -57,7 +57,7 @@ class Message extends Model {
             // Record usage statistics
             require_once __DIR__ . '/UsageStats.php';
             $usageStats = new UsageStats();
-            $usageStats->recordUsage($userId, $conversationId, $wordCount, null, $messageId);
+            $usageStats->recordUsage($userId, $conversationId, $wordCount, null, $messageId, $role);
             
             // Update message stats
             $usageStats->updateStats($conversationId, $messageId, $wordCount);

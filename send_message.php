@@ -75,7 +75,11 @@ $membership = new Membership();
 if (!$membership->checkQuestionLimit($_SESSION['user_id'])) {
     error_log("User " . $_SESSION['user_id'] . " has reached their monthly question limit");
     http_response_code(403);
-    echo json_encode(['error' => 'You have reached your monthly question limit. Please upgrade your membership to continue.'], JSON_UNESCAPED_UNICODE);
+    echo json_encode([
+        'error' => 'You have reached your monthly question limit. Please upgrade your membership to continue.',
+        'limit_reached' => true,
+        'limit_type' => 'questions'
+    ], JSON_UNESCAPED_UNICODE);
     exit;
 }
 

@@ -16,9 +16,11 @@ class UsageStats extends Model {
             $stmt->execute([$userId, $month]);
             $conversations = $stmt->fetch(PDO::FETCH_ASSOC);
             
-            // Get total questions and words from usage_stats
+            // Get total questions (user messages only) and total words (all messages)
             $stmt = $this->db->prepare(
-                'SELECT COUNT(*) as total_questions, SUM(word_count) as total_words 
+                'SELECT 
+                    SUM(CASE WHEN message_type = "user" THEN 1 ELSE 0 END) as total_questions,
+                    SUM(word_count) as total_words
                 FROM usage_stats 
                 WHERE user_id = ? 
                 AND DATE_FORMAT(created_at, "%Y-%m") = ?'
@@ -26,8 +28,15 @@ class UsageStats extends Model {
             $stmt->execute([$userId, $month]);
             $stats = $stmt->fetch(PDO::FETCH_ASSOC);
             
+            // Log the results for debugging
+            error_log("Monthly stats for user $userId in $month: " . json_encode([
+                'conversations' => $conversations['total_conversations'],
+                'questions' => $stats['total_questions'],
+                'words' => $stats['total_words']
+            ]));
+            
             return [
-                'total_conversations' => $conversations['total_conversations'],
+                'total_conversations' => $conversations['total_conversations'] ?: 0,
                 'total_questions' => $stats['total_questions'] ?: 0,
                 'total_words' => $stats['total_words'] ?: 0
             ];
@@ -43,7 +52,7 @@ class UsageStats extends Model {
                 'SELECT 
                     DATE(created_at) as date,
                     COUNT(DISTINCT conversation_id) as conversations,
-                    COUNT(*) as questions,
+                    SUM(CASE WHEN message_type = "user" THEN 1 ELSE 0 END) as questions,
                     SUM(word_count) as words
                 FROM usage_stats
                 WHERE user_id = ? 
@@ -80,13 +89,13 @@ class UsageStats extends Model {
         }
     }
     
-    public function recordUsage($userId, $conversationId, $wordCount, $topic = null, $messageId = null) {
+    public function recordUsage($userId, $conversationId, $wordCount, $topic = null, $messageId = null, $messageType = 'user') {
         try {
             $stmt = $this->db->prepare(
-                'INSERT INTO usage_stats (user_id, conversation_id, message_id, word_count, topic) 
-                VALUES (?, ?, ?, ?, ?)'
+                'INSERT INTO usage_stats (user_id, conversation_id, message_id, word_count, topic, message_type) 
+                VALUES (?, ?, ?, ?, ?, ?)'
             );
-            return $stmt->execute([$userId, $conversationId, $messageId, $wordCount, $topic]);
+            return $stmt->execute([$userId, $conversationId, $messageId, $wordCount, $topic, $messageType]);
         } catch (Exception $e) {
             error_log("Error recording usage: " . $e->getMessage());
             throw $e;

@@ -68,7 +68,11 @@ try {
             if (!$membership->checkUsageLimit($_SESSION['user_id'])) {
                 error_log("User " . $_SESSION['user_id'] . " has reached their monthly conversation limit");
                 http_response_code(403);
-                echo json_encode(['error' => 'You have reached your monthly conversation limit. Please upgrade your membership to continue.']);
+                echo json_encode([
+                    'error' => 'You have reached your monthly conversation limit. Please upgrade your membership to continue.',
+                    'limit_reached' => true,
+                    'limit_type' => 'conversations'
+                ]);
                 exit;
             }
             

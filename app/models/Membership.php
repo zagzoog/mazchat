@@ -137,9 +137,11 @@ class Membership extends Model {
         }
         
         // Get current month's question usage from usage_stats table
+        // Only count user messages
         $stmt = $db->prepare(
             'SELECT COUNT(*) FROM usage_stats 
              WHERE user_id = ? 
+             AND message_type = "user"
              AND DATE_FORMAT(created_at, "%Y-%m") = DATE_FORMAT(CURRENT_DATE, "%Y-%m")'
         );
         $stmt->execute([$userId]);
