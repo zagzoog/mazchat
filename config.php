@@ -15,10 +15,10 @@ $config = [
     'production' => [
         'webhook_url' => 'https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f',
         'ssl_verify' => false,
-        'debug' => false,
+        'debug' => true,
         'conversations_per_page' => 10,
-        'development_mode' => false,
-        'debug_logging' => false
+        'development_mode' => true,
+        'debug_logging' => true
     ]
 ];
 

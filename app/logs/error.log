@@ -1,0 +1,2162 @@
+[24-Mar-2025 00:52:44 Europe/London] PHP Fatal error:  Uncaught Error: Call to a member function getConfig() on null in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\plugins.php:155
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\plugins.php(191): PluginsController->getPluginSettings()
+#1 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\plugins.php on line 155
+[24-Mar-2025 00:56:29 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:56:29 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:56:29 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:56:29 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:56:29 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:56:29 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:56:29 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:56:29 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:56:29 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:56:29 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:56:29 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:56:29 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:56:29 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:56:29 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:56:29 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:56:29 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:56:29 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:56:29 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:56:29 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:56:29 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:56:29 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:56:29 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:57:07 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:57:07 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:57:07 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:57:07 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:57:07 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:57:07 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:57:07 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:57:07 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Attempting to activate plugin: TestMarketplacePlugin
+[24-Mar-2025 00:57:07 Europe/London] Available plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Plugin not found in loaded plugins: TestMarketplacePlugin
+[24-Mar-2025 00:57:07 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:57:07 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:57:07 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:57:07 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:57:07 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:57:07 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:57:07 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:57:07 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:57:07 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:57:07 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:57:07 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:57:07 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:57:07 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:57:07 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:58:39 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:58:39 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:58:39 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:58:39 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:58:39 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:58:39 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:58:39 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:58:41 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:58:41 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:58:41 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:58:41 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:58:41 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:58:41 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:58:41 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:58:41 Europe/London] Attempting to activate plugin: TestMarketplacePlugin
+[24-Mar-2025 00:58:41 Europe/London] Available plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:58:41 Europe/London] Plugin not found in loaded plugins: TestMarketplacePlugin
+[24-Mar-2025 00:58:41 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:58:41 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:58:41 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:58:41 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:58:41 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:58:41 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:58:41 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:58:41 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:58:41 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:58:41 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:58:41 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:58:41 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:58:41 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:58:41 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:58:41 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:58:41 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:58:41 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:58:41 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:58:41 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:58:41 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:58:41 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:59:31 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:59:31 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:59:31 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:59:31 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:59:31 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:59:31 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:59:31 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:59:33 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:59:33 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:59:33 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:59:33 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:59:33 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:59:33 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:59:33 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:59:33 Europe/London] Attempting to activate plugin: TestMarketplacePlugin
+[24-Mar-2025 00:59:33 Europe/London] Available plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:59:33 Europe/London] Plugin not found in loaded plugins: TestMarketplacePlugin
+[24-Mar-2025 00:59:33 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:59:33 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:59:33 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:59:33 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:59:33 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:59:33 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:59:33 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:59:33 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:59:33 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:59:33 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:59:33 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:59:33 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:59:33 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:59:33 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 00:59:33 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 00:59:33 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 00:59:33 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:59:33 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 00:59:33 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 00:59:33 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 00:59:33 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:00:29 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:00:29 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:00:29 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:00:29 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:00:29 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:00:29 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:00:29 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:00:31 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:00:31 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:00:31 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:00:31 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:00:31 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:00:31 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:00:31 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:00:31 Europe/London] Attempting to activate plugin: TestMarketplacePlugin
+[24-Mar-2025 01:00:31 Europe/London] Available plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:00:31 Europe/London] Plugin not found in loaded plugins: TestMarketplacePlugin
+[24-Mar-2025 01:00:31 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:00:31 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:00:31 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:00:31 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:00:31 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:00:31 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:00:31 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:00:31 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:00:31 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:00:31 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:00:31 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:00:31 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:00:31 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:00:31 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:00:31 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:00:31 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:00:31 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:00:32 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:00:32 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:00:32 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:00:32 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:01:28 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:01:28 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:01:28 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:01:28 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:01:28 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:01:28 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:01:28 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:01:28 Europe/London] Created temporary directory: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0aee8d81b6
+[24-Mar-2025 01:01:28 Europe/London] Extracted ZIP file to: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0aee8d81b6
+[24-Mar-2025 01:01:28 Europe/London] Files in temp directory: Array
+(
+    [0] => .
+    [1] => ..
+    [2] => TestMarketplacePlugin
+)
+
+[24-Mar-2025 01:01:28 Europe/London] Plugin name: TestMarketplacePlugin
+[24-Mar-2025 01:01:28 Europe/London] Plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:01:30 Europe/London] Removing existing plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:01:30 Europe/London] Moving plugin from C:\Users\zagzo\AppData\Local\Temp/plugin_67e0aee8d81b6/TestMarketplacePlugin to C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:01:30 Europe/London] Reloading plugins
+[24-Mar-2025 01:01:30 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:01:30 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:01:30 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:01:30 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:01:30 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:01:30 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:01:30 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:01:30 Europe/London] Attempting to activate plugin: TestMarketplacePlugin
+[24-Mar-2025 01:01:30 Europe/London] Available plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:01:30 Europe/London] Plugin not found in loaded plugins: TestMarketplacePlugin
+[24-Mar-2025 01:01:30 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:01:30 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:01:30 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:01:30 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:01:30 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:01:30 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:01:30 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:01:30 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:01:30 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:01:30 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:01:30 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:01:30 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:01:30 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:01:30 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:01:30 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:01:30 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:01:30 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:01:30 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:01:30 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:01:30 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:01:30 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:02:34 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:02:34 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:02:34 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:02:34 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:02:34 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:02:34 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:02:34 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:02:34 Europe/London] Created temporary directory: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0af2a88b86
+[24-Mar-2025 01:02:34 Europe/London] Extracted ZIP file to: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0af2a88b86
+[24-Mar-2025 01:02:34 Europe/London] Files in temp directory: Array
+(
+    [0] => .
+    [1] => ..
+    [2] => TestMarketplacePlugin
+)
+
+[24-Mar-2025 01:02:34 Europe/London] Plugin name: TestMarketplacePlugin
+[24-Mar-2025 01:02:34 Europe/London] Plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:02:36 Europe/London] Removing existing plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:02:36 Europe/London] Moving plugin from C:\Users\zagzo\AppData\Local\Temp/plugin_67e0af2a88b86/TestMarketplacePlugin to C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:02:36 Europe/London] Reloading plugins
+[24-Mar-2025 01:02:36 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:02:36 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:02:36 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:02:36 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:02:36 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:02:36 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:02:36 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:02:36 Europe/London] Attempting to activate plugin: TestMarketplacePlugin
+[24-Mar-2025 01:02:36 Europe/London] Available plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:02:36 Europe/London] Plugin not found in loaded plugins: TestMarketplacePlugin
+[24-Mar-2025 01:02:36 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:02:36 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:02:36 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:02:36 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:02:36 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:02:36 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:02:36 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:02:36 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:02:36 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:02:36 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:02:36 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:02:36 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:02:36 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:02:36 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:02:36 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:02:36 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:02:36 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:02:36 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:02:36 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:02:36 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:02:36 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:03:40 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:03:40 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:03:40 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:03:40 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:03:40 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:03:40 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:03:40 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:03:40 Europe/London] Created temporary directory: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0af6c6ecc2
+[24-Mar-2025 01:03:40 Europe/London] Extracted ZIP file to: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0af6c6ecc2
+[24-Mar-2025 01:03:40 Europe/London] Files in temp directory: Array
+(
+    [0] => .
+    [1] => ..
+    [2] => TestMarketplacePlugin
+)
+
+[24-Mar-2025 01:03:40 Europe/London] Plugin name: TestMarketplacePlugin
+[24-Mar-2025 01:03:40 Europe/London] Plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:03:42 Europe/London] Removing existing plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:03:42 Europe/London] Moving plugin from C:\Users\zagzo\AppData\Local\Temp/plugin_67e0af6c6ecc2/TestMarketplacePlugin to C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:03:42 Europe/London] Reloading plugins
+[24-Mar-2025 01:03:42 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:03:42 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:03:42 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:03:42 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:03:42 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:03:42 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:03:42 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:03:42 Europe/London] Attempting to activate plugin: TestMarketplacePlugin
+[24-Mar-2025 01:03:42 Europe/London] Available plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:03:42 Europe/London] Plugin not found in loaded plugins: TestMarketplacePlugin
+[24-Mar-2025 01:03:42 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:03:42 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:03:42 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:03:42 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:03:42 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:03:42 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:03:42 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:03:42 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:03:42 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:03:42 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:03:42 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:03:42 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:03:42 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:03:42 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:03:42 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:03:42 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:03:42 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:03:42 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:03:42 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:03:42 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:03:42 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:04:41 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:04:41 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:04:41 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:04:41 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:04:41 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:04:41 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:04:41 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:04:41 Europe/London] Starting plugin upload process
+[24-Mar-2025 01:04:41 Europe/London] Files received: Array
+(
+    [plugin_file] => Array
+        (
+            [name] => plugin.zip
+            [full_path] => plugin.zip
+            [type] => application/zip
+            [tmp_name] => C:\Users\zagzo\Downloads\UniServerZ\tmp\php6E41.tmp
+            [error] => 0
+            [size] => 1321
+        )
+
+)
+
+[24-Mar-2025 01:04:41 Europe/London] File extension: zip
+[24-Mar-2025 01:04:41 Europe/London] Creating temporary directory: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0afa910ad7
+[24-Mar-2025 01:04:41 Europe/London] Opening ZIP file: C:\Users\zagzo\Downloads\UniServerZ\tmp\php6E41.tmp
+[24-Mar-2025 01:04:41 Europe/London] Extracting ZIP file to: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0afa910ad7
+[24-Mar-2025 01:04:41 Europe/London] Files in temp directory: Array
+(
+    [0] => .
+    [1] => ..
+    [2] => TestMarketplacePlugin
+)
+
+[24-Mar-2025 01:04:41 Europe/London] Checking file/directory: .
+[24-Mar-2025 01:04:41 Europe/London] Checking file/directory: ..
+[24-Mar-2025 01:04:41 Europe/London] Checking file/directory: TestMarketplacePlugin
+[24-Mar-2025 01:04:41 Europe/London] Found potential main file: TestMarketplacePlugin/TestMarketplacePlugin.php
+[24-Mar-2025 01:04:41 Europe/London] Checking main file: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0afa910ad7/TestMarketplacePlugin/TestMarketplacePlugin.php
+[24-Mar-2025 01:04:41 Europe/London] Plugin name: TestMarketplacePlugin
+[24-Mar-2025 01:04:41 Europe/London] Target plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:04:43 Europe/London] Removing existing plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:04:43 Europe/London] Moving plugin from C:\Users\zagzo\AppData\Local\Temp/plugin_67e0afa910ad7/TestMarketplacePlugin to C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:04:43 Europe/London] Cleaning up temporary directory
+[24-Mar-2025 01:04:43 Europe/London] Reloading plugins
+[24-Mar-2025 01:04:43 Europe/London] Plugin upload completed successfully
+[24-Mar-2025 01:04:43 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:04:43 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:04:43 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:04:43 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:04:43 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:04:43 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:04:43 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:04:43 Europe/London] Attempting to activate plugin: TestMarketplacePlugin
+[24-Mar-2025 01:04:43 Europe/London] Available plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:04:43 Europe/London] Plugin not found in loaded plugins: TestMarketplacePlugin
+[24-Mar-2025 01:04:43 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:04:43 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:04:43 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:04:43 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:04:43 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:04:43 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:04:43 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:04:43 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:04:43 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:04:43 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:04:43 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:04:43 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:04:43 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:04:43 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:04:43 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:04:43 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:04:43 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:04:43 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:04:43 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:04:43 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:04:43 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:06:15 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:06:15 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:06:15 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:06:15 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:06:15 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:06:15 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:06:15 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:06:15 Europe/London] Starting plugin upload process
+[24-Mar-2025 01:06:15 Europe/London] Files received: Array
+(
+    [plugin_file] => Array
+        (
+            [name] => plugin.zip
+            [full_path] => plugin.zip
+            [type] => application/zip
+            [tmp_name] => C:\Users\zagzo\Downloads\UniServerZ\tmp\phpDEF8.tmp
+            [error] => 0
+            [size] => 1321
+        )
+
+)
+
+[24-Mar-2025 01:06:15 Europe/London] File extension: zip
+[24-Mar-2025 01:06:15 Europe/London] Creating temporary directory: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0b0077162e
+[24-Mar-2025 01:06:15 Europe/London] Opening ZIP file: C:\Users\zagzo\Downloads\UniServerZ\tmp\phpDEF8.tmp
+[24-Mar-2025 01:06:15 Europe/London] Extracting ZIP file to: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0b0077162e
+[24-Mar-2025 01:06:15 Europe/London] Files in temp directory: Array
+(
+    [0] => .
+    [1] => ..
+    [2] => TestMarketplacePlugin
+)
+
+[24-Mar-2025 01:06:15 Europe/London] Checking file/directory: .
+[24-Mar-2025 01:06:15 Europe/London] Checking file/directory: ..
+[24-Mar-2025 01:06:15 Europe/London] Checking file/directory: TestMarketplacePlugin
+[24-Mar-2025 01:06:15 Europe/London] Found potential main file: TestMarketplacePlugin/TestMarketplacePlugin.php
+[24-Mar-2025 01:06:15 Europe/London] Checking main file: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0b0077162e/TestMarketplacePlugin/TestMarketplacePlugin.php
+[24-Mar-2025 01:06:15 Europe/London] Plugin name: TestMarketplacePlugin
+[24-Mar-2025 01:06:15 Europe/London] Target plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:06:17 Europe/London] Removing existing plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:06:17 Europe/London] Moving plugin from C:\Users\zagzo\AppData\Local\Temp/plugin_67e0b0077162e/TestMarketplacePlugin to C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:06:17 Europe/London] Cleaning up temporary directory
+[24-Mar-2025 01:06:17 Europe/London] Reloading plugins
+[24-Mar-2025 01:06:17 Europe/London] Plugin upload completed successfully
+[24-Mar-2025 01:06:17 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:06:17 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:06:17 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:06:17 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:06:17 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:06:17 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:06:17 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:06:17 Europe/London] Attempting to activate plugin: TestMarketplacePlugin
+[24-Mar-2025 01:06:17 Europe/London] Available plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:06:17 Europe/London] Plugin not found in loaded plugins: TestMarketplacePlugin
+[24-Mar-2025 01:06:17 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:06:17 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:06:17 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:06:17 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:06:17 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:06:17 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:06:17 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:06:17 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:06:17 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:06:17 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:06:17 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:06:17 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:06:17 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:06:17 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:06:17 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:06:17 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:06:17 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:06:17 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:06:17 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:06:17 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:06:17 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:07:17 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:07:17 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:07:17 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:07:17 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:07:17 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:07:17 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:07:17 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:07:17 Europe/London] Starting plugin upload process
+[24-Mar-2025 01:07:17 Europe/London] Files received: Array
+(
+    [plugin_file] => Array
+        (
+            [name] => plugin.zip
+            [full_path] => plugin.zip
+            [type] => application/zip
+            [tmp_name] => C:\Users\zagzo\Downloads\UniServerZ\tmp\phpCFD2.tmp
+            [error] => 0
+            [size] => 1321
+        )
+
+)
+
+[24-Mar-2025 01:07:17 Europe/London] File extension: zip
+[24-Mar-2025 01:07:17 Europe/London] Creating temporary directory: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0b0451d01f
+[24-Mar-2025 01:07:17 Europe/London] Opening ZIP file: C:\Users\zagzo\Downloads\UniServerZ\tmp\phpCFD2.tmp
+[24-Mar-2025 01:07:17 Europe/London] Extracting ZIP file to: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0b0451d01f
+[24-Mar-2025 01:07:17 Europe/London] Files in temp directory: Array
+(
+    [0] => .
+    [1] => ..
+    [2] => TestMarketplacePlugin
+)
+
+[24-Mar-2025 01:07:17 Europe/London] Checking file/directory: .
+[24-Mar-2025 01:07:17 Europe/London] Checking file/directory: ..
+[24-Mar-2025 01:07:17 Europe/London] Checking file/directory: TestMarketplacePlugin
+[24-Mar-2025 01:07:17 Europe/London] Found potential main file: TestMarketplacePlugin/TestMarketplacePlugin.php
+[24-Mar-2025 01:07:17 Europe/London] Checking main file: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0b0451d01f/TestMarketplacePlugin/TestMarketplacePlugin.php
+[24-Mar-2025 01:07:17 Europe/London] Plugin name: TestMarketplacePlugin
+[24-Mar-2025 01:07:17 Europe/London] Target plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:07:19 Europe/London] Removing existing plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:07:19 Europe/London] Moving plugin from C:\Users\zagzo\AppData\Local\Temp/plugin_67e0b0451d01f/TestMarketplacePlugin to C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:07:19 Europe/London] Setting file permissions
+[24-Mar-2025 01:07:19 Europe/London] Cleaning up temporary directory
+[24-Mar-2025 01:07:19 Europe/London] Reloading plugins
+[24-Mar-2025 01:07:19 Europe/London] Plugin upload completed successfully
+[24-Mar-2025 01:07:19 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:07:19 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:07:19 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:07:19 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:07:19 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:07:19 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:07:19 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:07:19 Europe/London] Attempting to activate plugin: TestMarketplacePlugin
+[24-Mar-2025 01:07:19 Europe/London] Available plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:07:19 Europe/London] Plugin not found in loaded plugins: TestMarketplacePlugin
+[24-Mar-2025 01:07:19 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:07:19 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:07:19 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:07:19 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:07:19 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:07:19 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:07:19 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:07:19 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:07:19 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:07:19 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:07:19 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:07:19 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:07:19 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:07:19 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:07:19 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:07:19 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:07:19 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:07:19 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:07:19 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:07:19 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:07:19 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:11:15 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:11:15 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:11:15 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:15 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:15 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:11:15 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:11:15 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:11:15 Europe/London] Starting plugin upload process
+[24-Mar-2025 01:11:15 Europe/London] Files received: Array
+(
+    [plugin_file] => Array
+        (
+            [name] => plugin.zip
+            [full_path] => plugin.zip
+            [type] => application/zip
+            [tmp_name] => C:\Users\zagzo\Downloads\UniServerZ\tmp\php7367.tmp
+            [error] => 0
+            [size] => 1313
+        )
+
+)
+
+[24-Mar-2025 01:11:15 Europe/London] File extension: zip
+[24-Mar-2025 01:11:15 Europe/London] Creating temporary directory: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0b13393c96
+[24-Mar-2025 01:11:15 Europe/London] Opening ZIP file: C:\Users\zagzo\Downloads\UniServerZ\tmp\php7367.tmp
+[24-Mar-2025 01:11:15 Europe/London] Extracting ZIP file to: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0b13393c96
+[24-Mar-2025 01:11:15 Europe/London] Files in temp directory: Array
+(
+    [0] => .
+    [1] => ..
+    [2] => TestMarketplacePlugin
+)
+
+[24-Mar-2025 01:11:15 Europe/London] Checking file/directory: .
+[24-Mar-2025 01:11:15 Europe/London] Checking file/directory: ..
+[24-Mar-2025 01:11:15 Europe/London] Checking file/directory: TestMarketplacePlugin
+[24-Mar-2025 01:11:15 Europe/London] Found potential main file: TestMarketplacePlugin/TestMarketplacePlugin.php
+[24-Mar-2025 01:11:15 Europe/London] Checking main file: C:\Users\zagzo\AppData\Local\Temp/plugin_67e0b13393c96/TestMarketplacePlugin/TestMarketplacePlugin.php
+[24-Mar-2025 01:11:15 Europe/London] Plugin name: TestMarketplacePlugin
+[24-Mar-2025 01:11:15 Europe/London] Target plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:11:17 Europe/London] Removing existing plugin directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:11:17 Europe/London] Moving plugin from C:\Users\zagzo\AppData\Local\Temp/plugin_67e0b13393c96/TestMarketplacePlugin to C:\Users\zagzo\Downloads\UniServerZ\www\chat\app/plugins/TestMarketplacePlugin
+[24-Mar-2025 01:11:17 Europe/London] Setting file permissions
+[24-Mar-2025 01:11:17 Europe/London] Cleaning up temporary directory
+[24-Mar-2025 01:11:17 Europe/London] Reloading plugins
+[24-Mar-2025 01:11:17 Europe/London] Plugin upload completed successfully
+[24-Mar-2025 01:11:17 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:11:17 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:11:17 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:17 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:17 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:11:17 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:11:17 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:11:17 Europe/London] Attempting to activate plugin: TestMarketplacePlugin
+[24-Mar-2025 01:11:17 Europe/London] Available plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:11:17 Europe/London] Plugin not found in loaded plugins: TestMarketplacePlugin
+[24-Mar-2025 01:11:17 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:11:17 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:11:17 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:17 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:17 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:11:17 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:11:17 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:11:17 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:11:17 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:11:17 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:17 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:17 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:11:17 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:11:17 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:11:17 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:11:17 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:11:17 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:17 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:17 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:11:17 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:11:17 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:11:26 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:11:26 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+)
+
+[24-Mar-2025 01:11:26 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:26 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:26 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:11:26 Europe/London] Loaded plugins: Array
+(
+    [0] => LLMModelSelector
+)
+
+[24-Mar-2025 01:11:26 Europe/London] Active plugins: Array
+(
+)
+
+[24-Mar-2025 01:11:26 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:11:26 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+    [1] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/TestPlugin
+)
+
+[24-Mar-2025 01:11:26 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:26 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:26 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:11:26 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/TestPlugin/TestPlugin.php
+[24-Mar-2025 01:11:26 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/TestPlugin/TestPlugin.php
+[24-Mar-2025 01:11:26 Europe/London] PHP Warning:  require_once(C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins/Plugin.php): Failed to open stream: No such file or directory in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\TestPlugin\TestPlugin.php on line 2
+[24-Mar-2025 01:11:26 Europe/London] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins/Plugin.php' (include_path='.;C:/Users/zagzo/Downloads/UniServerZ/home/us_pear/PEAR') in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\TestPlugin\TestPlugin.php:2
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(40): require_once()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(12): PluginManager->loadPlugins()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(17): PluginManager->__construct()
+#3 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\plugins.php(14): PluginManager::getInstance()
+#4 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\plugins.php(274): PluginsController->__construct()
+#5 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\TestPlugin\TestPlugin.php on line 2
+[24-Mar-2025 01:11:26 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:11:26 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+    [1] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/TestPlugin
+)
+
+[24-Mar-2025 01:11:26 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:26 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:26 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:11:26 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/TestPlugin/TestPlugin.php
+[24-Mar-2025 01:11:26 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/TestPlugin/TestPlugin.php
+[24-Mar-2025 01:11:26 Europe/London] PHP Warning:  require_once(C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins/Plugin.php): Failed to open stream: No such file or directory in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\TestPlugin\TestPlugin.php on line 2
+[24-Mar-2025 01:11:26 Europe/London] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins/Plugin.php' (include_path='.;C:/Users/zagzo/Downloads/UniServerZ/home/us_pear/PEAR') in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\TestPlugin\TestPlugin.php:2
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(40): require_once()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(12): PluginManager->loadPlugins()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(17): PluginManager->__construct()
+#3 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\messages.php(14): PluginManager::getInstance()
+#4 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\messages.php(70): MessagesController->__construct()
+#5 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\TestPlugin\TestPlugin.php on line 2
+[24-Mar-2025 01:11:26 Europe/London] Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[24-Mar-2025 01:11:26 Europe/London] Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+    [1] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/TestPlugin
+)
+
+[24-Mar-2025 01:11:26 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:26 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[24-Mar-2025 01:11:26 Europe/London] Creating instance of plugin class: LLMModelSelector
+[24-Mar-2025 01:11:26 Europe/London] Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/TestPlugin/TestPlugin.php
+[24-Mar-2025 01:11:26 Europe/London] Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/TestPlugin/TestPlugin.php
+[24-Mar-2025 01:11:26 Europe/London] PHP Warning:  require_once(C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins/Plugin.php): Failed to open stream: No such file or directory in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\TestPlugin\TestPlugin.php on line 2
+[24-Mar-2025 01:11:26 Europe/London] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins/Plugin.php' (include_path='.;C:/Users/zagzo/Downloads/UniServerZ/home/us_pear/PEAR') in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\TestPlugin\TestPlugin.php:2
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(40): require_once()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(12): PluginManager->loadPlugins()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(17): PluginManager->__construct()
+#3 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\plugins.php(14): PluginManager::getInstance()
+#4 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\plugins.php(274): PluginsController->__construct()
+#5 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\TestPlugin\TestPlugin.php on line 2
+[24-Mar-2025 01:12:03 Europe/London] Error getting conversations {"error":"SQLSTATE[42S22]: Column not found: 1054 Unknown column 'word_count' in 'field list'","trace":"#0 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\app\\models\\Conversation.php(23): PDO->prepare()\n#1 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\\conversations.php(41): Conversation->getConversations()\n#2 {main}"}
+[24-Mar-2025 01:12:10 Europe/London] Error getting conversations {"error":"SQLSTATE[42S22]: Column not found: 1054 Unknown column 'word_count' in 'field list'","trace":"#0 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\app\\models\\Conversation.php(23): PDO->prepare()\n#1 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\\conversations.php(41): Conversation->getConversations()\n#2 {main}"}
+[24-Mar-2025 01:12:11 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 01:12:11 Europe/London] Error in dashboard API: User not found
+[24-Mar-2025 01:12:12 Europe/London] Error getting conversations {"error":"SQLSTATE[42S22]: Column not found: 1054 Unknown column 'word_count' in 'field list'","trace":"#0 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\app\\models\\Conversation.php(23): PDO->prepare()\n#1 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\\conversations.php(41): Conversation->getConversations()\n#2 {main}"}
+[24-Mar-2025 01:12:14 Europe/London] Error getting conversations {"error":"SQLSTATE[42S22]: Column not found: 1054 Unknown column 'word_count' in 'field list'","trace":"#0 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\app\\models\\Conversation.php(23): PDO->prepare()\n#1 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\\conversations.php(41): Conversation->getConversations()\n#2 {main}"}
+[24-Mar-2025 01:12:21 Europe/London] Error getting conversations {"error":"SQLSTATE[42S22]: Column not found: 1054 Unknown column 'word_count' in 'field list'","trace":"#0 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\app\\models\\Conversation.php(23): PDO->prepare()\n#1 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\\conversations.php(41): Conversation->getConversations()\n#2 {main}"}
+[24-Mar-2025 01:13:34 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:13:34 Europe/London] Initializing response compression...
+[24-Mar-2025 01:13:34 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:13:34 Europe/London] Response compression started
+[24-Mar-2025 01:13:34 Europe/London] Auth endpoint called
+[24-Mar-2025 01:13:34 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:13:34 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:13:34 Europe/London] Database connection successful
+[24-Mar-2025 01:13:34 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:13:34 Europe/London] User data found: Array
+(
+    [id] => 24b9c124-0848-11f0-90cb-d880837d8388
+    [username] => testuser
+    [password] => $2y$10$l6VMP9Jt9UXam7NDhoNv8uuFsemd4WPKw/fVn39tkQaqaa6cPRZXu
+    [email] => test@example.com
+    [role] => user
+    [api_token] => cb5b0ee87510cba21a22504cf5a8e1d7524454c4a11e6d85a2112fe2b1ac716b
+    [api_token_expires] => 2025-04-23 01:12:57
+    [created_at] => 2025-03-24 03:37:19
+    [last_login] => 
+    [membership_type] => free
+)
+
+[24-Mar-2025 01:13:34 Europe/London] Password verification successful
+[24-Mar-2025 01:13:34 Europe/London] Membership data: 
+[24-Mar-2025 01:13:34 Europe/London] Login error: SQLSTATE[HY000]: General error: 1364 Field 'id' doesn't have a default value
+[24-Mar-2025 01:13:34 Europe/London] Stack trace: #0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\auth.php(80): PDOStatement->execute()
+#1 {main}
+[24-Mar-2025 01:13:34 Europe/London] Ending response compression
+[24-Mar-2025 01:14:32 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:14:32 Europe/London] Initializing response compression...
+[24-Mar-2025 01:14:32 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:14:32 Europe/London] Response compression started
+[24-Mar-2025 01:14:32 Europe/London] Auth endpoint called
+[24-Mar-2025 01:14:32 Europe/London] Received data: Array
+(
+    [username] => mychat
+    [password] => moha1212
+)
+
+[24-Mar-2025 01:14:32 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:14:32 Europe/London] Database connection successful
+[24-Mar-2025 01:14:32 Europe/London] Looking up user: mychat
+[24-Mar-2025 01:14:32 Europe/London] User data found: 
+[24-Mar-2025 01:14:32 Europe/London] Authentication failed for user: mychat
+[24-Mar-2025 01:14:32 Europe/London] Ending response compression
+[24-Mar-2025 01:15:25 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:15:25 Europe/London] Initializing response compression...
+[24-Mar-2025 01:15:25 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:15:25 Europe/London] Response compression started
+[24-Mar-2025 01:15:25 Europe/London] Auth endpoint called
+[24-Mar-2025 01:15:25 Europe/London] Received data: Array
+(
+    [username] => mychat
+    [password] => moha1212
+)
+
+[24-Mar-2025 01:15:25 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:15:25 Europe/London] Database connection successful
+[24-Mar-2025 01:15:25 Europe/London] Looking up user: mychat
+[24-Mar-2025 01:15:25 Europe/London] User data found: 
+[24-Mar-2025 01:15:25 Europe/London] Authentication failed for user: mychat
+[24-Mar-2025 01:15:25 Europe/London] Ending response compression
+[24-Mar-2025 01:16:05 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:16:05 Europe/London] Initializing response compression...
+[24-Mar-2025 01:16:05 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:16:05 Europe/London] Response compression started
+[24-Mar-2025 01:16:05 Europe/London] Auth endpoint called
+[24-Mar-2025 01:16:05 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:16:05 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:16:05 Europe/London] Database connection successful
+[24-Mar-2025 01:16:05 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:16:05 Europe/London] User data found: Array
+(
+    [id] => 81cd4e1f-084d-11f0-90cb-d880837d8388
+    [username] => testuser
+    [password] => $2y$10$OwnIp7SQfjFCCFzBeqfe5OSIn9fZCMAi30HYQ3ZBA1isCT81GQhrC
+    [email] => test@example.com
+    [role] => user
+    [api_token] => 
+    [api_token_expires] => 
+    [created_at] => 2025-03-24 04:15:43
+    [last_login] => 
+    [membership_type] => free
+)
+
+[24-Mar-2025 01:16:05 Europe/London] Password verification successful
+[24-Mar-2025 01:16:05 Europe/London] Membership data: 
+[24-Mar-2025 01:16:05 Europe/London] Login error: SQLSTATE[HY000]: General error: 1364 Field 'id' doesn't have a default value
+[24-Mar-2025 01:16:05 Europe/London] Stack trace: #0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\auth.php(80): PDOStatement->execute()
+#1 {main}
+[24-Mar-2025 01:16:05 Europe/London] Ending response compression
+[24-Mar-2025 01:16:59 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:16:59 Europe/London] Initializing response compression...
+[24-Mar-2025 01:16:59 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:16:59 Europe/London] Response compression started
+[24-Mar-2025 01:16:59 Europe/London] Auth endpoint called
+[24-Mar-2025 01:16:59 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:16:59 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:16:59 Europe/London] Database connection successful
+[24-Mar-2025 01:16:59 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:16:59 Europe/London] User data found: Array
+(
+    [id] => aad283ee-084d-11f0-90cb-d880837d8388
+    [username] => testuser
+    [password] => $2y$10$wOxnGdiNQ3Ppg74YsIzT0.ZaJ67PbaKyFXAx/3fTs4RvHjHBiW1jC
+    [email] => test@example.com
+    [role] => user
+    [api_token] => 
+    [api_token_expires] => 
+    [created_at] => 2025-03-24 04:16:51
+    [last_login] => 
+    [membership_type] => free
+)
+
+[24-Mar-2025 01:16:59 Europe/London] Password verification successful
+[24-Mar-2025 01:16:59 Europe/London] Membership data: 
+[24-Mar-2025 01:16:59 Europe/London] Login error: SQLSTATE[HY000]: General error: 1364 Field 'id' doesn't have a default value
+[24-Mar-2025 01:16:59 Europe/London] Stack trace: #0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\auth.php(80): PDOStatement->execute()
+#1 {main}
+[24-Mar-2025 01:16:59 Europe/London] Ending response compression
+[24-Mar-2025 01:20:41 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:20:41 Europe/London] Initializing response compression...
+[24-Mar-2025 01:20:41 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:20:41 Europe/London] Response compression started
+[24-Mar-2025 01:20:41 Europe/London] Auth endpoint called
+[24-Mar-2025 01:20:41 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:20:41 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:20:41 Europe/London] Database connection successful
+[24-Mar-2025 01:20:41 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:20:41 Europe/London] User data found: Array
+(
+    [id] => 1
+    [username] => testuser
+    [email] => test@example.com
+    [password] => $2y$10$rIggkW5nc78xAvrKvuHR2uPrET0M1jrbwHBKOJE85SumLR0ua2/EW
+    [created_at] => 2025-03-24 04:20:33
+    [updated_at] => 2025-03-24 04:20:33
+)
+
+[24-Mar-2025 01:20:41 Europe/London] Password verification successful
+[24-Mar-2025 01:20:41 Europe/London] Membership data: Array
+(
+    [type] => free
+)
+
+[24-Mar-2025 01:20:41 Europe/London] Sending success response: Array
+(
+    [success] => 1
+    [user] => Array
+        (
+            [id] => 1
+            [username] => testuser
+            [email] => test@example.com
+            [membership_type] => free
+        )
+
+)
+
+[24-Mar-2025 01:20:41 Europe/London] Ending response compression
+[24-Mar-2025 01:20:41 Europe/London] PHP Warning:  Undefined array key "api_token" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\test_api_endpoints.php on line 77
+[24-Mar-2025 01:21:07 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:21:07 Europe/London] Initializing response compression...
+[24-Mar-2025 01:21:07 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:21:07 Europe/London] Response compression started
+[24-Mar-2025 01:21:07 Europe/London] Auth endpoint called
+[24-Mar-2025 01:21:07 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:21:07 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:21:07 Europe/London] Database connection successful
+[24-Mar-2025 01:21:07 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:21:07 Europe/London] User data found: Array
+(
+    [id] => 1
+    [username] => testuser
+    [email] => test@example.com
+    [password] => $2y$10$rIggkW5nc78xAvrKvuHR2uPrET0M1jrbwHBKOJE85SumLR0ua2/EW
+    [created_at] => 2025-03-24 04:20:33
+    [updated_at] => 2025-03-24 04:20:33
+)
+
+[24-Mar-2025 01:21:07 Europe/London] Password verification successful
+[24-Mar-2025 01:21:07 Europe/London] Membership data: Array
+(
+    [type] => free
+)
+
+[24-Mar-2025 01:21:07 Europe/London] Login error: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'api_token' in 'field list'
+[24-Mar-2025 01:21:07 Europe/London] Stack trace: #0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\auth.php(90): PDO->prepare()
+#1 {main}
+[24-Mar-2025 01:21:07 Europe/London] Ending response compression
+[24-Mar-2025 01:21:38 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:21:38 Europe/London] Initializing response compression...
+[24-Mar-2025 01:21:38 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:21:38 Europe/London] Response compression started
+[24-Mar-2025 01:21:38 Europe/London] Auth endpoint called
+[24-Mar-2025 01:21:38 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:21:38 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:21:38 Europe/London] Database connection successful
+[24-Mar-2025 01:21:38 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:21:38 Europe/London] User data found: Array
+(
+    [id] => 1
+    [username] => testuser
+    [email] => test@example.com
+    [password] => $2y$10$rIggkW5nc78xAvrKvuHR2uPrET0M1jrbwHBKOJE85SumLR0ua2/EW
+    [created_at] => 2025-03-24 04:20:33
+    [updated_at] => 2025-03-24 04:20:33
+    [api_token] => 
+    [api_token_expires] => 
+)
+
+[24-Mar-2025 01:21:38 Europe/London] Password verification successful
+[24-Mar-2025 01:21:38 Europe/London] Membership data: Array
+(
+    [type] => free
+)
+
+[24-Mar-2025 01:21:38 Europe/London] Sending success response: Array
+(
+    [success] => 1
+    [user] => Array
+        (
+            [id] => 1
+            [username] => testuser
+            [email] => test@example.com
+            [membership_type] => free
+            [api_token] => 31524353a93e69231c284c9c9e69fa9d218e594b2c2fbd65d96348d29773444b
+            [api_token_expires] => 2025-03-25 01:21:38
+        )
+
+)
+
+[24-Mar-2025 01:21:38 Europe/London] Ending response compression
+[24-Mar-2025 01:22:47 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:22:47 Europe/London] Initializing response compression...
+[24-Mar-2025 01:22:47 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:22:47 Europe/London] Response compression started
+[24-Mar-2025 01:22:47 Europe/London] Auth endpoint called
+[24-Mar-2025 01:22:47 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:22:47 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:22:47 Europe/London] Database connection successful
+[24-Mar-2025 01:22:47 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:22:47 Europe/London] User data found: Array
+(
+    [id] => 1
+    [username] => testuser
+    [email] => test@example.com
+    [password] => $2y$10$rIggkW5nc78xAvrKvuHR2uPrET0M1jrbwHBKOJE85SumLR0ua2/EW
+    [created_at] => 2025-03-24 04:20:33
+    [updated_at] => 2025-03-24 04:21:38
+    [api_token] => 31524353a93e69231c284c9c9e69fa9d218e594b2c2fbd65d96348d29773444b
+    [api_token_expires] => 2025-03-25 01:21:38
+)
+
+[24-Mar-2025 01:22:47 Europe/London] Password verification successful
+[24-Mar-2025 01:22:47 Europe/London] Membership data: Array
+(
+    [type] => free
+)
+
+[24-Mar-2025 01:22:47 Europe/London] Sending success response: Array
+(
+    [success] => 1
+    [user] => Array
+        (
+            [id] => 1
+            [username] => testuser
+            [email] => test@example.com
+            [membership_type] => free
+            [api_token] => 83d1ff97b07d5334b2b1c3af317d3b1090c4d2b7c262a621c8367a38b0fef83d
+            [api_token_expires] => 2025-03-25 01:22:47
+        )
+
+)
+
+[24-Mar-2025 01:22:47 Europe/London] Ending response compression
+[24-Mar-2025 01:22:47 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method UsageStats::getMonthlyStats() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php:84
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 84
+[24-Mar-2025 01:22:47 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method Conversation::getByUserId() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\conversations.php:63
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\conversations.php on line 63
+[24-Mar-2025 01:22:47 Europe/London] PHP Warning:  Array to string conversion in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Conversation.php on line 73
+[24-Mar-2025 01:22:47 Europe/London] Error creating conversation {"error":"SQLSTATE[HY000]: General error: 1366 Incorrect integer value: 'Array' for column 'user_id' at row 1","trace":"#0 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\app\\models\\Conversation.php(73): PDOStatement->execute()\n#1 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\api\\conversations.php(80): Conversation->create()\n#2 {main}"}
+[24-Mar-2025 01:24:54 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:24:54 Europe/London] Initializing response compression...
+[24-Mar-2025 01:24:54 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:24:54 Europe/London] Response compression started
+[24-Mar-2025 01:24:54 Europe/London] Auth endpoint called
+[24-Mar-2025 01:24:54 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:24:54 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:24:54 Europe/London] Database connection successful
+[24-Mar-2025 01:24:54 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:24:54 Europe/London] User data found: Array
+(
+    [id] => 1
+    [username] => testuser
+    [email] => test@example.com
+    [password] => $2y$10$rIggkW5nc78xAvrKvuHR2uPrET0M1jrbwHBKOJE85SumLR0ua2/EW
+    [created_at] => 2025-03-24 04:20:33
+    [updated_at] => 2025-03-24 04:22:47
+    [api_token] => 83d1ff97b07d5334b2b1c3af317d3b1090c4d2b7c262a621c8367a38b0fef83d
+    [api_token_expires] => 2025-03-25 01:22:47
+)
+
+[24-Mar-2025 01:24:54 Europe/London] Password verification successful
+[24-Mar-2025 01:24:54 Europe/London] Membership data: Array
+(
+    [type] => free
+)
+
+[24-Mar-2025 01:24:54 Europe/London] Sending success response: Array
+(
+    [success] => 1
+    [user] => Array
+        (
+            [id] => 1
+            [username] => testuser
+            [email] => test@example.com
+            [membership_type] => free
+            [api_token] => dc906cbe77eb22d2ee19d815ce24010ca0a1cd3b4275faa23523451f8e83d841
+            [api_token_expires] => 2025-03-25 01:24:54
+        )
+
+)
+
+[24-Mar-2025 01:24:54 Europe/London] Ending response compression
+[24-Mar-2025 01:24:54 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method UsageStats::getMonthlyStats() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php:84
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 84
+[24-Mar-2025 01:25:56 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:25:56 Europe/London] Initializing response compression...
+[24-Mar-2025 01:25:56 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:25:56 Europe/London] Response compression started
+[24-Mar-2025 01:25:56 Europe/London] Auth endpoint called
+[24-Mar-2025 01:25:56 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:25:56 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:25:56 Europe/London] Database connection successful
+[24-Mar-2025 01:25:56 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:25:56 Europe/London] User data found: Array
+(
+    [id] => 1
+    [username] => testuser
+    [email] => test@example.com
+    [password] => $2y$10$rIggkW5nc78xAvrKvuHR2uPrET0M1jrbwHBKOJE85SumLR0ua2/EW
+    [created_at] => 2025-03-24 04:20:33
+    [updated_at] => 2025-03-24 04:24:54
+    [api_token] => dc906cbe77eb22d2ee19d815ce24010ca0a1cd3b4275faa23523451f8e83d841
+    [api_token_expires] => 2025-03-25 01:24:54
+)
+
+[24-Mar-2025 01:25:56 Europe/London] Password verification successful
+[24-Mar-2025 01:25:56 Europe/London] Membership data: Array
+(
+    [type] => free
+)
+
+[24-Mar-2025 01:25:56 Europe/London] Sending success response: Array
+(
+    [success] => 1
+    [user] => Array
+        (
+            [id] => 1
+            [username] => testuser
+            [email] => test@example.com
+            [membership_type] => free
+            [api_token] => d35a5073fddf63fc48bfebcf0b8ca67b4e55570f55488b10ace31a139ba6db34
+            [api_token_expires] => 2025-03-25 01:25:56
+        )
+
+)
+
+[24-Mar-2025 01:25:56 Europe/London] Ending response compression
+[24-Mar-2025 01:26:53 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:26:53 Europe/London] Initializing response compression...
+[24-Mar-2025 01:26:53 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:26:53 Europe/London] Response compression started
+[24-Mar-2025 01:26:53 Europe/London] Auth endpoint called
+[24-Mar-2025 01:26:53 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:26:53 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:26:53 Europe/London] Database connection successful
+[24-Mar-2025 01:26:53 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:26:53 Europe/London] User data found: Array
+(
+    [id] => 1
+    [username] => testuser
+    [email] => test@example.com
+    [password] => $2y$10$rIggkW5nc78xAvrKvuHR2uPrET0M1jrbwHBKOJE85SumLR0ua2/EW
+    [created_at] => 2025-03-24 04:20:33
+    [updated_at] => 2025-03-24 04:25:56
+    [api_token] => d35a5073fddf63fc48bfebcf0b8ca67b4e55570f55488b10ace31a139ba6db34
+    [api_token_expires] => 2025-03-25 01:25:56
+)
+
+[24-Mar-2025 01:26:53 Europe/London] Password verification successful
+[24-Mar-2025 01:26:53 Europe/London] Membership data: Array
+(
+    [type] => free
+)
+
+[24-Mar-2025 01:26:53 Europe/London] Sending success response: Array
+(
+    [success] => 1
+    [user] => Array
+        (
+            [id] => 1
+            [username] => testuser
+            [email] => test@example.com
+            [membership_type] => free
+            [api_token] => 7dcce8ba1e979f9dc131362bd477a294f403752dea5e5f0e84aa2ad0033ae969
+            [api_token_expires] => 2025-03-25 01:26:53
+        )
+
+)
+
+[24-Mar-2025 01:26:53 Europe/London] Ending response compression
+[24-Mar-2025 01:27:45 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:27:45 Europe/London] Initializing response compression...
+[24-Mar-2025 01:27:45 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:27:45 Europe/London] Response compression started
+[24-Mar-2025 01:27:45 Europe/London] Auth endpoint called
+[24-Mar-2025 01:27:45 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:27:45 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:27:45 Europe/London] Database connection successful
+[24-Mar-2025 01:27:45 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:27:45 Europe/London] User data found: Array
+(
+    [id] => 1
+    [username] => testuser
+    [email] => test@example.com
+    [password] => $2y$10$rIggkW5nc78xAvrKvuHR2uPrET0M1jrbwHBKOJE85SumLR0ua2/EW
+    [created_at] => 2025-03-24 04:20:33
+    [updated_at] => 2025-03-24 04:26:53
+    [api_token] => 7dcce8ba1e979f9dc131362bd477a294f403752dea5e5f0e84aa2ad0033ae969
+    [api_token_expires] => 2025-03-25 01:26:53
+)
+
+[24-Mar-2025 01:27:45 Europe/London] Password verification successful
+[24-Mar-2025 01:27:45 Europe/London] Membership data: Array
+(
+    [type] => free
+)
+
+[24-Mar-2025 01:27:45 Europe/London] Sending success response: Array
+(
+    [success] => 1
+    [user] => Array
+        (
+            [id] => 1
+            [username] => testuser
+            [email] => test@example.com
+            [membership_type] => free
+            [api_token] => 5c7159d7cf2890b4d133d0e0b86af21668a729b64c5972dbd8dcf1721ef6c675
+            [api_token_expires] => 2025-03-25 01:27:45
+        )
+
+)
+
+[24-Mar-2025 01:27:45 Europe/London] Ending response compression
+[24-Mar-2025 01:28:32 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:28:32 Europe/London] Initializing response compression...
+[24-Mar-2025 01:28:32 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:28:32 Europe/London] Response compression started
+[24-Mar-2025 01:28:32 Europe/London] Auth endpoint called
+[24-Mar-2025 01:28:32 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:28:32 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:28:32 Europe/London] Database connection successful
+[24-Mar-2025 01:28:32 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:28:32 Europe/London] User data found: Array
+(
+    [id] => 1
+    [username] => testuser
+    [email] => test@example.com
+    [password] => $2y$10$rIggkW5nc78xAvrKvuHR2uPrET0M1jrbwHBKOJE85SumLR0ua2/EW
+    [created_at] => 2025-03-24 04:20:33
+    [updated_at] => 2025-03-24 04:27:45
+    [api_token] => 5c7159d7cf2890b4d133d0e0b86af21668a729b64c5972dbd8dcf1721ef6c675
+    [api_token_expires] => 2025-03-25 01:27:45
+)
+
+[24-Mar-2025 01:28:32 Europe/London] Password verification successful
+[24-Mar-2025 01:28:32 Europe/London] Membership data: Array
+(
+    [type] => free
+)
+
+[24-Mar-2025 01:28:32 Europe/London] Sending success response: Array
+(
+    [success] => 1
+    [user] => Array
+        (
+            [id] => 1
+            [username] => testuser
+            [email] => test@example.com
+            [membership_type] => free
+            [api_token] => d5d4b5cfa09f3bb3d455dee1df96dbb98ef66bade922e31c9f98b3723101fa02
+            [api_token_expires] => 2025-03-25 01:28:32
+        )
+
+)
+
+[24-Mar-2025 01:28:32 Europe/London] Ending response compression
+[24-Mar-2025 01:31:49 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:31:49 Europe/London] Initializing response compression...
+[24-Mar-2025 01:31:49 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:31:49 Europe/London] Response compression started
+[24-Mar-2025 01:31:49 Europe/London] Auth endpoint called
+[24-Mar-2025 01:31:49 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:31:49 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:31:49 Europe/London] Database connection successful
+[24-Mar-2025 01:31:49 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:31:49 Europe/London] User data found: Array
+(
+    [id] => 1
+    [username] => testuser
+    [email] => test@example.com
+    [password] => $2y$10$rIggkW5nc78xAvrKvuHR2uPrET0M1jrbwHBKOJE85SumLR0ua2/EW
+    [created_at] => 2025-03-24 04:20:33
+    [updated_at] => 2025-03-24 04:28:32
+    [api_token] => d5d4b5cfa09f3bb3d455dee1df96dbb98ef66bade922e31c9f98b3723101fa02
+    [api_token_expires] => 2025-03-25 01:28:32
+)
+
+[24-Mar-2025 01:31:49 Europe/London] Password verification successful
+[24-Mar-2025 01:31:49 Europe/London] Membership data: Array
+(
+    [type] => free
+)
+
+[24-Mar-2025 01:31:49 Europe/London] Sending success response: Array
+(
+    [success] => 1
+    [user] => Array
+        (
+            [id] => 1
+            [username] => testuser
+            [email] => test@example.com
+            [membership_type] => free
+            [api_token] => 6da98b20aa20a4fe22e494ba5b80c9ce6b7b530c965b859a99140878ccd23263
+            [api_token_expires] => 2025-03-25 01:31:49
+        )
+
+)
+
+[24-Mar-2025 01:31:49 Europe/London] Ending response compression
+[24-Mar-2025 01:38:23 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:38:23 Europe/London] Initializing response compression...
+[24-Mar-2025 01:38:23 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:38:23 Europe/London] Response compression started
+[24-Mar-2025 01:38:23 Europe/London] Auth endpoint called
+[24-Mar-2025 01:38:23 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:38:23 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:38:23 Europe/London] Database connection successful
+[24-Mar-2025 01:38:23 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:38:23 Europe/London] User data found: Array
+(
+    [id] => 1
+    [username] => testuser
+    [email] => test@example.com
+    [password] => $2y$10$rIggkW5nc78xAvrKvuHR2uPrET0M1jrbwHBKOJE85SumLR0ua2/EW
+    [created_at] => 2025-03-24 04:20:33
+    [updated_at] => 2025-03-24 04:31:49
+    [api_token] => 6da98b20aa20a4fe22e494ba5b80c9ce6b7b530c965b859a99140878ccd23263
+    [api_token_expires] => 2025-03-25 01:31:49
+)
+
+[24-Mar-2025 01:38:23 Europe/London] Password verification successful
+[24-Mar-2025 01:38:23 Europe/London] Membership data: Array
+(
+    [type] => free
+)
+
+[24-Mar-2025 01:38:23 Europe/London] Sending success response: Array
+(
+    [success] => 1
+    [user] => Array
+        (
+            [id] => 1
+            [username] => testuser
+            [email] => test@example.com
+            [membership_type] => free
+            [api_token] => 4fd5cec885815da87daaa0d2132b66a4425c266260cf9ff7ad538a523fc97b98
+            [api_token_expires] => 2025-03-25 01:38:23
+        )
+
+)
+
+[24-Mar-2025 01:38:23 Europe/London] Ending response compression
+[24-Mar-2025 01:38:23 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined function formatJson() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\test_api_endpoints.php:200
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\test_api_endpoints.php on line 200
+[24-Mar-2025 01:39:03 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:39:03 Europe/London] Initializing response compression...
+[24-Mar-2025 01:39:03 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:39:03 Europe/London] Response compression started
+[24-Mar-2025 01:39:03 Europe/London] Auth endpoint called
+[24-Mar-2025 01:39:03 Europe/London] Received data: Array
+(
+    [username] => testuser
+    [password] => testpass
+)
+
+[24-Mar-2025 01:39:03 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:39:03 Europe/London] Database connection successful
+[24-Mar-2025 01:39:03 Europe/London] Looking up user: testuser
+[24-Mar-2025 01:39:03 Europe/London] User data found: Array
+(
+    [id] => 1
+    [username] => testuser
+    [email] => test@example.com
+    [password] => $2y$10$rIggkW5nc78xAvrKvuHR2uPrET0M1jrbwHBKOJE85SumLR0ua2/EW
+    [created_at] => 2025-03-24 04:20:33
+    [updated_at] => 2025-03-24 04:38:23
+    [api_token] => 4fd5cec885815da87daaa0d2132b66a4425c266260cf9ff7ad538a523fc97b98
+    [api_token_expires] => 2025-03-25 01:38:23
+)
+
+[24-Mar-2025 01:39:03 Europe/London] Password verification successful
+[24-Mar-2025 01:39:03 Europe/London] Membership data: Array
+(
+    [type] => free
+)
+
+[24-Mar-2025 01:39:03 Europe/London] Sending success response: Array
+(
+    [success] => 1
+    [user] => Array
+        (
+            [id] => 1
+            [username] => testuser
+            [email] => test@example.com
+            [membership_type] => free
+            [api_token] => c1c623e1910e426ce8cd1381024e813093bfce3aacb7dda1b48cd6defba42dcf
+            [api_token_expires] => 2025-03-25 01:39:03
+        )
+
+)
+
+[24-Mar-2025 01:39:03 Europe/London] Ending response compression

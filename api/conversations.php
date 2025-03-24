@@ -1,103 +1,91 @@
 <?php
 session_start();
-header('Content-Type: application/json; charset=utf-8');
+require_once '../app/utils/ResponseCompressor.php';
 require_once '../db_config.php';
-require_once '../app/models/Membership.php';
+require_once '../app/utils/Logger.php';
+require_once '../app/models/Model.php';
+require_once '../app/models/User.php';
+require_once '../app/models/Conversation.php';
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
+// Initialize response compression
+$compressor = ResponseCompressor::getInstance();
+$compressor->start();
+
+header('Content-Type: application/json; charset=utf-8');
+
+// Check authentication (both session and token-based)
+$user_id = null;
+$db = getDBConnection();
+
+// First check for API token
+$headers = getallheaders();
+$authHeader = $headers['Authorization'] ?? '';
+
+if (preg_match('/^Bearer\s+(.+)$/', $authHeader, $matches)) {
+    $token = $matches[1];
+    
+    // Verify token
+    $stmt = $db->prepare("
+        SELECT id 
+        FROM users 
+        WHERE api_token = ? 
+        AND api_token_expires > NOW()
+    ");
+    $stmt->execute([$token]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($user) {
+        $user_id = $user['id'];
+    }
+}
+
+// If no valid token, check session
+if (!$user_id && isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+}
+
+// If still no valid user, return unauthorized
+if (!$user_id) {
+    Logger::log('Unauthorized access attempt', 'WARNING');
     http_response_code(401);
     echo json_encode(['error' => 'Unauthorized']);
+    $compressor->end();
     exit;
 }
 
 try {
-    $db = getDBConnection();
-    $membership = new Membership();
+    $conversation = new Conversation();
     
+    // Handle different HTTP methods
     switch ($_SERVER['REQUEST_METHOD']) {
         case 'GET':
-            // Get all conversations for the current user with pagination
-            $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 5;
-            $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
-            
-            error_log("Fetching conversations with limit: $limit, offset: $offset");
-            
-            // Get total count
-            $countStmt = $db->prepare("
-                SELECT COUNT(*) as total 
-                FROM conversations 
-                WHERE user_id = ?
-            ");
-            $countStmt->execute([$_SESSION['user_id']]);
-            $total = $countStmt->fetch()['total'];
-            
-            error_log("Total conversations found: $total");
-            
-            // Get paginated conversations
-            $stmt = $db->prepare("
-                SELECT c.*, 
-                       (SELECT content FROM messages 
-                        WHERE conversation_id = c.id 
-                        ORDER BY created_at DESC LIMIT 1) as last_message,
-                       (SELECT created_at FROM messages 
-                        WHERE conversation_id = c.id 
-                        ORDER BY created_at DESC LIMIT 1) as last_message_time
-                FROM conversations c
-                WHERE c.user_id = ?
-                ORDER BY c.updated_at DESC
-                LIMIT ? OFFSET ?
-            ");
-            $stmt->execute([$_SESSION['user_id'], $limit, $offset]);
-            $conversations = $stmt->fetchAll();
-            
-            error_log("Fetched " . count($conversations) . " conversations");
-            
-            $response = [
-                'conversations' => $conversations,
-                'total' => $total,
-                'hasMore' => ($offset + $limit) < $total
-            ];
-            
-            error_log("Sending response: " . json_encode($response));
-            echo json_encode($response);
+            // List conversations
+            $conversations = $conversation->getByUserId($user_id);
+            echo json_encode([
+                'success' => true,
+                'data' => $conversations
+            ]);
             break;
             
         case 'POST':
-            // Check if user has reached their monthly limit
-            if (!$membership->checkUsageLimit($_SESSION['user_id'])) {
-                error_log("User " . $_SESSION['user_id'] . " has reached their monthly conversation limit");
-                http_response_code(403);
-                echo json_encode([
-                    'error' => 'You have reached your monthly conversation limit. Please upgrade your membership to continue.',
-                    'limit_reached' => true,
-                    'limit_type' => 'conversations'
-                ]);
-                exit;
-            }
-            
             // Create new conversation
             $data = json_decode(file_get_contents('php://input'), true);
+            
             if (!isset($data['title'])) {
-                throw new Exception("Title is required");
+                http_response_code(400);
+                echo json_encode(['error' => 'Title is required']);
+                break;
             }
             
-            $stmt = $db->prepare("
-                INSERT INTO conversations (user_id, title)
-                VALUES (?, ?)
-            ");
-            
-            $stmt->execute([
-                $_SESSION['user_id'],
-                $data['title']
+            $newConversation = $conversation->create([
+                'user_id' => $user_id,
+                'title' => $data['title']
             ]);
             
-            $conversation_id = $db->lastInsertId();
-            
+            http_response_code(201);
             echo json_encode([
-                'id' => $conversation_id,
-                'user_id' => $_SESSION['user_id'],
-                'title' => $data['title']
+                'success' => true,
+                'data' => $newConversation
             ]);
             break;
             
@@ -105,8 +93,14 @@ try {
             http_response_code(405);
             echo json_encode(['error' => 'Method not allowed']);
     }
+    
 } catch (Exception $e) {
-    error_log("Error in conversations API: " . $e->getMessage());
+    Logger::log('Error in conversations', 'ERROR', [
+        'error' => $e->getMessage(),
+        'trace' => $e->getTraceAsString()
+    ]);
     http_response_code(500);
-    echo json_encode(['error' => $e->getMessage()]);
+    echo json_encode(['error' => 'Internal server error']);
+} finally {
+    $compressor->end();
 } 

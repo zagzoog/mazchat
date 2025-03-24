@@ -1,4 +1,8 @@
 <?php
+require_once __DIR__ . '/../../db_config.php';
+require_once __DIR__ . '/../utils/Logger.php';
+require_once __DIR__ . '/Model.php';
+
 class User extends Model {
     protected $table = 'users';
     

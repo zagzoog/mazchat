@@ -1,14 +1,25 @@
 <?php
 
 session_start();
-require_once __DIR__ . '/../db_config.php';
-require_once __DIR__ . '/../app/utils/Logger.php';  // Load Logger first
-require_once __DIR__ . '/../app/models/Model.php';  // Then load base Model class
-require_once __DIR__ . '/../app/models/User.php';
-require_once __DIR__ . '/../app/models/Membership.php';
-require_once __DIR__ . '/../app/models/UsageStats.php';
+require_once '../app/utils/ResponseCompressor.php';
+require_once '../db_config.php';
+require_once '../app/utils/Logger.php';
+require_once '../app/models/Model.php';  // Load Model first
+require_once '../app/models/User.php';   // Then load User
+require_once '../app/models/Membership.php';
+require_once '../app/models/UsageStats.php';
 
-header('Content-Type: application/json');
+// Initialize response compression
+$compressor = ResponseCompressor::getInstance();
+$compressor->start();
+
+header('Content-Type: application/json; charset=utf-8');
+
+// Enable GZIP compression
+if (extension_loaded('zlib')) {
+    ini_set('zlib.output_compression', 'On');
+    ini_set('zlib.output_compression_level', '5');
+}
 
 // Log session information
 Logger::log('Session data', 'INFO', [
@@ -19,199 +30,143 @@ Logger::log('Session data', 'INFO', [
     'session_status' => session_status()
 ]);
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    Logger::log('Unauthorized access attempt - No user_id in session', 'WARNING');
+// Check authentication (both session and token-based)
+$user_id = null;
+$db = getDBConnection();
+
+// First check for API token
+$headers = getallheaders();
+$authHeader = $headers['Authorization'] ?? '';
+
+if (preg_match('/^Bearer\s+(.+)$/', $authHeader, $matches)) {
+    $token = $matches[1];
+    
+    // Verify token
+    $stmt = $db->prepare("
+        SELECT id 
+        FROM users 
+        WHERE api_token = ? 
+        AND api_token_expires > NOW()
+    ");
+    $stmt->execute([$token]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if ($user) {
+        $user_id = $user['id'];
+    }
+}
+
+// If no valid token, check session
+if (!$user_id && isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+}
+
+// If still no valid user, return unauthorized
+if (!$user_id) {
+    Logger::log('Unauthorized access attempt', 'WARNING');
     http_response_code(401);
     echo json_encode(['error' => 'Unauthorized']);
+    $compressor->end();
     exit;
 }
 
-$userId = $_SESSION['user_id'];
-$range = $_GET['range'] ?? 'month';
-
 try {
-    Logger::log('Starting dashboard data fetch', 'INFO', ['user_id' => $userId]);
+    // Get user data
+    $user = new User();
+    $userData = $user->findById($user_id);
+    if (!$userData) {
+        throw new Exception('User not found');
+    }
     
-    // Initialize database connection
-    try {
-        $db = getDBConnection();
-        if (!$db) {
-            throw new Exception('Database connection failed');
-        }
-        Logger::log('Database connection successful', 'INFO');
-    } catch (Exception $e) {
-        Logger::log('Database connection error', 'ERROR', ['message' => $e->getMessage()]);
-        throw new Exception('Failed to connect to database: ' . $e->getMessage());
-    }
-
-    // Verify user exists
-    try {
-        $stmt = $db->prepare('SELECT id, username FROM users WHERE id = ?');
-        $stmt->execute([$userId]);
-        $user = $stmt->fetch();
-        
-        if (!$user) {
-            Logger::log('User not found in database', 'ERROR', ['user_id' => $userId]);
-            throw new Exception('User not found');
-        }
-        Logger::log('User verified', 'INFO', ['user' => $user]);
-    } catch (Exception $e) {
-        Logger::log('User verification error', 'ERROR', ['message' => $e->getMessage()]);
-        throw new Exception('Failed to verify user: ' . $e->getMessage());
-    }
-
+    // Get membership data
     $membership = new Membership();
-    $usageStats = new UsageStats();
+    $membershipData = $membership->getCurrentMembership($user_id);
     
-    // Get current membership
-    try {
-        Logger::log('Fetching current membership', 'INFO');
-        $currentMembership = $membership->getCurrentMembership($userId);
-        if (!$currentMembership) {
-            Logger::log('No current membership found, creating free membership', 'INFO');
-            // Create free membership if none exists
-            $currentMembership = $membership->createFreeMembership($userId);
-        }
-        Logger::log('Current membership retrieved', 'INFO', $currentMembership);
-    } catch (Exception $e) {
-        Logger::log('Membership error', 'ERROR', ['message' => $e->getMessage()]);
-        throw new Exception('Failed to process membership: ' . $e->getMessage());
-    }
+    // Get conversation stats
+    $stmt = $db->prepare("
+        SELECT 
+            COUNT(*) as total_conversations,
+            COUNT(CASE WHEN DATE(c.created_at) = CURRENT_DATE THEN 1 END) as today_conversations,
+            COUNT(CASE WHEN DATE(c.created_at) >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) THEN 1 END) as week_conversations
+        FROM conversations c
+        WHERE c.user_id = ?
+    ");
+    $stmt->execute([$user_id]);
+    $stats = $stmt->fetch(PDO::FETCH_ASSOC);
     
-    // Get monthly stats
-    try {
-        Logger::log('Fetching monthly stats', 'INFO');
-        $currentMonth = date('Y-m');
-        $monthlyStats = $usageStats->getMonthlyStats($userId, $currentMonth);
-        if (!$monthlyStats) {
-            Logger::log('No monthly stats found, using defaults', 'INFO');
-            $monthlyStats = [
-                'total_conversations' => 0,
-                'total_questions' => 0,
-                'total_words' => 0
-            ];
-        }
-        Logger::log('Monthly stats retrieved', 'INFO', $monthlyStats);
-    } catch (Exception $e) {
-        Logger::log('Monthly stats error', 'ERROR', ['message' => $e->getMessage()]);
-        throw new Exception('Failed to get monthly stats: ' . $e->getMessage());
-    }
+    // Get message stats
+    $stmt = $db->prepare("
+        SELECT 
+            COUNT(*) as total_messages,
+            COUNT(CASE WHEN DATE(m.created_at) = CURRENT_DATE THEN 1 END) as today_messages,
+            COUNT(CASE WHEN DATE(m.created_at) >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) THEN 1 END) as week_messages
+        FROM messages m
+        JOIN conversations c ON m.conversation_id = c.id
+        WHERE c.user_id = ?
+    ");
+    $stmt->execute([$user_id]);
+    $messageStats = $stmt->fetch(PDO::FETCH_ASSOC);
     
-    // Get daily stats for the chart
-    try {
-        Logger::log('Fetching daily stats', 'INFO');
-        $dailyStats = $usageStats->getDailyStats($userId);
-        if (!$dailyStats) {
-            Logger::log('No daily stats found, using empty array', 'INFO');
-            $dailyStats = [];
-        }
-        Logger::log('Daily stats retrieved', 'INFO', ['count' => count($dailyStats)]);
-    } catch (Exception $e) {
-        Logger::log('Daily stats error', 'ERROR', ['message' => $e->getMessage()]);
-        throw new Exception('Failed to get daily stats: ' . $e->getMessage());
-    }
-    
-    // Get top topics
-    try {
-        Logger::log('Fetching top topics', 'INFO');
-        $topTopics = $usageStats->getTopTopics($userId);
-        if (!$topTopics) {
-            Logger::log('No top topics found, using empty array', 'INFO');
-            $topTopics = [];
-        }
-        Logger::log('Top topics retrieved', 'INFO', ['count' => count($topTopics)]);
-    } catch (Exception $e) {
-        Logger::log('Top topics error', 'ERROR', ['message' => $e->getMessage()]);
-        throw new Exception('Failed to get top topics: ' . $e->getMessage());
-    }
-    
-    // Get monthly limit from settings
-    try {
-        Logger::log('Fetching monthly limit', 'INFO', ['membership_type' => $currentMembership['type']]);
-        $stmt = $db->prepare(
-            'SELECT setting_value FROM admin_settings WHERE setting_key = ?'
-        );
-        $stmt->execute([$currentMembership['type'] . '_monthly_limit']);
-        $monthlyLimit = $stmt->fetchColumn();
-        
-        if (!$monthlyLimit) {
-            Logger::log('No monthly limit found in settings, using defaults', 'INFO');
-            // Set default limits if not found in settings
-            $monthlyLimit = $currentMembership['type'] === 'free' ? 50 : 
-                           ($currentMembership['type'] === 'basic' ? 100 : 999999);
-        }
-        Logger::log('Monthly limit retrieved', 'INFO', ['limit' => $monthlyLimit]);
-    } catch (Exception $e) {
-        Logger::log('Monthly limit error', 'ERROR', ['message' => $e->getMessage()]);
-        throw new Exception('Failed to get monthly limit: ' . $e->getMessage());
-    }
-
-    // Get question limit from settings
-    try {
-        Logger::log('Fetching question limit', 'INFO', ['membership_type' => $currentMembership['type']]);
-        $stmt = $db->prepare(
-            'SELECT setting_value FROM admin_settings WHERE setting_key = ?'
-        );
-        $stmt->execute([$currentMembership['type'] . '_question_limit']);
-        $questionLimit = $stmt->fetchColumn();
-        
-        if (!$questionLimit) {
-            Logger::log('No question limit found in settings, using defaults', 'INFO');
-            // Set default limits if not found in settings
-            $questionLimit = $currentMembership['type'] === 'free' ? 500 : 
-                           ($currentMembership['type'] === 'basic' ? 2000 : 999999);
-        }
-        Logger::log('Question limit retrieved', 'INFO', ['limit' => $questionLimit]);
-    } catch (Exception $e) {
-        Logger::log('Question limit error', 'ERROR', ['message' => $e->getMessage()]);
-        throw new Exception('Failed to get question limit: ' . $e->getMessage());
-    }
-    
-    // Get current month's usage
-    try {
-        Logger::log('Fetching current month\'s usage', 'INFO');
-        $currentMonth = date('Y-m');
-        $currentUsage = $usageStats->getMonthlyStats($userId, $currentMonth);
-        if (!$currentUsage) {
-            Logger::log('No current month usage found, using defaults', 'INFO');
-            $currentUsage = ['total_conversations' => 0, 'total_questions' => 0];
-        }
-        Logger::log('Current month usage retrieved', 'INFO', $currentUsage);
-    } catch (Exception $e) {
-        Logger::log('Current month usage error', 'ERROR', ['message' => $e->getMessage()]);
-        throw new Exception('Failed to get current month usage: ' . $e->getMessage());
-    }
+    // Get recent conversations
+    $stmt = $db->prepare("
+        SELECT c.*, 
+               m.content as last_message,
+               m.created_at as last_message_time
+        FROM conversations c
+        LEFT JOIN (
+            SELECT conversation_id, content, created_at
+            FROM messages m1
+            WHERE id = (
+                SELECT MAX(id)
+                FROM messages m2
+                WHERE m2.conversation_id = m1.conversation_id
+            )
+        ) m ON m.conversation_id = c.id
+        WHERE c.user_id = ?
+        ORDER BY c.updated_at DESC
+        LIMIT 5
+    ");
+    $stmt->execute([$user_id]);
+    $recentConversations = $stmt->fetchAll(PDO::FETCH_ASSOC);
     
     $response = [
-        'membership' => [
-            'type' => $currentMembership['type'],
-            'monthly_limit' => $monthlyLimit,
-            'question_limit' => $questionLimit,
-            'current_usage' => $currentUsage['total_conversations'],
-            'current_questions' => $currentUsage['total_questions'],
-            'start_date' => $currentMembership['start_date'],
-            'end_date' => $currentMembership['end_date']
-        ],
-        'stats' => [
-            'total_conversations' => $monthlyStats['total_conversations'],
-            'total_questions' => $monthlyStats['total_questions'],
-            'total_words' => $monthlyStats['total_words']
-        ],
-        'daily_stats' => $dailyStats,
-        'top_topics' => $topTopics
+        'success' => true,
+        'data' => [
+            'user' => [
+                'id' => $userData['id'],
+                'username' => $userData['username'],
+                'email' => $userData['email']
+            ],
+            'membership' => [
+                'type' => $membershipData['type'] ?? 'free',
+                'start_date' => $membershipData['start_date'] ?? null,
+                'end_date' => $membershipData['end_date'] ?? null
+            ],
+            'stats' => [
+                'conversations' => [
+                    'total' => (int)$stats['total_conversations'],
+                    'today' => (int)$stats['today_conversations'],
+                    'week' => (int)$stats['week_conversations']
+                ],
+                'messages' => [
+                    'total' => (int)$messageStats['total_messages'],
+                    'today' => (int)$messageStats['today_messages'],
+                    'week' => (int)$messageStats['week_messages']
+                ]
+            ],
+            'recent_conversations' => $recentConversations
+        ]
     ];
     
-    Logger::log('Sending response', 'INFO', $response);
     echo json_encode($response);
+    
 } catch (Exception $e) {
-    Logger::log('Dashboard error', 'ERROR', [
-        'message' => $e->getMessage(),
+    Logger::log('Error in dashboard', 'ERROR', [
+        'error' => $e->getMessage(),
         'trace' => $e->getTraceAsString()
     ]);
     http_response_code(500);
-    echo json_encode([
-        'error' => 'Failed to load dashboard data',
-        'details' => $e->getMessage()
-    ]);
+    echo json_encode(['error' => 'Internal server error: ' . $e->getMessage()]);
+} finally {
+    $compressor->end();
 } 

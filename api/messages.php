@@ -1,17 +1,33 @@
 <?php
 session_start();
-header('Content-Type: application/json; charset=utf-8');
+require_once '../app/utils/ResponseCompressor.php';
 require_once '../db_config.php';
 require_once '../app/models/Message.php';
+require_once '../app/models/UsageStats.php';
+require_once '../app/utils/Cache.php';
+
+// Initialize response compression
+$compressor = ResponseCompressor::getInstance();
+$compressor->start();
+
+header('Content-Type: application/json; charset=utf-8');
+
+// Enable GZIP compression
+if (extension_loaded('zlib')) {
+    ini_set('zlib.output_compression', 'On');
+    ini_set('zlib.output_compression_level', '5');
+}
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     http_response_code(401);
     echo json_encode(['error' => 'Unauthorized']);
+    $compressor->end();
     exit;
 }
 
 try {
+    $db = getDBConnection();
     $messageModel = new Message();
     
     switch ($_SERVER['REQUEST_METHOD']) {
@@ -64,6 +80,15 @@ try {
             echo json_encode($message);
             break;
             
+        case 'DELETE':
+            if (!isset($_GET['message_id']) || !isset($_GET['conversation_id'])) {
+                throw new Exception("Message ID and conversation ID are required");
+            }
+            
+            $messageModel->delete($_GET['message_id'], $_GET['conversation_id'], $_SESSION['user_id']);
+            echo json_encode(['success' => true]);
+            break;
+            
         default:
             http_response_code(405);
             echo json_encode(['error' => 'Method not allowed']);
@@ -72,4 +97,6 @@ try {
     error_log("Error in messages API: " . $e->getMessage());
     http_response_code(500);
     echo json_encode(['error' => $e->getMessage()]);
+} finally {
+    $compressor->end();
 } 

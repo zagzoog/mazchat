@@ -1,12 +1,12 @@
 <?php
 require_once __DIR__ . '/../../db_config.php';
+require_once __DIR__ . '/../utils/Logger.php';
 
 class Model {
     protected $db;
     protected $table;
     
     public function __construct() {
-        require_once __DIR__ . '/../utils/Logger.php';
         try {
             $this->db = getDBConnection();
             if (!$this->db) {
