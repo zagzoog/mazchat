@@ -1,128 +1,74 @@
-# Chat Application
+# AI Chat Application
 
-A production-ready chat application with plugin support and easy updates.
+A modern chat application with AI capabilities, built with PHP and JavaScript.
 
-## System Requirements
+## Features
 
-- PHP 8.2 or higher
-- Apache 2.4 or higher
+- Real-time chat interface
+- AI-powered responses
+- Conversation management
+- User authentication
+- Admin dashboard
+- Usage statistics tracking
+- Responsive design
+- RTL support for Arabic
+
+## Requirements
+
+- PHP 7.4 or higher
 - MySQL 5.7 or higher
-- mod_rewrite enabled
-- PDO MySQL extension
-- OpenSSL extension
-- JSON extension
+- Web server (Apache/Nginx)
+- Modern web browser
 
 ## Installation
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/chat.git
-cd chat
+git clone https://github.com/yourusername/ai-chat.git
 ```
 
-2. Run the installer:
+2. Create a MySQL database and import the schema:
 ```bash
-sudo php installer/install.php
+mysql -u your_username -p your_database < database/schema.sql
 ```
 
-3. Follow the installation prompts to configure:
-   - Database settings
-   - Application URL
-   - Admin account
-
-4. Set proper permissions:
+3. Copy the configuration files:
 ```bash
-sudo chown -R www-data:www-data .
-sudo chmod -R 755 .
-sudo chmod -R 777 logs uploads
+cp config.example.php config.php
+cp db_config.example.php db_config.php
 ```
 
-## Plugin System
+4. Update the configuration files with your database credentials and other settings.
 
-The application supports plugins for extending functionality. Plugins can be installed in the `app/plugins` directory.
+5. Set up your web server to point to the project directory.
 
-### Creating a Plugin
+## Configuration
 
-1. Create a new directory in `app/plugins` with your plugin name
-2. Create a main PHP file with the same name as the directory
-3. Extend the base `Plugin` class:
+1. Edit `config.php` to set your application settings
+2. Edit `db_config.php` to configure your database connection
 
-```php
-class YourPlugin extends Plugin {
-    public function __construct() {
-        $this->name = 'YourPlugin';
-        $this->version = '1.0.0';
-        $this->description = 'Your plugin description';
-        $this->author = 'Your Name';
-        
-        parent::__construct();
-    }
-    
-    public function initialize() {
-        // Register hooks and initialize your plugin
-    }
-    
-    public function activate() {
-        // Create necessary database tables or perform setup
-    }
-    
-    public function deactivate() {
-        // Clean up if necessary
-    }
-}
-```
+## Usage
 
-### Available Hooks
+1. Access the application through your web browser
+2. Create an account or log in
+3. Start chatting with the AI assistant
 
-- `before_send_message`: Called before sending a message
-- `after_send_message`: Called after sending a message
-- `admin_settings_page`: Called when rendering admin settings
-- `before_user_login`: Called before user login
-- `after_user_login`: Called after user login
+## Development
 
-### Example Plugin
-
-See the `LLMModelSelector` plugin in `app/plugins/LLMModelSelector` for an example implementation.
-
-## Updates
-
-The application includes an automatic update system:
-
-1. Go to the admin panel
-2. Click on "System Updates"
-3. Click "Check for Updates"
-4. If an update is available, click "Update Now"
-
-The system will:
-- Create a backup of your database
-- Apply any new migrations
-- Update plugins
-- Update the application version
-
-## Security
-
-- All passwords are hashed using PHP's password_hash()
-- API keys are stored securely in the database
-- Input is sanitized and validated
-- XSS protection is enabled
-- CSRF protection is implemented
-
-## Maintenance
-
-### Backup
-
-To create a manual backup:
-```bash
-php app/utils/backup.php
-```
-
-### Logs
-
-Logs are stored in the `logs` directory. Rotate them regularly:
-```bash
-php app/utils/rotate_logs.php
-```
+The project uses:
+- PHP for backend
+- JavaScript for frontend
+- MySQL for database
+- Bootstrap for styling
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request 
