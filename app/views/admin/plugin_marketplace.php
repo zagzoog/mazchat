@@ -1,225 +1,230 @@
 <?php
-if (!defined('ADMIN_PANEL')) {
-    die('Direct access not permitted');
-}
+require_once __DIR__ . '/../../models/Plugin.php';
 
-$pluginManager = PluginManager::getInstance();
-$activePlugins = $pluginManager->getActivePlugins();
-$allPlugins = $pluginManager->getAllPlugins();
+$plugins = Plugin::all();
 ?>
 
-<div class="container-fluid">
-    <div class="row mb-4">
-        <div class="col">
-            <h2>Plugin Marketplace</h2>
-            <p class="text-muted">Browse, install, and manage plugins for your chat application.</p>
-        </div>
-        <div class="col-auto">
-            <a href="admin/plugin_developer_guide.php" class="btn btn-info me-2">
-                <i class="fas fa-book"></i> Developer Guide
-            </a>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPluginModal">
-                <i class="fas fa-plus"></i> Add New Plugin
-            </button>
-        </div>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plugin Marketplace - Chat App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .plugin-card {
+            height: 100%;
+            transition: transform 0.2s;
+        }
+        .plugin-card:hover {
+            transform: translateY(-5px);
+        }
+        .plugin-icon {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+        }
+        .rating {
+            color: #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <?php include '../components/navbar.php'; ?>
 
-    <!-- Active Plugins Section -->
-    <div class="card mb-4">
-        <div class="card-header">
-            <h5 class="card-title mb-0">Active Plugins</h5>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Plugin Name</th>
-                            <th>Version</th>
-                            <th>Description</th>
-                            <th>Author</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($activePlugins as $plugin): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($plugin->getName()); ?></td>
-                            <td><?php echo htmlspecialchars($plugin->getVersion()); ?></td>
-                            <td><?php echo htmlspecialchars($plugin->getDescription()); ?></td>
-                            <td><?php echo htmlspecialchars($plugin->getAuthor()); ?></td>
-                            <td>
-                                <button type="button" 
-                                        class="btn btn-sm btn-danger deactivate-plugin" 
-                                        data-plugin="<?php echo htmlspecialchars($plugin->getName()); ?>">
-                                    Deactivate
-                                </button>
-                                <button type="button" 
-                                        class="btn btn-sm btn-info view-settings" 
-                                        data-plugin="<?php echo htmlspecialchars($plugin->getName()); ?>">
-                                    Settings
-                                </button>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+    <div class="container mt-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h1>Plugin Marketplace</h1>
+                <p class="text-muted">Discover and install plugins to enhance your chat experience</p>
             </div>
+            <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin']): ?>
+            <a href="/admin/plugin_developer_guide.php" class="btn btn-primary">
+                <i class="fas fa-code"></i> Developer Guide
+            </a>
+            <?php endif; ?>
         </div>
-    </div>
 
-    <!-- Available Plugins Section -->
-    <div class="card">
-        <div class="card-header">
-            <h5 class="card-title mb-0">Available Plugins</h5>
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <?php foreach ($allPlugins as $plugin): ?>
-                    <?php if (!isset($activePlugins[$plugin->getName()])): ?>
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Filter Plugins</h5>
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <select class="form-select" id="categoryFilter">
+                                <option value="">All Categories</option>
+                                <option value="formatting">Formatting</option>
+                                <option value="integration">Integration</option>
+                                <option value="enhancement">Enhancement</option>
+                                <option value="utility">Utility</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Sort By</label>
+                            <select class="form-select" id="sortBy">
+                                <option value="popular">Most Popular</option>
+                                <option value="rating">Highest Rated</option>
+                                <option value="newest">Newest</option>
+                            </select>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="officialOnly">
+                            <label class="form-check-label">
+                                Official Plugins Only
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="pluginsList">
+                    <?php foreach ($plugins as $plugin): ?>
+                    <div class="col">
+                        <div class="card plugin-card">
                             <div class="card-body">
-                                <h5 class="card-title"><?php echo htmlspecialchars($plugin->getName()); ?></h5>
-                                <h6 class="card-subtitle mb-2 text-muted">v<?php echo htmlspecialchars($plugin->getVersion()); ?></h6>
-                                <p class="card-text"><?php echo htmlspecialchars($plugin->getDescription()); ?></p>
-                                <p class="card-text"><small class="text-muted">By <?php echo htmlspecialchars($plugin->getAuthor()); ?></small></p>
-                                <button type="button" 
-                                        class="btn btn-success activate-plugin" 
-                                        data-plugin="<?php echo htmlspecialchars($plugin->getName()); ?>">
-                                    Activate
-                                </button>
+                                <div class="d-flex align-items-center mb-3">
+                                    <img src="<?php echo htmlspecialchars($plugin['icon_url']); ?>" alt="Plugin icon" class="plugin-icon me-3">
+                                    <div>
+                                        <h5 class="card-title mb-1"><?php echo htmlspecialchars($plugin['name']); ?></h5>
+                                        <p class="text-muted mb-0">v<?php echo htmlspecialchars($plugin['version']); ?></p>
+                                    </div>
+                                </div>
+                                <p class="card-text"><?php echo htmlspecialchars($plugin['description']); ?></p>
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <div class="rating">
+                                        <?php
+                                        $rating = floatval($plugin['rating']);
+                                        for ($i = 1; $i <= 5; $i++) {
+                                            if ($i <= $rating) {
+                                                echo '<i class="fas fa-star"></i>';
+                                            } elseif ($i - 0.5 <= $rating) {
+                                                echo '<i class="fas fa-star-half-alt"></i>';
+                                            } else {
+                                                echo '<i class="far fa-star"></i>';
+                                            }
+                                        }
+                                        ?>
+                                        <span class="ms-1">(<?php echo $plugin['total_reviews']; ?>)</span>
+                                    </div>
+                                    <span class="badge bg-<?php echo $plugin['is_official'] ? 'primary' : 'secondary'; ?>">
+                                        <?php echo $plugin['is_official'] ? 'Official' : 'Community'; ?>
+                                    </span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <small class="text-muted">
+                                        <i class="fas fa-download"></i> <?php echo number_format($plugin['downloads']); ?>
+                                    </small>
+                                    <?php if ($plugin['price'] > 0): ?>
+                                    <span class="badge bg-success">$<?php echo number_format($plugin['price'], 2); ?></span>
+                                    <?php else: ?>
+                                    <span class="badge bg-info">Free</span>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <div class="d-grid gap-2">
+                                    <?php if (isset($_SESSION['installed_plugins']) && in_array($plugin['id'], $_SESSION['installed_plugins'])): ?>
+                                    <button class="btn btn-outline-danger uninstall-plugin" data-plugin-id="<?php echo $plugin['id']; ?>">
+                                        <i class="fas fa-trash"></i> Uninstall
+                                    </button>
+                                    <?php else: ?>
+                                    <button class="btn btn-primary install-plugin" data-plugin-id="<?php echo $plugin['id']; ?>">
+                                        <i class="fas fa-download"></i> Install
+                                    </button>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <?php endif; ?>
-                <?php endforeach; ?>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Add Plugin Modal -->
-<div class="modal fade" id="addPluginModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Add New Plugin</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                <form id="addPluginForm" enctype="multipart/form-data">
-                    <div class="mb-3">
-                        <label for="pluginFile" class="form-label">Plugin ZIP File</label>
-                        <input type="file" class="form-control" id="pluginFile" name="plugin_file" accept=".zip" required>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary" id="uploadPlugin">Upload & Install</button>
-            </div>
-        </div>
-    </div>
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Install plugin
+            document.querySelectorAll('.install-plugin').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const pluginId = this.dataset.pluginId;
+                    fetch('/api/marketplace/plugins.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            action: 'install',
+                            plugin_id: pluginId
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            location.reload();
+                        } else {
+                            alert('Error installing plugin: ' + data.message);
+                        }
+                    });
+                });
+            });
 
-<!-- Plugin Settings Modal -->
-<div class="modal fade" id="pluginSettingsModal" tabindex="-1">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Plugin Settings</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body" id="pluginSettingsContent">
-                <!-- Settings content will be loaded here -->
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Handle plugin activation
-    document.querySelectorAll('.activate-plugin').forEach(button => {
-        button.addEventListener('click', function() {
-            const pluginName = this.dataset.plugin;
-            if (confirm('Are you sure you want to activate this plugin?')) {
-                fetch('admin/activate_plugin.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ plugin: pluginName })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        location.reload();
-                    } else {
-                        alert('Error activating plugin: ' + data.message);
+            // Uninstall plugin
+            document.querySelectorAll('.uninstall-plugin').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('Are you sure you want to uninstall this plugin?')) {
+                        const pluginId = this.dataset.pluginId;
+                        fetch('/api/marketplace/plugins.php', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                action: 'uninstall',
+                                plugin_id: pluginId
+                            })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                location.reload();
+                            } else {
+                                alert('Error uninstalling plugin: ' + data.message);
+                            }
+                        });
                     }
                 });
+            });
+
+            // Filter functionality
+            const categoryFilter = document.getElementById('categoryFilter');
+            const sortBy = document.getElementById('sortBy');
+            const officialOnly = document.getElementById('officialOnly');
+
+            function applyFilters() {
+                const category = categoryFilter.value;
+                const sort = sortBy.value;
+                const official = officialOnly.checked;
+
+                fetch(`/api/marketplace/plugins.php?category=${category}&sort=${sort}&official=${official}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Update plugins list
+                            const pluginsList = document.getElementById('pluginsList');
+                            // Implementation of updating the list with new data
+                        }
+                    });
             }
+
+            categoryFilter.addEventListener('change', applyFilters);
+            sortBy.addEventListener('change', applyFilters);
+            officialOnly.addEventListener('change', applyFilters);
         });
-    });
-    
-    // Handle plugin deactivation
-    document.querySelectorAll('.deactivate-plugin').forEach(button => {
-        button.addEventListener('click', function() {
-            const pluginName = this.dataset.plugin;
-            if (confirm('Are you sure you want to deactivate this plugin?')) {
-                fetch('admin/deactivate_plugin.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ plugin: pluginName })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        location.reload();
-                    } else {
-                        alert('Error deactivating plugin: ' + data.message);
-                    }
-                });
-            }
-        });
-    });
-    
-    // Handle plugin settings view
-    document.querySelectorAll('.view-settings').forEach(button => {
-        button.addEventListener('click', function() {
-            const pluginName = this.dataset.plugin;
-            const modal = new bootstrap.Modal(document.getElementById('pluginSettingsModal'));
-            
-            fetch(`admin/get_plugin_settings.php?plugin=${encodeURIComponent(pluginName)}`)
-                .then(response => response.text())
-                .then(html => {
-                    document.getElementById('pluginSettingsContent').innerHTML = html;
-                    modal.show();
-                });
-        });
-    });
-    
-    // Handle plugin upload
-    document.getElementById('uploadPlugin').addEventListener('click', function() {
-        const form = document.getElementById('addPluginForm');
-        const formData = new FormData(form);
-        
-        fetch('admin/upload_plugin.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();
-            } else {
-                alert('Error uploading plugin: ' + data.message);
-            }
-        });
-    });
-});
-</script> 
+    </script>
+</body>
+</html> 
