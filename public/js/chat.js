@@ -115,7 +115,7 @@ async function loadConversations(loadMore = false) {
 // Create a new conversation
 async function createNewConversation() {
     try {
-        const response = await fetch('api/conversations.php', {
+        const response = await fetch('/chat/api/conversations.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -124,6 +124,10 @@ async function createNewConversation() {
                 title: 'محادثة جديدة'
             })
         });
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         
         const data = await response.json();
         
@@ -147,17 +151,46 @@ async function createNewConversation() {
             throw new Error(data.error);
         }
         
-        currentConversationId = data.id;
+        if (!data.data || !data.data.id) {
+            throw new Error('No conversation ID received');
+        }
+        
+        currentConversationId = data.data.id;
+        
+        // Clear the chat container and show welcome message
+        const chatContainer = document.getElementById('chatContainer');
+        chatContainer.innerHTML = `
+            <div class="message assistant">
+                <div class="message-content">
+                    مرحباً بك في المحادثة الجديدة! كيف يمكنني مساعدتك اليوم؟
+                </div>
+            </div>
+        `;
+        
+        // Update the conversations list
         await loadConversations();
-        await loadConversation(data.id);
+        
+        // Update active state in sidebar
+        document.querySelectorAll('.conversation-item').forEach(item => {
+            item.classList.remove('active');
+            if (item.dataset.conversationId === currentConversationId) {
+                item.classList.add('active');
+            }
+        });
     } catch (error) {
         console.error('Error creating conversation:', error);
         showError('حدث خطأ أثناء إنشاء محادثة جديدة');
+        currentConversationId = null; // Reset the conversation ID on error
     }
 }
 
 // Load a specific conversation
 async function loadConversation(conversationId) {
+    if (!conversationId) {
+        console.error('Invalid conversation ID');
+        return;
+    }
+    
     try {
         currentConversationId = conversationId;
         
@@ -172,14 +205,20 @@ async function loadConversation(conversationId) {
             </div>
         `;
         
-        const response = await fetch(`api/messages.php?conversation_id=${conversationId}`);
+        const response = await fetch(`/chat/api/messages.php?conversation_id=${conversationId}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const messages = await response.json();
         
         if (!Array.isArray(messages) || messages.length === 0) {
-            chatContainer.innerHTML = '<div class="message assistant"><div class="message-content">No messages found in this conversation.</div></div>';
+            chatContainer.innerHTML = `
+                <div class="message assistant">
+                    <div class="message-content">
+                        مرحباً بك في المحادثة! كيف يمكنني مساعدتك اليوم؟
+                    </div>
+                </div>
+            `;
             return;
         }
 
@@ -232,6 +271,9 @@ async function sendMessage() {
         if (!currentConversationId) {
             await createNewConversation();
             if (!currentConversationId) {
+                // Re-enable input and button
+                messageInput.disabled = false;
+                document.getElementById('send-button').disabled = false;
                 return; // If createNewConversation failed, it will have shown the limit message
             }
         }
@@ -248,18 +290,13 @@ async function sendMessage() {
                 is_user: true
             })
         });
-        
+
         if (!response.ok) {
-            const contentType = response.headers.get('content-type');
-            if (contentType && contentType.includes('application/json')) {
-                const data = await response.json();
-                throw new Error(data.error || 'Failed to send message');
-            } else {
-                throw new Error('Server error occurred');
-            }
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const data = await response.json();
+        
         if (data.error) {
             throw new Error(data.error);
         }
@@ -267,67 +304,9 @@ async function sendMessage() {
         // Clear input and reload conversation
         messageInput.value = '';
         await loadConversation(currentConversationId);
-        
-        // Show loading indicator for AI response
-        const chatContainer = document.getElementById('chatContainer');
-        chatContainer.innerHTML += `
-            <div class="message assistant">
-                <div class="message-content">
-                    <div class="loading-indicator">
-                        <div class="loading-dots">
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        // Get AI response
-        const aiResponse = await fetch('/chat/send_message.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: message,
-                conversation_id: currentConversationId
-            })
-        });
-        
-        if (!aiResponse.ok) {
-            const contentType = aiResponse.headers.get('content-type');
-            if (contentType && contentType.includes('application/json')) {
-                const errorData = await aiResponse.json();
-                throw new Error(errorData.error || 'Failed to get AI response');
-            } else {
-                throw new Error('Server error occurred');
-            }
-        }
-        
-        const aiData = await aiResponse.json();
-        if (aiData.error) {
-            throw new Error(aiData.error);
-        }
-        
-        // Remove loading indicator and add AI response
-        const loadingIndicator = chatContainer.querySelector('.loading-indicator').closest('.message');
-        loadingIndicator.remove();
-        
-        // Add AI response
-        chatContainer.innerHTML += `
-            <div class="message assistant">
-                <div class="message-content">${marked.parse(aiData.response)}</div>
-            </div>
-        `;
-        
-        // Scroll to the latest message
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-        
     } catch (error) {
         console.error('Error sending message:', error);
-        showError(error.message || 'حدث خطأ أثناء إرسال الرسالة');
+        showError('حدث خطأ أثناء إرسال الرسالة');
     } finally {
         // Re-enable input and button
         messageInput.disabled = false;

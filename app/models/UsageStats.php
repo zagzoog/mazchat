@@ -67,6 +67,9 @@ class UsageStats extends Model {
     
     public function recordUsage($userId, $conversationId, $wordCount, $topic = null, $messageId = null, $messageType = 'user') {
         try {
+            // Ensure we have a non-null value for question
+            $question = $topic ?? 'General Query'; // Default value if topic is null
+            
             $stmt = $this->db->prepare("
                 INSERT INTO usage_stats (
                     user_id, 
@@ -74,10 +77,11 @@ class UsageStats extends Model {
                     message_id, 
                     word_count, 
                     topic, 
-                    message_type
-                ) VALUES (?, ?, ?, ?, ?, ?)
+                    message_type,
+                    question
+                ) VALUES (?, ?, ?, ?, ?, ?, ?)
             ");
-            return $stmt->execute([$userId, $conversationId, $messageId, $wordCount, $topic, $messageType]);
+            return $stmt->execute([$userId, $conversationId, $messageId, $wordCount, $topic, $messageType, $question]);
         } catch (Exception $e) {
             error_log("Error recording usage: " . $e->getMessage());
             throw $e;
@@ -94,6 +98,40 @@ class UsageStats extends Model {
             return $stmt->execute([$wordCount, $conversationId]);
         } catch (Exception $e) {
             error_log("Error updating stats: " . $e->getMessage());
+            throw $e;
+        }
+    }
+
+    /**
+     * Ensure required columns exist in the usage_stats table
+     */
+    public function ensureColumns() {
+        try {
+            // Check if message_id column exists
+            $stmt = $this->db->query("SHOW COLUMNS FROM usage_stats LIKE 'message_id'");
+            if ($stmt->rowCount() === 0) {
+                // Add message_id column
+                $this->db->exec("ALTER TABLE usage_stats ADD COLUMN message_id INT DEFAULT NULL");
+                error_log("Added message_id column to usage_stats table");
+            }
+
+            // Check if message_type column exists
+            $stmt = $this->db->query("SHOW COLUMNS FROM usage_stats LIKE 'message_type'");
+            if ($stmt->rowCount() === 0) {
+                // Add message_type column
+                $this->db->exec("ALTER TABLE usage_stats ADD COLUMN message_type VARCHAR(10) DEFAULT 'user'");
+                error_log("Added message_type column to usage_stats table");
+            }
+
+            // Check if question column exists
+            $stmt = $this->db->query("SHOW COLUMNS FROM usage_stats LIKE 'question'");
+            if ($stmt->rowCount() === 0) {
+                // Add question column with a default value
+                $this->db->exec("ALTER TABLE usage_stats ADD COLUMN question TEXT NOT NULL DEFAULT 'General Query'");
+                error_log("Added question column to usage_stats table");
+            }
+        } catch (Exception $e) {
+            error_log("Error ensuring columns: " . $e->getMessage());
             throw $e;
         }
     }

@@ -1,32 +1,42 @@
-// Development version of chat.js with logging
-const logger = {
-    debug: (...args) => console.log('[DEBUG]', ...args),
-    info: (...args) => console.log('[INFO]', ...args),
-    error: (...args) => console.error('[ERROR]', ...args),
-    warn: (...args) => console.warn('[WARN]', ...args)
-};
+// Development version with enhanced logging
+console.log('[DEV] Chat application initializing...');
 
+// Configuration
 let currentConversationId = null;
 let currentOffset = 0;
 let hasMoreConversations = true;
 let isSending = false;
 
+// Debug logging utility
+const debug = {
+    log: (message, data = null) => {
+        console.log(`[DEV] ${message}`, data || '');
+    },
+    error: (message, error = null) => {
+        console.error(`[DEV] ERROR: ${message}`, error || '');
+    },
+    warn: (message, data = null) => {
+        console.warn(`[DEV] WARNING: ${message}`, data || '');
+    }
+};
+
 // Load conversations from the server
 async function loadConversations(loadMore = false) {
+    debug.log(`Loading conversations${loadMore ? ' (load more)' : ''}`);
     try {
-        logger.debug('Loading conversations', { loadMore, currentOffset });
-        
         if (!loadMore) {
             currentOffset = 0;
             hasMoreConversations = true;
         }
         
         const response = await fetch(`/chat/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
+        debug.log('Conversations API response status:', response.status);
+        
         if (!response.ok) {
             throw new Error('Failed to load conversations');
         }
         const data = await response.json();
-        logger.debug('Conversations API Response:', data);
+        debug.log('Conversations data received:', data);
         
         const conversations = data.conversations;
         hasMoreConversations = data.hasMore;
@@ -56,10 +66,12 @@ async function loadConversations(loadMore = false) {
         }
         
         if (!conversations || conversations.length === 0) {
+            debug.log('No conversations found');
             conversationsList.innerHTML = '<div class="text-gray-500 text-center py-4">لا توجد محادثات</div>';
             return;
         }
         
+        debug.log(`Rendering ${conversations.length} conversations`);
         const fragment = document.createDocumentFragment();
         
         conversations.forEach(conv => {
@@ -114,18 +126,17 @@ async function loadConversations(loadMore = false) {
             };
             conversationsList.appendChild(loadMoreBtn);
         }
-        
     } catch (error) {
-        logger.error('Error loading conversations:', error);
+        debug.error('Error loading conversations:', error);
         showError('Failed to load conversations');
     }
 }
 
 // Create a new conversation
 async function createNewConversation() {
+    debug.log('Creating new conversation');
     try {
-        logger.debug('Creating new conversation');
-        const response = await fetch('api/conversations.php', {
+        const response = await fetch('/chat/api/conversations.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -135,11 +146,17 @@ async function createNewConversation() {
             })
         });
         
+        debug.log('Create conversation API response status:', response.status);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
         const data = await response.json();
-        logger.debug('Create conversation response:', data);
+        debug.log('Create conversation response:', data);
         
         if (response.status === 403) {
-            logger.warn('User reached conversation limit');
+            debug.warn('User reached monthly conversation limit');
             const chatArea = document.getElementById('chatContainer');
             chatArea.innerHTML = `
                 <div class="flex flex-col items-center justify-center h-full text-center p-8">
@@ -159,19 +176,50 @@ async function createNewConversation() {
             throw new Error(data.error);
         }
         
-        currentConversationId = data.id;
+        if (!data.data || !data.data.id) {
+            throw new Error('No conversation ID received');
+        }
+        
+        currentConversationId = data.data.id;
+        debug.log('New conversation created with ID:', currentConversationId);
+        
+        // Clear the chat container and show welcome message
+        const chatContainer = document.getElementById('chatContainer');
+        chatContainer.innerHTML = `
+            <div class="message assistant">
+                <div class="message-content">
+                    مرحباً بك في المحادثة الجديدة! كيف يمكنني مساعدتك اليوم؟
+                </div>
+            </div>
+        `;
+        
+        // Update the conversations list
         await loadConversations();
-        await loadConversation(data.id);
+        
+        // Update active state in sidebar
+        document.querySelectorAll('.conversation-item').forEach(item => {
+            item.classList.remove('active');
+            if (item.dataset.conversationId === currentConversationId) {
+                item.classList.add('active');
+            }
+        });
     } catch (error) {
-        logger.error('Error creating conversation:', error);
+        debug.error('Error creating conversation:', error);
         showError('حدث خطأ أثناء إنشاء محادثة جديدة');
+        currentConversationId = null; // Reset the conversation ID on error
     }
 }
 
 // Load a specific conversation
 async function loadConversation(conversationId) {
+    debug.log('Loading conversation:', conversationId);
+    
+    if (!conversationId) {
+        debug.error('Invalid conversation ID');
+        return;
+    }
+    
     try {
-        logger.debug('Loading conversation:', conversationId);
         currentConversationId = conversationId;
         
         const chatContainer = document.getElementById('chatContainer');
@@ -185,21 +233,31 @@ async function loadConversation(conversationId) {
             </div>
         `;
         
-        const response = await fetch(`api/messages.php?conversation_id=${conversationId}`);
+        const response = await fetch(`/chat/api/messages.php?conversation_id=${conversationId}`);
+        debug.log('Messages API response status:', response.status);
+        
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const messages = await response.json();
-        logger.debug('Messages loaded:', messages);
+        debug.log('Messages received:', messages);
         
         if (!Array.isArray(messages) || messages.length === 0) {
-            chatContainer.innerHTML = '<div class="message assistant"><div class="message-content">No messages found in this conversation.</div></div>';
+            debug.log('No messages found in conversation');
+            chatContainer.innerHTML = `
+                <div class="message assistant">
+                    <div class="message-content">
+                        مرحباً بك في المحادثة! كيف يمكنني مساعدتك اليوم؟
+                    </div>
+                </div>
+            `;
             return;
         }
 
+        debug.log(`Rendering ${messages.length} messages`);
         chatContainer.innerHTML = messages.map(msg => {
             if (!msg || typeof msg.content !== 'string') {
-                logger.error('Invalid message format:', msg);
+                debug.error('Invalid message format:', msg);
                 return '';
             }
             const formattedContent = msg.is_user ? 
@@ -225,7 +283,7 @@ async function loadConversation(conversationId) {
         });
 
     } catch (error) {
-        logger.error('Error loading conversation:', error);
+        debug.error('Error loading conversation:', error);
         showError('حدث خطأ أثناء تحميل المحادثة');
     }
 }
@@ -237,6 +295,8 @@ async function sendMessage() {
     
     if (!message) return;
     
+    debug.log('Sending message:', message);
+    
     // Disable input and button while sending
     messageInput.disabled = true;
     document.getElementById('send-button').disabled = true;
@@ -244,21 +304,18 @@ async function sendMessage() {
     try {
         // Check if we have an active conversation
         if (!currentConversationId) {
-            logger.debug('Creating new conversation');
-            try {
-                await createNewConversation();
-                if (!currentConversationId) {
-                    return; // If createNewConversation failed, it will have shown the limit message
-                }
-            } catch (error) {
-                logger.error('Error creating conversation:', error);
-                showError('حدث خطأ أثناء إنشاء محادثة جديدة');
-                return;
+            debug.log('No active conversation, creating new one');
+            await createNewConversation();
+            if (!currentConversationId) {
+                debug.warn('Failed to create new conversation');
+                // Re-enable input and button
+                messageInput.disabled = false;
+                document.getElementById('send-button').disabled = false;
+                return; // If createNewConversation failed, it will have shown the limit message
             }
         }
         
         // Send the message
-        logger.debug('Sending message:', message);
         const response = await fetch('/chat/api/messages.php', {
             method: 'POST',
             headers: {
@@ -270,93 +327,26 @@ async function sendMessage() {
                 is_user: true
             })
         });
-        
+
+        debug.log('Send message API response status:', response.status);
+
         if (!response.ok) {
-            const contentType = response.headers.get('content-type');
-            if (contentType && contentType.includes('application/json')) {
-                const data = await response.json();
-                logger.error('Failed to send message:', data.error);
-                throw new Error(data.error || 'Failed to send message');
-            } else {
-                logger.error('Server error occurred while sending message');
-                throw new Error('Server error occurred');
-            }
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-        
+
         const data = await response.json();
+        debug.log('Send message response:', data);
+        
         if (data.error) {
-            logger.error('Error in message response:', data.error);
             throw new Error(data.error);
         }
         
         // Clear input and reload conversation
         messageInput.value = '';
         await loadConversation(currentConversationId);
-        
-        // Show loading indicator for AI response
-        const chatContainer = document.getElementById('chatContainer');
-        chatContainer.innerHTML += `
-            <div class="message assistant">
-                <div class="message-content">
-                    <div class="loading-indicator">
-                        <div class="loading-dots">
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
-                            <div class="loading-dot"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-        
-        // Get AI response
-        logger.debug('Getting AI response');
-        const aiResponse = await fetch('/chat/send_message.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                message: message,
-                conversation_id: currentConversationId
-            })
-        });
-        
-        if (!aiResponse.ok) {
-            const contentType = aiResponse.headers.get('content-type');
-            if (contentType && contentType.includes('application/json')) {
-                const errorData = await aiResponse.json();
-                logger.error('Failed to get AI response:', errorData.error);
-                throw new Error(errorData.error || 'Failed to get AI response');
-            } else {
-                logger.error('Server error occurred while getting AI response');
-                throw new Error('Server error occurred');
-            }
-        }
-        
-        const aiData = await aiResponse.json();
-        if (aiData.error) {
-            logger.error('Error in AI response:', aiData.error);
-            throw new Error(aiData.error);
-        }
-        
-        // Remove loading indicator and add AI response
-        const loadingIndicator = chatContainer.querySelector('.loading-indicator').closest('.message');
-        loadingIndicator.remove();
-        
-        // Add AI response
-        chatContainer.innerHTML += `
-            <div class="message assistant">
-                <div class="message-content">${marked.parse(aiData.response)}</div>
-            </div>
-        `;
-        
-        // Scroll to the latest message
-        chatContainer.scrollTop = chatContainer.scrollHeight;
-        
     } catch (error) {
-        logger.error('Error sending message:', error);
-        showError(error.message || 'حدث خطأ أثناء إرسال الرسالة');
+        debug.error('Error sending message:', error);
+        showError('حدث خطأ أثناء إرسال الرسالة');
     } finally {
         // Re-enable input and button
         messageInput.disabled = false;
@@ -367,7 +357,7 @@ async function sendMessage() {
 
 // Show error message
 function showError(message) {
-    logger.error('Showing error message:', message);
+    debug.warn('Showing error message:', message);
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
     errorDiv.textContent = message;
@@ -380,19 +370,19 @@ function showError(message) {
 
 // Modal functions
 function showUpgradeModal() {
-    logger.debug('Showing upgrade modal');
+    debug.log('Showing upgrade modal');
     document.getElementById('upgrade-modal').classList.remove('hidden');
 }
 
 function hideUpgradeModal() {
-    logger.debug('Hiding upgrade modal');
+    debug.log('Hiding upgrade modal');
     document.getElementById('upgrade-modal').classList.add('hidden');
 }
 
 // Payment functions
 async function initiatePayment(membershipType) {
+    debug.log('Initiating payment for membership type:', membershipType);
     try {
-        logger.debug('Initiating payment for:', membershipType);
         const response = await fetch('/chat/api/create_payment.php', {
             method: 'POST',
             headers: {
@@ -401,8 +391,9 @@ async function initiatePayment(membershipType) {
             body: JSON.stringify({ membership_type: membershipType })
         });
         
+        debug.log('Payment API response status:', response.status);
         const data = await response.json();
-        logger.debug('Payment response:', data);
+        debug.log('Payment response:', data);
         
         if (data.success) {
             window.location.href = data.paypal_url;
@@ -410,14 +401,14 @@ async function initiatePayment(membershipType) {
             showError('حدث خطأ أثناء إنشاء الدفع');
         }
     } catch (error) {
-        logger.error('Error initiating payment:', error);
+        debug.error('Error initiating payment:', error);
         showError('حدث خطأ أثناء إنشاء الدفع');
     }
 }
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    logger.info('Initializing chat application');
+    debug.log('DOM Content Loaded, initializing chat application');
     loadConversations();
     
     // Add click event listener for send button

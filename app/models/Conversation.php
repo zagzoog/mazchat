@@ -6,7 +6,7 @@ require_once __DIR__ . '/Model.php';
 class Conversation extends Model {
     protected $table = 'conversations';
     
-    public function getByUserId($userId) {
+    public function getByUserId($userId, $limit = 10, $offset = 0) {
         try {
             // Get conversations with last message and stats
             $stmt = $this->db->prepare("
@@ -25,22 +25,43 @@ class Conversation extends Model {
                 ) m ON m.conversation_id = c.id
                 WHERE c.user_id = ?
                 ORDER BY c.updated_at DESC
+                LIMIT ? OFFSET ?
+            ");
+            $stmt->execute([$userId, $limit, $offset]);
+            $conversations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Get total count for pagination
+            $stmt = $this->db->prepare("
+                SELECT COUNT(*) as total
+                FROM conversations
+                WHERE user_id = ?
             ");
             $stmt->execute([$userId]);
-            $conversations = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $total = $stmt->fetch(PDO::FETCH_ASSOC)['total'];
             
             Logger::log("Fetched conversations", 'INFO', [
                 'user_id' => $userId,
-                'count' => count($conversations)
+                'count' => count($conversations),
+                'total' => $total,
+                'offset' => $offset,
+                'limit' => $limit
             ]);
             
-            return $conversations;
+            return [
+                'conversations' => $conversations,
+                'total' => $total,
+                'hasMore' => ($offset + $limit) < $total
+            ];
         } catch (Exception $e) {
             Logger::log("Error getting conversations", 'ERROR', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
             ]);
-            return [];
+            return [
+                'conversations' => [],
+                'total' => 0,
+                'hasMore' => false
+            ];
         }
     }
     

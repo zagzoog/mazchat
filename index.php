@@ -15,6 +15,14 @@ if (!isset($_SESSION['chat_session_id'])) {
 
 // Load configuration
 $config = require_once 'config.php';
+
+// Ensure required database columns exist
+require_once 'app/models/Message.php';
+require_once 'app/models/UsageStats.php';
+$messageModel = new Message();
+$usageStatsModel = new UsageStats();
+$messageModel->ensureColumns();
+$usageStatsModel->ensureColumns();
 ?>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">

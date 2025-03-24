@@ -5,15 +5,25 @@ require_once '../db_config.php';
 require_once '../app/models/Message.php';
 require_once '../app/models/UsageStats.php';
 require_once '../app/utils/Cache.php';
+require_once '../app/models/Conversation.php';
+require_once '../app/utils/Logger.php';
 
 // Initialize response compression
 $compressor = ResponseCompressor::getInstance();
 $compressor->start();
 
-header('Content-Type: application/json; charset=utf-8');
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// Enable GZIP compression
-if (extension_loaded('zlib')) {
+// Set headers
+header('Content-Type: application/json; charset=utf-8');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: GET, POST, DELETE');
+header('Access-Control-Allow-Headers: Content-Type');
+
+// Only enable zlib compression if no output handler is active
+if (extension_loaded('zlib') && !ob_get_level()) {
     ini_set('zlib.output_compression', 'On');
     ini_set('zlib.output_compression_level', '5');
 }
@@ -26,18 +36,26 @@ if (!isset($_SESSION['user_id'])) {
     exit;
 }
 
+$userId = $_SESSION['user_id'];
+
 try {
     $db = getDBConnection();
     $messageModel = new Message();
     
-    switch ($_SERVER['REQUEST_METHOD']) {
+    // Get request method
+    $method = $_SERVER['REQUEST_METHOD'];
+
+    switch ($method) {
         case 'GET':
-            // Get messages for a conversation
-            if (!isset($_GET['conversation_id'])) {
-                throw new Exception("Conversation ID is required");
+            // Get conversation ID from query parameters
+            $conversationId = $_GET['conversation_id'] ?? null;
+            
+            if (!$conversationId) {
+                throw new Exception('Conversation ID is required');
             }
             
-            $messages = $messageModel->getMessages($_GET['conversation_id'], $_SESSION['user_id']);
+            // Get messages
+            $messages = $messageModel->getMessages($conversationId, $userId);
             
             // Convert role to is_user for frontend compatibility
             $messages = array_map(function($msg) {
@@ -46,30 +64,28 @@ try {
                 return $msg;
             }, $messages);
             
-            echo json_encode($messages);
+            echo json_encode([
+                'success' => true,
+                'messages' => $messages
+            ]);
             break;
             
         case 'POST':
-            // Create new message
+            // Get request body
             $data = json_decode(file_get_contents('php://input'), true);
+            
             if (!isset($data['conversation_id']) || !isset($data['content'])) {
-                throw new Exception("Conversation ID and content are required");
+                throw new Exception('Missing required fields');
             }
             
-            // Create message using the model
-            $messageId = $messageModel->create(
-                $data['conversation_id'],
-                $_SESSION['user_id'],
-                $data['content'],
-                isset($data['is_user']) && $data['is_user'] ? 'user' : 'assistant'
-            );
+            $conversationId = $data['conversation_id'];
+            $content = $data['content'];
+            
+            // Create message
+            $messageId = $messageModel->create($conversationId, $userId, $content);
             
             // Get the created message
-            $messages = $messageModel->getMessages($data['conversation_id'], $_SESSION['user_id']);
-            $message = array_filter($messages, function($msg) use ($messageId) {
-                return $msg['id'] == $messageId;
-            });
-            $message = reset($message);
+            $message = $messageModel->getById($messageId);
             
             // Convert role to is_user for frontend compatibility
             if ($message) {
@@ -77,16 +93,27 @@ try {
                 unset($message['role']);
             }
             
-            echo json_encode($message);
+            echo json_encode([
+                'success' => true,
+                'message' => $message
+            ]);
             break;
             
         case 'DELETE':
-            if (!isset($_GET['message_id']) || !isset($_GET['conversation_id'])) {
-                throw new Exception("Message ID and conversation ID are required");
+            // Get message ID from query parameters
+            $messageId = $_GET['id'] ?? null;
+            $conversationId = $_GET['conversation_id'] ?? null;
+            
+            if (!$messageId || !$conversationId) {
+                throw new Exception('Message ID and conversation ID are required');
             }
             
-            $messageModel->delete($_GET['message_id'], $_GET['conversation_id'], $_SESSION['user_id']);
-            echo json_encode(['success' => true]);
+            // Delete message
+            $success = $messageModel->delete($messageId, $conversationId, $userId);
+            
+            echo json_encode([
+                'success' => $success
+            ]);
             break;
             
         default:
@@ -94,9 +121,12 @@ try {
             echo json_encode(['error' => 'Method not allowed']);
     }
 } catch (Exception $e) {
-    error_log("Error in messages API: " . $e->getMessage());
+    error_log("API Error in messages.php: " . $e->getMessage() . "\n" . $e->getTraceAsString());
     http_response_code(500);
-    echo json_encode(['error' => $e->getMessage()]);
+    echo json_encode([
+        'error' => $e->getMessage(),
+        'trace' => $e->getTraceAsString()
+    ]);
 } finally {
     $compressor->end();
 } 

@@ -104,4 +104,56 @@ class Message extends Model {
         $stmt = $this->query('SELECT COUNT(*) as count FROM messages');
         return $stmt->fetch(PDO::FETCH_ASSOC)['count'];
     }
+
+    /**
+     * Get a message by its ID
+     */
+    public function getById($messageId) {
+        try {
+            $stmt = $this->db->prepare("
+                SELECT m.* 
+                FROM messages m
+                WHERE m.id = ?
+            ");
+            $stmt->execute([$messageId]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            error_log("Error getting message by ID: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * Ensure required columns exist in the messages table
+     */
+    public function ensureColumns() {
+        try {
+            // Check if word_count column exists in messages table
+            $stmt = $this->db->query("SHOW COLUMNS FROM messages LIKE 'word_count'");
+            if ($stmt->rowCount() === 0) {
+                // Add word_count column
+                $this->db->exec("ALTER TABLE messages ADD COLUMN word_count INT DEFAULT 0 AFTER content");
+                error_log("Added word_count column to messages table");
+            }
+
+            // Check if message_count column exists in conversations table
+            $stmt = $this->db->query("SHOW COLUMNS FROM conversations LIKE 'message_count'");
+            if ($stmt->rowCount() === 0) {
+                // Add message_count column
+                $this->db->exec("ALTER TABLE conversations ADD COLUMN message_count INT DEFAULT 0");
+                error_log("Added message_count column to conversations table");
+            }
+
+            // Check if total_words column exists in conversations table
+            $stmt = $this->db->query("SHOW COLUMNS FROM conversations LIKE 'total_words'");
+            if ($stmt->rowCount() === 0) {
+                // Add total_words column
+                $this->db->exec("ALTER TABLE conversations ADD COLUMN total_words INT DEFAULT 0");
+                error_log("Added total_words column to conversations table");
+            }
+        } catch (Exception $e) {
+            error_log("Error ensuring columns: " . $e->getMessage());
+            throw $e; // Re-throw the exception to handle it in the calling code
+        }
+    }
 } 

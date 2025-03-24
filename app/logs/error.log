@@ -2459,3 +2459,96 @@ Stack trace:
 [24-Mar-2025 12:58:18 Europe/London] PHP Warning:  Undefined array key "free" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 199
 [24-Mar-2025 12:58:18 Europe/London] PHP Warning:  Undefined array key "silver" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 205
 [24-Mar-2025 12:58:18 Europe/London] PHP Warning:  Undefined array key "gold" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 211
+[24-Mar-2025 13:01:27 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 13:02:26 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php on line 17
+[24-Mar-2025 13:02:49 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php on line 17
+[24-Mar-2025 13:06:05 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php on line 17
+[24-Mar-2025 13:14:52 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'word_count' in 'field list'
+[24-Mar-2025 13:14:52 Europe/London] Error in messages API: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'word_count' in 'field list'
+[24-Mar-2025 13:16:21 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'word_count' in 'field list'
+[24-Mar-2025 13:16:21 Europe/London] Error in messages API: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'word_count' in 'field list'
+[24-Mar-2025 13:20:33 Europe/London] Added word_count column to messages table
+[24-Mar-2025 13:20:33 Europe/London] Error ensuring columns: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'conversations'
+[24-Mar-2025 13:20:37 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:20:37 Europe/London] Error in messages API: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:20:37 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:20:37 Europe/London] Error in messages API: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:20:58 Europe/London] Error ensuring columns: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'conversations'
+[24-Mar-2025 13:21:10 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:21:10 Europe/London] Error in messages API: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:21:10 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:21:10 Europe/London] Error in messages API: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:22:46 Europe/London] Error ensuring columns: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'conversations'
+[24-Mar-2025 13:22:54 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:22:54 Europe/London] Error in messages API: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:22:54 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:22:54 Europe/London] Error in messages API: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:23:02 Europe/London] Error ensuring columns: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'conversations'
+[24-Mar-2025 13:23:09 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:23:09 Europe/London] Error in messages API: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:23:09 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:23:09 Europe/London] Error in messages API: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:23:37 Europe/London] Error ensuring columns: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'conversations'
+[24-Mar-2025 13:23:43 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:23:43 Europe/London] Error in messages API: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:23:43 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:23:43 Europe/London] Error in messages API: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:25:08 Europe/London] Error ensuring columns: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'conversations'
+[24-Mar-2025 13:25:10 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:25:10 Europe/London] API Error in messages.php: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Message.php(55): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php(85): Message->create()
+#2 {main}
+[24-Mar-2025 13:25:10 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+[24-Mar-2025 13:25:10 Europe/London] API Error in messages.php: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_count' in 'field list'
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Message.php(55): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php(85): Message->create()
+#2 {main}
+[24-Mar-2025 13:26:44 Europe/London] Added message_count column to conversations table
+[24-Mar-2025 13:26:44 Europe/London] Added total_words column to conversations table
+[24-Mar-2025 13:26:52 Europe/London] Error recording usage: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_id' in 'field list'
+[24-Mar-2025 13:26:52 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_id' in 'field list'
+[24-Mar-2025 13:26:52 Europe/London] API Error in messages.php: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_id' in 'field list'
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\UsageStats.php(70): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Message.php(67): UsageStats->recordUsage()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php(85): Message->create()
+#3 {main}
+[24-Mar-2025 13:26:52 Europe/London] Error recording usage: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_id' in 'field list'
+[24-Mar-2025 13:26:52 Europe/London] Error creating message: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_id' in 'field list'
+[24-Mar-2025 13:26:52 Europe/London] API Error in messages.php: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'message_id' in 'field list'
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\UsageStats.php(70): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Message.php(67): UsageStats->recordUsage()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php(85): Message->create()
+#3 {main}
+[24-Mar-2025 13:27:50 Europe/London] Added message_id column to usage_stats table
+[24-Mar-2025 13:27:50 Europe/London] Added message_type column to usage_stats table
+[24-Mar-2025 13:27:58 Europe/London] Error recording usage: SQLSTATE[HY000]: General error: 1364 Field 'question' doesn't have a default value
+[24-Mar-2025 13:27:58 Europe/London] Error creating message: SQLSTATE[HY000]: General error: 1364 Field 'question' doesn't have a default value
+[24-Mar-2025 13:27:58 Europe/London] API Error in messages.php: SQLSTATE[HY000]: General error: 1364 Field 'question' doesn't have a default value
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\UsageStats.php(80): PDOStatement->execute()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Message.php(67): UsageStats->recordUsage()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php(85): Message->create()
+#3 {main}
+[24-Mar-2025 13:27:58 Europe/London] Error recording usage: SQLSTATE[HY000]: General error: 1364 Field 'question' doesn't have a default value
+[24-Mar-2025 13:27:58 Europe/London] Error creating message: SQLSTATE[HY000]: General error: 1364 Field 'question' doesn't have a default value
+[24-Mar-2025 13:27:58 Europe/London] API Error in messages.php: SQLSTATE[HY000]: General error: 1364 Field 'question' doesn't have a default value
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\UsageStats.php(80): PDOStatement->execute()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Message.php(67): UsageStats->recordUsage()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php(85): Message->create()
+#3 {main}
+[24-Mar-2025 13:31:14 Europe/London] Error recording usage: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'question' cannot be null
+[24-Mar-2025 13:31:14 Europe/London] Error creating message: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'question' cannot be null
+[24-Mar-2025 13:31:14 Europe/London] API Error in messages.php: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'question' cannot be null
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\UsageStats.php(81): PDOStatement->execute()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Message.php(67): UsageStats->recordUsage()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php(85): Message->create()
+#3 {main}
+[24-Mar-2025 13:31:14 Europe/London] Error recording usage: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'question' cannot be null
+[24-Mar-2025 13:31:14 Europe/London] Error creating message: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'question' cannot be null
+[24-Mar-2025 13:31:14 Europe/London] API Error in messages.php: SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'question' cannot be null
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\UsageStats.php(81): PDOStatement->execute()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Message.php(67): UsageStats->recordUsage()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php(85): Message->create()
+#3 {main}
+[24-Mar-2025 13:35:01 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 13:41:30 Europe/London] Login failed for username: zagzoog

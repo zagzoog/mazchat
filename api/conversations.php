@@ -59,12 +59,31 @@ try {
     // Handle different HTTP methods
     switch ($_SERVER['REQUEST_METHOD']) {
         case 'GET':
-            // List conversations
-            $conversations = $conversation->getByUserId($user_id);
-            echo json_encode([
-                'success' => true,
-                'data' => $conversations
-            ]);
+            // Get pagination parameters
+            $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 10;
+            $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
+            
+            // List conversations with pagination
+            $result = $conversation->getByUserId($user_id, $limit, $offset);
+            
+            // Check if this is an admin request (by checking if user is admin)
+            $userModel = new User();
+            $isAdmin = $userModel->isAdmin($user_id);
+            
+            if ($isAdmin) {
+                // Admin dashboard format
+                echo json_encode([
+                    'success' => true,
+                    'data' => $result['conversations']
+                ]);
+            } else {
+                // Frontend format with pagination
+                echo json_encode([
+                    'success' => true,
+                    'conversations' => $result['conversations'],
+                    'hasMore' => $result['hasMore']
+                ]);
+            }
             break;
             
         case 'POST':
