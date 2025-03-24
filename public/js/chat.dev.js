@@ -406,10 +406,71 @@ async function initiatePayment(membershipType) {
     }
 }
 
+// Load available plugins and populate selector
+async function loadPlugins() {
+    debug.log('Loading plugins');
+    try {
+        const response = await fetch('/chat/api/plugins.php');
+        debug.log('Plugins API response status:', response.status);
+        
+        if (!response.ok) {
+            throw new Error('Failed to load plugins');
+        }
+        
+        const data = await response.json();
+        debug.log('Plugins data received:', data);
+        
+        if (!data.success) {
+            throw new Error(data.error || 'Failed to load plugins');
+        }
+        
+        const pluginSelector = document.getElementById('pluginSelector');
+        pluginSelector.innerHTML = ''; // Clear existing options
+        
+        data.plugins.forEach(plugin => {
+            const option = document.createElement('option');
+            option.value = plugin.id;
+            option.textContent = plugin.name;
+            if (data.selected_plugin === plugin.id) {
+                option.selected = true;
+            }
+            pluginSelector.appendChild(option);
+        });
+        
+        // Add event listener for plugin selection
+        pluginSelector.addEventListener('change', async function() {
+            try {
+                const response = await fetch('/chat/api/user/preferences.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        plugin_id: this.value
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to update plugin preference');
+                }
+                
+                debug.log('Plugin preference updated successfully');
+            } catch (error) {
+                debug.error('Error updating plugin preference:', error);
+                showError('فشل في تحديث تفضيلات المعالج');
+            }
+        });
+    } catch (error) {
+        debug.error('Error loading plugins:', error);
+        showError('فشل في تحميل المعالجات المتاحة');
+    }
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     debug.log('DOM Content Loaded, initializing chat application');
     loadConversations();
+    loadPlugins();
     
     // Add click event listener for send button
     document.getElementById('send-button').addEventListener('click', sendMessage);

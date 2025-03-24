@@ -119,28 +119,6 @@ $currentEnvironment = ENVIRONMENT;
                 </div>
             </div>
 
-            <!-- API Settings -->
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5 class="mb-0">إعدادات API</h5>
-                </div>
-                <div class="card-body">
-                    <form id="apiSettingsForm">
-                        <div class="mb-3">
-                            <label class="form-label">رابط Webhook</label>
-                            <input type="url" class="form-control" name="webhook_url" value="<?php echo $config['webhook_url']; ?>" required>
-                        </div>
-                        <div class="mb-3">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" name="ssl_verify" id="sslVerifySwitch" <?php echo $config['ssl_verify'] ? 'checked' : ''; ?>>
-                                <label class="form-check-label" for="sslVerifySwitch">التحقق من SSL</label>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
-                    </form>
-                </div>
-            </div>
-
             <!-- Subscription Settings -->
             <div class="card mb-4">
                 <div class="card-header">
@@ -262,38 +240,6 @@ $currentEnvironment = ENVIRONMENT;
                 const data = await response.json();
                 if (data.success) {
                     showAlert('success', 'تم تحديث إعدادات التطبيق بنجاح');
-                } else {
-                    showAlert('error', data.error || 'حدث خطأ أثناء تحديث الإعدادات');
-                }
-            } catch (error) {
-                showAlert('error', 'حدث خطأ أثناء تحديث الإعدادات');
-            }
-        });
-
-        // Handle API Settings Form
-        document.getElementById('apiSettingsForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const formData = new FormData(e.target);
-            const settings = {
-                webhook_url: formData.get('webhook_url'),
-                ssl_verify: formData.get('ssl_verify') === 'on'
-            };
-
-            try {
-                const response = await fetch('/chat/api/admin/settings.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        type: 'api',
-                        settings: settings
-                    })
-                });
-
-                const data = await response.json();
-                if (data.success) {
-                    showAlert('success', 'تم تحديث إعدادات API بنجاح');
                 } else {
                     showAlert('error', data.error || 'حدث خطأ أثناء تحديث الإعدادات');
                 }

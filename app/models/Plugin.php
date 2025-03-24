@@ -31,10 +31,20 @@ class PluginModel extends Model {
             $pluginsDir = dirname(__DIR__, 2) . '/plugins';
             $availablePlugins = [];
             
+            // Get list of installed plugins
+            $stmt = $this->db->query("SELECT name FROM plugins");
+            $installedPlugins = $stmt->fetchAll(PDO::FETCH_COLUMN);
+            
             if (file_exists($pluginsDir)) {
                 $pluginDirs = glob($pluginsDir . '/*', GLOB_ONLYDIR);
                 foreach ($pluginDirs as $pluginDir) {
                     $pluginName = basename($pluginDir);
+                    
+                    // Skip if plugin is already installed
+                    if (in_array($pluginName, $installedPlugins)) {
+                        continue;
+                    }
+                    
                     $pluginFile = $pluginDir . '/' . $pluginName . '.php';
                     
                     if (file_exists($pluginFile)) {
@@ -48,7 +58,7 @@ class PluginModel extends Model {
                                 'version' => $plugin->getVersion(),
                                 'description' => $plugin->getDescription(),
                                 'author' => $plugin->getAuthor(),
-                                'is_active' => $this->isActive($pluginName)
+                                'is_active' => false // Always false for available plugins
                             ];
                         }
                     }

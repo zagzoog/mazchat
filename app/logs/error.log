@@ -2767,3 +2767,65 @@ Stack trace:
 )
 
 [24-Mar-2025 18:11:15 Europe/London] Plugin file not found: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/Code Formatter/Code Formatter.php
+[24-Mar-2025 18:13:51 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 18:13:51 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 18:13:51 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 18:13:51 Europe/London] Settings: Array
+(
+    [id] => 3
+    [plugin_id] => 9
+    [webhook_url] => 
+    [is_active] => 1
+    [timeout] => 30
+    [created_at] => 2025-03-24 21:13:51
+    [updated_at] => 2025-03-24 21:13:51
+)
+
+[24-Mar-2025 18:14:06 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 18:14:08 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 18:14:08 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 18:14:08 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 18:14:08 Europe/London] Settings: Array
+(
+    [id] => 3
+    [plugin_id] => 9
+    [webhook_url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [is_active] => 1
+    [timeout] => 30
+    [created_at] => 2025-03-24 21:13:51
+    [updated_at] => 2025-03-24 21:14:06
+)
+
+[24-Mar-2025 18:14:15 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 18:15:14 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 18:15:20 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 18:16:26 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 18:16:34 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 19:00:18 Europe/London] Plugin loaded successfully: DirectMessageHandler
+[24-Mar-2025 19:00:18 Europe/London] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'provider' in 'field list' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\DirectMessageHandler\DirectMessageHandler.php:50
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\DirectMessageHandler\DirectMessageHandler.php(50): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_edit.php(61): DirectMessageHandler->activate()
+#2 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\DirectMessageHandler\DirectMessageHandler.php on line 50
+[24-Mar-2025 19:00:28 Europe/London] Plugin loaded successfully: DirectMessageHandler
+[24-Mar-2025 19:00:28 Europe/London] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'provider' in 'field list' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\DirectMessageHandler\DirectMessageHandler.php:50
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\DirectMessageHandler\DirectMessageHandler.php(50): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_edit.php(61): DirectMessageHandler->activate()
+#2 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\DirectMessageHandler\DirectMessageHandler.php on line 50
+[24-Mar-2025 19:00:52 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 19:00:52 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 19:00:52 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 19:00:52 Europe/London] Settings: Array
+(
+    [id] => 3
+    [plugin_id] => 9
+    [webhook_url] => https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [is_active] => 1
+    [timeout] => 120
+    [created_at] => 2025-03-24 21:13:51
+    [updated_at] => 2025-03-24 21:14:15
+)
+

@@ -55,8 +55,18 @@ header('Content-Type: application/json; charset=utf-8');
 // Start the session
 session_start();
 
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    http_response_code(401);
+    echo json_encode(['error' => 'Unauthorized']);
+    exit;
+}
+
 // Load configuration
 $config = require_once 'config.php';
+require_once 'db_config.php';
+require_once 'app/models/Membership.php';
+require_once 'app/models/Message.php';
 
 // Get the raw POST data
 $rawData = file_get_contents('php://input');
@@ -69,9 +79,7 @@ if (!isset($data['message'])) {
 }
 
 // Check question limit before processing
-require_once 'app/models/Membership.php';
 $membership = new Membership();
-
 if (!$membership->checkQuestionLimit($_SESSION['user_id'])) {
     error_log("User " . $_SESSION['user_id'] . " has reached their monthly question limit");
     http_response_code(403);
@@ -83,245 +91,72 @@ if (!$membership->checkQuestionLimit($_SESSION['user_id'])) {
     exit;
 }
 
-$message = sanitize_utf8($data['message']);
-
-// Use the existing session ID or create a new one if it doesn't exist
-if (!isset($_SESSION['chat_session_id'])) {
-    $_SESSION['chat_session_id'] = uniqid() . time();
-}
-$sessionId = $_SESSION['chat_session_id'];
-
-// Prepare the request data
-$requestData = [
-    'message' => $message,
-    'sessionId' => $sessionId
-];
-
-// Debug logging
-debug_log("=== New Request Debug Log ===");
-debug_log("Request Data", $requestData);
-debug_log("Webhook URL", $config['webhook_url']);
-
-// Initialize cURL session
-$ch = curl_init($config['webhook_url']);
-
-// Set cURL options
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-curl_setopt($ch, CURLOPT_POST, true);
-curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($requestData, JSON_UNESCAPED_UNICODE));
-curl_setopt($ch, CURLOPT_HTTPHEADER, [
-    'Content-Type: application/json; charset=utf-8',
-    'Accept: application/json; charset=utf-8'
-]);
-
-// SSL Verification settings
-curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-
-// Timeout settings
-curl_setopt($ch, CURLOPT_TIMEOUT, 300);
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
-
-// Execute the request
-debug_log("Sending request to webhook...");
-$response = curl_exec($ch);
-$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
-// Debug logging for response
-debug_log("=== Response Debug Info ===");
-debug_log("HTTP Code", $httpCode);
-debug_log("Response Length", strlen($response));
-debug_log("Response Type", gettype($response));
-debug_log("First 1000 chars", substr($response, 0, 1000));
-debug_log("Last 1000 chars", substr($response, -1000));
-debug_log("cURL Info", curl_getinfo($ch));
-
-// Check for errors
-if (curl_errno($ch)) {
-    debug_log("cURL Error", curl_error($ch));
-    debug_log("cURL Error Number", curl_errno($ch));
-    http_response_code(500);
-    echo json_encode([
-        'error' => 'Failed to connect to server: ' . curl_error($ch),
-        'details' => 'Error number: ' . curl_errno($ch)
-    ], JSON_UNESCAPED_UNICODE);
-    exit;
-}
-
-curl_close($ch);
-
-// Handle the response
-if ($httpCode !== 200) {
-    debug_log("Non-200 HTTP Response", [
-        'code' => $httpCode,
-        'response' => $response
-    ]);
-    http_response_code($httpCode);
-    echo json_encode([
-        'error' => 'Server returned an error with code: ' . $httpCode,
-        'response' => $response
-    ], JSON_UNESCAPED_UNICODE);
-    exit;
-}
-
-// Try to parse as JSON first
-$responseData = json_decode($response, true);
-$jsonError = json_last_error();
-
-// Debug logging for JSON parsing
-debug_log("=== JSON Parsing Debug ===");
-debug_log("JSON Parse Error", $jsonError);
-debug_log("JSON Parse Error Message", json_last_error_msg());
-debug_log("Response Data Type", gettype($responseData));
-if (is_array($responseData)) {
-    debug_log("Response Data Keys", array_keys($responseData));
-}
-
-// If JSON parsing failed, treat the response as a plain string
-if ($jsonError !== JSON_ERROR_NONE) {
-    try {
-        debug_log("=== String Response Processing ===");
-        // Sanitize the response before processing
-        $response = sanitize_utf8($response);
-        
-        // The response is a plain string, format it as markdown
-        $formattedResponse = formatAsMarkdown($response);
-        debug_log("Formatted Response Length", strlen($formattedResponse));
-        debug_log("Formatted Response Type", gettype($formattedResponse));
-        
-        // Validate the response before sending
-        if (empty($formattedResponse)) {
-            throw new Exception("Formatted response is empty");
-        }
-        
-        // Send the response back to the client
-        $jsonResponse = json_encode(['response' => $formattedResponse], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-        if ($jsonResponse === false) {
-            throw new Exception("Failed to encode response as JSON: " . json_last_error_msg());
-        }
-        
-        debug_log("Final JSON Response Length", strlen($jsonResponse));
-        
-        // Store the AI response in the database
-        require_once 'db_config.php';
-        require_once 'app/models/Message.php';
-        
-        try {
-            $messageModel = new Message();
-            $messageModel->create(
-                $data['conversation_id'],
-                $_SESSION['user_id'],
-                $formattedResponse,
-                'assistant'
-            );
-        } catch (Exception $e) {
-            error_log("Error storing AI response: " . $e->getMessage());
-            // Don't throw the error to the client, just log it
-        }
-        
-        echo $jsonResponse;
-    } catch (Exception $e) {
-        debug_log("Error processing string response", $e->getMessage());
-        http_response_code(500);
-        echo json_encode([
-            'error' => 'Error processing response: ' . $e->getMessage(),
-            'details' => 'Response length: ' . strlen($response)
-        ], JSON_UNESCAPED_UNICODE);
-    }
-    exit;
-}
-
-// If we got here, we have valid JSON data
-// Extract the response content
-$responseContent = '';
-if (is_string($responseData)) {
-    $responseContent = formatAsMarkdown(sanitize_utf8($responseData));
-} elseif (is_array($responseData)) {
-    // Try to find the response in various possible formats
-    if (isset($responseData['response'])) {
-        $responseContent = formatAsMarkdown(sanitize_utf8($responseData['response']));
-    } elseif (isset($responseData['message'])) {
-        $responseContent = formatAsMarkdown(sanitize_utf8($responseData['message']));
-    } elseif (isset($responseData['content'])) {
-        $responseContent = formatAsMarkdown(sanitize_utf8($responseData['content']));
-    } elseif (isset($responseData['text'])) {
-        $responseContent = formatAsMarkdown(sanitize_utf8($responseData['text']));
-    } elseif (isset($responseData['result'])) {
-        $responseContent = formatAsMarkdown(sanitize_utf8($responseData['result']));
-    } elseif (isset($responseData['output'])) {
-        $responseContent = formatAsMarkdown(sanitize_utf8($responseData['output']));
-    } elseif (isset($responseData['data'])) {
-        $responseContent = formatAsMarkdown(sanitize_utf8($responseData['data']));
-    } else {
-        // If no specific field is found, try to get the first string value
-        foreach ($responseData as $key => $value) {
-            if (is_string($value)) {
-                $responseContent = formatAsMarkdown(sanitize_utf8($value));
-                break;
-            }
-        }
-        // If still no content, encode the entire response
-        if (empty($responseContent)) {
-            $responseContent = formatAsMarkdown(sanitize_utf8(json_encode($responseData, JSON_UNESCAPED_UNICODE)));
-        }
-    }
-}
-
-if (empty($responseContent)) {
-    debug_log("Empty response content from N8N");
-    debug_log("Raw response data", $responseData);
-    http_response_code(500);
-    echo json_encode([
-        'error' => 'Invalid response from server',
-        'raw_response' => $response,
-        'parsed_data' => $responseData
-    ], JSON_UNESCAPED_UNICODE);
-    exit;
-}
-
-// Debug logging for final response
-debug_log("=== Final Response Debug ===");
-debug_log("Response Content Length", strlen($responseContent));
-debug_log("Response Content Type", gettype($responseContent));
-
 try {
-    // Validate the response before sending
-    if (empty($responseContent)) {
-        throw new Exception("Response content is empty");
+    $db = getDBConnection();
+    
+    // Get user's selected plugin
+    $stmt = $db->prepare("
+        SELECT p.id, p.name, p.class_name 
+        FROM plugins p 
+        JOIN user_plugin_preferences upp ON p.id = upp.plugin_id 
+        WHERE upp.user_id = ? AND p.is_active = TRUE
+        LIMIT 1
+    ");
+    $stmt->execute([$_SESSION['user_id']]);
+    $plugin = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+    if (!$plugin) {
+        // If no plugin selected, use the first available one
+        $stmt = $db->query("
+            SELECT p.id, p.name, p.class_name 
+            FROM plugins p 
+            WHERE p.is_active = TRUE 
+            AND (
+                EXISTS (SELECT 1 FROM n8n_webhook_settings n WHERE n.plugin_id = p.id AND n.is_active = TRUE)
+                OR EXISTS (SELECT 1 FROM direct_message_settings d WHERE d.plugin_id = p.id AND d.is_active = TRUE)
+            )
+            LIMIT 1
+        ");
+        $plugin = $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
-    // Send the response back to the client
-    $jsonResponse = json_encode(['response' => $responseContent], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-    if ($jsonResponse === false) {
-        throw new Exception("Failed to encode response as JSON: " . json_last_error_msg());
+    if (!$plugin) {
+        throw new Exception('No active message handling plugin available');
     }
     
-    debug_log("Final JSON Response Length", strlen($jsonResponse));
+    // Load and initialize the plugin
+    require_once "plugins/{$plugin['name']}/{$plugin['class_name']}.php";
+    $pluginInstance = new $plugin['class_name']($plugin['id']);
+    
+    // Process the message
+    $message = [
+        'content' => $data['message'],
+        'conversation_id' => $data['conversation_id']
+    ];
+    
+    $response = $pluginInstance->processMessage($message);
+    
+    if ($response === false) {
+        throw new Exception('Failed to process message');
+    }
     
     // Store the AI response in the database
-    require_once 'db_config.php';
-    require_once 'app/models/Message.php';
+    $messageModel = new Message();
+    $messageModel->create(
+        $data['conversation_id'],
+        $_SESSION['user_id'],
+        $response,
+        'assistant'
+    );
     
-    try {
-        $messageModel = new Message();
-        $messageModel->create(
-            $data['conversation_id'],
-            $_SESSION['user_id'],
-            $responseContent,
-            'assistant'
-        );
-    } catch (Exception $e) {
-        error_log("Error storing AI response: " . $e->getMessage());
-        // Don't throw the error to the client, just log it
-    }
+    // Send response back to client
+    echo json_encode(['response' => $response], JSON_UNESCAPED_UNICODE);
     
-    echo $jsonResponse;
 } catch (Exception $e) {
-    debug_log("Error sending response", $e->getMessage());
+    error_log("Error processing message: " . $e->getMessage());
     http_response_code(500);
     echo json_encode([
-        'error' => 'Error processing response: ' . $e->getMessage(),
-        'details' => 'Response length: ' . strlen($responseContent)
+        'error' => 'Error processing message: ' . $e->getMessage()
     ], JSON_UNESCAPED_UNICODE);
 }
 

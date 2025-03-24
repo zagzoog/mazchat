@@ -184,58 +184,82 @@ async function createNewConversation() {
     }
 }
 
+function formatTimestamp(date) {
+    return new Intl.DateTimeFormat('ar-EG', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    }).format(date);
+}
+
+function createMessageElement(msg) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${msg.is_user ? 'user' : 'assistant'}`;
+    
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'message-content';
+    
+    // Add timestamp
+    const timestampDiv = document.createElement('div');
+    timestampDiv.className = 'message-timestamp';
+    timestampDiv.textContent = formatTimestamp(new Date());
+    contentDiv.appendChild(timestampDiv);
+    
+    // Format message content
+    const formattedContent = msg.is_user ? 
+        msg.content.trim().replace(/\n/g, '<br>') : 
+        marked.parse(msg.content);
+    
+    const contentWrapper = document.createElement('div');
+    contentWrapper.innerHTML = formattedContent;
+    contentDiv.appendChild(contentWrapper);
+    
+    messageDiv.appendChild(contentDiv);
+    return messageDiv;
+}
+
+function showTypingIndicator() {
+    const indicator = document.getElementById('typingIndicator');
+    indicator.style.display = 'block';
+    indicator.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function hideTypingIndicator() {
+    document.getElementById('typingIndicator').style.display = 'none';
+}
+
 // Load a specific conversation
 async function loadConversation(conversationId) {
     if (!conversationId) {
-        console.error('Invalid conversation ID');
         return;
     }
-    
+
     try {
-        currentConversationId = conversationId;
-        
-        const chatContainer = document.getElementById('chatContainer');
-        chatContainer.innerHTML = `
-            <div class="loading-indicator">
-                <div class="loading-dots">
-                    <div class="loading-dot"></div>
-                    <div class="loading-dot"></div>
-                    <div class="loading-dot"></div>
-                </div>
-            </div>
-        `;
-        
         const response = await fetch(`/chat/api/messages.php?conversation_id=${conversationId}`);
+        
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const messages = await response.json();
+
+        const data = await response.json();
         
-        if (!Array.isArray(messages) || messages.length === 0) {
-            chatContainer.innerHTML = `
-                <div class="message assistant">
-                    <div class="message-content">
-                        مرحباً بك في المحادثة! كيف يمكنني مساعدتك اليوم؟
-                    </div>
-                </div>
-            `;
-            return;
+        if (data.error) {
+            throw new Error(data.error);
         }
 
-        chatContainer.innerHTML = messages.map(msg => {
+        const messages = data.data;
+        const chatContainer = document.getElementById('chatContainer');
+        
+        chatContainer.innerHTML = '';
+        messages.forEach(msg => {
             if (!msg || typeof msg.content !== 'string') {
                 console.error('Invalid message format:', msg);
-                return '';
+                return;
             }
-            const formattedContent = msg.is_user ? 
-                msg.content.trim().replace(/\n/g, '<br>') : 
-                msg.content.replace(/\n/g, '<br>');
-            return `
-                <div class="message ${msg.is_user ? 'user' : 'assistant'}">
-                    <div class="message-content">${marked.parse(formattedContent)}</div>
-                </div>
-            `;
-        }).filter(Boolean).join('');
+            
+            const messageElement = createMessageElement(msg);
+            chatContainer.appendChild(messageElement);
+        });
 
         const lastMessage = chatContainer.lastElementChild;
         if (lastMessage) {
@@ -264,19 +288,32 @@ async function sendMessage() {
     
     // Disable input and button while sending
     messageInput.disabled = true;
-    document.getElementById('send-button').disabled = true;
+    const sendButton = document.getElementById('send-button');
+    sendButton.disabled = true;
     
     try {
         // Check if we have an active conversation
         if (!currentConversationId) {
             await createNewConversation();
             if (!currentConversationId) {
-                // Re-enable input and button
-                messageInput.disabled = false;
-                document.getElementById('send-button').disabled = false;
-                return; // If createNewConversation failed, it will have shown the limit message
+                return;
             }
         }
+        
+        // Add user message immediately
+        const chatContainer = document.getElementById('chatContainer');
+        const userMessage = createMessageElement({
+            content: message,
+            is_user: true
+        });
+        chatContainer.appendChild(userMessage);
+        userMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Show typing indicator
+        showTypingIndicator();
+        
+        // Clear input
+        messageInput.value = '';
         
         // Send the message
         const response = await fetch('/chat/api/messages.php', {
@@ -301,29 +338,37 @@ async function sendMessage() {
             throw new Error(data.error);
         }
         
-        // Clear input and reload conversation
-        messageInput.value = '';
+        // Hide typing indicator and reload conversation
+        hideTypingIndicator();
         await loadConversation(currentConversationId);
+        
     } catch (error) {
         console.error('Error sending message:', error);
         showError('حدث خطأ أثناء إرسال الرسالة');
+        hideTypingIndicator();
     } finally {
         // Re-enable input and button
         messageInput.disabled = false;
-        document.getElementById('send-button').disabled = false;
+        sendButton.disabled = false;
         messageInput.focus();
     }
 }
 
 // Show error message
 function showError(message) {
+    const existingError = document.querySelector('.error-message');
+    if (existingError) {
+        existingError.remove();
+    }
+    
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
     errorDiv.textContent = message;
     document.body.appendChild(errorDiv);
     
     setTimeout(() => {
-        errorDiv.remove();
+        errorDiv.style.opacity = '0';
+        setTimeout(() => errorDiv.remove(), 300);
     }, 3000);
 }
 
@@ -359,6 +404,18 @@ async function initiatePayment(membershipType) {
     }
 }
 
+// Sidebar toggle functionality
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('active');
+    
+    // Lock body scroll when sidebar is open
+    document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     loadConversations();
@@ -368,15 +425,23 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Handle enter key in message input
     document.getElementById('message-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
             sendMessage();
         }
     });
-
-    // Auto-resize textarea
-    const textarea = document.getElementById('message-input');
-    textarea.addEventListener('input', function() {
-        this.style.height = 'auto';
-        this.style.height = (this.scrollHeight) + 'px';
+    
+    // Add sidebar toggle functionality
+    const toggleButton = document.querySelector('.toggle-sidebar');
+    const overlay = document.querySelector('.sidebar-overlay');
+    
+    toggleButton.addEventListener('click', toggleSidebar);
+    overlay.addEventListener('click', toggleSidebar);
+    
+    // Handle escape key to close sidebar
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && document.querySelector('.sidebar').classList.contains('open')) {
+            toggleSidebar();
+        }
     });
 }); 
