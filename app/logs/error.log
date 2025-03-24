@@ -2552,3 +2552,218 @@ Stack trace:
 #3 {main}
 [24-Mar-2025 13:35:01 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
 [24-Mar-2025 13:41:30 Europe/London] Login failed for username: zagzoog
+[24-Mar-2025 13:51:32 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 14:01:57 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 14:02:03 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 16:54:32 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 17:07:12 Europe/London] PHP Warning:  require_once(C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin/../app/models/Plugin.php): Failed to open stream: No such file or directory in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugins.php on line 7
+[24-Mar-2025 17:07:12 Europe/London] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin/../app/models/Plugin.php' (include_path='.;C:/Users/zagzo/Downloads/UniServerZ/home/us_pear/PEAR') in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugins.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugins.php on line 7
+[24-Mar-2025 17:09:30 Europe/London] PHP Fatal error:  Uncaught Error: Class "Plugin" not found in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugins.php:57
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugins.php on line 57
+[24-Mar-2025 17:11:16 Europe/London] PHP Fatal error:  Declaration of LLMModelSelector::activate() must be compatible with Plugin::activate($pluginId) in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\LLMModelSelector\LLMModelSelector.php on line 21
+[24-Mar-2025 17:12:50 Europe/London] PHP Fatal error:  Cannot declare class Plugin, because the name is already in use in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\Plugin.php on line 3
+[24-Mar-2025 17:14:10 Europe/London] PHP Fatal error:  Declaration of N8nWebhookHandler::activate() must be compatible with Plugin::activate($pluginId = null) in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\N8nWebhookHandler\N8nWebhookHandler.php on line 21
+[24-Mar-2025 17:19:52 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 11
+[24-Mar-2025 17:19:52 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 12
+[24-Mar-2025 17:19:52 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 13
+[24-Mar-2025 17:19:55 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 11
+[24-Mar-2025 17:19:55 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 12
+[24-Mar-2025 17:19:55 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 13
+[24-Mar-2025 17:19:59 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 11
+[24-Mar-2025 17:19:59 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 12
+[24-Mar-2025 17:19:59 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 13
+[24-Mar-2025 17:20:06 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 11
+[24-Mar-2025 17:20:06 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 12
+[24-Mar-2025 17:20:06 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 13
+[24-Mar-2025 17:20:07 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 11
+[24-Mar-2025 17:20:07 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 12
+[24-Mar-2025 17:20:07 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 13
+[24-Mar-2025 17:20:08 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 11
+[24-Mar-2025 17:20:08 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 12
+[24-Mar-2025 17:20:08 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 13
+[24-Mar-2025 17:20:08 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 11
+[24-Mar-2025 17:20:08 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 12
+[24-Mar-2025 17:20:08 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 13
+[24-Mar-2025 17:20:34 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 11
+[24-Mar-2025 17:20:34 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 12
+[24-Mar-2025 17:20:34 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 13
+[24-Mar-2025 17:20:46 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 11
+[24-Mar-2025 17:20:46 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 12
+[24-Mar-2025 17:20:46 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 13
+[24-Mar-2025 17:20:46 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 11
+[24-Mar-2025 17:20:46 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 12
+[24-Mar-2025 17:20:46 Europe/London] PHP Warning:  ini_set(): Session ini settings cannot be changed when a session is active in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config\config.php on line 13
+[24-Mar-2025 17:28:20 Europe/London] Error installing plugin: SQLSTATE[01000]: Warning: 1265 Data truncated for column 'id' at row 1
+[24-Mar-2025 17:28:28 Europe/London] Error installing plugin: SQLSTATE[01000]: Warning: 1265 Data truncated for column 'id' at row 1
+[24-Mar-2025 17:28:32 Europe/London] Error installing plugin: SQLSTATE[01000]: Warning: 1265 Data truncated for column 'id' at row 1
+[24-Mar-2025 17:28:46 Europe/London] Error installing plugin: SQLSTATE[01000]: Warning: 1265 Data truncated for column 'id' at row 1
+[24-Mar-2025 17:29:10 Europe/London] Error installing plugin: SQLSTATE[01000]: Warning: 1265 Data truncated for column 'id' at row 1
+[24-Mar-2025 17:34:27 Europe/London] Error installing plugin: SQLSTATE[01000]: Warning: 1265 Data truncated for column 'id' at row 1
+[24-Mar-2025 17:35:31 Europe/London] Error installing plugin: SQLSTATE[HY000]: General error: 1364 Field 'slug' doesn't have a default value
+[24-Mar-2025 17:39:23 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method PluginModel::findById() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_edit.php:70
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_edit.php on line 70
+[24-Mar-2025 17:39:52 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method PluginModel::findById() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_edit.php:70
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_edit.php on line 70
+[24-Mar-2025 17:49:56 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 17:49:56 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 17:49:56 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 17:49:56 Europe/London] PHP Fatal error:  Uncaught Error: Cannot access protected property N8nWebhookHandler::$db in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_edit.php:211
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_edit.php on line 211
+[24-Mar-2025 17:50:03 Europe/London] Plugin file not found: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/Code Formatter/Code Formatter.php
+[24-Mar-2025 17:50:07 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 17:50:07 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 17:50:07 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 17:50:07 Europe/London] PHP Fatal error:  Uncaught Error: Cannot access protected property N8nWebhookHandler::$db in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_edit.php:211
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_edit.php on line 211
+[24-Mar-2025 17:52:18 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 17:52:18 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 17:52:18 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 17:52:18 Europe/London] Error getting n8n webhook settings: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mychat.n8n_webhook_settings' doesn't exist
+[24-Mar-2025 17:52:18 Europe/London] Settings: Array
+(
+    [webhook_url] => 
+    [timeout] => 30
+    [is_active] => 1
+)
+
+[24-Mar-2025 17:53:37 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 17:53:37 Europe/London] Error updating n8n webhook settings: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mychat.n8n_webhook_settings' doesn't exist
+[24-Mar-2025 17:53:37 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 17:53:37 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 17:53:37 Europe/London] Error getting n8n webhook settings: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'mychat.n8n_webhook_settings' doesn't exist
+[24-Mar-2025 17:53:37 Europe/London] Settings: Array
+(
+    [webhook_url] => 
+    [timeout] => 30
+    [is_active] => 1
+)
+
+[24-Mar-2025 17:55:18 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 17:55:18 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 17:55:18 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 17:55:18 Europe/London] Settings: Array
+(
+    [id] => 1
+    [webhook_url] => 
+    [is_active] => 1
+    [timeout] => 30
+    [created_at] => 2025-03-24 20:55:18
+    [updated_at] => 2025-03-24 20:55:18
+)
+
+[24-Mar-2025 17:55:23 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 17:55:25 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 17:55:25 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 17:55:25 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 17:55:25 Europe/London] Settings: Array
+(
+    [id] => 1
+    [webhook_url] => 
+    [is_active] => 1
+    [timeout] => 30
+    [created_at] => 2025-03-24 20:55:18
+    [updated_at] => 2025-03-24 20:55:18
+)
+
+[24-Mar-2025 17:55:39 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 17:55:47 Europe/London] Plugin file not found: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins//.php
+[24-Mar-2025 17:58:41 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 17:58:41 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 17:58:41 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 17:58:41 Europe/London] Settings: Array
+(
+    [id] => 1
+    [webhook_url] => https://n8n.mazcode.com/webhook-test/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [is_active] => 1
+    [timeout] => 120
+    [created_at] => 2025-03-24 20:55:18
+    [updated_at] => 2025-03-24 20:55:39
+)
+
+[24-Mar-2025 17:58:49 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 17:58:56 Europe/London] Plugin file not found: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins//.php
+[24-Mar-2025 18:00:36 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 18:00:36 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 18:00:36 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 18:00:36 Europe/London] Settings: Array
+(
+    [id] => 1
+    [webhook_url] => https://n8n.mazcode.com/webhook-test/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [is_active] => 1
+    [timeout] => 50
+    [created_at] => 2025-03-24 20:55:18
+    [updated_at] => 2025-03-24 20:58:49
+)
+
+[24-Mar-2025 18:00:43 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 18:05:23 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 18:05:23 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 18:05:23 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 18:05:23 Europe/London] PHP Warning:  Undefined property: N8nWebhookHandler::$pluginId in C:\Users\zagzo\Downloads\UniServerZ\www\chat\plugins\N8nWebhookHandler\N8nWebhookHandler.php on line 202
+[24-Mar-2025 18:05:23 Europe/London] Settings: Array
+(
+    [webhook_url] => 
+    [timeout] => 30
+    [is_active] => 1
+)
+
+[24-Mar-2025 18:07:08 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 18:07:08 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 18:07:08 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 18:07:08 Europe/London] Settings: Array
+(
+    [id] => 1
+    [plugin_id] => 7
+    [webhook_url] => 
+    [is_active] => 1
+    [timeout] => 30
+    [created_at] => 2025-03-24 21:05:23
+    [updated_at] => 2025-03-24 21:05:23
+)
+
+[24-Mar-2025 18:07:27 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 18:07:28 Europe/London] Plugin file not found: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins//.php
+[24-Mar-2025 18:07:49 Europe/London] Plugin file not found: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins//.php
+[24-Mar-2025 18:10:22 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 18:10:22 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 18:10:22 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 18:10:22 Europe/London] Settings: Array
+(
+    [id] => 2
+    [plugin_id] => 8
+    [webhook_url] => 
+    [is_active] => 1
+    [timeout] => 30
+    [created_at] => 2025-03-24 21:10:22
+    [updated_at] => 2025-03-24 21:10:22
+)
+
+[24-Mar-2025 18:10:51 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 18:10:53 Europe/London] Plugin loaded successfully: N8nWebhookHandler
+[24-Mar-2025 18:10:53 Europe/London] Plugin Class: N8nWebhookHandler
+[24-Mar-2025 18:10:53 Europe/London] Plugin Instance: N8nWebhookHandler
+[24-Mar-2025 18:10:53 Europe/London] Settings: Array
+(
+    [id] => 2
+    [plugin_id] => 8
+    [webhook_url] => https://n8n.mazcode.com/webhook-test/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f
+    [is_active] => 1
+    [timeout] => 120
+    [created_at] => 2025-03-24 21:10:22
+    [updated_at] => 2025-03-24 21:10:51
+)
+
+[24-Mar-2025 18:11:15 Europe/London] Plugin file not found: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/Code Formatter/Code Formatter.php

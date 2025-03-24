@@ -7,6 +7,9 @@ require_once __DIR__ . '/../app/models/Model.php';
 require_once __DIR__ . '/../app/models/Plugin.php';
 require_once __DIR__ . '/../app/models/User.php';
 
+// Define ADMIN_PANEL constant for navbar access
+define('ADMIN_PANEL', true);
+
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
     header('Location: /chat/login.php');
@@ -25,28 +28,45 @@ if (!$user || !$userModel->isAdmin($_SESSION['user_id'])) {
 // Handle plugin actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['action'])) {
-        $pluginModel = new Plugin();
-        switch ($_POST['action']) {
-            case 'activate':
-                if (isset($_POST['plugin_id'])) {
-                    $pluginModel->activate($_POST['plugin_id']);
-                }
-                break;
-            case 'deactivate':
-                if (isset($_POST['plugin_id'])) {
-                    $pluginModel->deactivate($_POST['plugin_id']);
-                }
-                break;
-            case 'delete':
-                if (isset($_POST['plugin_id'])) {
-                    $pluginModel->delete($_POST['plugin_id']);
-                }
-                break;
-            case 'install':
-                if (isset($_POST['plugin_name'])) {
-                    $pluginModel->install($_POST['plugin_name']);
-                }
-                break;
+        $pluginModel = new PluginModel();
+        try {
+            switch ($_POST['action']) {
+                case 'activate':
+                    if (isset($_POST['plugin_id'])) {
+                        if ($pluginModel->activate($_POST['plugin_id'])) {
+                            $_SESSION['success_message'] = "تم تفعيل الإضافة بنجاح";
+                        } else {
+                            $_SESSION['error_message'] = "فشل في تفعيل الإضافة";
+                        }
+                    }
+                    break;
+                case 'deactivate':
+                    if (isset($_POST['plugin_id'])) {
+                        if ($pluginModel->deactivate($_POST['plugin_id'])) {
+                            $_SESSION['success_message'] = "تم تعطيل الإضافة بنجاح";
+                        } else {
+                            $_SESSION['error_message'] = "فشل في تعطيل الإضافة";
+                        }
+                    }
+                    break;
+                case 'delete':
+                    if (isset($_POST['plugin_id'])) {
+                        if ($pluginModel->delete($_POST['plugin_id'])) {
+                            $_SESSION['success_message'] = "تم حذف الإضافة بنجاح";
+                        } else {
+                            $_SESSION['error_message'] = "فشل في حذف الإضافة";
+                        }
+                    }
+                    break;
+                case 'install':
+                    if (isset($_POST['plugin_name'])) {
+                        $pluginModel->install($_POST['plugin_name']);
+                        $_SESSION['success_message'] = "تم تثبيت الإضافة بنجاح";
+                    }
+                    break;
+            }
+        } catch (Exception $e) {
+            $_SESSION['error_message'] = "حدث خطأ: " . $e->getMessage();
         }
         header('Location: /chat/admin/plugins.php');
         exit;
@@ -54,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Get plugins
-$pluginModel = new Plugin();
+$pluginModel = new PluginModel();
 $installedPlugins = $pluginModel->getAll();
 $availablePlugins = $pluginModel->getAvailablePlugins();
 ?>
@@ -101,12 +121,35 @@ $availablePlugins = $pluginModel->getAvailablePlugins();
             margin-bottom: 1rem;
             color: #4e73df;
         }
+        .alert {
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
-    <?php include 'includes/navbar.php'; ?>
+    <?php include '../app/views/components/navbar.php'; ?>
 
     <div class="container-fluid py-4">
+        <?php if (isset($_SESSION['success_message'])): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?php 
+                echo $_SESSION['success_message'];
+                unset($_SESSION['success_message']);
+                ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['error_message'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?php 
+                echo $_SESSION['error_message'];
+                unset($_SESSION['error_message']);
+                ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        <?php endif; ?>
+
         <div class="row">
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center mb-4">
@@ -129,7 +172,7 @@ $availablePlugins = $pluginModel->getAvailablePlugins();
                     <div class="card-body text-center">
                         <i class="fas fa-puzzle-piece plugin-icon"></i>
                         <h5 class="card-title"><?php echo htmlspecialchars($plugin['name']); ?></h5>
-                        <p class="card-text text-muted"><?php echo htmlspecialchars($plugin['description']); ?></p>
+                        <p class="card-text text-muted"><?php echo htmlspecialchars($plugin['description'] ?? ''); ?></p>
                         <div class="mb-3">
                             <span class="status-badge status-<?php echo $plugin['is_active'] ? 'active' : 'inactive'; ?>">
                                 <?php echo $plugin['is_active'] ? 'نشط' : 'غير نشط'; ?>
@@ -183,15 +226,19 @@ $availablePlugins = $pluginModel->getAvailablePlugins();
                         <h5 class="card-title"><?php echo htmlspecialchars($plugin['name']); ?></h5>
                         <p class="card-text text-muted"><?php echo htmlspecialchars($plugin['description']); ?></p>
                         <div class="mb-3">
-                            <span class="badge bg-info">الإصدار: <?php echo htmlspecialchars($plugin['version']); ?></span>
+                            <span class="status-badge status-<?php echo $plugin['is_active'] ? 'active' : 'inactive'; ?>">
+                                <?php echo $plugin['is_active'] ? 'نشط' : 'غير نشط'; ?>
+                            </span>
                         </div>
-                        <form method="POST">
+                        <?php if (!$plugin['is_active']): ?>
+                        <form method="POST" class="d-inline">
                             <input type="hidden" name="action" value="install">
                             <input type="hidden" name="plugin_name" value="<?php echo htmlspecialchars($plugin['name']); ?>">
                             <button type="submit" class="btn btn-success">
                                 <i class="fas fa-download"></i> تثبيت
                             </button>
                         </form>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

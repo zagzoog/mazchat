@@ -30,6 +30,11 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link <?php echo $current_page === 'plugins.php' ? 'active' : ''; ?>" href="/chat/admin/plugins.php">
+                        <i class="fas fa-puzzle-piece"></i> الإضافات
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link <?php echo $current_page === 'developer_portal.php' ? 'active' : ''; ?>" href="/chat/admin/developer_portal.php">
                         <i class="fas fa-code"></i> بوابة المطورين
                     </a>

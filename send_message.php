@@ -123,6 +123,7 @@ curl_setopt($ch, CURLOPT_TIMEOUT, 300);
 curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
 
 // Execute the request
+debug_log("Sending request to webhook...");
 $response = curl_exec($ch);
 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
@@ -151,6 +152,10 @@ curl_close($ch);
 
 // Handle the response
 if ($httpCode !== 200) {
+    debug_log("Non-200 HTTP Response", [
+        'code' => $httpCode,
+        'response' => $response
+    ]);
     http_response_code($httpCode);
     echo json_encode([
         'error' => 'Server returned an error with code: ' . $httpCode,

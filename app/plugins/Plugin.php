@@ -6,14 +6,23 @@ abstract class Plugin {
     protected $description;
     protected $author;
     protected $config;
+    protected $db;
     
     public function __construct() {
         $this->config = $this->loadConfig();
+        require_once dirname(__DIR__, 2) . '/db_config.php';
+        $this->db = getDBConnection();
     }
     
     abstract public function initialize();
-    abstract public function activate();
-    abstract public function deactivate();
+    
+    public function activate($pluginId = null) {
+        // Base activation logic
+    }
+    
+    public function deactivate($pluginId = null) {
+        // Base deactivation logic
+    }
     
     protected function loadConfig() {
         $configFile = dirname(__DIR__, 2) . '/plugins/' . $this->name . '/config.php';

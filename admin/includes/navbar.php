@@ -22,6 +22,9 @@ if (!defined('ADMIN_PANEL')) {
                     <a href="/chat/admin/subscriptions.php" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                         <i class="fas fa-crown"></i> الاشتراكات
                     </a>
+                    <a href="/chat/admin/plugins.php" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
+                        <i class="fas fa-puzzle-piece"></i> الإضافات
+                    </a>
                     <a href="/chat/admin/settings.php" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                         <i class="fas fa-cog"></i> الإعدادات
                     </a>
@@ -54,6 +57,9 @@ if (!defined('ADMIN_PANEL')) {
             </a>
             <a href="/chat/admin/subscriptions.php" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
                 <i class="fas fa-crown"></i> الاشتراكات
+            </a>
+            <a href="/chat/admin/plugins.php" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
+                <i class="fas fa-puzzle-piece"></i> الإضافات
             </a>
             <a href="/chat/admin/settings.php" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
                 <i class="fas fa-cog"></i> الإعدادات
