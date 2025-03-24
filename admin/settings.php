@@ -120,7 +120,7 @@ $currentEnvironment = ENVIRONMENT;
             </div>
 
             <!-- API Settings -->
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-header">
                     <h5 class="mb-0">إعدادات API</h5>
                 </div>
@@ -135,6 +135,88 @@ $currentEnvironment = ENVIRONMENT;
                                 <input class="form-check-input" type="checkbox" name="ssl_verify" id="sslVerifySwitch" <?php echo $config['ssl_verify'] ? 'checked' : ''; ?>>
                                 <label class="form-check-label" for="sslVerifySwitch">التحقق من SSL</label>
                             </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Subscription Settings -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0">إعدادات الاشتراكات</h5>
+                </div>
+                <div class="card-body">
+                    <form id="subscriptionSettingsForm">
+                        <div class="mb-4">
+                            <h6 class="mb-3">الحدود الشهرية للمحادثات</h6>
+                            <div class="mb-3">
+                                <label class="form-label">الحد الشهري للمستخدمين المجانيين</label>
+                                <input type="number" class="form-control" name="free_monthly_limit" value="<?php echo $config['free_monthly_limit'] ?? 50; ?>" min="1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">الحد الشهري للعضو الفضي</label>
+                                <input type="number" class="form-control" name="silver_monthly_limit" value="<?php echo $config['silver_monthly_limit'] ?? 100; ?>" min="1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">الحد الشهري للعضو الذهبي</label>
+                                <input type="number" class="form-control" name="gold_monthly_limit" value="<?php echo $config['gold_monthly_limit'] ?? 999999; ?>" min="1" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <h6 class="mb-3">الحدود الشهرية للأسئلة</h6>
+                            <div class="mb-3">
+                                <label class="form-label">الحد الشهري للمستخدمين المجانيين</label>
+                                <input type="number" class="form-control" name="free_question_limit" value="<?php echo $config['free_question_limit'] ?? 500; ?>" min="1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">الحد الشهري للعضو الفضي</label>
+                                <input type="number" class="form-control" name="silver_question_limit" value="<?php echo $config['silver_question_limit'] ?? 2000; ?>" min="1" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">الحد الشهري للعضو الذهبي</label>
+                                <input type="number" class="form-control" name="gold_question_limit" value="<?php echo $config['gold_question_limit'] ?? 999999; ?>" min="1" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <h6 class="mb-3">أسعار الاشتراكات</h6>
+                            <div class="mb-3">
+                                <label class="form-label">سعر العضوية الفضية (بالدولار)</label>
+                                <input type="number" class="form-control" name="silver_price" value="<?php echo $config['silver_price'] ?? 9.99; ?>" min="0" step="0.01" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">سعر العضوية الذهبية (بالدولار)</label>
+                                <input type="number" class="form-control" name="gold_price" value="<?php echo $config['gold_price'] ?? 19.99; ?>" min="0" step="0.01" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- PayPal Settings -->
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">إعدادات PayPal</h5>
+                </div>
+                <div class="card-body">
+                    <form id="paypalSettingsForm">
+                        <div class="mb-3">
+                            <label class="form-label">معرف العميل PayPal</label>
+                            <input type="text" class="form-control" name="paypal_client_id" value="<?php echo $config['paypal_client_id'] ?? ''; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">السر الخاص بـ PayPal</label>
+                            <input type="password" class="form-control" name="paypal_secret" value="<?php echo $config['paypal_secret'] ?? ''; ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">وضع PayPal</label>
+                            <select class="form-select" name="paypal_mode" required>
+                                <option value="sandbox" <?php echo ($config['paypal_mode'] ?? 'sandbox') === 'sandbox' ? 'selected' : ''; ?>>بيئة الاختبار</option>
+                                <option value="live" <?php echo ($config['paypal_mode'] ?? 'sandbox') === 'live' ? 'selected' : ''; ?>>بيئة الإنتاج</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
                     </form>
@@ -212,6 +294,77 @@ $currentEnvironment = ENVIRONMENT;
                 const data = await response.json();
                 if (data.success) {
                     showAlert('success', 'تم تحديث إعدادات API بنجاح');
+                } else {
+                    showAlert('error', data.error || 'حدث خطأ أثناء تحديث الإعدادات');
+                }
+            } catch (error) {
+                showAlert('error', 'حدث خطأ أثناء تحديث الإعدادات');
+            }
+        });
+
+        // Handle Subscription Settings Form
+        document.getElementById('subscriptionSettingsForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const settings = {
+                free_monthly_limit: parseInt(formData.get('free_monthly_limit')),
+                silver_monthly_limit: parseInt(formData.get('silver_monthly_limit')),
+                gold_monthly_limit: parseInt(formData.get('gold_monthly_limit')),
+                free_question_limit: parseInt(formData.get('free_question_limit')),
+                silver_question_limit: parseInt(formData.get('silver_question_limit')),
+                gold_question_limit: parseInt(formData.get('gold_question_limit')),
+                silver_price: parseFloat(formData.get('silver_price')),
+                gold_price: parseFloat(formData.get('gold_price'))
+            };
+
+            try {
+                const response = await fetch('/chat/api/admin/settings.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        type: 'subscription',
+                        settings: settings
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    showAlert('success', 'تم تحديث إعدادات الاشتراكات بنجاح');
+                } else {
+                    showAlert('error', data.error || 'حدث خطأ أثناء تحديث الإعدادات');
+                }
+            } catch (error) {
+                showAlert('error', 'حدث خطأ أثناء تحديث الإعدادات');
+            }
+        });
+
+        // Handle PayPal Settings Form
+        document.getElementById('paypalSettingsForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const settings = {
+                paypal_client_id: formData.get('paypal_client_id'),
+                paypal_secret: formData.get('paypal_secret'),
+                paypal_mode: formData.get('paypal_mode')
+            };
+
+            try {
+                const response = await fetch('/chat/api/admin/settings.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        type: 'paypal',
+                        settings: settings
+                    })
+                });
+
+                const data = await response.json();
+                if (data.success) {
+                    showAlert('success', 'تم تحديث إعدادات PayPal بنجاح');
                 } else {
                     showAlert('error', data.error || 'حدث خطأ أثناء تحديث الإعدادات');
                 }

@@ -25,8 +25,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $current_page === 'plugin_marketplace.php' ? 'active' : ''; ?>" href="/chat/admin/plugin_marketplace.php">
-                        <i class="fas fa-puzzle-piece"></i> الإضافات
+                    <a class="nav-link <?php echo $current_page === 'subscriptions.php' ? 'active' : ''; ?>" href="/chat/admin/subscriptions.php">
+                        <i class="fas fa-crown"></i> الاشتراكات
                     </a>
                 </li>
                 <li class="nav-item">

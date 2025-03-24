@@ -2429,3 +2429,33 @@ Stack trace:
 [24-Mar-2025 12:07:24 Europe/London] PHP Warning:  Undefined array key "user_id" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 295
 [24-Mar-2025 12:07:24 Europe/London] PHP Warning:  Undefined array key "user_id" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 295
 [24-Mar-2025 12:07:24 Europe/London] PHP Warning:  Undefined array key "user_id" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 295
+[24-Mar-2025 12:47:59 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 12:54:45 Europe/London] PHP Warning:  require_once(C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin/../app/models/Plugin.php): Failed to open stream: No such file or directory in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\dashboard.php on line 10
+[24-Mar-2025 12:54:45 Europe/London] PHP Fatal error:  Uncaught Error: Failed opening required 'C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin/../app/models/Plugin.php' (include_path='.;C:/Users/zagzo/Downloads/UniServerZ/home/us_pear/PEAR') in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\dashboard.php:10
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\dashboard.php on line 10
+[24-Mar-2025 12:55:57 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method User::getAllUsersWithSubscriptions() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\subscriptions.php:57
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\subscriptions.php on line 57
+[24-Mar-2025 12:56:03 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method User::getAllUsersWithSubscriptions() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\subscriptions.php:57
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\subscriptions.php on line 57
+[24-Mar-2025 12:56:09 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method User::getAllUsersWithSubscriptions() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\subscriptions.php:57
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\subscriptions.php on line 57
+[24-Mar-2025 12:56:47 Europe/London] PHP Warning:  Undefined array key "free_count" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\subscriptions.php on line 141
+[24-Mar-2025 12:56:47 Europe/London] PHP Warning:  Undefined array key "silver_count" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\subscriptions.php on line 156
+[24-Mar-2025 12:56:47 Europe/London] PHP Warning:  Undefined array key "gold_count" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\subscriptions.php on line 171
+[24-Mar-2025 12:57:25 Europe/London] PHP Warning:  Undefined array key "free_count" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\subscriptions.php on line 141
+[24-Mar-2025 12:57:25 Europe/London] PHP Warning:  Undefined array key "silver_count" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\subscriptions.php on line 156
+[24-Mar-2025 12:57:25 Europe/London] PHP Warning:  Undefined array key "gold_count" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\subscriptions.php on line 171
+[24-Mar-2025 12:58:16 Europe/London] PHP Warning:  Undefined array key "free" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 199
+[24-Mar-2025 12:58:16 Europe/London] PHP Warning:  Undefined array key "silver" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 205
+[24-Mar-2025 12:58:16 Europe/London] PHP Warning:  Undefined array key "gold" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 211
+[24-Mar-2025 12:58:18 Europe/London] PHP Warning:  Undefined array key "free" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 199
+[24-Mar-2025 12:58:18 Europe/London] PHP Warning:  Undefined array key "silver" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 205
+[24-Mar-2025 12:58:18 Europe/London] PHP Warning:  Undefined array key "gold" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 211

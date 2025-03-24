@@ -196,19 +196,19 @@ $recentConversations = $conversationModel->getRecentConversations(5);
                             <div class="col-md-4">
                                 <div class="d-flex align-items-center mb-3">
                                     <span class="subscription-badge subscription-free me-2">مجاني</span>
-                                    <span class="ms-2"><?php echo $subscriptionStats['free']; ?> مستخدم</span>
+                                    <span class="ms-2"><?php echo $subscriptionStats['free_count']; ?> مستخدم</span>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="d-flex align-items-center mb-3">
                                     <span class="subscription-badge subscription-silver me-2">فضي</span>
-                                    <span class="ms-2"><?php echo $subscriptionStats['silver']; ?> مستخدم</span>
+                                    <span class="ms-2"><?php echo $subscriptionStats['silver_count']; ?> مستخدم</span>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="d-flex align-items-center mb-3">
                                     <span class="subscription-badge subscription-gold me-2">ذهبي</span>
-                                    <span class="ms-2"><?php echo $subscriptionStats['gold']; ?> مستخدم</span>
+                                    <span class="ms-2"><?php echo $subscriptionStats['gold_count']; ?> مستخدم</span>
                                 </div>
                             </div>
                         </div>
@@ -309,6 +309,32 @@ $recentConversations = $conversationModel->getRecentConversations(5);
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- New Admin Panel Links -->
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">إدارة المستخدمين</h5>
+                        <p class="card-text">إدارة المستخدمين وعضوياتهم</p>
+                        <a href="/chat/admin/users.php" class="btn btn-primary">
+                            <i class="fas fa-users"></i> عرض المستخدمين
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">إعدادات النظام</h5>
+                        <p class="card-text">تكوين إعدادات النظام العامة</p>
+                        <a href="/chat/admin/settings.php" class="btn btn-primary">
+                            <i class="fas fa-cog"></i> الإعدادات
+                        </a>
                     </div>
                 </div>
             </div>

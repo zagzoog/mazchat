@@ -114,8 +114,8 @@ $totalPages = ceil($totalUsers / $limit);
             <div class="col-12">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h1>إدارة المستخدمين</h1>
-                    <a href="/chat/admin/user_add.php" class="btn btn-primary">
-                        <i class="fas fa-plus"></i> إضافة مستخدم جديد
+                    <a href="/chat/admin/add_user.php" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i> إضافة مستخدم جديد
                     </a>
                 </div>
             </div>

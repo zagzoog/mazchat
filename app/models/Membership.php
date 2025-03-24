@@ -156,9 +156,9 @@ class Membership extends Model {
             // Get counts for each subscription type
             $stmt = $this->db->prepare("
                 SELECT 
-                    COUNT(CASE WHEN type = 'free' THEN 1 END) as free,
-                    COUNT(CASE WHEN type = 'silver' THEN 1 END) as silver,
-                    COUNT(CASE WHEN type = 'gold' THEN 1 END) as gold,
+                    COUNT(CASE WHEN type = 'free' THEN 1 END) as free_count,
+                    COUNT(CASE WHEN type = 'silver' THEN 1 END) as silver_count,
+                    COUNT(CASE WHEN type = 'gold' THEN 1 END) as gold_count,
                     COUNT(*) as total_active,
                     COUNT(CASE WHEN end_date < CURRENT_DATE THEN 1 END) as expired
                 FROM memberships 
@@ -189,9 +189,9 @@ class Membership extends Model {
         } catch (Exception $e) {
             error_log("Error getting subscription stats: " . $e->getMessage());
             return [
-                'free' => 0,
-                'silver' => 0,
-                'gold' => 0,
+                'free_count' => 0,
+                'silver_count' => 0,
+                'gold_count' => 0,
                 'total_active' => 0,
                 'expired' => 0,
                 'monthly_revenue' => 0

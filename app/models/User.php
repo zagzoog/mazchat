@@ -90,4 +90,33 @@ class User extends Model {
         $sql = 'SELECT id, username, email, created_at FROM users ORDER BY created_at DESC LIMIT ?';
         return $this->query($sql, [$limit])->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getAllUsersWithSubscriptions() {
+        try {
+            $sql = "
+                SELECT u.*, 
+                       m.type as membership_type,
+                       m.start_date,
+                       m.end_date
+                FROM users u
+                LEFT JOIN (
+                    SELECT user_id, type, start_date, end_date
+                    FROM memberships m1
+                    WHERE id = (
+                        SELECT MAX(id)
+                        FROM memberships m2
+                        WHERE m2.user_id = m1.user_id
+                    )
+                ) m ON m.user_id = u.id
+                ORDER BY u.created_at DESC
+            ";
+            return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            Logger::log("Error getting users with subscriptions", 'ERROR', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            return [];
+        }
+    }
 } 
