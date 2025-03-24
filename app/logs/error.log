@@ -2160,3 +2160,272 @@ Stack trace:
 )
 
 [24-Mar-2025 01:39:03 Europe/London] Ending response compression
+[24-Mar-2025 01:54:32 Europe/London] Required files loaded successfully
+[24-Mar-2025 01:54:32 Europe/London] Initializing response compression...
+[24-Mar-2025 01:54:32 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 01:54:32 Europe/London] Response compression started
+[24-Mar-2025 01:54:32 Europe/London] Auth endpoint called
+[24-Mar-2025 01:54:32 Europe/London] Received data: Array
+(
+    [username] => string
+    [password] => string
+)
+
+[24-Mar-2025 01:54:32 Europe/London] Attempting to connect to database
+[24-Mar-2025 01:54:32 Europe/London] Database connection successful
+[24-Mar-2025 01:54:32 Europe/London] Looking up user: string
+[24-Mar-2025 01:54:32 Europe/London] User data found: 
+[24-Mar-2025 01:54:32 Europe/London] Authentication failed for user: string
+[24-Mar-2025 01:54:32 Europe/London] Ending response compression
+[24-Mar-2025 01:55:39 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 01:55:54 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method ApiKey::where() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php:12
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 12
+[24-Mar-2025 01:55:57 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method Plugin::all() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php on line 11
+[24-Mar-2025 01:57:16 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method Plugin::all() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php on line 11
+[24-Mar-2025 01:57:18 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method ApiKey::where() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php:12
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 12
+[24-Mar-2025 01:57:21 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method Plugin::all() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php on line 11
+[24-Mar-2025 01:57:24 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method ApiKey::where() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php:12
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 12
+[24-Mar-2025 01:57:29 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method ApiKey::where() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php:12
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 12
+[24-Mar-2025 01:58:51 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method Plugin::all() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php on line 11
+[24-Mar-2025 01:58:54 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method Plugin::all() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php on line 11
+[24-Mar-2025 01:58:59 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method Plugin::all() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php:11
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php on line 11
+[24-Mar-2025 02:00:01 Europe/London] Error fetching all plugins {"error":"SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #15 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mychat.m.price' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by","trace":"#0 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\app\\models\\Plugin.php(285): PDO->prepare()\n#1 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\admin\\plugin_marketplace.php(13): Plugin->all()\n#2 {main}"}
+[24-Mar-2025 02:00:01 Europe/London] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #15 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mychat.m.price' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php:285
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php(285): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php(13): Plugin->all()
+#2 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php on line 285
+[24-Mar-2025 02:00:02 Europe/London] Error fetching all plugins {"error":"SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #15 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mychat.m.price' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by","trace":"#0 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\app\\models\\Plugin.php(285): PDO->prepare()\n#1 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\admin\\plugin_marketplace.php(13): Plugin->all()\n#2 {main}"}
+[24-Mar-2025 02:00:02 Europe/London] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #15 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mychat.m.price' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php:285
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php(285): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php(13): Plugin->all()
+#2 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php on line 285
+[24-Mar-2025 02:01:17 Europe/London] Error fetching all plugins {"error":"SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #18 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mychat.m.downloads' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by","trace":"#0 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\app\\models\\Plugin.php(285): PDO->prepare()\n#1 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\admin\\plugin_marketplace.php(13): Plugin->all()\n#2 {main}"}
+[24-Mar-2025 02:01:17 Europe/London] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #18 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mychat.m.downloads' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php:285
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php(285): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php(13): Plugin->all()
+#2 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php on line 285
+[24-Mar-2025 02:01:18 Europe/London] Error fetching all plugins {"error":"SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #18 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mychat.m.downloads' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by","trace":"#0 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\app\\models\\Plugin.php(285): PDO->prepare()\n#1 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\admin\\plugin_marketplace.php(13): Plugin->all()\n#2 {main}"}
+[24-Mar-2025 02:01:18 Europe/London] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #18 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mychat.m.downloads' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php:285
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php(285): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php(13): Plugin->all()
+#2 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php on line 285
+[24-Mar-2025 02:01:19 Europe/London] Error fetching all plugins {"error":"SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #18 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mychat.m.downloads' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by","trace":"#0 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\app\\models\\Plugin.php(285): PDO->prepare()\n#1 C:\\Users\\zagzo\\Downloads\\UniServerZ\\www\\chat\\admin\\plugin_marketplace.php(13): Plugin->all()\n#2 {main}"}
+[24-Mar-2025 02:01:19 Europe/London] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42000]: Syntax error or access violation: 1055 Expression #18 of SELECT list is not in GROUP BY clause and contains nonaggregated column 'mychat.m.downloads' which is not functionally dependent on columns in GROUP BY clause; this is incompatible with sql_mode=only_full_group_by in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php:285
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php(285): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\plugin_marketplace.php(13): Plugin->all()
+#2 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Plugin.php on line 285
+[24-Mar-2025 02:01:51 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 02:02:01 Europe/London] Login failed for username: admin
+[24-Mar-2025 02:02:14 Europe/London] Login failed for username: mychat
+[24-Mar-2025 02:03:05 Europe/London] Login failed for username: testuser
+[24-Mar-2025 02:03:27 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 02:03:32 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php on line 17
+[24-Mar-2025 02:03:32 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php on line 17
+[24-Mar-2025 02:03:58 Europe/London] Required files loaded successfully
+[24-Mar-2025 02:03:58 Europe/London] Initializing response compression...
+[24-Mar-2025 02:03:58 Europe/London] ResponseCompressor instance created
+[24-Mar-2025 02:03:58 Europe/London] Response compression started
+[24-Mar-2025 02:03:58 Europe/London] Auth endpoint called
+[24-Mar-2025 02:03:58 Europe/London] Received data: 
+[24-Mar-2025 02:03:58 Europe/London] Missing username or password
+[24-Mar-2025 02:04:05 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\messages.php on line 17
+[24-Mar-2025 02:04:05 Europe/London] Error in messages API: Conversation ID is required
+[24-Mar-2025 10:45:52 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 62
+[24-Mar-2025 10:45:52 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 63
+[24-Mar-2025 10:46:08 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 62
+[24-Mar-2025 10:46:08 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 63
+[24-Mar-2025 10:46:11 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 62
+[24-Mar-2025 10:46:11 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 63
+[24-Mar-2025 10:47:00 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 62
+[24-Mar-2025 10:47:00 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 63
+[24-Mar-2025 10:47:46 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 62
+[24-Mar-2025 10:47:46 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 63
+[24-Mar-2025 10:47:47 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 62
+[24-Mar-2025 10:47:47 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 63
+[24-Mar-2025 10:47:48 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 62
+[24-Mar-2025 10:47:48 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 63
+[24-Mar-2025 10:48:31 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 62
+[24-Mar-2025 10:48:31 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 63
+[24-Mar-2025 10:48:45 Europe/London] PHP Warning:  ini_set(): Output handler 'zlib output compression' conflicts with 'ob_gzhandler' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\api\dashboard.php on line 20
+[24-Mar-2025 10:49:10 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 62
+[24-Mar-2025 10:49:10 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 63
+[24-Mar-2025 10:49:17 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 62
+[24-Mar-2025 10:49:17 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 63
+[24-Mar-2025 10:49:41 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 62
+[24-Mar-2025 10:49:41 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 63
+[24-Mar-2025 10:49:48 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 62
+[24-Mar-2025 10:49:48 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 63
+[24-Mar-2025 10:50:14 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 62
+[24-Mar-2025 10:50:14 Europe/London] PHP Warning:  Undefined array key "api_key" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\developer_portal.php on line 63
+[24-Mar-2025 10:57:41 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method User::getById() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\profile.php:16
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\profile.php on line 16
+[24-Mar-2025 10:57:42 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method User::getById() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\profile.php:16
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\profile.php on line 16
+[24-Mar-2025 11:04:55 Europe/London] PHP Warning:  Constant ENVIRONMENT already defined in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config.php on line 3
+[24-Mar-2025 11:04:55 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:04:55 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:08:22 Europe/London] PHP Warning:  Constant ENVIRONMENT already defined in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config.php on line 3
+[24-Mar-2025 11:08:22 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:08:22 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:08:24 Europe/London] PHP Warning:  Constant ENVIRONMENT already defined in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config.php on line 3
+[24-Mar-2025 11:08:24 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:08:24 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:08:44 Europe/London] PHP Warning:  Constant ENVIRONMENT already defined in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config.php on line 3
+[24-Mar-2025 11:08:44 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:08:44 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:08:50 Europe/London] PHP Warning:  Constant ENVIRONMENT already defined in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config.php on line 3
+[24-Mar-2025 11:08:50 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:08:50 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:09:02 Europe/London] PHP Warning:  Constant ENVIRONMENT already defined in C:\Users\zagzo\Downloads\UniServerZ\www\chat\config.php on line 3
+[24-Mar-2025 11:09:02 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:09:02 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:10:57 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:10:57 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:11:01 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:11:01 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:12:14 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:12:14 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:12:15 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:12:15 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:12:20 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:12:20 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:13:46 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:13:46 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:13:48 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:13:48 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:14:03 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 49
+[24-Mar-2025 11:14:03 Europe/London] PHP Warning:  Undefined array key "environment" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 50
+[24-Mar-2025 11:15:29 Europe/London] PHP Warning:  Undefined array key "role" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 23
+[24-Mar-2025 11:15:35 Europe/London] PHP Warning:  Undefined array key "role" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 23
+[24-Mar-2025 11:15:45 Europe/London] PHP Warning:  Undefined array key "role" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 23
+[24-Mar-2025 11:15:48 Europe/London] PHP Warning:  Undefined array key "role" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 23
+[24-Mar-2025 11:15:52 Europe/London] PHP Warning:  Undefined array key "role" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php on line 23
+[24-Mar-2025 11:17:51 Europe/London] Query error {"class":"User","sql":"SELECT id, username, email, password, role, api_token, api_token_expires, created_at, last_login FROM users WHERE id = ?","params":[2],"message":"SQLSTATE[42S22]: Column not found: 1054 Unknown column 'role' in 'field list'"}
+[24-Mar-2025 11:17:51 Europe/London] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'role' in 'field list' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php:69
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php(69): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\User.php(20): Model->query()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php(21): User->findById()
+#3 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php on line 69
+[24-Mar-2025 11:18:26 Europe/London] PHP Warning:  Undefined variable $pdo in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\migrations\001_add_role_column.php on line 7
+[24-Mar-2025 11:18:26 Europe/London] PHP Fatal error:  Uncaught Error: Call to a member function exec() on null in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\migrations\001_add_role_column.php:7
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\migrations\001_add_role_column.php on line 7
+[24-Mar-2025 11:19:19 Europe/London] Query error {"class":"User","sql":"SELECT id, username, email, password, role, api_token, api_token_expires, created_at, last_login FROM users WHERE id = ?","params":[2],"message":"SQLSTATE[42S22]: Column not found: 1054 Unknown column 'last_login' in 'field list'"}
+[24-Mar-2025 11:19:19 Europe/London] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'last_login' in 'field list' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php:69
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php(69): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\User.php(20): Model->query()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php(21): User->findById()
+#3 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php on line 69
+[24-Mar-2025 11:19:20 Europe/London] Query error {"class":"User","sql":"SELECT id, username, email, password, role, api_token, api_token_expires, created_at, last_login FROM users WHERE id = ?","params":[2],"message":"SQLSTATE[42S22]: Column not found: 1054 Unknown column 'last_login' in 'field list'"}
+[24-Mar-2025 11:19:20 Europe/London] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'last_login' in 'field list' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php:69
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php(69): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\User.php(20): Model->query()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php(21): User->findById()
+#3 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php on line 69
+[24-Mar-2025 11:19:22 Europe/London] Query error {"class":"User","sql":"SELECT id, username, email, password, role, api_token, api_token_expires, created_at, last_login FROM users WHERE id = ?","params":[2],"message":"SQLSTATE[42S22]: Column not found: 1054 Unknown column 'last_login' in 'field list'"}
+[24-Mar-2025 11:19:22 Europe/London] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'last_login' in 'field list' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php:69
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php(69): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\User.php(20): Model->query()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\settings.php(21): User->findById()
+#3 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php on line 69
+[24-Mar-2025 11:40:33 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method User::getAll() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php:53
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php on line 53
+[24-Mar-2025 11:53:01 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method Message::countAll() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\dashboard.php:32
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\dashboard.php on line 32
+[24-Mar-2025 11:53:27 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method User::getAll() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php:53
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php on line 53
+[24-Mar-2025 11:57:17 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method User::getAll() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php:56
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php on line 56
+[24-Mar-2025 11:57:24 Europe/London] PHP Fatal error:  Uncaught Error: Call to undefined method User::getAll() in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php:56
+Stack trace:
+#0 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php on line 56
+[24-Mar-2025 11:58:47 Europe/London] PHP Warning:  Undefined array key "status" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php on line 151
+[24-Mar-2025 11:58:47 Europe/London] PHP Warning:  Undefined array key "status" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php on line 152
+[24-Mar-2025 11:58:47 Europe/London] PHP Warning:  Undefined array key "created_at" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php on line 155
+[24-Mar-2025 11:58:47 Europe/London] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php on line 155
+[24-Mar-2025 11:58:47 Europe/London] PHP Warning:  Undefined array key "status" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php on line 151
+[24-Mar-2025 11:58:47 Europe/London] PHP Warning:  Undefined array key "status" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php on line 152
+[24-Mar-2025 11:58:47 Europe/London] PHP Warning:  Undefined array key "created_at" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php on line 155
+[24-Mar-2025 11:58:47 Europe/London] PHP Deprecated:  strtotime(): Passing null to parameter #1 ($datetime) of type string is deprecated in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php on line 155
+[24-Mar-2025 12:00:36 Europe/London] Query error {"class":"User","sql":"SELECT id, username, email, role, status, created_at FROM users LIMIT ? OFFSET ?","params":[10,0],"message":"SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status' in 'field list'"}
+[24-Mar-2025 12:00:36 Europe/London] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status' in 'field list' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php:69
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php(69): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\User.php(77): Model->query()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php(56): User->getAll()
+#3 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php on line 69
+[24-Mar-2025 12:00:37 Europe/London] Query error {"class":"User","sql":"SELECT id, username, email, role, status, created_at FROM users LIMIT ? OFFSET ?","params":[10,0],"message":"SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status' in 'field list'"}
+[24-Mar-2025 12:00:37 Europe/London] PHP Fatal error:  Uncaught PDOException: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'status' in 'field list' in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php:69
+Stack trace:
+#0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php(69): PDO->prepare()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\User.php(77): Model->query()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\users.php(56): User->getAll()
+#3 {main}
+  thrown in C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\models\Model.php on line 69
+[24-Mar-2025 12:07:24 Europe/London] PHP Warning:  Undefined array key "user_id" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 295
+[24-Mar-2025 12:07:24 Europe/London] PHP Warning:  Undefined array key "user_id" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 295
+[24-Mar-2025 12:07:24 Europe/London] PHP Warning:  Undefined array key "user_id" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 295
+[24-Mar-2025 12:07:24 Europe/London] PHP Warning:  Undefined array key "user_id" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 295
+[24-Mar-2025 12:07:24 Europe/London] PHP Warning:  Undefined array key "user_id" in C:\Users\zagzo\Downloads\UniServerZ\www\chat\admin\index.php on line 295

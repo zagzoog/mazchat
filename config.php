@@ -1,6 +1,6 @@
 <?php
-// Environment configuration
-define('ENVIRONMENT', 'production'); // Changed from 'test' to 'production'
+// Load environment configuration
+require_once __DIR__ . '/environment.php';
 
 // Webhook URLs
 $config = [
@@ -26,4 +26,4 @@ $config = [
 $currentConfig = $config[ENVIRONMENT];
 
 // Export configuration
-return $currentConfig; 
+return $currentConfig;

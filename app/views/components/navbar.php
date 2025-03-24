@@ -8,47 +8,47 @@ $current_page = basename($_SERVER['PHP_SELF']);
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/admin">Chat Admin</a>
+        <a class="navbar-brand" href="/chat/admin">لوحة التحكم</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $current_page === 'index.php' ? 'active' : ''; ?>" href="/admin">
-                        <i class="fas fa-home"></i> Dashboard
+                    <a class="nav-link <?php echo $current_page === 'index.php' ? 'active' : ''; ?>" href="/chat/admin">
+                        <i class="fas fa-home"></i> الرئيسية
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $current_page === 'users.php' ? 'active' : ''; ?>" href="/admin/users">
-                        <i class="fas fa-users"></i> Users
+                    <a class="nav-link <?php echo $current_page === 'users.php' ? 'active' : ''; ?>" href="/chat/admin/users.php">
+                        <i class="fas fa-users"></i> المستخدمين
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $current_page === 'plugin_marketplace.php' ? 'active' : ''; ?>" href="/admin/plugin_marketplace">
-                        <i class="fas fa-puzzle-piece"></i> Plugins
+                    <a class="nav-link <?php echo $current_page === 'plugin_marketplace.php' ? 'active' : ''; ?>" href="/chat/admin/plugin_marketplace.php">
+                        <i class="fas fa-puzzle-piece"></i> الإضافات
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $current_page === 'developer_portal.php' ? 'active' : ''; ?>" href="/admin/developer_portal">
-                        <i class="fas fa-code"></i> Developer Portal
+                    <a class="nav-link <?php echo $current_page === 'developer_portal.php' ? 'active' : ''; ?>" href="/chat/admin/developer_portal.php">
+                        <i class="fas fa-code"></i> بوابة المطورين
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $current_page === 'settings.php' ? 'active' : ''; ?>" href="/admin/settings">
-                        <i class="fas fa-cog"></i> Settings
+                    <a class="nav-link <?php echo $current_page === 'settings.php' ? 'active' : ''; ?>" href="/chat/admin/settings.php">
+                        <i class="fas fa-cog"></i> الإعدادات
                     </a>
                 </li>
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/profile">
-                        <i class="fas fa-user"></i> Profile
+                    <a class="nav-link" href="/chat/admin/profile.php">
+                        <i class="fas fa-user"></i> الملف الشخصي
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/logout">
-                        <i class="fas fa-sign-out-alt"></i> Logout
+                    <a class="nav-link" href="/chat/admin/logout.php">
+                        <i class="fas fa-sign-out-alt"></i> تسجيل الخروج
                     </a>
                 </li>
             </ul>

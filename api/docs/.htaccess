@@ -1,0 +1,22 @@
+# Allow access to the API documentation
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /chat/api/docs/
+    
+    # Allow direct access to index.php and swagger.json
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+    
+    # Redirect all other requests to index.php
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# Set proper content type for JSON files
+<FilesMatch "\.json$">
+    Header set Content-Type "application/json"
+</FilesMatch>
+
+# Enable CORS for the API documentation
+Header set Access-Control-Allow-Origin "*"
+Header set Access-Control-Allow-Methods "GET, OPTIONS"
+Header set Access-Control-Allow-Headers "Origin, X-Requested-With, Content-Type, Accept" 

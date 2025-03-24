@@ -54,7 +54,7 @@ class ApiKey extends Model {
     public function getByUserId($userId) {
         try {
             $stmt = $this->db->prepare("
-                SELECT id, name, description, is_active, last_used_at, created_at, updated_at
+                SELECT id, name, description, api_key, is_active, last_used_at, created_at, updated_at
                 FROM api_keys 
                 WHERE user_id = ?
                 ORDER BY created_at DESC

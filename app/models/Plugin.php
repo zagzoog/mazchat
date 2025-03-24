@@ -279,4 +279,34 @@ class Plugin extends Model {
             return false;
         }
     }
+    
+    public function all() {
+        try {
+            $stmt = $this->db->prepare("
+                SELECT 
+                    p.*,
+                    m.price,
+                    m.is_featured,
+                    m.status as marketplace_status,
+                    m.downloads,
+                    COALESCE(
+                        (SELECT AVG(rating) FROM plugin_reviews WHERE plugin_id = p.id),
+                        0
+                    ) as average_rating,
+                    (SELECT COUNT(*) FROM plugin_reviews WHERE plugin_id = p.id) as total_reviews,
+                    (SELECT COUNT(*) FROM user_plugins WHERE plugin_id = p.id) as total_installs
+                FROM plugins p
+                LEFT JOIN marketplace_items m ON m.plugin_id = p.id
+                ORDER BY m.is_featured DESC, p.created_at DESC
+            ");
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            Logger::error('Error fetching all plugins', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            throw $e;
+        }
+    }
 } 

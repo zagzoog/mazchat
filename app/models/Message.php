@@ -99,4 +99,9 @@ class Message extends Model {
             throw $e;
         }
     }
+
+    public function countAll() {
+        $stmt = $this->query('SELECT COUNT(*) as count FROM messages');
+        return $stmt->fetch(PDO::FETCH_ASSOC)['count'];
+    }
 } 

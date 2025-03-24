@@ -82,6 +82,12 @@ try {
                 'description' => $data['description'] ?? null
             ]);
             
+            Logger::log("Created new API key", 'INFO', [
+                'api_key_id' => $newKey['id'],
+                'user_id' => $user_id,
+                'response' => $newKey
+            ]);
+            
             http_response_code(201);
             echo json_encode([
                 'success' => true,

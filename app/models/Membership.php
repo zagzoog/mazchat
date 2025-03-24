@@ -150,4 +150,52 @@ class Membership extends Model {
         error_log("Checking question limit for user $userId: current usage = $currentUsage, limit = $questionLimit");
         return $currentUsage < $questionLimit;
     }
+
+    public function getSubscriptionStats() {
+        try {
+            // Get counts for each subscription type
+            $stmt = $this->db->prepare("
+                SELECT 
+                    COUNT(CASE WHEN type = 'free' THEN 1 END) as free,
+                    COUNT(CASE WHEN type = 'silver' THEN 1 END) as silver,
+                    COUNT(CASE WHEN type = 'gold' THEN 1 END) as gold,
+                    COUNT(*) as total_active,
+                    COUNT(CASE WHEN end_date < CURRENT_DATE THEN 1 END) as expired
+                FROM memberships 
+                WHERE start_date <= CURRENT_DATE 
+                AND (end_date IS NULL OR end_date >= CURRENT_DATE)
+            ");
+            $stmt->execute();
+            $stats = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            // Calculate monthly revenue
+            $stmt = $this->db->prepare("
+                SELECT 
+                    SUM(CASE 
+                        WHEN type = 'silver' THEN 50
+                        WHEN type = 'gold' THEN 100
+                        ELSE 0
+                    END) as monthly_revenue
+                FROM memberships 
+                WHERE start_date <= CURRENT_DATE 
+                AND (end_date IS NULL OR end_date >= CURRENT_DATE)
+            ");
+            $stmt->execute();
+            $revenue = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $stats['monthly_revenue'] = $revenue['monthly_revenue'] ?? 0;
+
+            return $stats;
+        } catch (Exception $e) {
+            error_log("Error getting subscription stats: " . $e->getMessage());
+            return [
+                'free' => 0,
+                'silver' => 0,
+                'gold' => 0,
+                'total_active' => 0,
+                'expired' => 0,
+                'monthly_revenue' => 0
+            ];
+        }
+    }
 } 

@@ -193,4 +193,18 @@ class Conversation extends Model {
             throw $e;
         }
     }
+
+    public function countAll() {
+        $stmt = $this->query('SELECT COUNT(*) as count FROM conversations');
+        return $stmt->fetch(PDO::FETCH_ASSOC)['count'];
+    }
+
+    public function getRecentConversations($limit = 5) {
+        $sql = 'SELECT c.id, c.title, c.created_at, c.user_id, u.username 
+                FROM conversations c 
+                JOIN users u ON c.user_id = u.id 
+                ORDER BY c.created_at DESC 
+                LIMIT ?';
+        return $this->query($sql, [$limit])->fetchAll(PDO::FETCH_ASSOC);
+    }
 } 

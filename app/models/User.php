@@ -7,25 +7,25 @@ class User extends Model {
     protected $table = 'users';
     
     public function findByUsername($username) {
-        $stmt = $this->query('SELECT * FROM users WHERE username = ?', [$username]);
+        $stmt = $this->query('SELECT id, username, email, password, role FROM users WHERE username = ?', [$username]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
     public function findByEmail($email) {
-        $stmt = $this->query('SELECT * FROM users WHERE email = ?', [$email]);
+        $stmt = $this->query('SELECT id, username, email, password, role FROM users WHERE email = ?', [$email]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
     public function findById($id) {
-        $stmt = $this->query('SELECT * FROM users WHERE id = ?', [$id]);
+        $stmt = $this->query('SELECT id, username, email, password, role FROM users WHERE id = ?', [$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
-    public function create($username, $email, $password) {
+    public function create($username, $email, $password, $role = 'user') {
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $stmt = $this->query(
-            'INSERT INTO users (username, email, password) VALUES (?, ?, ?)',
-            [$username, $email, $hashedPassword]
+            'INSERT INTO users (id, username, email, password, role) VALUES (UUID(), ?, ?, ?, ?)',
+            [$username, $email, $hashedPassword, $role]
         );
         return $this->db->lastInsertId();
     }
@@ -48,5 +48,46 @@ class User extends Model {
     public function verifyPassword($userId, $password) {
         $user = $this->findById($userId);
         return $user && password_verify($password, $user['password']);
+    }
+    
+    public function isAdmin($userId) {
+        $user = $this->findById($userId);
+        return $user && isset($user['role']) && $user['role'] === 'admin';
+    }
+    
+    public function updateLastLogin($userId) {
+        try {
+            return $this->query(
+                'UPDATE users SET last_login = CURRENT_TIMESTAMP WHERE id = ?',
+                [$userId]
+            );
+        } catch (PDOException $e) {
+            // If the last_login column doesn't exist, log the error but don't fail
+            Logger::log("Error updating last_login: " . $e->getMessage(), 'WARNING');
+            return false;
+        }
+    }
+
+    public function getAll($limit = null, $offset = null) {
+        $sql = 'SELECT id, username, email, role, created_at FROM users';
+        if ($limit !== null) {
+            $sql .= ' LIMIT ?';
+            if ($offset !== null) {
+                $sql .= ' OFFSET ?';
+                return $this->query($sql, [$limit, $offset])->fetchAll(PDO::FETCH_ASSOC);
+            }
+            return $this->query($sql, [$limit])->fetchAll(PDO::FETCH_ASSOC);
+        }
+        return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function countAll() {
+        $stmt = $this->query('SELECT COUNT(*) as count FROM users');
+        return $stmt->fetch(PDO::FETCH_ASSOC)['count'];
+    }
+
+    public function getRecentUsers($limit = 5) {
+        $sql = 'SELECT id, username, email, created_at FROM users ORDER BY created_at DESC LIMIT ?';
+        return $this->query($sql, [$limit])->fetchAll(PDO::FETCH_ASSOC);
     }
 } 
