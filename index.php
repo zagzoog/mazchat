@@ -71,6 +71,11 @@ $usageStatsModel->ensureColumns();
                 <button class="toggle-sidebar" aria-label="Toggle Sidebar">
                     <i class="fas fa-bars"></i>
                 </button>
+                <div class="header-actions">
+                    <a href="dashboard.php" class="dashboard-link" aria-label="لوحة التحكم">
+                        <i class="fas fa-chart-line"></i>
+                    </a>
+                </div>
                 <div class="plugin-selector">
                     <label for="pluginSelector">معالج الرسائل:</label>
                     <select id="pluginSelector" aria-label="Select Message Processor">

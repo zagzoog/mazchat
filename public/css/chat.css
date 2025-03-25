@@ -316,36 +316,38 @@ body {
 
 /* Chat Header */
 .chat-header {
-    padding: 1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    padding: 1rem;
     background-color: #2d2d3a;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    justify-content: space-between;
 }
 
-.toggle-sidebar {
-    display: none;
-    background: none;
-    border: none;
-    color: #ffffff;
-    font-size: 1.25rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dashboard-link {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 40px;
+    height: 40px;
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s;
 }
 
-.toggle-sidebar:hover {
+.dashboard-link:hover {
     background-color: rgba(255,255,255,0.1);
 }
 
-.toggle-sidebar:active {
-    transform: scale(0.95);
+.dashboard-link i {
+    font-size: 1.25rem;
 }
 
 .plugin-selector {
@@ -353,6 +355,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     color: #ffffff;
+    margin-right: auto;
 }
 
 .plugin-selector select {

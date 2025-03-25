@@ -53,8 +53,13 @@ async function loadConversations(loadMore = false) {
             throw new Error(data.error || 'Failed to load conversations');
         }
         
-        const conversations = data.data.conversations;
-        hasMoreConversations = data.data.hasMore;
+        // Handle both admin and regular user response formats
+        const conversations = data.data || data.conversations;
+        const hasMore = data.hasMore;
+        
+        if (!conversations) {
+            throw new Error('No conversations data received');
+        }
         
         const sidebar = document.querySelector('.sidebar');
         let conversationsList = loadMore ? 
@@ -132,9 +137,9 @@ async function loadConversations(loadMore = false) {
             conversationsList.appendChild(fragment);
         }
         
-        if (hasMoreConversations) {
+        if (hasMore) {
             const loadMoreBtn = document.createElement('button');
-            loadMoreBtn.className = 'load-more-btn w-full mt-4 p-2 text-center text-indigo-600 hover:text-indigo-800 font-semibold';
+            loadMoreBtn.className = 'load-more-btn w-full mt-4 p-2 text-center bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-semibold';
             loadMoreBtn.innerHTML = '<i class="fas fa-chevron-down"></i> تحميل المزيد';
             loadMoreBtn.onclick = () => {
                 currentOffset += window.conversationsPerPage;

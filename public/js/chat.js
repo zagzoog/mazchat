@@ -15,7 +15,7 @@ async function handleResponse(response) {
         }
         throw new Error(`HTTP error! status: ${response.status}`);
     }
-    return response.json();
+    return await response.json();
 }
 
 // Load conversations from the server
@@ -31,8 +31,17 @@ async function loadConversations(loadMore = false) {
         });
         const data = await handleResponse(response);
         
-        const conversations = data.conversations;
-        hasMoreConversations = data.hasMore;
+        if (!data.success) {
+            throw new Error(data.error || 'Failed to load conversations');
+        }
+        
+        // Handle both admin and regular user response formats
+        const conversations = data.data || data.conversations;
+        const hasMore = data.hasMore;
+        
+        if (!conversations) {
+            throw new Error('No conversations data received');
+        }
         
         const sidebar = document.querySelector('.sidebar');
         let conversationsList = loadMore ? 
@@ -41,6 +50,7 @@ async function loadConversations(loadMore = false) {
         
         if (!loadMore) {
             const footer = sidebar.querySelector('.sidebar-footer');
+            const footerHtml = footer ? footer.outerHTML : '';
             
             sidebar.innerHTML = `
                 <div class="sidebar-header flex justify-between items-center mb-4">
@@ -52,9 +62,9 @@ async function loadConversations(loadMore = false) {
                 <div class="sidebar-content">
                     <div class="conversations-list"></div>
                 </div>
+                ${footerHtml}
             `;
             
-            sidebar.appendChild(footer);
             conversationsList = sidebar.querySelector('.conversations-list');
         }
         
@@ -107,9 +117,9 @@ async function loadConversations(loadMore = false) {
             conversationsList.appendChild(fragment);
         }
         
-        if (hasMoreConversations) {
+        if (hasMore) {
             const loadMoreBtn = document.createElement('button');
-            loadMoreBtn.className = 'load-more-btn w-full mt-4 p-2 text-center text-indigo-600 hover:text-indigo-800 font-semibold';
+            loadMoreBtn.className = 'load-more-btn w-full mt-4 p-2 text-center bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-semibold';
             loadMoreBtn.innerHTML = '<i class="fas fa-chevron-down"></i> تحميل المزيد';
             loadMoreBtn.onclick = () => {
                 currentOffset += window.conversationsPerPage;
@@ -118,7 +128,6 @@ async function loadConversations(loadMore = false) {
             conversationsList.appendChild(loadMoreBtn);
         }
     } catch (error) {
-        console.error('Error loading conversations:', error);
         showError('Failed to load conversations');
     }
 }
@@ -143,6 +152,7 @@ async function createNewConversation() {
                 plugin_id: selectedPluginId
             })
         });
+        
         const data = await handleResponse(response);
         
         if (!data.data || !data.data.id) {
@@ -150,9 +160,7 @@ async function createNewConversation() {
         }
         
         currentConversationId = data.data.id;
-        console.log('New conversation created with ID:', currentConversationId);
         
-        // Clear the chat container and show welcome message
         const chatContainer = document.getElementById('chatContainer');
         chatContainer.innerHTML = `
             <div class="message assistant">
@@ -162,20 +170,20 @@ async function createNewConversation() {
             </div>
         `;
         
-        // Update the conversations list
         await loadConversations();
         
-        // Update active state in sidebar
         document.querySelectorAll('.conversation-item').forEach(item => {
             item.classList.remove('active');
             if (item.dataset.conversationId === currentConversationId) {
                 item.classList.add('active');
             }
         });
+
+        return currentConversationId;
     } catch (error) {
-        console.error('Error creating conversation:', error);
         showError('حدث خطأ أثناء إنشاء محادثة جديدة');
-        currentConversationId = null; // Reset the conversation ID on error
+        currentConversationId = null;
+        throw error;
     }
 }
 
@@ -189,7 +197,8 @@ function formatTimestamp(date) {
 
 function createMessageElement(msg) {
     const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${msg.is_user ? 'user' : 'assistant'}`;
+    const isUser = msg.is_user || msg.role === 'user';
+    messageDiv.className = `message ${isUser ? 'user' : 'assistant'}`;
     
     const contentDiv = document.createElement('div');
     contentDiv.className = 'message-content';
@@ -201,7 +210,7 @@ function createMessageElement(msg) {
     contentDiv.appendChild(timestampDiv);
     
     // Format message content
-    const formattedContent = msg.is_user ? 
+    const formattedContent = isUser ? 
         msg.content.trim().replace(/\n/g, '<br>') : 
         marked.parse(msg.content);
     
@@ -215,48 +224,65 @@ function createMessageElement(msg) {
 
 function showTypingIndicator() {
     const indicator = document.getElementById('typingIndicator');
-    indicator.style.display = 'block';
-    indicator.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (indicator) {
+        indicator.style.display = 'block';
+        indicator.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }
 
 function hideTypingIndicator() {
-    document.getElementById('typingIndicator').style.display = 'none';
+    const indicator = document.getElementById('typingIndicator');
+    if (indicator) {
+        indicator.style.display = 'none';
+    }
 }
 
 // Load a specific conversation
 async function loadConversation(conversationId) {
+    if (!conversationId) return;
+    
     try {
-        const response = await fetch(`/chat/api/conversations.php?id=${conversationId}`, {
+        currentConversationId = conversationId;
+        
+        const chatContainer = document.getElementById('chatContainer');
+        chatContainer.innerHTML = `
+            <div class="loading-indicator">
+                <div class="loading-dots">
+                    <div class="loading-dot"></div>
+                    <div class="loading-dot"></div>
+                    <div class="loading-dot"></div>
+                </div>
+            </div>
+        `;
+        
+        const response = await fetch(`/chat/api/messages.php?conversation_id=${conversationId}`, {
             credentials: 'include'
         });
         const data = await handleResponse(response);
         
-        if (data.error) {
-            throw new Error(data.error);
+        const messages = Array.isArray(data) ? data : (data.messages || []);
+        
+        if (messages.length === 0) {
+            chatContainer.innerHTML = `
+                <div class="message assistant">
+                    <div class="message-content">
+                        مرحباً بك في المحادثة! كيف يمكنني مساعدتك اليوم؟
+                    </div>
+                </div>
+            `;
+            return;
         }
-        
-        currentConversationId = conversationId;
-        
-        // Update plugin selector to match conversation's plugin
-        const pluginSelector = document.getElementById('pluginSelector');
-        if (data.conversation && data.conversation.plugin_id) {
-            pluginSelector.value = data.conversation.plugin_id;
-        }
-        
-        // Load and display messages
-        const chatContainer = document.getElementById('chatContainer');
-        chatContainer.innerHTML = data.messages.map(msg => {
-            const messageElement = createMessageElement(msg);
-            return messageElement.outerHTML;
+
+        chatContainer.innerHTML = messages.map(msg => {
+            if (!msg || typeof msg.content !== 'string') return '';
+            return createMessageElement(msg).outerHTML;
         }).join('');
-        
-        // Scroll to the last message
+
         const lastMessage = chatContainer.lastElementChild;
         if (lastMessage) {
             lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        
-        // Update active state in sidebar
+
         document.querySelectorAll('.conversation-item').forEach(item => {
             item.classList.remove('active');
             if (item.dataset.conversationId === conversationId) {
@@ -265,48 +291,38 @@ async function loadConversation(conversationId) {
         });
         
     } catch (error) {
-        console.error('Error loading conversation:', error);
         showError('حدث خطأ أثناء تحميل المحادثة');
     }
 }
 
 // Send a message
 async function sendMessage() {
-    const messageInput = document.getElementById('message-input');
+    const messageInput = document.getElementById('messageInput');
     const message = messageInput.value.trim();
     
     if (!message) return;
     
-    // Disable input and button while sending
     messageInput.disabled = true;
-    const sendButton = document.getElementById('send-button');
+    const sendButton = document.getElementById('sendButton');
     sendButton.disabled = true;
     
     try {
-        // Check if we have an active conversation
         if (!currentConversationId) {
             await createNewConversation();
-            if (!currentConversationId) {
-                return;
-            }
+            if (!currentConversationId) return;
         }
         
-        // Add user message immediately
         const chatContainer = document.getElementById('chatContainer');
         const userMessage = createMessageElement({
             content: message,
-            is_user: true
+            role: 'user'
         });
         chatContainer.appendChild(userMessage);
         userMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
         
-        // Show typing indicator
         showTypingIndicator();
-        
-        // Clear input
         messageInput.value = '';
         
-        // Send the message
         const response = await fetch('/chat/app/api/v1/messages.php', {
             method: 'POST',
             headers: {
@@ -324,25 +340,22 @@ async function sendMessage() {
             throw new Error(data.error);
         }
         
-        // Hide typing indicator
         hideTypingIndicator();
         
-        // Check for assistant response in the nested data structure
-        if (data.data && data.data.assistant_message) {
+        const messageData = data.data?.data;
+        if (messageData && messageData.assistant_message) {
             const assistantMessage = createMessageElement({
-                content: data.data.assistant_message.content,
-                is_user: false
+                content: messageData.assistant_message.content,
+                role: 'assistant'
             });
             chatContainer.appendChild(assistantMessage);
             assistantMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
         
     } catch (error) {
-        console.error('Error sending message:', error);
+        showError('حدث خطأ أثناء إرسال الرسالة');
         hideTypingIndicator();
-        showError('An error occurred while sending the message');
     } finally {
-        // Re-enable input and button
         messageInput.disabled = false;
         sendButton.disabled = false;
         messageInput.focus();
@@ -351,19 +364,13 @@ async function sendMessage() {
 
 // Show error message
 function showError(message) {
-    const existingError = document.querySelector('.error-message');
-    if (existingError) {
-        existingError.remove();
-    }
-    
     const errorDiv = document.createElement('div');
     errorDiv.className = 'error-message';
     errorDiv.textContent = message;
     document.body.appendChild(errorDiv);
     
     setTimeout(() => {
-        errorDiv.style.opacity = '0';
-        setTimeout(() => errorDiv.remove(), 300);
+        errorDiv.remove();
     }, 3000);
 }
 
@@ -388,13 +395,13 @@ async function initiatePayment(membershipType) {
         });
         
         const data = await response.json();
+        
         if (data.success) {
             window.location.href = data.paypal_url;
         } else {
             showError('حدث خطأ أثناء إنشاء الدفع');
         }
     } catch (error) {
-        console.error('Error initiating payment:', error);
         showError('حدث خطأ أثناء إنشاء الدفع');
     }
 }
@@ -411,20 +418,82 @@ function toggleSidebar() {
     document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
 }
 
+// Load available plugins and populate selector
+async function loadPlugins() {
+    try {
+        const response = await fetch('/chat/api/plugins.php');
+        
+        if (!response.ok) {
+            throw new Error('Failed to load plugins');
+        }
+        
+        const data = await response.json();
+        
+        if (!data.success) {
+            throw new Error(data.error || 'Failed to load plugins');
+        }
+        
+        const pluginSelector = document.getElementById('pluginSelector');
+        pluginSelector.innerHTML = '';
+        
+        data.plugins.forEach(plugin => {
+            const option = document.createElement('option');
+            option.value = plugin.id;
+            option.textContent = plugin.name;
+            if (data.selected_plugin === plugin.id) {
+                option.selected = true;
+            }
+            pluginSelector.appendChild(option);
+        });
+        
+        pluginSelector.addEventListener('change', async function() {
+            try {
+                const response = await fetch('/chat/api/user/preferences.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        plugin_id: this.value
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to update plugin preference');
+                }
+            } catch (error) {
+                showError('فشل في تحديث تفضيلات المعالج');
+            }
+        });
+    } catch (error) {
+        showError('فشل في تحميل المعالجات المتاحة');
+    }
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     loadConversations();
+    loadPlugins();
     
-    // Add click event listener for send button
-    document.getElementById('send-button').addEventListener('click', sendMessage);
+    const sendButton = document.getElementById('sendButton');
+    if (sendButton) {
+        sendButton.addEventListener('click', sendMessage);
+    }
     
-    // Handle enter key in message input
-    document.getElementById('message-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' && !e.shiftKey) {
-            e.preventDefault();
-            sendMessage();
-        }
-    });
+    const messageInput = document.getElementById('messageInput');
+    if (messageInput) {
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        messageInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+    }
     
     // Add sidebar toggle functionality
     const toggleButton = document.querySelector('.toggle-sidebar');
