@@ -15,12 +15,6 @@ $compressor->start();
 
 header('Content-Type: application/json; charset=utf-8');
 
-// Enable GZIP compression
-if (extension_loaded('zlib')) {
-    ini_set('zlib.output_compression', 'On');
-    ini_set('zlib.output_compression_level', '5');
-}
-
 // Log session information
 Logger::log('Session data', 'INFO', [
     'session_id' => session_id(),
@@ -97,9 +91,20 @@ try {
     // Get message stats
     $stmt = $db->prepare("
         SELECT 
-            COUNT(*) as total_messages,
-            COUNT(CASE WHEN DATE(m.created_at) = CURRENT_DATE THEN 1 END) as today_messages,
-            COUNT(CASE WHEN DATE(m.created_at) >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) THEN 1 END) as week_messages
+            COUNT(CASE WHEN m.role = 'user' THEN 1 END) as total_messages,
+            COUNT(CASE WHEN m.role = 'user' AND DATE(m.created_at) = CURRENT_DATE THEN 1 END) as today_messages,
+            COUNT(CASE WHEN m.role = 'user' AND DATE(m.created_at) >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) THEN 1 END) as week_messages,
+            SUM(LENGTH(m.content) - LENGTH(REPLACE(m.content, ' ', '')) + 1) as total_words,
+            SUM(CASE 
+                WHEN DATE(m.created_at) = CURRENT_DATE 
+                THEN LENGTH(m.content) - LENGTH(REPLACE(m.content, ' ', '')) + 1 
+                ELSE 0 
+            END) as today_words,
+            SUM(CASE 
+                WHEN DATE(m.created_at) >= DATE_SUB(CURRENT_DATE, INTERVAL 7 DAY) 
+                THEN LENGTH(m.content) - LENGTH(REPLACE(m.content, ' ', '')) + 1 
+                ELSE 0 
+            END) as week_words
         FROM messages m
         JOIN conversations c ON m.conversation_id = c.id
         WHERE c.user_id = ?
@@ -131,30 +136,61 @@ try {
     
     $response = [
         'success' => true,
-        'data' => [
-            'user' => [
-                'id' => $userData['id'],
-                'username' => $userData['username'],
-                'email' => $userData['email']
+        'membership' => [
+            'type' => $membershipData['type'] ?? 'free',
+            'monthly_limit' => $membershipData['monthly_limit'] ?? 100,
+            'question_limit' => $membershipData['question_limit'] ?? 1000,
+            'current_usage' => (int)$stats['total_conversations'],
+            'current_questions' => (int)$messageStats['total_messages']
+        ],
+        'stats' => [
+            'total_conversations' => (int)$stats['total_conversations'],
+            'total_questions' => (int)$messageStats['total_messages'],
+            'total_words' => (int)$messageStats['total_words'] ?? 0
+        ],
+        'daily_stats' => [
+            [
+                'date' => date('Y-m-d'),
+                'conversations' => (int)$stats['today_conversations'],
+                'questions' => (int)$messageStats['today_messages'],
+                'words' => (int)$messageStats['today_words'] ?? 0
             ],
-            'membership' => [
-                'type' => $membershipData['type'] ?? 'free',
-                'start_date' => $membershipData['start_date'] ?? null,
-                'end_date' => $membershipData['end_date'] ?? null
+            [
+                'date' => date('Y-m-d', strtotime('-1 day')),
+                'conversations' => 0,
+                'questions' => 0,
+                'words' => 0
             ],
-            'stats' => [
-                'conversations' => [
-                    'total' => (int)$stats['total_conversations'],
-                    'today' => (int)$stats['today_conversations'],
-                    'week' => (int)$stats['week_conversations']
-                ],
-                'messages' => [
-                    'total' => (int)$messageStats['total_messages'],
-                    'today' => (int)$messageStats['today_messages'],
-                    'week' => (int)$messageStats['week_messages']
-                ]
+            [
+                'date' => date('Y-m-d', strtotime('-2 day')),
+                'conversations' => 0,
+                'questions' => 0,
+                'words' => 0
             ],
-            'recent_conversations' => $recentConversations
+            [
+                'date' => date('Y-m-d', strtotime('-3 day')),
+                'conversations' => 0,
+                'questions' => 0,
+                'words' => 0
+            ],
+            [
+                'date' => date('Y-m-d', strtotime('-4 day')),
+                'conversations' => 0,
+                'questions' => 0,
+                'words' => 0
+            ],
+            [
+                'date' => date('Y-m-d', strtotime('-5 day')),
+                'conversations' => 0,
+                'questions' => 0,
+                'words' => 0
+            ],
+            [
+                'date' => date('Y-m-d', strtotime('-6 day')),
+                'conversations' => 0,
+                'questions' => 0,
+                'words' => 0
+            ]
         ]
     ];
     

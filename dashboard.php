@@ -196,12 +196,6 @@ $config = require_once 'config.php';
                 </div>
             </div>
         </div>
-        
-        <!-- Top Topics -->
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-xl font-semibold mb-4">المواضيع الأكثر استخداماً</h2>
-            <div id="top-topics" class="space-y-2"></div>
-        </div>
     </div>
     
     <!-- Upgrade Modal -->
@@ -261,15 +255,6 @@ $config = require_once 'config.php';
                 document.getElementById('total-conversations').textContent = data.stats.total_conversations;
                 document.getElementById('total-questions').textContent = data.stats.total_questions;
                 document.getElementById('total-words').textContent = data.stats.total_words;
-                
-                // Update top topics
-                const topTopicsHtml = data.top_topics.map(topic => `
-                    <div class="flex justify-between items-center">
-                        <span>${topic.topic}</span>
-                        <span class="text-gray-600">${topic.count} محادثة</span>
-                    </div>
-                `).join('');
-                document.getElementById('top-topics').innerHTML = topTopicsHtml;
                 
                 // Update charts
                 updateCharts(data.daily_stats);
