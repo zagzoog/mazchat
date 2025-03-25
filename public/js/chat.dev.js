@@ -372,6 +372,7 @@ async function sendMessage() {
             })
         });
         const data = await handleResponse(response);
+        debug.log('Server response:', data);
         
         if (data.error) {
             throw new Error(data.error);
@@ -380,11 +381,12 @@ async function sendMessage() {
         // Hide typing indicator
         hideTypingIndicator();
         
-        // If we have an assistant response, add it to the chat
-        if (data.data && data.data.assistant_message) {
-            debug.log('Adding assistant response to chat:', data.data.assistant_message);
+        // Handle the response structure
+        const messageData = data.data?.data;
+        if (messageData && messageData.assistant_message) {
+            debug.log('Adding assistant response to chat:', messageData.assistant_message);
             const assistantMessage = createMessageElement({
-                content: data.data.assistant_message.content,
+                content: messageData.assistant_message.content,
                 role: 'assistant'
             });
             chatContainer.appendChild(assistantMessage);
