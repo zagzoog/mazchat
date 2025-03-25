@@ -20,6 +20,21 @@ const debug = {
     }
 };
 
+async function handleResponse(response) {
+    debug.log('Response status:', response.status);
+    if (!response.ok) {
+        if (response.status === 401) {
+            debug.log('Session expired, redirecting to login page');
+            window.location.href = '/chat/login.php';
+            return;
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    debug.log('Response data:', data);
+    return data;
+}
+
 // Load conversations from the server
 async function loadConversations(loadMore = false) {
     debug.log(`Loading conversations${loadMore ? ' (load more)' : ''}`);
@@ -29,17 +44,17 @@ async function loadConversations(loadMore = false) {
             hasMoreConversations = true;
         }
         
-        const response = await fetch(`/chat/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
-        debug.log('Conversations API response status:', response.status);
+        const response = await fetch(`/chat/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`, {
+            credentials: 'include'
+        });
+        const data = await handleResponse(response);
         
-        if (!response.ok) {
-            throw new Error('Failed to load conversations');
+        if (!data.success) {
+            throw new Error(data.error || 'Failed to load conversations');
         }
-        const data = await response.json();
-        debug.log('Conversations data received:', data);
         
-        const conversations = data.conversations;
-        hasMoreConversations = data.hasMore;
+        const conversations = data.data.conversations;
+        hasMoreConversations = data.data.hasMore;
         
         const sidebar = document.querySelector('.sidebar');
         let conversationsList = loadMore ? 
@@ -48,6 +63,7 @@ async function loadConversations(loadMore = false) {
         
         if (!loadMore) {
             const footer = sidebar.querySelector('.sidebar-footer');
+            const footerHtml = footer ? footer.outerHTML : '';
             
             sidebar.innerHTML = `
                 <div class="sidebar-header flex justify-between items-center mb-4">
@@ -59,9 +75,9 @@ async function loadConversations(loadMore = false) {
                 <div class="sidebar-content">
                     <div class="conversations-list"></div>
                 </div>
+                ${footerHtml}
             `;
             
-            sidebar.appendChild(footer);
             conversationsList = sidebar.querySelector('.conversations-list');
         }
         
@@ -136,45 +152,26 @@ async function loadConversations(loadMore = false) {
 async function createNewConversation() {
     debug.log('Creating new conversation');
     try {
+        // Get selected plugin
+        const pluginSelector = document.getElementById('pluginSelector');
+        const selectedPluginId = pluginSelector.value;
+        
+        if (!selectedPluginId) {
+            throw new Error('No plugin selected');
+        }
+
         const response = await fetch('/chat/api/conversations.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({
-                title: 'محادثة جديدة'
+                plugin_id: selectedPluginId
             })
         });
         
-        debug.log('Create conversation API response status:', response.status);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        debug.log('Create conversation response:', data);
-        
-        if (response.status === 403) {
-            debug.warn('User reached monthly conversation limit');
-            const chatArea = document.getElementById('chatContainer');
-            chatArea.innerHTML = `
-                <div class="flex flex-col items-center justify-center h-full text-center p-8">
-                    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 rounded-lg max-w-lg">
-                        <p class="font-bold mb-2">لقد وصلت إلى الحد الأقصى من المحادثات الشهرية</p>
-                        <p class="mb-4">قم بترقية عضويتك للاستمرار في استخدام المحادثات</p>
-                        <button onclick="showUpgradeModal()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
-                            <i class="fas fa-crown"></i> ترقية العضوية
-                        </button>
-                    </div>
-                </div>
-            `;
-            return;
-        }
-        
-        if (data.error) {
-            throw new Error(data.error);
-        }
+        const data = await handleResponse(response);
         
         if (!data.data || !data.data.id) {
             throw new Error('No conversation ID received');
@@ -203,10 +200,13 @@ async function createNewConversation() {
                 item.classList.add('active');
             }
         });
+
+        return currentConversationId;
     } catch (error) {
         debug.error('Error creating conversation:', error);
         showError('حدث خطأ أثناء إنشاء محادثة جديدة');
         currentConversationId = null; // Reset the conversation ID on error
+        throw error; // Re-throw to handle in sendMessage
     }
 }
 
@@ -233,16 +233,15 @@ async function loadConversation(conversationId) {
             </div>
         `;
         
-        const response = await fetch(`/chat/api/messages.php?conversation_id=${conversationId}`);
-        debug.log('Messages API response status:', response.status);
+        const response = await fetch(`/chat/api/messages.php?conversation_id=${conversationId}`, {
+            credentials: 'include'
+        });
+        const data = await handleResponse(response);
         
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const messages = await response.json();
-        debug.log('Messages received:', messages);
+        // Handle both array format and object format with messages property
+        const messages = Array.isArray(data) ? data : (data.messages || []);
         
-        if (!Array.isArray(messages) || messages.length === 0) {
+        if (messages.length === 0) {
             debug.log('No messages found in conversation');
             chatContainer.innerHTML = `
                 <div class="message assistant">
@@ -260,46 +259,80 @@ async function loadConversation(conversationId) {
                 debug.error('Invalid message format:', msg);
                 return '';
             }
-            const formattedContent = msg.is_user ? 
-                msg.content.trim().replace(/\n/g, '<br>') : 
-                msg.content.replace(/\n/g, '<br>');
-            return `
-                <div class="message ${msg.is_user ? 'user' : 'assistant'}">
-                    <div class="message-content">${marked.parse(formattedContent)}</div>
-                </div>
-            `;
-        }).filter(Boolean).join('');
+            return createMessageElement(msg).outerHTML;
+        }).join('');
 
+        // Scroll to the last message
         const lastMessage = chatContainer.lastElementChild;
         if (lastMessage) {
             lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
+        // Update active state in sidebar
         document.querySelectorAll('.conversation-item').forEach(item => {
             item.classList.remove('active');
             if (item.dataset.conversationId === conversationId) {
                 item.classList.add('active');
             }
         });
-
+        
     } catch (error) {
         debug.error('Error loading conversation:', error);
         showError('حدث خطأ أثناء تحميل المحادثة');
     }
 }
 
+// Create a message element
+function createMessageElement(msg) {
+    debug.log('Creating message element:', msg);
+    const messageDiv = document.createElement('div');
+    // Check both is_user and role properties
+    const isUser = msg.is_user || msg.role === 'user';
+    messageDiv.className = `message ${isUser ? 'user' : 'assistant'}`;
+    
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'message-content';
+    
+    // Format message content
+    const formattedContent = isUser ? 
+        msg.content.trim().replace(/\n/g, '<br>') : 
+        marked.parse(msg.content);
+    
+    contentDiv.innerHTML = formattedContent;
+    messageDiv.appendChild(contentDiv);
+    
+    return messageDiv;
+}
+
+// Show typing indicator
+function showTypingIndicator() {
+    const indicator = document.getElementById('typingIndicator');
+    if (indicator) {
+        indicator.style.display = 'block';
+        indicator.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+// Hide typing indicator
+function hideTypingIndicator() {
+    const indicator = document.getElementById('typingIndicator');
+    if (indicator) {
+        indicator.style.display = 'none';
+    }
+}
+
 // Send a message
 async function sendMessage() {
-    const messageInput = document.getElementById('message-input');
+    debug.log('Sending message');
+    const messageInput = document.getElementById('messageInput');
     const message = messageInput.value.trim();
     
     if (!message) return;
     
-    debug.log('Sending message:', message);
-    
     // Disable input and button while sending
     messageInput.disabled = true;
-    document.getElementById('send-button').disabled = true;
+    const sendButton = document.getElementById('sendButton');
+    sendButton.disabled = true;
     
     try {
         // Check if we have an active conversation
@@ -307,50 +340,67 @@ async function sendMessage() {
             debug.log('No active conversation, creating new one');
             await createNewConversation();
             if (!currentConversationId) {
-                debug.warn('Failed to create new conversation');
-                // Re-enable input and button
-                messageInput.disabled = false;
-                document.getElementById('send-button').disabled = false;
-                return; // If createNewConversation failed, it will have shown the limit message
+                return;
             }
         }
         
+        // Add user message immediately
+        const chatContainer = document.getElementById('chatContainer');
+        const userMessage = createMessageElement({
+            content: message,
+            role: 'user'
+        });
+        chatContainer.appendChild(userMessage);
+        userMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Show typing indicator
+        showTypingIndicator();
+        
+        // Clear input
+        messageInput.value = '';
+        
         // Send the message
-        const response = await fetch('/chat/api/messages.php', {
+        const response = await fetch('/chat/app/api/v1/messages.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({
                 conversation_id: currentConversationId,
-                content: message,
-                is_user: true
+                content: message
             })
         });
-
-        debug.log('Send message API response status:', response.status);
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        debug.log('Send message response:', data);
+        const data = await handleResponse(response);
         
         if (data.error) {
             throw new Error(data.error);
         }
         
-        // Clear input and reload conversation
-        messageInput.value = '';
-        await loadConversation(currentConversationId);
+        // Hide typing indicator
+        hideTypingIndicator();
+        
+        // If we have an assistant response, add it to the chat
+        if (data.data && data.data.assistant_message) {
+            debug.log('Adding assistant response to chat:', data.data.assistant_message);
+            const assistantMessage = createMessageElement({
+                content: data.data.assistant_message.content,
+                role: 'assistant'
+            });
+            chatContainer.appendChild(assistantMessage);
+            assistantMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            debug.log('No assistant response in the data:', data);
+        }
+        
     } catch (error) {
         debug.error('Error sending message:', error);
         showError('حدث خطأ أثناء إرسال الرسالة');
+        hideTypingIndicator();
     } finally {
         // Re-enable input and button
         messageInput.disabled = false;
-        document.getElementById('send-button').disabled = false;
+        sendButton.disabled = false;
         messageInput.focus();
     }
 }
@@ -470,22 +520,42 @@ async function loadPlugins() {
 document.addEventListener('DOMContentLoaded', () => {
     debug.log('DOM Content Loaded, initializing chat application');
     loadConversations();
-    loadPlugins();
+    loadPlugins().then(() => {
+        debug.log('Plugin selector contents:', document.getElementById('pluginSelector').innerHTML);
+    });
     
     // Add click event listener for send button
-    document.getElementById('send-button').addEventListener('click', sendMessage);
+    const sendButton = document.getElementById('sendButton');
+    if (sendButton) {
+        debug.log('Adding click listener to send button');
+        sendButton.addEventListener('click', () => {
+            debug.log('Send button clicked');
+            sendMessage();
+        });
+    } else {
+        debug.error('Send button not found in DOM');
+    }
     
     // Handle enter key in message input
-    document.getElementById('message-input').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
+    const messageInput = document.getElementById('messageInput');
+    if (messageInput) {
+        debug.log('Adding keypress listener to message input');
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                debug.log('Enter key pressed in message input');
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+    } else {
+        debug.error('Message input not found in DOM');
+    }
 
     // Auto-resize textarea
-    const textarea = document.getElementById('message-input');
-    textarea.addEventListener('input', function() {
-        this.style.height = 'auto';
-        this.style.height = (this.scrollHeight) + 'px';
-    });
+    if (messageInput) {
+        messageInput.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+        });
+    }
 }); 

@@ -6,6 +6,18 @@ let currentOffset = 0;
 let hasMoreConversations = true;
 let isSending = false;
 
+async function handleResponse(response) {
+    if (!response.ok) {
+        if (response.status === 401) {
+            // Session expired or unauthorized
+            window.location.href = '/chat/login.php';
+            return;
+        }
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return response.json();
+}
+
 // Load conversations from the server
 async function loadConversations(loadMore = false) {
     try {
@@ -14,11 +26,10 @@ async function loadConversations(loadMore = false) {
             hasMoreConversations = true;
         }
         
-        const response = await fetch(`/chat/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
-        if (!response.ok) {
-            throw new Error('Failed to load conversations');
-        }
-        const data = await response.json();
+        const response = await fetch(`/chat/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`, {
+            credentials: 'include'
+        });
+        const data = await handleResponse(response);
         
         const conversations = data.conversations;
         hasMoreConversations = data.hasMore;
@@ -115,47 +126,31 @@ async function loadConversations(loadMore = false) {
 // Create a new conversation
 async function createNewConversation() {
     try {
+        const pluginSelector = document.getElementById('pluginSelector');
+        const selectedPluginId = pluginSelector.value;
+        
+        if (!selectedPluginId) {
+            throw new Error('No plugin selected');
+        }
+
         const response = await fetch('/chat/api/conversations.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({
-                title: 'محادثة جديدة'
+                plugin_id: selectedPluginId
             })
         });
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        
-        if (response.status === 403) {
-            const chatArea = document.getElementById('chatContainer');
-            chatArea.innerHTML = `
-                <div class="flex flex-col items-center justify-center h-full text-center p-8">
-                    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 rounded-lg max-w-lg">
-                        <p class="font-bold mb-2">لقد وصلت إلى الحد الأقصى من المحادثات الشهرية</p>
-                        <p class="mb-4">قم بترقية عضويتك للاستمرار في استخدام المحادثات</p>
-                        <button onclick="showUpgradeModal()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700">
-                            <i class="fas fa-crown"></i> ترقية العضوية
-                        </button>
-                    </div>
-                </div>
-            `;
-            return;
-        }
-        
-        if (data.error) {
-            throw new Error(data.error);
-        }
+        const data = await handleResponse(response);
         
         if (!data.data || !data.data.id) {
             throw new Error('No conversation ID received');
         }
         
         currentConversationId = data.data.id;
+        console.log('New conversation created with ID:', currentConversationId);
         
         // Clear the chat container and show welcome message
         const chatContainer = document.getElementById('chatContainer');
@@ -230,49 +225,45 @@ function hideTypingIndicator() {
 
 // Load a specific conversation
 async function loadConversation(conversationId) {
-    if (!conversationId) {
-        return;
-    }
-
     try {
-        const response = await fetch(`/chat/api/messages.php?conversation_id=${conversationId}`);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
+        const response = await fetch(`/chat/api/conversations.php?id=${conversationId}`, {
+            credentials: 'include'
+        });
+        const data = await handleResponse(response);
         
         if (data.error) {
             throw new Error(data.error);
         }
-
-        const messages = data.data;
-        const chatContainer = document.getElementById('chatContainer');
         
-        chatContainer.innerHTML = '';
-        messages.forEach(msg => {
-            if (!msg || typeof msg.content !== 'string') {
-                console.error('Invalid message format:', msg);
-                return;
-            }
-            
+        currentConversationId = conversationId;
+        
+        // Update plugin selector to match conversation's plugin
+        const pluginSelector = document.getElementById('pluginSelector');
+        if (data.conversation && data.conversation.plugin_id) {
+            pluginSelector.value = data.conversation.plugin_id;
+        }
+        
+        // Load and display messages
+        const chatContainer = document.getElementById('chatContainer');
+        chatContainer.innerHTML = data.messages.map(msg => {
             const messageElement = createMessageElement(msg);
-            chatContainer.appendChild(messageElement);
-        });
-
+            return messageElement.outerHTML;
+        }).join('');
+        
+        // Scroll to the last message
         const lastMessage = chatContainer.lastElementChild;
         if (lastMessage) {
             lastMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-
+        
+        // Update active state in sidebar
         document.querySelectorAll('.conversation-item').forEach(item => {
             item.classList.remove('active');
             if (item.dataset.conversationId === conversationId) {
                 item.classList.add('active');
             }
         });
-
+        
     } catch (error) {
         console.error('Error loading conversation:', error);
         showError('حدث خطأ أثناء تحميل المحادثة');
@@ -316,36 +307,40 @@ async function sendMessage() {
         messageInput.value = '';
         
         // Send the message
-        const response = await fetch('/chat/api/messages.php', {
+        const response = await fetch('/chat/app/api/v1/messages.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify({
                 conversation_id: currentConversationId,
-                content: message,
-                is_user: true
+                content: message
             })
         });
-
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
+        const data = await handleResponse(response);
         
         if (data.error) {
             throw new Error(data.error);
         }
         
-        // Hide typing indicator and reload conversation
+        // Hide typing indicator
         hideTypingIndicator();
-        await loadConversation(currentConversationId);
+        
+        // Check for assistant response in the nested data structure
+        if (data.data && data.data.assistant_message) {
+            const assistantMessage = createMessageElement({
+                content: data.data.assistant_message.content,
+                is_user: false
+            });
+            chatContainer.appendChild(assistantMessage);
+            assistantMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
         
     } catch (error) {
         console.error('Error sending message:', error);
-        showError('حدث خطأ أثناء إرسال الرسالة');
         hideTypingIndicator();
+        showError('An error occurred while sending the message');
     } finally {
         // Re-enable input and button
         messageInput.disabled = false;

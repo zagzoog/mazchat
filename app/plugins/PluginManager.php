@@ -21,46 +21,79 @@ class PluginManager {
     
     private function loadPlugins() {
         $pluginsDir = dirname(__DIR__, 2) . '/plugins';
-        error_log("Loading plugins from directory: " . $pluginsDir);
+        error_log("PluginManager: Loading plugins from directory: " . $pluginsDir);
         
         if (!file_exists($pluginsDir)) {
             mkdir($pluginsDir, 0777, true);
         }
         
         $pluginDirs = glob($pluginsDir . '/*', GLOB_ONLYDIR);
-        error_log("Found plugin directories: " . print_r($pluginDirs, true));
+        error_log("PluginManager: Found plugin directories: " . print_r($pluginDirs, true));
         
         foreach ($pluginDirs as $pluginDir) {
             $pluginName = basename($pluginDir);
             $pluginFile = $pluginDir . '/' . $pluginName . '.php';
-            error_log("Checking plugin file: " . $pluginFile);
+            error_log("PluginManager: Checking plugin file: " . $pluginFile);
             
             if (file_exists($pluginFile)) {
-                error_log("Loading plugin file: " . $pluginFile);
+                error_log("PluginManager: Loading plugin file: " . $pluginFile);
                 require_once $pluginFile;
                 $className = $pluginName;
                 
                 if (class_exists($className)) {
-                    error_log("Creating instance of plugin class: " . $className);
-                    $plugin = new $className();
-                    $this->plugins[$pluginName] = $plugin;
-                    
-                    // Check if plugin is active in database
-                    if ($this->isPluginActive($pluginName)) {
-                        error_log("Plugin is active: " . $pluginName);
-                        $this->activePlugins[$pluginName] = $plugin;
-                        $plugin->initialize();
+                    error_log("PluginManager: Creating instance of plugin class: " . $className);
+                    try {
+                        // Get plugin info from database
+                        $db = getDBConnection();
+                        $stmt = $db->prepare("SELECT id, is_active FROM plugins WHERE name = ?");
+                        $stmt->execute([$pluginName]);
+                        $pluginInfo = $stmt->fetch(PDO::FETCH_ASSOC);
+                        
+                        if (!$pluginInfo) {
+                            error_log("PluginManager: Plugin not found in database, creating record for: " . $pluginName);
+                            // Create plugin record
+                            $stmt = $db->prepare("
+                                INSERT INTO plugins (name, is_active, created_at, updated_at)
+                                VALUES (?, 1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                            ");
+                            $stmt->execute([$pluginName]);
+                            $pluginId = $db->lastInsertId();
+                            $isActive = true;
+                        } else {
+                            $pluginId = $pluginInfo['id'];
+                            $isActive = $pluginInfo['is_active'] == 1;
+                        }
+                        
+                        // Create plugin instance
+                        error_log("PluginManager: Instantiating plugin with ID: " . $pluginId);
+                        $plugin = new $className($pluginId);
+                        $this->plugins[$pluginName] = $plugin;
+                        
+                        if ($isActive) {
+                            error_log("PluginManager: Activating plugin: " . $pluginName);
+                            // Activate and initialize the plugin
+                            $plugin->activate($pluginId);
+                            $this->activePlugins[$pluginName] = $plugin;
+                            error_log("PluginManager: Initializing plugin: " . $pluginName);
+                            $plugin->initialize();
+                            error_log("PluginManager: Plugin activated and initialized: " . $pluginName);
+                        } else {
+                            error_log("PluginManager: Plugin is not active: " . $pluginName);
+                        }
+                    } catch (Exception $e) {
+                        error_log("PluginManager ERROR: Failed to load plugin {$pluginName}: " . $e->getMessage());
+                        error_log("PluginManager ERROR: " . $e->getTraceAsString());
                     }
                 } else {
-                    error_log("Class does not exist: " . $className);
+                    error_log("PluginManager ERROR: Class does not exist: " . $className);
                 }
             } else {
-                error_log("Plugin file does not exist: " . $pluginFile);
+                error_log("PluginManager: Plugin file does not exist: " . $pluginFile);
             }
         }
         
-        error_log("Loaded plugins: " . print_r(array_keys($this->plugins), true));
-        error_log("Active plugins: " . print_r(array_keys($this->activePlugins), true));
+        error_log("PluginManager: Loaded plugins: " . print_r(array_keys($this->plugins), true));
+        error_log("PluginManager: Active plugins: " . print_r(array_keys($this->activePlugins), true));
     }
     
     private function isPluginActive($pluginName) {

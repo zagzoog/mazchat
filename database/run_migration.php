@@ -1,42 +1,41 @@
 <?php
-require_once dirname(__DIR__) . '/db_config.php';
+require_once __DIR__ . '/../db_config.php';
 
 try {
     $db = getDBConnection();
     
-    // Create direct_message_settings table
-    $sql = "CREATE TABLE IF NOT EXISTS `direct_message_settings` (
-        `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        `plugin_id` INT UNSIGNED NOT NULL,
-        `api_key` VARCHAR(255) NULL,
-        `api_url` VARCHAR(255) NULL,
-        `model` VARCHAR(100) NULL,
-        `temperature` DECIMAL(3,2) DEFAULT 0.7,
-        `max_tokens` INT DEFAULT 2048,
-        `is_active` BOOLEAN DEFAULT TRUE,
-        `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        FOREIGN KEY (`plugin_id`) REFERENCES `plugins`(`id`) ON DELETE CASCADE
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
-
-    $db->exec($sql);
-    echo "Migration completed successfully: direct_message_settings table created.\n";
-
-    // Create user_plugin_preferences table
-    $sql = "CREATE TABLE IF NOT EXISTS `user_plugin_preferences` (
-        `id` INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        `user_id` INT UNSIGNED NOT NULL,
-        `plugin_id` INT UNSIGNED NOT NULL,
-        `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        UNIQUE KEY `unique_user_preference` (`user_id`),
-        FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON DELETE CASCADE,
-        FOREIGN KEY (`plugin_id`) REFERENCES `plugins`(`id`) ON DELETE CASCADE
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
-
-    $db->exec($sql);
-    echo "Migration completed successfully: user_plugin_preferences table created.\n";
-
+    // Check if role column exists
+    $stmt = $db->query("SHOW COLUMNS FROM messages LIKE 'role'");
+    if ($stmt->rowCount() == 0) {
+        // Add role column if it doesn't exist
+        $db->exec("ALTER TABLE messages ADD COLUMN role ENUM('user', 'assistant') NOT NULL DEFAULT 'user'");
+        echo "Added role column to messages table\n";
+    }
+    
+    // Check if is_user column exists
+    $stmt = $db->query("SHOW COLUMNS FROM messages LIKE 'is_user'");
+    if ($stmt->rowCount() > 0) {
+        // Migrate data from is_user to role
+        $db->exec("UPDATE messages SET role = CASE WHEN is_user = 1 THEN 'user' ELSE 'assistant' END");
+        // Drop is_user column
+        $db->exec("ALTER TABLE messages DROP COLUMN is_user");
+        echo "Successfully migrated data from is_user to role column\n";
+    } else {
+        echo "is_user column does not exist, skipping migration\n";
+    }
+    
+    // Check if index exists
+    $stmt = $db->query("SHOW INDEX FROM messages WHERE Key_name = 'idx_conversation_role'");
+    if ($stmt->rowCount() == 0) {
+        // Add index for better performance
+        $db->exec("CREATE INDEX idx_conversation_role ON messages (conversation_id, role)");
+        echo "Successfully added index on conversation_id and role\n";
+    } else {
+        echo "Index already exists, skipping\n";
+    }
+    
+    echo "Migration completed successfully!\n";
+    
 } catch (PDOException $e) {
     die("Migration failed: " . $e->getMessage() . "\n");
 } 

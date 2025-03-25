@@ -6,6 +6,7 @@ class N8nWebhookHandler extends Plugin {
     private $pluginId;
 
     public function __construct($pluginId = null) {
+        error_log("N8nWebhookHandler: Constructing with plugin ID: " . ($pluginId ?? 'null'));
         $this->name = 'N8nWebhookHandler';
         $this->version = '1.0.0';
         $this->description = 'Handles message processing through n8n webhooks';
@@ -13,41 +14,76 @@ class N8nWebhookHandler extends Plugin {
         $this->pluginId = $pluginId;
         
         parent::__construct();
+        error_log("N8nWebhookHandler: Construction completed");
     }
     
     public function initialize() {
+        error_log("N8nWebhookHandler: Initializing plugin");
+        
+        // Clear existing hooks to prevent duplicates
+        $this->hooks = [];
+        
         // Register hooks
-        $this->registerHook('before_send_message', [$this, 'processMessage'], 10);
+        error_log("N8nWebhookHandler: Registering hooks");
+        $this->registerHook('before_send_message', [$this, 'processMessage']);
+        $this->registerHook('after_send_message', [$this, 'processMessage']);
         $this->registerHook('admin_settings_page', [$this, 'addSettingsPage']);
+        
+        error_log("N8nWebhookHandler: Hooks registered: " . print_r($this->hooks, true));
+        error_log("N8nWebhookHandler: Initialization completed");
     }
     
     public function activate($pluginId = null) {
-        $this->pluginId = $pluginId;
-        parent::activate($pluginId);
+        error_log("N8nWebhookHandler: Activating plugin with ID: " . ($pluginId ?? 'null'));
         
-        // Create necessary database tables
-        $this->db->exec("
-            CREATE TABLE IF NOT EXISTS n8n_webhook_settings (
-                id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-                plugin_id INT UNSIGNED NOT NULL,
-                webhook_url VARCHAR(255) NOT NULL,
-                is_active BOOLEAN DEFAULT TRUE,
-                timeout INT DEFAULT 30,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                FOREIGN KEY (plugin_id) REFERENCES plugins(id) ON DELETE CASCADE
-            )
-        ");
+        if ($pluginId) {
+            $this->pluginId = $pluginId;
+        }
         
-        // Insert default settings if none exist
-        $stmt = $this->db->prepare("SELECT COUNT(*) FROM n8n_webhook_settings WHERE plugin_id = ?");
-        $stmt->execute([$this->pluginId]);
-        if ($stmt->fetchColumn() == 0) {
-            $stmt = $this->db->prepare("
-                INSERT INTO n8n_webhook_settings (plugin_id, webhook_url) 
-                VALUES (?, '')
+        if (!$this->pluginId) {
+            error_log("N8nWebhookHandler ERROR: Cannot activate plugin without an ID");
+            throw new Exception("Plugin ID is required for activation");
+        }
+        
+        parent::activate($this->pluginId);
+        
+        try {
+            error_log("N8nWebhookHandler: Creating/checking database tables");
+            // Create necessary database tables
+            $this->db->exec("
+                CREATE TABLE IF NOT EXISTS n8n_webhook_settings (
+                    id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+                    plugin_id INT UNSIGNED NOT NULL,
+                    webhook_url VARCHAR(255) NOT NULL,
+                    is_active BOOLEAN DEFAULT TRUE,
+                    timeout INT DEFAULT 30,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+                    FOREIGN KEY (plugin_id) REFERENCES plugins(id) ON DELETE CASCADE
+                )
             ");
+            
+            // Insert default settings if none exist
+            error_log("N8nWebhookHandler: Checking for existing settings");
+            $stmt = $this->db->prepare("SELECT COUNT(*) FROM n8n_webhook_settings WHERE plugin_id = ?");
             $stmt->execute([$this->pluginId]);
+            if ($stmt->fetchColumn() == 0) {
+                error_log("N8nWebhookHandler: No settings found, creating default settings");
+                $stmt = $this->db->prepare("
+                    INSERT INTO n8n_webhook_settings (plugin_id, webhook_url) 
+                    VALUES (?, '')
+                ");
+                $stmt->execute([$this->pluginId]);
+            }
+            error_log("N8nWebhookHandler: Activation completed successfully");
+            
+            // Initialize the plugin after activation
+            $this->initialize();
+            
+        } catch (Exception $e) {
+            error_log("N8nWebhookHandler ERROR: Activation failed: " . $e->getMessage());
+            error_log("N8nWebhookHandler ERROR: " . $e->getTraceAsString());
+            throw $e;
         }
     }
     
@@ -57,15 +93,25 @@ class N8nWebhookHandler extends Plugin {
     }
     
     public function processMessage($message) {
+        error_log("N8nWebhookHandler: Starting message processing");
+        error_log("N8nWebhookHandler: Message data: " . json_encode($message));
+        
         try {
             // Get webhook settings
-            $stmt = $this->db->query("SELECT * FROM n8n_webhook_settings WHERE is_active = TRUE LIMIT 1");
+            $stmt = $this->db->prepare("
+                SELECT * FROM n8n_webhook_settings 
+                WHERE plugin_id = ? AND is_active = TRUE 
+                LIMIT 1
+            ");
+            $stmt->execute([$this->pluginId]);
             $settings = $stmt->fetch(PDO::FETCH_ASSOC);
             
             if (!$settings || empty($settings['webhook_url'])) {
-                error_log("No active n8n webhook URL configured");
-                return;
+                error_log("N8nWebhookHandler: No active webhook URL configured for plugin ID: " . $this->pluginId);
+                return false;
             }
+            
+            error_log("N8nWebhookHandler: Using webhook URL: " . $settings['webhook_url']);
             
             // Prepare the request data
             $requestData = [
@@ -73,6 +119,8 @@ class N8nWebhookHandler extends Plugin {
                 'conversation_id' => $message['conversation_id'],
                 'timestamp' => date('Y-m-d H:i:s')
             ];
+            
+            error_log("N8nWebhookHandler: Sending request data: " . json_encode($requestData));
             
             // Initialize cURL session
             $ch = curl_init($settings['webhook_url']);
@@ -87,36 +135,56 @@ class N8nWebhookHandler extends Plugin {
             ]);
             curl_setopt($ch, CURLOPT_TIMEOUT, $settings['timeout']);
             
+            // SSL Options - Disable verification for now, but log it
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            error_log("N8nWebhookHandler: SSL certificate verification is disabled for testing");
+            
+            // Enable verbose debugging
+            $verbose = fopen('php://temp', 'w+');
+            curl_setopt($ch, CURLOPT_VERBOSE, true);
+            curl_setopt($ch, CURLOPT_STDERR, $verbose);
+            
             // Execute the request
             $response = curl_exec($ch);
             $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             
-            if ($httpCode !== 200) {
-                error_log("n8n webhook request failed with status code: " . $httpCode);
-                return;
+            // Get verbose information
+            rewind($verbose);
+            $verboseLog = stream_get_contents($verbose);
+            fclose($verbose);
+            
+            error_log("N8nWebhookHandler: Verbose curl output:\n" . $verboseLog);
+            
+            if ($response === false) {
+                $error = curl_error($ch);
+                error_log("N8nWebhookHandler ERROR: Webhook request failed: " . $error);
+                curl_close($ch);
+                return false;
             }
             
-            // Parse the response
-            $responseData = json_decode($response, true);
+            error_log("N8nWebhookHandler: Webhook response code: " . $httpCode);
+            error_log("N8nWebhookHandler: Webhook response: " . $response);
             
-            if (!$responseData) {
-                error_log("Invalid JSON response from n8n webhook");
-                return;
+            curl_close($ch);
+            
+            // Consider any 2xx status code as success
+            $success = $httpCode >= 200 && $httpCode < 300;
+            
+            // Log the outcome
+            if ($success) {
+                error_log("N8nWebhookHandler: Message successfully processed by webhook");
+                // Return the actual response content
+                return $response;
+            } else {
+                error_log("N8nWebhookHandler ERROR: Webhook returned non-success status code: " . $httpCode);
+                return false;
             }
-            
-            // Store the response as a new message
-            $stmt = $this->db->prepare("
-                INSERT INTO messages (id, conversation_id, content, is_user)
-                VALUES (UUID(), ?, ?, ?)
-            ");
-            $stmt->execute([
-                $message['conversation_id'],
-                $responseData['response'] ?? 'No response received from n8n',
-                false
-            ]);
             
         } catch (Exception $e) {
-            error_log("Error processing message through n8n webhook: " . $e->getMessage());
+            error_log("N8nWebhookHandler ERROR: Message processing failed: " . $e->getMessage());
+            error_log("N8nWebhookHandler ERROR: " . $e->getTraceAsString());
+            return false;
         }
     }
     

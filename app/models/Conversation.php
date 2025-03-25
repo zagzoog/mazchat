@@ -1,10 +1,14 @@
 <?php
-require_once __DIR__ . '/../../db_config.php';
+require_once dirname(__DIR__, 2) . '/db_config.php';
 require_once __DIR__ . '/../utils/Logger.php';
 require_once __DIR__ . '/Model.php';
 
 class Conversation extends Model {
     protected $table = 'conversations';
+    
+    public function __construct() {
+        $this->db = getDBConnection();
+    }
     
     public function getByUserId($userId, $limit = 10, $offset = 0) {
         try {
@@ -65,47 +69,36 @@ class Conversation extends Model {
         }
     }
     
-    public function create($data) {
+    public function create($userId, $pluginId) {
         try {
-            $this->db->beginTransaction();
-            
-            $stmt = $this->db->prepare(
-                'INSERT INTO conversations (user_id, title) VALUES (?, ?)'
-            );
-            $stmt->execute([$data['user_id'], $data['title']]);
-            $conversationId = $this->db->lastInsertId();
-            
-            // Get the created conversation
+            // Verify plugin exists and is active
             $stmt = $this->db->prepare("
-                SELECT c.*, 
-                       m.content as last_message,
-                       m.created_at as last_message_time
-                FROM conversations c
-                LEFT JOIN (
-                    SELECT conversation_id, content, created_at
-                    FROM messages m1
-                    WHERE id = (
-                        SELECT MAX(id)
-                        FROM messages m2
-                        WHERE m2.conversation_id = m1.conversation_id
-                    )
-                ) m ON m.conversation_id = c.id
-                WHERE c.id = ?
+                SELECT id FROM plugins 
+                WHERE id = ? AND is_active = TRUE
             ");
-            $stmt->execute([$conversationId]);
-            $conversation = $stmt->fetch(PDO::FETCH_ASSOC);
+            $stmt->execute([$pluginId]);
+            if (!$stmt->fetch()) {
+                throw new Exception('Invalid or inactive plugin');
+            }
             
-            $this->db->commit();
+            // Create new conversation with default title
+            $stmt = $this->db->prepare("
+                INSERT INTO conversations (user_id, plugin_id, title, created_at, updated_at) 
+                VALUES (?, ?, 'محادثة جديدة', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+            ");
+            
+            $stmt->execute([$userId, $pluginId]);
+            $conversationId = $this->db->lastInsertId();
             
             Logger::log("Created new conversation", 'INFO', [
                 'conversation_id' => $conversationId,
-                'user_id' => $data['user_id'],
-                'title' => $data['title']
+                'user_id' => $userId,
+                'plugin_id' => $pluginId
             ]);
             
-            return $conversation;
+            return $conversationId;
+            
         } catch (Exception $e) {
-            $this->db->rollBack();
             Logger::log("Error creating conversation", 'ERROR', [
                 'error' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
@@ -115,104 +108,72 @@ class Conversation extends Model {
     }
     
     public function getById($id, $userId) {
-        try {
-            $stmt = $this->db->prepare("
-                SELECT c.*, 
-                       m.content as last_message,
-                       m.created_at as last_message_time
-                FROM conversations c
-                LEFT JOIN (
-                    SELECT conversation_id, content, created_at
-                    FROM messages m1
-                    WHERE id = (
-                        SELECT MAX(id)
-                        FROM messages m2
-                        WHERE m2.conversation_id = m1.conversation_id
-                    )
-                ) m ON m.conversation_id = c.id
-                WHERE c.id = ? AND c.user_id = ?
-            ");
-            $stmt->execute([$id, $userId]);
-            $conversation = $stmt->fetch(PDO::FETCH_ASSOC);
-            
-            Logger::log("Retrieved conversation", 'INFO', [
-                'conversation_id' => $id,
-                'user_id' => $userId,
-                'found' => !empty($conversation)
-            ]);
-            
-            return $conversation;
-        } catch (Exception $e) {
-            Logger::log("Error getting conversation", 'ERROR', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-            return null;
-        }
+        $stmt = $this->db->prepare("
+            SELECT c.*, p.name as plugin_name, p.class_name 
+            FROM conversations c
+            LEFT JOIN plugins p ON c.plugin_id = p.id
+            WHERE c.id = ? AND c.user_id = ?
+        ");
+        $stmt->execute([$id, $userId]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
     
-    public function updateTitle($id, $userId, $title) {
-        try {
-            $this->db->beginTransaction();
-            
-            $stmt = $this->db->prepare(
-                'UPDATE conversations SET title = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ? AND user_id = ?'
-            );
-            $result = $stmt->execute([$title, $id, $userId]);
-            
-            $this->db->commit();
-            
-            Logger::log("Updated conversation title", 'INFO', [
-                'conversation_id' => $id,
-                'user_id' => $userId,
-                'title' => $title,
-                'success' => $result
-            ]);
-            
-            return $result;
-        } catch (Exception $e) {
-            $this->db->rollBack();
-            Logger::log("Error updating conversation title", 'ERROR', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-            throw $e;
+    public function getAll($userId, $limit = 20, $offset = 0) {
+        $stmt = $this->db->prepare("
+            SELECT c.*, p.name as plugin_name
+            FROM conversations c
+            LEFT JOIN plugins p ON c.plugin_id = p.id
+            WHERE c.user_id = ?
+            ORDER BY c.updated_at DESC
+            LIMIT ? OFFSET ?
+        ");
+        $stmt->execute([$userId, $limit, $offset]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function update($id, $userId, $data) {
+        $allowedFields = ['title', 'plugin_id'];
+        $updates = [];
+        $params = [];
+        
+        foreach ($data as $field => $value) {
+            if (in_array($field, $allowedFields)) {
+                $updates[] = "$field = ?";
+                $params[] = $value;
+            }
         }
+        
+        if (empty($updates)) {
+            return false;
+        }
+        
+        $params[] = $id;
+        $params[] = $userId;
+        
+        $stmt = $this->db->prepare("
+            UPDATE conversations 
+            SET " . implode(', ', $updates) . ", updated_at = CURRENT_TIMESTAMP
+            WHERE id = ? AND user_id = ?
+        ");
+        
+        return $stmt->execute($params);
     }
     
     public function delete($id, $userId) {
-        try {
-            $this->db->beginTransaction();
-            
-            // Delete all messages first
-            $stmt = $this->db->prepare(
-                'DELETE FROM messages WHERE conversation_id = ?'
-            );
-            $stmt->execute([$id]);
-            
-            // Then delete the conversation
-            $stmt = $this->db->prepare(
-                'DELETE FROM conversations WHERE id = ? AND user_id = ?'
-            );
-            $result = $stmt->execute([$id, $userId]);
-            
-            $this->db->commit();
-            
-            Logger::log("Deleted conversation", 'INFO', [
-                'conversation_id' => $id,
-                'user_id' => $userId,
-                'success' => $result
-            ]);
-            
-            return $result;
-        } catch (Exception $e) {
-            $this->db->rollBack();
-            Logger::log("Error deleting conversation", 'ERROR', [
-                'error' => $e->getMessage(),
-                'trace' => $e->getTraceAsString()
-            ]);
-            throw $e;
-        }
+        $stmt = $this->db->prepare("
+            DELETE FROM conversations 
+            WHERE id = ? AND user_id = ?
+        ");
+        return $stmt->execute([$id, $userId]);
+    }
+    
+    public function countUserConversations($userId) {
+        $stmt = $this->db->prepare("
+            SELECT COUNT(*) FROM conversations 
+            WHERE user_id = ?
+        ");
+        $stmt->execute([$userId]);
+        return $stmt->fetchColumn();
     }
 
     public function countAll() {

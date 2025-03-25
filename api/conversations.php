@@ -90,22 +90,25 @@ try {
             // Create new conversation
             $data = json_decode(file_get_contents('php://input'), true);
             
-            if (!isset($data['title'])) {
+            if (!isset($data['plugin_id'])) {
                 http_response_code(400);
-                echo json_encode(['error' => 'Title is required']);
+                echo json_encode(['error' => 'Plugin ID is required']);
                 break;
             }
             
-            $newConversation = $conversation->create([
-                'user_id' => $user_id,
-                'title' => $data['title']
-            ]);
-            
-            http_response_code(201);
-            echo json_encode([
-                'success' => true,
-                'data' => $newConversation
-            ]);
+            try {
+                $conversationId = $conversation->create($user_id, $data['plugin_id']);
+                
+                echo json_encode([
+                    'success' => true,
+                    'data' => [
+                        'id' => $conversationId
+                    ]
+                ]);
+            } catch (Exception $e) {
+                http_response_code(500);
+                echo json_encode(['error' => $e->getMessage()]);
+            }
             break;
             
         default:
