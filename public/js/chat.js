@@ -54,9 +54,10 @@ async function loadConversations(loadMore = false) {
             
             sidebar.innerHTML = `
                 <div class="sidebar-header flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold text-gray-800">المحادثات السابقة</h2>
-                    <button onclick="createNewConversation()" class="new-chat-btn">
+                    <h2 class="text-xl font-semibold text-gray-800 font-cairo">المحادثات السابقة</h2>
+                    <button onclick="createNewConversation()" class="new-chat-btn font-cairo">
                         <i class="fas fa-plus"></i>
+                        محادثة جديدة
                     </button>
                 </div>
                 <div class="sidebar-content">
@@ -119,7 +120,7 @@ async function loadConversations(loadMore = false) {
         
         if (hasMore) {
             const loadMoreBtn = document.createElement('button');
-            loadMoreBtn.className = 'load-more-btn w-full mt-4 p-2 text-center bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-semibold';
+            loadMoreBtn.className = 'load-more-btn w-full mt-4 p-2 text-center bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-semibold font-cairo';
             loadMoreBtn.innerHTML = '<i class="fas fa-chevron-down"></i> تحميل المزيد';
             loadMoreBtn.onclick = () => {
                 currentOffset += window.conversationsPerPage;

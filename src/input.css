@@ -99,7 +99,7 @@
     }
     
     .toggle-sidebar {
-        @apply relative z-10 flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-300;
+        @apply relative z-10 flex items-center justify-center w-10 h-10 rounded-lg transition-all duration-300 hidden;
     }
     
     .toggle-sidebar:hover {
@@ -147,7 +147,11 @@
     }
     
     .new-chat-btn {
-        @apply bg-blue-600 text-white border-none px-4 py-2 rounded-lg cursor-pointer flex items-center gap-2;
+        @apply bg-blue-600 text-white border-none px-4 py-2 rounded-lg cursor-pointer flex items-center gap-2 font-cairo;
+    }
+    
+    .load-more-btn {
+        @apply bg-blue-600 text-white border-none px-4 py-2 rounded-lg cursor-pointer flex items-center justify-center gap-2 font-cairo mt-4;
     }
     
     .user-info {

@@ -9460,3 +9460,560 @@
 [2025-03-25 22:34:34] [info] Database connection created successfully
 [2025-03-25 22:34:34] [info] New connection created successfully {"connection_id":1}
 [2025-03-25 22:34:34] [info] Database connection established {"class":"Message"}
+[2025-03-25 22:35:26] [info] DatabasePool instance created
+[2025-03-25 22:35:26] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:35:26] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:35:26] [info] Attempting to create new database connection
+[2025-03-25 22:35:26] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:35:26] [info] Database connection created successfully
+[2025-03-25 22:35:26] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:35:26] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:35:26] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:35:26] [info] Attempting to create new database connection
+[2025-03-25 22:35:26] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:35:26] [info] Database connection created successfully
+[2025-03-25 22:35:26] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:35:26] [INFO] Created new conversation {"conversation_id":"137","user_id":3,"plugin_id":"9"}
+[2025-03-25 22:35:26] [info] DatabasePool instance created
+[2025-03-25 22:35:26] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:35:26] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:35:26] [info] Attempting to create new database connection
+[2025-03-25 22:35:26] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:35:26] [info] Database connection created successfully
+[2025-03-25 22:35:26] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:35:26] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:35:26] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:35:26] [info] Attempting to create new database connection
+[2025-03-25 22:35:26] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:35:26] [info] Database connection created successfully
+[2025-03-25 22:35:26] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:35:26] [INFO] Fetched conversations {"user_id":3,"count":5,"total":32,"offset":0,"limit":5}
+[2025-03-25 22:35:26] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:35:26] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:35:26] [info] Attempting to create new database connection
+[2025-03-25 22:35:26] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:35:26] [info] Database connection created successfully
+[2025-03-25 22:35:26] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:35:26] [info] Database connection established {"class":"User"}
+[2025-03-25 22:35:26] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:37:13] [info] DatabasePool instance created
+[2025-03-25 22:37:13] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:37:13] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:37:13] [info] Attempting to create new database connection
+[2025-03-25 22:37:13] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:37:13] [info] Database connection created successfully
+[2025-03-25 22:37:13] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:37:13] [info] Database connection established {"class":"Message"}
+[2025-03-25 22:37:13] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:37:13] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:37:13] [info] Attempting to create new database connection
+[2025-03-25 22:37:13] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:37:13] [info] Database connection created successfully
+[2025-03-25 22:37:13] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:37:13] [info] Database connection established {"class":"UsageStats"}
+[2025-03-25 22:37:13] [info] DatabasePool instance created
+[2025-03-25 22:37:13] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:37:13] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:37:13] [info] Attempting to create new database connection
+[2025-03-25 22:37:13] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:37:13] [info] Database connection created successfully
+[2025-03-25 22:37:13] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:37:13] [info] DatabasePool instance created
+[2025-03-25 22:37:13] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:37:13] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:37:13] [info] Attempting to create new database connection
+[2025-03-25 22:37:13] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:37:13] [info] Database connection created successfully
+[2025-03-25 22:37:13] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:37:13] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:37:13] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:37:13] [info] Attempting to create new database connection
+[2025-03-25 22:37:13] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:37:13] [info] Database connection created successfully
+[2025-03-25 22:37:13] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:37:13] [INFO] Fetched conversations {"user_id":3,"count":5,"total":32,"offset":0,"limit":5}
+[2025-03-25 22:37:13] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:37:13] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:37:13] [info] Attempting to create new database connection
+[2025-03-25 22:37:13] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:37:13] [info] Database connection created successfully
+[2025-03-25 22:37:13] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:37:13] [info] Database connection established {"class":"User"}
+[2025-03-25 22:37:13] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:38:02] [info] DatabasePool instance created
+[2025-03-25 22:38:02] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:38:02] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:38:02] [info] Attempting to create new database connection
+[2025-03-25 22:38:02] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:02] [info] Database connection created successfully
+[2025-03-25 22:38:02] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:38:02] [info] Database connection established {"class":"Message"}
+[2025-03-25 22:38:02] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:38:02] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:38:02] [info] Attempting to create new database connection
+[2025-03-25 22:38:02] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:02] [info] Database connection created successfully
+[2025-03-25 22:38:02] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:38:02] [info] Database connection established {"class":"UsageStats"}
+[2025-03-25 22:38:02] [info] DatabasePool instance created
+[2025-03-25 22:38:02] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:38:02] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:38:02] [info] Attempting to create new database connection
+[2025-03-25 22:38:02] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:02] [info] Database connection created successfully
+[2025-03-25 22:38:02] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:38:02] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:38:02] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:38:02] [info] Attempting to create new database connection
+[2025-03-25 22:38:02] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:02] [info] Database connection created successfully
+[2025-03-25 22:38:02] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:38:02] [INFO] Fetched conversations {"user_id":3,"count":5,"total":32,"offset":0,"limit":5}
+[2025-03-25 22:38:02] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:38:02] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:38:02] [info] Attempting to create new database connection
+[2025-03-25 22:38:02] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:02] [info] Database connection created successfully
+[2025-03-25 22:38:02] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:38:02] [info] Database connection established {"class":"User"}
+[2025-03-25 22:38:02] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:38:02] [info] DatabasePool instance created
+[2025-03-25 22:38:02] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:38:02] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:38:02] [info] Attempting to create new database connection
+[2025-03-25 22:38:02] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:02] [info] Database connection created successfully
+[2025-03-25 22:38:02] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:38:03] [info] DatabasePool instance created
+[2025-03-25 22:38:03] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:38:03] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:38:03] [info] Attempting to create new database connection
+[2025-03-25 22:38:03] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:03] [info] Database connection created successfully
+[2025-03-25 22:38:03] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:38:03] [info] Database connection established {"class":"Message"}
+[2025-03-25 22:38:03] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:38:03] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:38:03] [info] Attempting to create new database connection
+[2025-03-25 22:38:03] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:03] [info] Database connection created successfully
+[2025-03-25 22:38:03] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:38:03] [info] Database connection established {"class":"UsageStats"}
+[2025-03-25 22:38:03] [info] DatabasePool instance created
+[2025-03-25 22:38:03] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:38:03] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:38:03] [info] Attempting to create new database connection
+[2025-03-25 22:38:03] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:03] [info] Database connection created successfully
+[2025-03-25 22:38:03] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:38:03] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:38:03] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:38:03] [info] Attempting to create new database connection
+[2025-03-25 22:38:03] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:03] [info] Database connection created successfully
+[2025-03-25 22:38:03] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:38:03] [INFO] Fetched conversations {"user_id":3,"count":5,"total":32,"offset":0,"limit":5}
+[2025-03-25 22:38:03] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:38:03] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:38:03] [info] Attempting to create new database connection
+[2025-03-25 22:38:03] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:03] [info] Database connection created successfully
+[2025-03-25 22:38:03] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:38:03] [info] Database connection established {"class":"User"}
+[2025-03-25 22:38:03] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:38:03] [info] DatabasePool instance created
+[2025-03-25 22:38:03] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:38:03] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:38:03] [info] Attempting to create new database connection
+[2025-03-25 22:38:03] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:03] [info] Database connection created successfully
+[2025-03-25 22:38:03] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:38:46] [info] DatabasePool instance created
+[2025-03-25 22:38:46] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:38:46] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:38:46] [info] Attempting to create new database connection
+[2025-03-25 22:38:46] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:46] [info] Database connection created successfully
+[2025-03-25 22:38:46] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:38:46] [info] Database connection established {"class":"Message"}
+[2025-03-25 22:38:46] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:38:46] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:38:46] [info] Attempting to create new database connection
+[2025-03-25 22:38:46] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:46] [info] Database connection created successfully
+[2025-03-25 22:38:46] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:38:46] [info] Database connection established {"class":"UsageStats"}
+[2025-03-25 22:38:47] [info] DatabasePool instance created
+[2025-03-25 22:38:47] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:38:47] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:38:47] [info] Attempting to create new database connection
+[2025-03-25 22:38:47] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:47] [info] Database connection created successfully
+[2025-03-25 22:38:47] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:38:47] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:38:47] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:38:47] [info] Attempting to create new database connection
+[2025-03-25 22:38:47] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:47] [info] Database connection created successfully
+[2025-03-25 22:38:47] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:38:47] [INFO] Fetched conversations {"user_id":3,"count":5,"total":32,"offset":0,"limit":5}
+[2025-03-25 22:38:47] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:38:47] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:38:47] [info] Attempting to create new database connection
+[2025-03-25 22:38:47] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:47] [info] Database connection created successfully
+[2025-03-25 22:38:47] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:38:47] [info] Database connection established {"class":"User"}
+[2025-03-25 22:38:47] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:38:47] [info] DatabasePool instance created
+[2025-03-25 22:38:47] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:38:47] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:38:47] [info] Attempting to create new database connection
+[2025-03-25 22:38:47] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:38:47] [info] Database connection created successfully
+[2025-03-25 22:38:47] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:39:00] [info] DatabasePool instance created
+[2025-03-25 22:39:00] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:39:00] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:39:00] [info] Attempting to create new database connection
+[2025-03-25 22:39:00] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:00] [info] Database connection created successfully
+[2025-03-25 22:39:00] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:39:00] [info] Database connection established {"class":"Message"}
+[2025-03-25 22:39:00] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:39:00] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:39:00] [info] Attempting to create new database connection
+[2025-03-25 22:39:00] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:00] [info] Database connection created successfully
+[2025-03-25 22:39:00] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:39:00] [info] Database connection established {"class":"UsageStats"}
+[2025-03-25 22:39:00] [info] DatabasePool instance created
+[2025-03-25 22:39:00] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:39:00] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:39:00] [info] Attempting to create new database connection
+[2025-03-25 22:39:00] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:00] [info] Database connection created successfully
+[2025-03-25 22:39:00] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:39:00] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:39:00] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:39:00] [info] Attempting to create new database connection
+[2025-03-25 22:39:00] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:00] [info] Database connection created successfully
+[2025-03-25 22:39:00] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:39:00] [INFO] Fetched conversations {"user_id":3,"count":5,"total":32,"offset":0,"limit":5}
+[2025-03-25 22:39:00] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:39:00] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:39:00] [info] Attempting to create new database connection
+[2025-03-25 22:39:00] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:00] [info] Database connection created successfully
+[2025-03-25 22:39:00] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:39:00] [info] Database connection established {"class":"User"}
+[2025-03-25 22:39:00] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:39:00] [info] DatabasePool instance created
+[2025-03-25 22:39:00] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:39:00] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:39:00] [info] Attempting to create new database connection
+[2025-03-25 22:39:00] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:00] [info] Database connection created successfully
+[2025-03-25 22:39:00] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:39:48] [info] DatabasePool instance created
+[2025-03-25 22:39:48] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:39:48] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:39:48] [info] Attempting to create new database connection
+[2025-03-25 22:39:48] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:48] [info] Database connection created successfully
+[2025-03-25 22:39:48] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:39:48] [info] Database connection established {"class":"Message"}
+[2025-03-25 22:39:48] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:39:48] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:39:48] [info] Attempting to create new database connection
+[2025-03-25 22:39:48] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:48] [info] Database connection created successfully
+[2025-03-25 22:39:48] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:39:48] [info] Database connection established {"class":"UsageStats"}
+[2025-03-25 22:39:48] [info] DatabasePool instance created
+[2025-03-25 22:39:48] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:39:48] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:39:48] [info] Attempting to create new database connection
+[2025-03-25 22:39:48] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:48] [info] Database connection created successfully
+[2025-03-25 22:39:48] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:39:48] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:39:48] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:39:48] [info] Attempting to create new database connection
+[2025-03-25 22:39:48] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:48] [info] Database connection created successfully
+[2025-03-25 22:39:48] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:39:48] [INFO] Fetched conversations {"user_id":3,"count":5,"total":32,"offset":0,"limit":5}
+[2025-03-25 22:39:48] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:39:48] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:39:48] [info] Attempting to create new database connection
+[2025-03-25 22:39:48] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:48] [info] Database connection created successfully
+[2025-03-25 22:39:48] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:39:48] [info] Database connection established {"class":"User"}
+[2025-03-25 22:39:48] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:39:48] [info] DatabasePool instance created
+[2025-03-25 22:39:48] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:39:48] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:39:48] [info] Attempting to create new database connection
+[2025-03-25 22:39:48] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:48] [info] Database connection created successfully
+[2025-03-25 22:39:48] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:39:52] [info] DatabasePool instance created
+[2025-03-25 22:39:52] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:39:52] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:39:52] [info] Attempting to create new database connection
+[2025-03-25 22:39:52] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:52] [info] Database connection created successfully
+[2025-03-25 22:39:52] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:39:52] [info] Database connection established {"class":"Message"}
+[2025-03-25 22:39:52] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:39:52] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:39:52] [info] Attempting to create new database connection
+[2025-03-25 22:39:52] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:52] [info] Database connection created successfully
+[2025-03-25 22:39:52] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:39:52] [info] Database connection established {"class":"UsageStats"}
+[2025-03-25 22:39:52] [info] DatabasePool instance created
+[2025-03-25 22:39:52] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:39:52] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:39:52] [info] Attempting to create new database connection
+[2025-03-25 22:39:52] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:52] [info] Database connection created successfully
+[2025-03-25 22:39:52] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:39:52] [info] DatabasePool instance created
+[2025-03-25 22:39:52] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:39:52] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:39:52] [info] Attempting to create new database connection
+[2025-03-25 22:39:52] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:52] [info] Database connection created successfully
+[2025-03-25 22:39:52] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:39:52] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:39:52] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:39:52] [info] Attempting to create new database connection
+[2025-03-25 22:39:52] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:52] [info] Database connection created successfully
+[2025-03-25 22:39:52] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:39:52] [INFO] Fetched conversations {"user_id":3,"count":5,"total":32,"offset":0,"limit":5}
+[2025-03-25 22:39:52] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:39:52] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:39:52] [info] Attempting to create new database connection
+[2025-03-25 22:39:52] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:39:52] [info] Database connection created successfully
+[2025-03-25 22:39:52] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:39:52] [info] Database connection established {"class":"User"}
+[2025-03-25 22:39:52] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:40:04] [INFO] Session data {"session_id":"6rbphjv432t6pbl0io36qapj4d","session_data":{"user_id":3,"username":"mzagzoog","email":"mzagzoog@gmail.com","membership_type":"free","chat_session_id":"67e32847478981742940231"},"cookies":{"PHPSESSID":"6rbphjv432t6pbl0io36qapj4d"},"session_path":"C:\/Users\/zagzo\/Downloads\/UniServerZ\/tmp","session_status":2}
+[2025-03-25 22:40:04] [info] DatabasePool instance created
+[2025-03-25 22:40:04] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:40:04] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:40:04] [info] Attempting to create new database connection
+[2025-03-25 22:40:04] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:40:04] [info] Database connection created successfully
+[2025-03-25 22:40:04] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:40:04] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:40:04] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:40:04] [info] Attempting to create new database connection
+[2025-03-25 22:40:04] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:40:04] [info] Database connection created successfully
+[2025-03-25 22:40:04] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:40:04] [info] Database connection established {"class":"User"}
+[2025-03-25 22:40:04] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:40:04] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:40:04] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:40:04] [info] Attempting to create new database connection
+[2025-03-25 22:40:04] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:40:04] [info] Database connection created successfully
+[2025-03-25 22:40:04] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:40:04] [info] Database connection established {"class":"Membership"}
+[2025-03-25 22:40:06] [info] DatabasePool instance created
+[2025-03-25 22:40:06] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:40:06] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:40:06] [info] Attempting to create new database connection
+[2025-03-25 22:40:06] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:40:06] [info] Database connection created successfully
+[2025-03-25 22:40:06] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:40:06] [info] Database connection established {"class":"Message"}
+[2025-03-25 22:40:06] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:40:06] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:40:06] [info] Attempting to create new database connection
+[2025-03-25 22:40:06] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:40:06] [info] Database connection created successfully
+[2025-03-25 22:40:06] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:40:06] [info] Database connection established {"class":"UsageStats"}
+[2025-03-25 22:40:06] [info] DatabasePool instance created
+[2025-03-25 22:40:06] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:40:06] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:40:06] [info] Attempting to create new database connection
+[2025-03-25 22:40:06] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:40:06] [info] Database connection created successfully
+[2025-03-25 22:40:06] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:40:06] [info] DatabasePool instance created
+[2025-03-25 22:40:06] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:40:06] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:40:06] [info] Attempting to create new database connection
+[2025-03-25 22:40:06] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:40:06] [info] Database connection created successfully
+[2025-03-25 22:40:06] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:40:06] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:40:06] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:40:06] [info] Attempting to create new database connection
+[2025-03-25 22:40:06] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:40:06] [info] Database connection created successfully
+[2025-03-25 22:40:06] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:40:06] [INFO] Fetched conversations {"user_id":3,"count":5,"total":32,"offset":0,"limit":5}
+[2025-03-25 22:40:06] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:40:06] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:40:06] [info] Attempting to create new database connection
+[2025-03-25 22:40:06] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:40:06] [info] Database connection created successfully
+[2025-03-25 22:40:06] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:40:06] [info] Database connection established {"class":"User"}
+[2025-03-25 22:40:06] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:41:35] [info] DatabasePool instance created
+[2025-03-25 22:41:35] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:41:35] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:41:35] [info] Attempting to create new database connection
+[2025-03-25 22:41:35] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:41:35] [info] Database connection created successfully
+[2025-03-25 22:41:35] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:41:35] [info] Database connection established {"class":"Message"}
+[2025-03-25 22:41:35] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:41:35] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:41:35] [info] Attempting to create new database connection
+[2025-03-25 22:41:35] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:41:35] [info] Database connection created successfully
+[2025-03-25 22:41:35] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:41:35] [info] Database connection established {"class":"UsageStats"}
+[2025-03-25 22:41:35] [info] DatabasePool instance created
+[2025-03-25 22:41:35] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:41:35] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:41:35] [info] Attempting to create new database connection
+[2025-03-25 22:41:35] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:41:35] [info] Database connection created successfully
+[2025-03-25 22:41:35] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:41:35] [info] DatabasePool instance created
+[2025-03-25 22:41:35] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:41:35] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:41:35] [info] Attempting to create new database connection
+[2025-03-25 22:41:35] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:41:35] [info] Database connection created successfully
+[2025-03-25 22:41:35] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:41:35] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:41:35] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:41:35] [info] Attempting to create new database connection
+[2025-03-25 22:41:35] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:41:35] [info] Database connection created successfully
+[2025-03-25 22:41:35] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:41:35] [INFO] Fetched conversations {"user_id":3,"count":5,"total":32,"offset":0,"limit":5}
+[2025-03-25 22:41:35] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:41:35] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:41:35] [info] Attempting to create new database connection
+[2025-03-25 22:41:35] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:41:35] [info] Database connection created successfully
+[2025-03-25 22:41:35] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:41:35] [info] Database connection established {"class":"User"}
+[2025-03-25 22:41:35] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:41:39] [info] DatabasePool instance created
+[2025-03-25 22:41:39] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:41:39] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:41:39] [info] Attempting to create new database connection
+[2025-03-25 22:41:39] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:41:39] [info] Database connection created successfully
+[2025-03-25 22:41:39] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:41:39] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:41:39] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:41:39] [info] Attempting to create new database connection
+[2025-03-25 22:41:39] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:41:39] [info] Database connection created successfully
+[2025-03-25 22:41:39] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:41:39] [INFO] Fetched conversations {"user_id":3,"count":5,"total":32,"offset":5,"limit":5}
+[2025-03-25 22:41:39] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:41:39] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:41:39] [info] Attempting to create new database connection
+[2025-03-25 22:41:39] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:41:39] [info] Database connection created successfully
+[2025-03-25 22:41:39] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:41:39] [info] Database connection established {"class":"User"}
+[2025-03-25 22:41:39] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:41:42] [info] DatabasePool instance created
+[2025-03-25 22:41:42] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:41:42] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:41:42] [info] Attempting to create new database connection
+[2025-03-25 22:41:42] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:41:42] [info] Database connection created successfully
+[2025-03-25 22:41:42] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:41:42] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:41:42] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:41:42] [info] Attempting to create new database connection
+[2025-03-25 22:41:42] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:41:42] [info] Database connection created successfully
+[2025-03-25 22:41:42] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:41:42] [INFO] Fetched conversations {"user_id":3,"count":5,"total":32,"offset":10,"limit":5}
+[2025-03-25 22:41:42] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:41:42] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:41:42] [info] Attempting to create new database connection
+[2025-03-25 22:41:42] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:41:42] [info] Database connection created successfully
+[2025-03-25 22:41:42] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:41:42] [info] Database connection established {"class":"User"}
+[2025-03-25 22:41:42] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:42:47] [info] DatabasePool instance created
+[2025-03-25 22:42:47] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:42:47] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:42:47] [info] Attempting to create new database connection
+[2025-03-25 22:42:47] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:42:47] [info] Database connection created successfully
+[2025-03-25 22:42:47] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:42:47] [info] Database connection established {"class":"Message"}
+[2025-03-25 22:42:47] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:42:47] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:42:47] [info] Attempting to create new database connection
+[2025-03-25 22:42:47] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:42:47] [info] Database connection created successfully
+[2025-03-25 22:42:47] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:42:47] [info] Database connection established {"class":"UsageStats"}
+[2025-03-25 22:42:47] [info] DatabasePool instance created
+[2025-03-25 22:42:47] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:42:47] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:42:47] [info] Attempting to create new database connection
+[2025-03-25 22:42:47] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:42:47] [info] Database connection created successfully
+[2025-03-25 22:42:47] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:42:47] [info] DatabasePool instance created
+[2025-03-25 22:42:47] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:42:47] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:42:47] [info] Attempting to create new database connection
+[2025-03-25 22:42:47] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:42:47] [info] Database connection created successfully
+[2025-03-25 22:42:47] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:42:47] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:42:47] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:42:47] [info] Attempting to create new database connection
+[2025-03-25 22:42:47] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:42:47] [info] Database connection created successfully
+[2025-03-25 22:42:47] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:42:47] [INFO] Fetched conversations {"user_id":3,"count":5,"total":32,"offset":0,"limit":5}
+[2025-03-25 22:42:47] [info] Getting database connection {"current_connections":2}
+[2025-03-25 22:42:47] [info] Creating new connection {"current_count":2}
+[2025-03-25 22:42:47] [info] Attempting to create new database connection
+[2025-03-25 22:42:47] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:42:47] [info] Database connection created successfully
+[2025-03-25 22:42:47] [info] New connection created successfully {"connection_id":2}
+[2025-03-25 22:42:47] [info] Database connection established {"class":"User"}
+[2025-03-25 22:42:47] [info] Query executed {"class":"User","sql":"SELECT id, username, email, password, role FROM users WHERE id = ?","params":[3]}
+[2025-03-25 22:42:51] [info] DatabasePool instance created
+[2025-03-25 22:42:51] [info] Getting database connection {"current_connections":0}
+[2025-03-25 22:42:51] [info] Creating new connection {"current_count":0}
+[2025-03-25 22:42:51] [info] Attempting to create new database connection
+[2025-03-25 22:42:51] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:42:51] [info] Database connection created successfully
+[2025-03-25 22:42:51] [info] New connection created successfully {"connection_id":0}
+[2025-03-25 22:42:51] [info] Getting database connection {"current_connections":1}
+[2025-03-25 22:42:51] [info] Creating new connection {"current_count":1}
+[2025-03-25 22:42:51] [info] Attempting to create new database connection
+[2025-03-25 22:42:51] [info] DSN: mysql:host=localhost;dbname=mychat;charset=utf8mb4
+[2025-03-25 22:42:51] [info] Database connection created successfully
+[2025-03-25 22:42:51] [info] New connection created successfully {"connection_id":1}
+[2025-03-25 22:42:51] [info] Database connection established {"class":"Message"}
