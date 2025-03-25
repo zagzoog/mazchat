@@ -167,7 +167,7 @@ $apiKeys = $apiKeyModel->getByUserId($_SESSION['user_id']);
                     <p>جميع طلبات API تتطلب مصادقة باستخدام مفتاح API. يجب إرسال المفتاح في رأس الطلب:</p>
                     <pre class="bg-light p-3 rounded"><code>Authorization: Bearer YOUR_API_KEY</code></pre>
                     <div class="mt-3">
-                        <a href="/chat/api/docs.php" class="btn btn-primary">
+                        <a href="/chat/api/docs/" class="btn btn-primary">
                             <i class="fas fa-book me-2"></i>عرض توثيق Swagger الكامل
                         </a>
                     </div>

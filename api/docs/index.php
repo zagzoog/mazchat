@@ -1,59 +1,86 @@
 <?php
 session_start();
+require_once __DIR__ . '/../../db_config.php';
+require_once __DIR__ . '/../../app/models/User.php';
 
-// Base URL for the API
-$baseUrl = '/chat/api';
+// Define ADMIN_PANEL constant for navbar access
+define('ADMIN_PANEL', true);
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('Location: /chat/login.php');
+    exit;
+}
+
+// Check if user is admin
+$userModel = new User();
+$user = $userModel->findById($_SESSION['user_id']);
+
+if (!$user || !$userModel->isAdmin($_SESSION['user_id'])) {
+    header('Location: /chat/index.php');
+    exit;
+}
+
+// Read the Swagger JSON file
+$swaggerJson = file_get_contents(__DIR__ . '/swagger.json');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat App API Documentation</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.3/swagger-ui.min.css">
+    <title>API Documentation - Chat Application</title>
+    <link rel="stylesheet" type="text/css" href="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui.css">
+    <script src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-bundle.js"></script>
+    <script src="https://unpkg.com/swagger-ui-dist@5.11.0/swagger-ui-standalone-preset.js"></script>
     <style>
-        .navbar {
-            margin-bottom: 2rem;
+        html {
+            box-sizing: border-box;
+            overflow: -moz-scrollbars-vertical;
+            overflow-y: scroll;
+        }
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+        body {
+            margin: 0;
+            background: #fafafa;
         }
         .swagger-ui .topbar {
             display: none;
         }
+        .swagger-ui .info .title {
+            color: #333;
+        }
+        .swagger-ui .info .description {
+            color: #666;
+        }
+        .swagger-ui .opblock.opblock-post {
+            background: rgba(73, 144, 226, 0.1);
+            border-color: #4990e2;
+        }
+        .swagger-ui .opblock.opblock-get {
+            background: rgba(97, 175, 254, 0.1);
+            border-color: #61affe;
+        }
+        .swagger-ui .opblock.opblock-put {
+            background: rgba(252, 161, 48, 0.1);
+            border-color: #fca130;
+        }
+        .swagger-ui .opblock.opblock-delete {
+            background: rgba(249, 62, 62, 0.1);
+            border-color: #f93e3e;
+        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand" href="/chat">Chat App</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/chat/admin/developer_portal.php">Developer Portal</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/chat/admin/plugin_marketplace.php">Marketplace</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/chat/api/docs">API Documentation</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="container">
-        <div id="swagger-ui"></div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.3/swagger-ui-bundle.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.18.3/swagger-ui-standalone-preset.min.js"></script>
+    <div id="swagger-ui"></div>
     <script>
         window.onload = function() {
             const ui = SwaggerUIBundle({
-                url: "<?php echo $baseUrl; ?>/docs/swagger.json",
+                spec: <?php echo $swaggerJson; ?>,
                 dom_id: '#swagger-ui',
                 deepLinking: true,
                 presets: [
@@ -63,7 +90,26 @@ $baseUrl = '/chat/api';
                 plugins: [
                     SwaggerUIBundle.plugins.DownloadUrl
                 ],
-                layout: "StandaloneLayout"
+                layout: "StandaloneLayout",
+                docExpansion: 'list',
+                defaultModelsExpandDepth: -1,
+                defaultModelExpandDepth: 1,
+                defaultModelRendering: 'model',
+                displayRequestDuration: true,
+                filter: true,
+                tryItOutEnabled: true,
+                requestSnippetsEnabled: true,
+                requestSnippetsGenerators: {
+                    curl_bash: {
+                        template: {
+                            method: '{{method}}',
+                            url: '{{url}}',
+                            headers: '{{headers}}',
+                            body: '{{body}}'
+                        },
+                        curlCmd: ['curl -X {{method}}', '{{url}}', '{{headers}}', '{{body}}']
+                    }
+                }
             });
             window.ui = ui;
         };

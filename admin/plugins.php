@@ -155,7 +155,7 @@ $availablePlugins = $pluginModel->getAvailablePlugins();
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h1>إدارة الإضافات</h1>
                     <div>
-                        <a href="/chat/plugins/docs/plugin_development.md" class="btn btn-info me-2" target="_blank">
+                        <a href="/chat/docs/plugin_development.md" class="btn btn-info me-2" target="_blank">
                             <i class="fas fa-book"></i> دليل تطوير الإضافات
                         </a>
                         <a href="/chat/admin/plugin_add.php" class="btn btn-primary">

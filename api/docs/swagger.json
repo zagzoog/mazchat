@@ -1,17 +1,22 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Chat App API",
-        "description": "API documentation for the Chat App platform",
+        "title": "Chat Application API",
         "version": "1.0.0",
+        "description": "API documentation for the Chat Application",
         "contact": {
-            "email": "support@chatapp.com"
+            "name": "API Support",
+            "email": "support@example.com"
         }
     },
     "servers": [
         {
-            "url": "/chat/api",
+            "url": "http://localhost/chat",
             "description": "Local development server"
+        },
+        {
+            "url": "https://api.example.com/chat",
+            "description": "Production server"
         }
     ],
     "components": {
@@ -23,49 +28,70 @@
             }
         },
         "schemas": {
-            "User": {
+            "Error": {
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "integer",
-                        "format": "int64"
+                    "success": {
+                        "type": "boolean",
+                        "example": false
                     },
-                    "username": {
-                        "type": "string"
-                    },
-                    "email": {
+                    "error": {
                         "type": "string",
-                        "format": "email"
-                    },
-                    "membership_type": {
-                        "type": "string",
-                        "enum": ["free", "premium", "enterprise"]
+                        "example": "Error message"
                     }
                 }
             },
-            "ApiKey": {
+            "Message": {
                 "type": "object",
                 "properties": {
                     "id": {
                         "type": "integer",
-                        "format": "int64"
+                        "example": 1
                     },
-                    "name": {
-                        "type": "string"
+                    "conversation_id": {
+                        "type": "integer",
+                        "example": 1
                     },
-                    "api_key": {
-                        "type": "string"
+                    "content": {
+                        "type": "string",
+                        "example": "Hello, how can I help you?"
                     },
-                    "is_active": {
-                        "type": "boolean"
+                    "role": {
+                        "type": "string",
+                        "enum": ["user", "assistant"],
+                        "example": "user"
                     },
                     "created_at": {
                         "type": "string",
-                        "format": "date-time"
+                        "format": "date-time",
+                        "example": "2024-03-25T12:00:00Z"
+                    }
+                }
+            },
+            "Conversation": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "example": 1
                     },
-                    "last_used_at": {
+                    "title": {
                         "type": "string",
-                        "format": "date-time"
+                        "example": "General Support"
+                    },
+                    "plugin_id": {
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-03-25T12:00:00Z"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2024-03-25T12:00:00Z"
                     }
                 }
             },
@@ -74,33 +100,27 @@
                 "properties": {
                     "id": {
                         "type": "integer",
-                        "format": "int64"
+                        "example": 1
                     },
                     "name": {
-                        "type": "string"
-                    },
-                    "description": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "N8nWebhookHandler"
                     },
                     "version": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "1.0.0"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "Handles message processing through n8n webhooks"
                     },
                     "author": {
-                        "type": "string"
+                        "type": "string",
+                        "example": "System Admin"
                     },
-                    "is_official": {
-                        "type": "boolean"
-                    },
-                    "price": {
-                        "type": "number",
-                        "format": "float"
-                    },
-                    "rating": {
-                        "type": "number",
-                        "format": "float"
-                    },
-                    "downloads": {
-                        "type": "integer"
+                    "is_active": {
+                        "type": "boolean",
+                        "example": true
                     }
                 }
             }
@@ -112,47 +132,70 @@
         }
     ],
     "paths": {
-        "/auth.php": {
+        "/api/auth": {
             "post": {
+                "summary": "Authenticate user",
+                "description": "Authenticate user and get API token",
                 "tags": ["Authentication"],
-                "summary": "Authenticate user and get token",
-                "security": [],
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "object",
+                                "required": ["username", "password"],
                                 "properties": {
                                     "username": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "user@example.com"
                                     },
                                     "password": {
                                         "type": "string",
-                                        "format": "password"
+                                        "format": "password",
+                                        "example": "password123"
                                     }
-                                },
-                                "required": ["username", "password"]
+                                }
                             }
                         }
                     }
                 },
                 "responses": {
                     "200": {
-                        "description": "Successful authentication",
+                        "description": "Authentication successful",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
                                         "success": {
-                                            "type": "boolean"
+                                            "type": "boolean",
+                                            "example": true
                                         },
-                                        "user": {
-                                            "$ref": "#/components/schemas/User"
-                                        },
-                                        "api_token": {
-                                            "type": "string"
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "token": {
+                                                    "type": "string",
+                                                    "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                                                },
+                                                "user": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "id": {
+                                                            "type": "integer",
+                                                            "example": 1
+                                                        },
+                                                        "username": {
+                                                            "type": "string",
+                                                            "example": "user@example.com"
+                                                        },
+                                                        "role": {
+                                                            "type": "string",
+                                                            "example": "user"
+                                                        }
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -160,30 +203,76 @@
                         }
                     },
                     "401": {
-                        "description": "Invalid credentials"
+                        "description": "Authentication failed",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                }
+                            }
+                        }
                     }
                 }
             }
         },
-        "/developer/keys.php": {
+        "/api/conversations": {
             "get": {
-                "tags": ["Developer"],
-                "summary": "Get all API keys for the authenticated user",
+                "summary": "Get conversations",
+                "description": "Get list of user's conversations",
+                "tags": ["Conversations"],
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "default": 1
+                        },
+                        "description": "Page number"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer",
+                            "default": 10
+                        },
+                        "description": "Items per page"
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "List of API keys",
+                        "description": "List of conversations",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
                                         "success": {
-                                            "type": "boolean"
+                                            "type": "boolean",
+                                            "example": true
                                         },
                                         "data": {
                                             "type": "array",
                                             "items": {
-                                                "$ref": "#/components/schemas/ApiKey"
+                                                "$ref": "#/components/schemas/Conversation"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 100
+                                                },
+                                                "page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "limit": {
+                                                    "type": "integer",
+                                                    "example": 10
+                                                }
                                             }
                                         }
                                     }
@@ -194,40 +283,44 @@
                 }
             },
             "post": {
-                "tags": ["Developer"],
-                "summary": "Create a new API key",
+                "summary": "Create conversation",
+                "description": "Create a new conversation",
+                "tags": ["Conversations"],
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "object",
+                                "required": ["title", "plugin_id"],
                                 "properties": {
-                                    "name": {
-                                        "type": "string"
+                                    "title": {
+                                        "type": "string",
+                                        "example": "New Conversation"
                                     },
-                                    "description": {
-                                        "type": "string"
+                                    "plugin_id": {
+                                        "type": "integer",
+                                        "example": 1
                                     }
-                                },
-                                "required": ["name"]
+                                }
                             }
                         }
                     }
                 },
                 "responses": {
-                    "201": {
-                        "description": "API key created",
+                    "200": {
+                        "description": "Conversation created",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
                                         "success": {
-                                            "type": "boolean"
+                                            "type": "boolean",
+                                            "example": true
                                         },
                                         "data": {
-                                            "$ref": "#/components/schemas/ApiKey"
+                                            "$ref": "#/components/schemas/Conversation"
                                         }
                                     }
                                 }
@@ -237,37 +330,142 @@
                 }
             }
         },
-        "/marketplace/plugins.php": {
+        "/api/conversations/{id}/messages": {
             "get": {
-                "tags": ["Marketplace"],
-                "summary": "Get all available plugins",
+                "summary": "Get conversation messages",
+                "description": "Get messages for a specific conversation",
+                "tags": ["Messages"],
                 "parameters": [
                     {
-                        "in": "query",
-                        "name": "category",
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         },
-                        "description": "Filter by category"
+                        "description": "Conversation ID"
                     },
                     {
+                        "name": "page",
                         "in": "query",
-                        "name": "sort",
                         "schema": {
-                            "type": "string",
-                            "enum": ["popular", "rating", "newest"]
+                            "type": "integer",
+                            "default": 1
                         },
-                        "description": "Sort order"
+                        "description": "Page number"
                     },
                     {
+                        "name": "limit",
                         "in": "query",
-                        "name": "official",
                         "schema": {
-                            "type": "boolean"
+                            "type": "integer",
+                            "default": 50
                         },
-                        "description": "Filter by official plugins"
+                        "description": "Items per page"
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "List of messages",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Message"
+                                            }
+                                        },
+                                        "pagination": {
+                                            "type": "object",
+                                            "properties": {
+                                                "total": {
+                                                    "type": "integer",
+                                                    "example": 100
+                                                },
+                                                "page": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                },
+                                                "limit": {
+                                                    "type": "integer",
+                                                    "example": 50
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "Send message",
+                "description": "Send a message in a conversation",
+                "tags": ["Messages"],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "description": "Conversation ID"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "required": ["content"],
+                                "properties": {
+                                    "content": {
+                                        "type": "string",
+                                        "example": "Hello, how can I help you?"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Message sent successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Message"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/plugins": {
+            "get": {
+                "summary": "Get available plugins",
+                "description": "Get list of available plugins",
+                "tags": ["Plugins"],
                 "responses": {
                     "200": {
                         "description": "List of plugins",
@@ -277,7 +475,8 @@
                                     "type": "object",
                                     "properties": {
                                         "success": {
-                                            "type": "boolean"
+                                            "type": "boolean",
+                                            "example": true
                                         },
                                         "data": {
                                             "type": "array",
@@ -291,44 +490,45 @@
                         }
                     }
                 }
-            },
+            }
+        },
+        "/api/plugins/preferences": {
             "post": {
-                "tags": ["Marketplace"],
-                "summary": "Install or uninstall a plugin",
+                "summary": "Update plugin preference",
+                "description": "Update user's preferred plugin",
+                "tags": ["Plugins"],
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "type": "object",
+                                "required": ["plugin_id"],
                                 "properties": {
-                                    "action": {
-                                        "type": "string",
-                                        "enum": ["install", "uninstall"]
-                                    },
                                     "plugin_id": {
                                         "type": "integer",
-                                        "format": "int64"
+                                        "example": 1
                                     }
-                                },
-                                "required": ["action", "plugin_id"]
+                                }
                             }
                         }
                     }
                 },
                 "responses": {
                     "200": {
-                        "description": "Operation successful",
+                        "description": "Plugin preference updated",
                         "content": {
                             "application/json": {
                                 "schema": {
                                     "type": "object",
                                     "properties": {
                                         "success": {
-                                            "type": "boolean"
+                                            "type": "boolean",
+                                            "example": true
                                         },
                                         "message": {
-                                            "type": "string"
+                                            "type": "string",
+                                            "example": "Plugin preference updated successfully"
                                         }
                                     }
                                 }

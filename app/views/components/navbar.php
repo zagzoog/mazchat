@@ -6,6 +6,8 @@ if (!defined('ADMIN_PANEL')) {
 $current_page = basename($_SERVER['PHP_SELF']);
 ?>
 
+<?php include 'internet_status.php'; ?>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="/chat/admin">لوحة التحكم</a>
