@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: mychat-app
     ports:
       - "80:80"
     volumes:
@@ -12,20 +13,20 @@ services:
     depends_on:
       - db
     environment:
-      - DB_HOST=db
-      - DB_NAME=mychat
-      - DB_USER=mychat
-      - DB_PASS=moha1212
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
 
   db:
     image: mysql:8.0
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_DATABASE=mychat
-      - MYSQL_USER=mychat
-      - MYSQL_PASSWORD=moha1212
-      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     volumes:
       - mysql_data:/var/lib/mysql
       - ./database.sql:/docker-entrypoint-initdb.d/database.sql

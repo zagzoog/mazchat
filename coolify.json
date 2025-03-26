@@ -1,0 +1,39 @@
+{
+  "name": "mychat",
+  "type": "docker-compose",
+  "description": "AI Chat Application with PHP and MySQL",
+  "services": [
+    {
+      "name": "app",
+      "type": "dockerfile",
+      "port": 80,
+      "build": {
+        "context": ".",
+        "dockerfile": "Dockerfile"
+      },
+      "env": {
+        "DB_HOST": "db",
+        "DB_NAME": "mychat",
+        "DB_USER": "mychat",
+        "DB_PASS": "moha1212"
+      }
+    },
+    {
+      "name": "db",
+      "type": "mysql",
+      "version": "8.0",
+      "env": {
+        "MYSQL_DATABASE": "mychat",
+        "MYSQL_USER": "mychat",
+        "MYSQL_PASSWORD": "moha1212",
+        "MYSQL_ROOT_PASSWORD": "rootpassword"
+      }
+    }
+  ],
+  "volumes": [
+    {
+      "name": "mysql_data",
+      "type": "persistent"
+    }
+  ]
+} 
