@@ -28,4 +28,6 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html
 
 # Configure Apache
-RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf 
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
+    && sed -i 's/Listen 80/Listen 3000/' /etc/apache2/ports.conf \
+    && sed -i 's/:80/:3000/' /etc/apache2/sites-enabled/000-default.conf 
