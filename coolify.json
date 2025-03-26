@@ -35,5 +35,6 @@
       "name": "mysql_data",
       "type": "persistent"
     }
-  ]
+  ],
+  "composeFile": "docker-compose.yaml"
 } 
