@@ -110,6 +110,28 @@ try {
                 echo json_encode(['error' => $e->getMessage()]);
             }
             break;
+
+        case 'PUT':
+            // Update conversation's plugin
+            $data = json_decode(file_get_contents('php://input'), true);
+            
+            if (!isset($data['conversation_id']) || !isset($data['plugin_id'])) {
+                http_response_code(400);
+                echo json_encode(['error' => 'Conversation ID and Plugin ID are required']);
+                break;
+            }
+            
+            try {
+                $conversation->updatePluginId($data['conversation_id'], $user_id, $data['plugin_id']);
+                
+                echo json_encode([
+                    'success' => true
+                ]);
+            } catch (Exception $e) {
+                http_response_code(500);
+                echo json_encode(['error' => $e->getMessage()]);
+            }
+            break;
             
         default:
             http_response_code(405);

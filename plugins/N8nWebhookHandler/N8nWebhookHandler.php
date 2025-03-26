@@ -174,7 +174,7 @@ class N8nWebhookHandler extends Plugin {
             // Log the outcome
             if ($success) {
                 error_log("N8nWebhookHandler: Message successfully processed by webhook");
-                // Return the actual response content
+                // Return the aual response content
                 return $response;
             } else {
                 error_log("N8nWebhookHandler ERROR: Webhook returned non-success status code: " . $httpCode);

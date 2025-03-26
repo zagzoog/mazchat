@@ -497,7 +497,9 @@ async function loadPlugins() {
         
         // Add event listener for plugin selection
         pluginSelector.addEventListener('change', async function() {
+            debug.log('Plugin selection changed:', this.value);
             try {
+                // Update user preference
                 const response = await fetch('/chat/api/user/preferences.php', {
                     method: 'POST',
                     headers: {
@@ -513,6 +515,44 @@ async function loadPlugins() {
                 }
                 
                 debug.log('Plugin preference updated successfully');
+
+                // If there's an active conversation, update its plugin
+                if (currentConversationId) {
+                    debug.log('Updating current conversation plugin:', {
+                        conversation_id: currentConversationId,
+                        plugin_id: this.value
+                    });
+
+                    const updateResponse = await fetch('/chat/api/conversations.php', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            conversation_id: currentConversationId,
+                            plugin_id: this.value
+                        })
+                    });
+
+                    if (!updateResponse.ok) {
+                        throw new Error('Failed to update conversation plugin');
+                    }
+
+                    debug.log('Conversation plugin updated successfully');
+
+                    // Show a message indicating the plugin has been changed
+                    const chatContainer = document.getElementById('chatContainer');
+                    const systemMessage = document.createElement('div');
+                    systemMessage.className = 'message system';
+                    systemMessage.innerHTML = `
+                        <div class="message-content">
+                            تم تغيير معالج الرسائل. سيتم استخدام المعالج الجديد في الرسائل القادمة.
+                        </div>
+                    `;
+                    chatContainer.appendChild(systemMessage);
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                    debug.log('Added system message about plugin change');
+                }
             } catch (error) {
                 debug.error('Error updating plugin preference:', error);
                 showError('فشل في تحديث تفضيلات المعالج');

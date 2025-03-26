@@ -189,4 +189,41 @@ class Conversation extends Model {
                 LIMIT ?';
         return $this->query($sql, [$limit])->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function updatePluginId($conversationId, $userId, $pluginId) {
+        try {
+            // Verify plugin exists and is active
+            $stmt = $this->db->prepare("
+                SELECT id FROM plugins 
+                WHERE id = ? AND is_active = TRUE
+            ");
+            $stmt->execute([$pluginId]);
+            if (!$stmt->fetch()) {
+                throw new Exception('Invalid or inactive plugin');
+            }
+            
+            // Update conversation's plugin
+            $stmt = $this->db->prepare("
+                UPDATE conversations 
+                SET plugin_id = ?, updated_at = CURRENT_TIMESTAMP
+                WHERE id = ? AND user_id = ?
+            ");
+            
+            $stmt->execute([$pluginId, $conversationId, $userId]);
+            
+            Logger::log("Updated conversation plugin", 'INFO', [
+                'conversation_id' => $conversationId,
+                'user_id' => $userId,
+                'plugin_id' => $pluginId
+            ]);
+            
+            return true;
+        } catch (Exception $e) {
+            Logger::log("Error updating conversation plugin", 'ERROR', [
+                'error' => $e->getMessage(),
+                'trace' => $e->getTraceAsString()
+            ]);
+            throw $e;
+        }
+    }
 } 

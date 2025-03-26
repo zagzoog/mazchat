@@ -37,30 +37,45 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             'error' => $e->getMessage()
         ]);
     }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+    try {
+        $data = json_decode(file_get_contents('php://input'), true);
+        
+        if (!isset($data['conversation_id']) || !isset($data['plugin_id'])) {
+            throw new Exception('Conversation ID and Plugin ID are required');
+        }
+        
+        // Update conversation's plugin
+        $conversation->updatePluginId($data['conversation_id'], $_SESSION['user_id'], $data['plugin_id']);
+        
+        echo json_encode([
+            'success' => true
+        ]);
+        
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode([
+            'error' => $e->getMessage()
+        ]);
+    }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
     try {
-        if (isset($_GET['id'])) {
+        if (!isset($_GET['conversation_id'])) {
+            // Get all conversations
+            $conversations = $conversation->getAll($_SESSION['user_id']);
+            echo json_encode([
+                'success' => true,
+                'conversations' => $conversations
+            ]);
+        } else {
             // Get specific conversation
-            $conv = $conversation->getById($_GET['id'], $_SESSION['user_id']);
-            if (!$conv) {
-                http_response_code(404);
-                echo json_encode(['error' => 'Conversation not found']);
-                exit;
+            $conversationData = $conversation->getById($_GET['conversation_id'], $_SESSION['user_id']);
+            if (!$conversationData) {
+                throw new Exception('Conversation not found');
             }
             echo json_encode([
                 'success' => true,
-                'data' => $conv
-            ]);
-        } else {
-            // Get all conversations
-            $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 20;
-            $offset = isset($_GET['offset']) ? (int)$_GET['offset'] : 0;
-            
-            $result = $conversation->getByUserId($_SESSION['user_id'], $limit, $offset);
-            
-            echo json_encode([
-                'success' => true,
-                'data' => $result
+                'data' => $conversationData
             ]);
         }
     } catch (Exception $e) {
@@ -71,5 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 } else {
     http_response_code(405);
-    echo json_encode(['error' => 'Method not allowed']);
+    echo json_encode([
+        'error' => 'Method not allowed'
+    ]);
 } 

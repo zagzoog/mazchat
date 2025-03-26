@@ -449,6 +449,7 @@ async function loadPlugins() {
         
         pluginSelector.addEventListener('change', async function() {
             try {
+                // Update user preference
                 const response = await fetch('/chat/api/user/preferences.php', {
                     method: 'POST',
                     headers: {
@@ -461,6 +462,36 @@ async function loadPlugins() {
                 
                 if (!response.ok) {
                     throw new Error('Failed to update plugin preference');
+                }
+
+                // If there's an active conversation, update its plugin
+                if (currentConversationId) {
+                    const updateResponse = await fetch('/chat/api/conversations.php', {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            conversation_id: currentConversationId,
+                            plugin_id: this.value
+                        })
+                    });
+
+                    if (!updateResponse.ok) {
+                        throw new Error('Failed to update conversation plugin');
+                    }
+
+                    // Show a message indicating the plugin has been changed
+                    const chatContainer = document.getElementById('chatContainer');
+                    const systemMessage = document.createElement('div');
+                    systemMessage.className = 'message system';
+                    systemMessage.innerHTML = `
+                        <div class="message-content">
+                            تم تغيير معالج الرسائل. سيتم استخدام المعالج الجديد في الرسائل القادمة.
+                        </div>
+                    `;
+                    chatContainer.appendChild(systemMessage);
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
                 }
             } catch (error) {
                 showError('فشل في تحديث تفضيلات المعالج');
