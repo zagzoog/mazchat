@@ -32,7 +32,7 @@ RUN chown -R www-data:www-data /var/www/html \
 # Configure Apache
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
     && sed -i 's/Listen 80/Listen 3000/' /etc/apache2/ports.conf \
-    && echo "ServerTokens Off" >> /etc/apache2/apache2.conf \
+    && echo "ServerTokens Prod" >> /etc/apache2/apache2.conf \
     && echo "ServerSignature Off" >> /etc/apache2/apache2.conf
 
 # Configure Virtual Host
