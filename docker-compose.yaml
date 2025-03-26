@@ -29,7 +29,10 @@ services:
       MYSQL_ROOT_PASSWORD: rootpassword
     volumes:
       - mysql_data:/var/lib/mysql
-      - ./database.sql:/docker-entrypoint-initdb.d/database.sql
+      - type: bind
+        source: ./database.sql
+        target: /docker-entrypoint-initdb.d/database.sql
+        read_only: true
 
 volumes:
   mysql_data: 
