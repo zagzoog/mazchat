@@ -1,28 +1,40 @@
 <?php
 session_start();
 require_once __DIR__ . '/../../db_config.php';
+require_once __DIR__ . '/../../app/utils/Logger.php';
+require_once __DIR__ . '/../../app/models/Model.php';
 require_once __DIR__ . '/../../app/models/User.php';
 
 // Define ADMIN_PANEL constant for navbar access
 define('ADMIN_PANEL', true);
 
-// Check if user is logged in
-if (!isset($_SESSION['user_id'])) {
-    header('Location: /chat/login.php');
+try {
+    // Check if user is logged in
+    if (!isset($_SESSION['user_id'])) {
+        header('Location: /chat/login.php');
+        exit;
+    }
+
+    // Check if user is admin
+    $userModel = new User();
+    $user = $userModel->findById($_SESSION['user_id']);
+
+    if (!$user || !$userModel->isAdmin($_SESSION['user_id'])) {
+        header('Location: /chat/index.php');
+        exit;
+    }
+
+    // Read the Swagger JSON file
+    $swaggerJson = file_get_contents(__DIR__ . '/swagger.json');
+    if ($swaggerJson === false) {
+        throw new Exception('Failed to load Swagger documentation');
+    }
+} catch (Exception $e) {
+    Logger::error('API docs error', ['message' => $e->getMessage()]);
+    http_response_code(500);
+    echo "Internal Server Error: " . $e->getMessage();
     exit;
 }
-
-// Check if user is admin
-$userModel = new User();
-$user = $userModel->findById($_SESSION['user_id']);
-
-if (!$user || !$userModel->isAdmin($_SESSION['user_id'])) {
-    header('Location: /chat/index.php');
-    exit;
-}
-
-// Read the Swagger JSON file
-$swaggerJson = file_get_contents(__DIR__ . '/swagger.json');
 ?>
 <!DOCTYPE html>
 <html lang="en">

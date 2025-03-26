@@ -8,6 +8,9 @@ class Model {
     
     public function __construct() {
         try {
+            if (!function_exists('getDBConnection')) {
+                require_once __DIR__ . '/../../db_config.php';
+            }
             $this->db = getDBConnection();
             if (!$this->db) {
                 throw new Exception('Database connection failed');

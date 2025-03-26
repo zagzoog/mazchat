@@ -6,7 +6,16 @@ class Logger {
     
     private function __construct() {
         try {
-            self::$config = require_once __DIR__ . '/../../config.php';
+            global $config;
+            if (!isset($config) || !isset($config[ENVIRONMENT])) {
+                self::$config = [
+                    'debug_logging' => true,
+                    'development_mode' => true
+                ];
+            } else {
+                self::$config = $config[ENVIRONMENT];
+            }
+            
             self::$logFile = __DIR__ . '/../../logs/php_errors.log';
             
             // Ensure config is an array

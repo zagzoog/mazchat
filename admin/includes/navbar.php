@@ -10,7 +10,7 @@ require_once __DIR__ . '/../../../path_config.php';
         <div class="flex justify-between h-16">
             <div class="flex">
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="<?php echo getFullUrlPath('admin/dashboard.php'); ?>" class="text-xl font-bold text-gray-800">
+                    <a href="<?php echo getFullUrlPath('admin/index.php'); ?>" class="text-xl font-bold text-gray-800">
                         لوحة التحكم
                     </a>
                 </div>
@@ -26,9 +26,6 @@ require_once __DIR__ . '/../../../path_config.php';
                     </a>
                     <a href="<?php echo getFullUrlPath('admin/plugins.php'); ?>" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
                         <i class="fas fa-puzzle-piece"></i> الإضافات
-                    </a>
-                    <a href="<?php echo getFullUrlPath('admin/settings.php'); ?>" class="text-gray-600 hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">
-                        <i class="fas fa-cog"></i> الإعدادات
                     </a>
                 </div>
             </div>
@@ -62,9 +59,6 @@ require_once __DIR__ . '/../../../path_config.php';
             </a>
             <a href="<?php echo getFullUrlPath('admin/plugins.php'); ?>" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
                 <i class="fas fa-puzzle-piece"></i> الإضافات
-            </a>
-            <a href="<?php echo getFullUrlPath('admin/settings.php'); ?>" class="block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50">
-                <i class="fas fa-cog"></i> الإعدادات
             </a>
         </div>
     </div>

@@ -19,8 +19,8 @@ $current_page = basename($_SERVER['PHP_SELF']);
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $current_page === 'index.php' ? 'active' : ''; ?>" href="<?php echo getFullUrlPath('admin'); ?>">
-                        <i class="fas fa-home"></i> الرئيسية
+                    <a class="nav-link <?php echo $current_page === 'index.php' ? 'active' : ''; ?>" href="<?php echo getFullUrlPath('admin/index.php'); ?>">
+                        <i class="fas fa-home"></i> لوحة التحكم
                     </a>
                 </li>
                 <li class="nav-item">
@@ -41,11 +41,6 @@ $current_page = basename($_SERVER['PHP_SELF']);
                 <li class="nav-item">
                     <a class="nav-link <?php echo $current_page === 'developer_portal.php' ? 'active' : ''; ?>" href="<?php echo getFullUrlPath('admin/developer_portal.php'); ?>">
                         <i class="fas fa-code"></i> بوابة المطورين
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php echo $current_page === 'settings.php' ? 'active' : ''; ?>" href="<?php echo getFullUrlPath('admin/settings.php'); ?>">
-                        <i class="fas fa-cog"></i> الإعدادات
                     </a>
                 </li>
             </ul>
