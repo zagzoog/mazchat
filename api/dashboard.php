@@ -76,6 +76,10 @@ try {
     $membership = new Membership();
     $membershipData = $membership->getCurrentMembership($user_id);
     
+    // Get limits from config
+    $config = require __DIR__ . '/../config.php';
+    $membershipType = $membershipData['type'] ?? 'free';
+    
     // Get conversation stats
     $stmt = $db->prepare("
         SELECT 
@@ -137,9 +141,9 @@ try {
     $response = [
         'success' => true,
         'membership' => [
-            'type' => $membershipData['type'] ?? 'free',
-            'monthly_limit' => $membershipData['monthly_limit'] ?? 100,
-            'question_limit' => $membershipData['question_limit'] ?? 1000,
+            'type' => $membershipType,
+            'monthly_limit' => $config[$membershipType . '_monthly_limit'] ?? 100,
+            'question_limit' => $config[$membershipType . '_question_limit'] ?? 1000,
             'current_usage' => (int)$stats['total_conversations'],
             'current_questions' => (int)$messageStats['total_messages']
         ],

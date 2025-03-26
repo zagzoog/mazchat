@@ -28,6 +28,11 @@ async function handleResponse(response) {
             window.location.href = '/chat/login.php';
             return;
         }
+        const errorData = await response.json();
+        debug.log('Error response data:', errorData);
+        if (errorData.limit_reached) {
+            throw new Error(JSON.stringify(errorData));
+        }
         throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
@@ -179,6 +184,15 @@ async function createNewConversation() {
         
         const data = await handleResponse(response);
         
+        if (!data.success) {
+            if (data.limit_reached && data.limit_type === 'conversations') {
+                debug.warn('Monthly conversation limit reached');
+                showError('لقد وصلت إلى الحد الشهري للمحادثات. يرجى ترقية اشتراكك للمتابعة.', true);
+                return null;
+            }
+            throw new Error(data.error || 'Failed to create conversation');
+        }
+        
         if (!data.data || !data.data.id) {
             throw new Error('No conversation ID received');
         }
@@ -209,10 +223,22 @@ async function createNewConversation() {
 
         return currentConversationId;
     } catch (error) {
-        debug.error('Error creating conversation:', error);
-        showError('حدث خطأ أثناء إنشاء محادثة جديدة');
-        currentConversationId = null; // Reset the conversation ID on error
-        throw error; // Re-throw to handle in sendMessage
+        try {
+            const errorData = JSON.parse(error.message);
+            debug.log('Parsed error data:', errorData);
+            if (errorData.limit_reached && errorData.limit_type === 'conversations') {
+                debug.warn('Monthly conversation limit reached');
+                showError('لقد وصلت إلى الحد الشهري للمحادثات. يرجى ترقية اشتراكك للمتابعة.', true);
+            } else {
+                debug.error('Error creating conversation:', error);
+                showError('حدث خطأ أثناء إنشاء محادثة جديدة');
+            }
+        } catch (e) {
+            debug.error('Error parsing error message:', e);
+            showError('حدث خطأ أثناء إنشاء محادثة جديدة');
+        }
+        currentConversationId = null;
+        throw error;
     }
 }
 
@@ -380,7 +406,12 @@ async function sendMessage() {
         const data = await handleResponse(response);
         debug.log('Server response:', data);
         
-        if (data.error) {
+        if (!data.success) {
+            if (data.limit_reached && data.limit_type === 'questions') {
+                debug.warn('Monthly question limit reached');
+                showError('لقد وصلت إلى الحد الشهري للأسئلة. يرجى ترقية اشتراكك للمتابعة.', true);
+                return;
+            }
             throw new Error(data.error);
         }
         
@@ -414,16 +445,41 @@ async function sendMessage() {
 }
 
 // Show error message
-function showError(message) {
+function showError(message, isLimitError = false) {
     debug.warn('Showing error message:', message);
     const errorDiv = document.createElement('div');
-    errorDiv.className = 'error-message';
-    errorDiv.textContent = message;
+    errorDiv.className = isLimitError ? 'limit-warning-message' : 'error-message';
+    
+    if (isLimitError) {
+        errorDiv.innerHTML = `
+            <div class="flex items-center justify-between p-4 bg-yellow-50 border-l-4 border-yellow-400">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <i class="fas fa-exclamation-triangle text-yellow-400"></i>
+                    </div>
+                    <div class="mr-3">
+                        <p class="text-sm text-yellow-700">${message}</p>
+                    </div>
+                </div>
+                <div class="flex-shrink-0">
+                    <button onclick="showUpgradeModal()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                        <i class="fas fa-arrow-up mr-2"></i>
+                        ترقية الاشتراك
+                    </button>
+                </div>
+            </div>
+        `;
+    } else {
+        errorDiv.textContent = message;
+    }
+    
     document.body.appendChild(errorDiv);
     
-    setTimeout(() => {
-        errorDiv.remove();
-    }, 3000);
+    if (!isLimitError) {
+        setTimeout(() => {
+            errorDiv.remove();
+        }, 3000);
+    }
 }
 
 // Modal functions

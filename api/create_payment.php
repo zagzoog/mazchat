@@ -39,7 +39,7 @@ try {
     }
 
     $membershipType = $data['membership_type'];
-    $amount = $membershipType === 'basic' ? 9.99 : 19.99;
+    $amount = $membershipType === 'basic' ? $config['silver_price'] : $config['gold_price'];
 
     error_log("Membership type: " . $membershipType);
     error_log("Amount: " . $amount);

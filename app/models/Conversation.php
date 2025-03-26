@@ -71,6 +71,13 @@ class Conversation extends Model {
     
     public function create($userId, $pluginId) {
         try {
+            // Check monthly conversation limit
+            require_once __DIR__ . '/Membership.php';
+            $membership = new Membership();
+            if (!$membership->checkUsageLimit($userId)) {
+                throw new Exception('You have reached your monthly conversation limit. Please upgrade your membership to continue.');
+            }
+            
             // Verify plugin exists and is active
             $stmt = $this->db->prepare("
                 SELECT id FROM plugins 

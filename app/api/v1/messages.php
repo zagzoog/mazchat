@@ -63,6 +63,19 @@ class MessagesController extends ApiController {
         error_log("Message data validation passed");
 
         try {
+            // Check question limit before proceeding
+            require_once dirname(__DIR__, 3) . '/app/models/Membership.php';
+            $membership = new Membership();
+            if (!$membership->checkQuestionLimit($this->userId)) {
+                error_log("User " . $this->userId . " has reached their monthly question limit");
+                $this->sendError('You have reached your monthly question limit. Please upgrade your membership to continue.', 403, [
+                    'limit_reached' => true,
+                    'limit_type' => 'questions'
+                ]);
+                return;
+            }
+            error_log("Question limit check passed");
+
             error_log("Fetching conversation and plugin info for conversation ID: " . $data['conversation_id']);
             // Check if conversation exists and user has access, and get the plugin info
             $stmt = $this->db->prepare("

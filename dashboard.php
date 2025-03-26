@@ -205,7 +205,7 @@ $config = require_once 'config.php';
             <div class="space-y-4">
                 <div class="border rounded p-4">
                     <h3 class="font-semibold">العضوية الأساسية</h3>
-                    <p class="text-gray-600">$9.99/شهرياً</p>
+                    <p class="text-gray-600">$<?php echo number_format($config['silver_price'], 2); ?>/شهرياً</p>
                     <ul class="mt-2 space-y-1">
                         <li><i class="fas fa-check text-green-500"></i> 100 محادثة شهرياً</li>
                         <li><i class="fas fa-check text-green-500"></i> دعم البريد الإلكتروني</li>
@@ -216,7 +216,7 @@ $config = require_once 'config.php';
                 </div>
                 <div class="border rounded p-4">
                     <h3 class="font-semibold">العضوية المميزة</h3>
-                    <p class="text-gray-600">$19.99/شهرياً</p>
+                    <p class="text-gray-600">$<?php echo number_format($config['gold_price'], 2); ?>/شهرياً</p>
                     <ul class="mt-2 space-y-1">
                         <li><i class="fas fa-check text-green-500"></i> محادثات غير محدودة</li>
                         <li><i class="fas fa-check text-green-500"></i> دعم مباشر</li>

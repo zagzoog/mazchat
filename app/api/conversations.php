@@ -32,9 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
         
     } catch (Exception $e) {
-        http_response_code(500);
+        http_response_code($e->getMessage() === 'You have reached your monthly conversation limit. Please upgrade your membership to continue.' ? 403 : 500);
         echo json_encode([
-            'error' => $e->getMessage()
+            'error' => $e->getMessage(),
+            'limit_reached' => $e->getMessage() === 'You have reached your monthly conversation limit. Please upgrade your membership to continue.'
         ]);
     }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'PUT') {

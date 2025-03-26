@@ -93,18 +93,9 @@ class Membership extends Model {
         $membership = $this->getCurrentMembership($userId);
         $db = getDBConnection();
         
-        // Get monthly limit from settings
-        $stmt = $db->prepare(
-            'SELECT setting_value FROM admin_settings WHERE setting_key = ?'
-        );
-        $stmt->execute([$membership['type'] . '_monthly_limit']);
-        $monthlyLimit = $stmt->fetchColumn();
-        
-        if (!$monthlyLimit) {
-            // Set default limits if not found in settings
-            $monthlyLimit = $membership['type'] === 'free' ? 50 : 
-                           ($membership['type'] === 'basic' ? 100 : 999999);
-        }
+        // Get monthly limit from config
+        $config = require __DIR__ . '/../../config.php';
+        $monthlyLimit = $config[$membership['type'] . '_monthly_limit'] ?? 50;
         
         // Get current month's usage directly from conversations table
         $stmt = $db->prepare(
@@ -123,18 +114,9 @@ class Membership extends Model {
         $membership = $this->getCurrentMembership($userId);
         $db = getDBConnection();
         
-        // Get question limit from settings
-        $stmt = $db->prepare(
-            'SELECT setting_value FROM admin_settings WHERE setting_key = ?'
-        );
-        $stmt->execute([$membership['type'] . '_question_limit']);
-        $questionLimit = $stmt->fetchColumn();
-        
-        if (!$questionLimit) {
-            // Set default limits if not found in settings
-            $questionLimit = $membership['type'] === 'free' ? 500 : 
-                           ($membership['type'] === 'basic' ? 2000 : 999999);
-        }
+        // Get question limit from config
+        $config = require __DIR__ . '/../../config.php';
+        $questionLimit = $config[$membership['type'] . '_question_limit'] ?? 500;
         
         // Get current month's question usage from usage_stats table
         // Only count user messages
