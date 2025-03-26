@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     git \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
@@ -31,7 +32,9 @@ RUN chown -R www-data:www-data /var/www/html \
 # Configure Apache
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
     && sed -i 's/Listen 80/Listen 3000/' /etc/apache2/ports.conf \
-    && sed -i 's/:80/:3000/' /etc/apache2/sites-enabled/000-default.conf
+    && sed -i 's/:80/:3000/' /etc/apache2/sites-enabled/000-default.conf \
+    && echo "ServerTokens Off" >> /etc/apache2/apache2.conf \
+    && echo "ServerSignature Off" >> /etc/apache2/apache2.conf
 
 # Add healthcheck
 HEALTHCHECK --interval=30s --timeout=3s \
