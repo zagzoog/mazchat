@@ -67,9 +67,7 @@ async function loadConversations(loadMore = false) {
         }
         
         const sidebar = document.querySelector('.sidebar');
-        let conversationsList = loadMore ? 
-            document.querySelector('.conversations-list') : 
-            document.createElement('div');
+        let conversationsList = document.querySelector('.conversations-list');
         
         if (!loadMore) {
             const footer = sidebar.querySelector('.sidebar-footer');
@@ -253,6 +251,13 @@ async function loadConversation(conversationId) {
     
     try {
         currentConversationId = conversationId;
+        
+        // Hide sidebar on mobile when conversation is clicked
+        if (window.innerWidth <= 768) {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
         
         const chatContainer = document.getElementById('chatContainer');
         chatContainer.innerHTML = `
@@ -620,6 +625,42 @@ async function loadPlugins() {
     }
 }
 
+// Sidebar toggle functionality
+const sidebar = document.querySelector('.sidebar');
+const sidebarOverlay = document.querySelector('.sidebar-overlay');
+const toggleSidebarBtn = document.querySelector('.toggle-sidebar');
+
+function toggleSidebar() {
+    sidebar.classList.toggle('open');
+    sidebarOverlay.classList.toggle('active');
+    document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
+}
+
+// Add event listeners for sidebar toggle
+toggleSidebarBtn.addEventListener('click', toggleSidebar);
+sidebarOverlay.addEventListener('click', toggleSidebar);
+
+// Close sidebar when clicking on a conversation
+document.addEventListener('DOMContentLoaded', () => {
+    const conversationsList = document.getElementById('conversationsList');
+    if (conversationsList) {
+        conversationsList.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                toggleSidebar();
+            }
+        });
+    }
+});
+
+// Handle window resize
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+        sidebar.classList.remove('open');
+        sidebarOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     debug.log('DOM Content Loaded, initializing chat application');
@@ -655,11 +696,8 @@ document.addEventListener('DOMContentLoaded', () => {
         debug.error('Message input not found in DOM');
     }
 
-    // Auto-resize textarea
+    // Remove auto-resize functionality
     if (messageInput) {
-        messageInput.addEventListener('input', function() {
-            this.style.height = 'auto';
-            this.style.height = (this.scrollHeight) + 'px';
-        });
+        messageInput.style.height = '48px';
     }
 }); 
