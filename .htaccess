@@ -21,4 +21,19 @@ Header set Access-Control-Allow-Headers "Content-Type, Authorization"
 # Security headers
 Header set X-Content-Type-Options "nosniff"
 Header set X-Frame-Options "SAMEORIGIN"
-Header set X-XSS-Protection "1; mode=block" 
+Header set X-XSS-Protection "1; mode=block"
+
+# Cloudflare headers
+SetEnvIf X-Forwarded-Proto "https" HTTPS=on
+SetEnvIf X-Forwarded-Proto "https" HTTP_X_FORWARDED_PROTO=https
+
+# Force HTTPS
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301,NE]
+
+# Trust Cloudflare IPs
+SetEnvIf X-Forwarded-For "^.*\..*\..*\..*" forwarded
+Order allow,deny
+Allow from all
+Satisfy any 
