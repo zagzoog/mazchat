@@ -25,7 +25,7 @@ async function handleResponse(response) {
     if (!response.ok) {
         if (response.status === 401) {
             debug.log('Session expired, redirecting to login page');
-            window.location.href = '/chat/login.php';
+            window.location.href = '<?php echo getFullUrlPath("login.php"); ?>';
             return;
         }
         const errorData = await response.json();
@@ -49,9 +49,7 @@ async function loadConversations(loadMore = false) {
             hasMoreConversations = true;
         }
         
-        const response = await fetch(`/chat/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`, {
-            credentials: 'include'
-        });
+        const response = await fetch(`/${baseUrlPath}/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
         const data = await handleResponse(response);
         
         if (!data.success) {
@@ -169,7 +167,7 @@ async function createNewConversation() {
             throw new Error('No plugin selected');
         }
 
-        const response = await fetch('/chat/api/conversations.php', {
+        const response = await fetch(`/${baseUrlPath}/api/conversations.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -270,7 +268,7 @@ async function loadConversation(conversationId) {
             </div>
         `;
         
-        const response = await fetch(`/chat/api/messages.php?conversation_id=${conversationId}`, {
+        const response = await fetch(`/${baseUrlPath}/api/messages.php?conversation_id=${conversationId}`, {
             credentials: 'include'
         });
         const data = await handleResponse(response);
@@ -397,7 +395,7 @@ async function sendMessage() {
         messageInput.value = '';
         
         // Send the message
-        const response = await fetch('/chat/app/api/v1/messages.php', {
+        const response = await fetch(`/${baseUrlPath}/app/api/v1/messages.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -502,7 +500,7 @@ function hideUpgradeModal() {
 async function initiatePayment(membershipType) {
     debug.log('Initiating payment for membership type:', membershipType);
     try {
-        const response = await fetch('/chat/api/create_payment.php', {
+        const response = await fetch(`/${baseUrlPath}/api/create_payment.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -529,7 +527,7 @@ async function initiatePayment(membershipType) {
 async function loadPlugins() {
     debug.log('Loading plugins');
     try {
-        const response = await fetch('/chat/api/plugins.php');
+        const response = await fetch(`/${baseUrlPath}/api/plugins.php`);
         debug.log('Plugins API response status:', response.status);
         
         if (!response.ok) {

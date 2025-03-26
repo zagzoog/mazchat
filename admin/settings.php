@@ -6,13 +6,14 @@ require_once '../app/utils/Logger.php';
 require_once '../app/models/Model.php';
 require_once '../app/models/User.php';
 require_once '../environment.php';
+require_once __DIR__ . '/../path_config.php';
 
 // Define ADMIN_PANEL constant for navbar access
 define('ADMIN_PANEL', true);
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: /chat/login.php');
+    header('Location: <?php echo getFullUrlPath("login.php"); ?>');
     exit;
 }
 
@@ -226,7 +227,7 @@ $currentEnvironment = ENVIRONMENT;
             };
 
             try {
-                const response = await fetch('/chat/api/admin/settings.php', {
+                const response = await fetch('<?php echo getFullUrlPath("api/admin/settings.php"); ?>', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -264,7 +265,7 @@ $currentEnvironment = ENVIRONMENT;
             };
 
             try {
-                const response = await fetch('/chat/api/admin/settings.php', {
+                const response = await fetch('<?php echo getFullUrlPath("api/admin/settings.php"); ?>', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -297,7 +298,7 @@ $currentEnvironment = ENVIRONMENT;
             };
 
             try {
-                const response = await fetch('/chat/api/admin/settings.php', {
+                const response = await fetch('<?php echo getFullUrlPath("api/admin/settings.php"); ?>', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

@@ -1,15 +1,13 @@
 # Allow access to the API documentation
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    RewriteBase /chat/api/docs/
+RewriteEngine On
+RewriteBase <?php echo getBaseUrlPath(); ?>/api/docs/
     
-    # Allow direct access to index.php and swagger.json
-    RewriteCond %{REQUEST_FILENAME} -f
-    RewriteRule ^ - [L]
+# Allow direct access to index.php and swagger.json
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
     
-    # Redirect all other requests to index.php
-    RewriteRule ^ index.php [L]
-</IfModule>
+# Redirect all other requests to index.php
+RewriteRule ^ index.php [L]
 
 # Set proper content type for JSON files
 <FilesMatch "\.json$">

@@ -2,6 +2,7 @@
 if (!defined('ADMIN_PANEL')) {
     die('Direct access not permitted');
 }
+require_once __DIR__ . '/../../../path_config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,10 +57,10 @@ if (!defined('ADMIN_PANEL')) {
             </h4>
         </div>
         <div>
-            <a href="/chat/admin/developer_portal.php" class="me-3">
+            <a href="<?php echo getFullUrlPath('admin/developer_portal.php'); ?>" class="me-3">
                 <i class="fas fa-code"></i> Developer Portal
             </a>
-            <a href="/chat/admin/plugin_marketplace.php">
+            <a href="<?php echo getFullUrlPath('admin/plugin_marketplace.php'); ?>">
                 <i class="fas fa-store"></i> Marketplace
             </a>
         </div>

@@ -10,7 +10,7 @@ async function handleResponse(response) {
     if (!response.ok) {
         if (response.status === 401) {
             // Session expired or unauthorized
-            window.location.href = '/chat/login.php';
+            window.location.href = '<?php echo getFullUrlPath("login.php"); ?>';
             return;
         }
         const errorData = await response.json();
@@ -30,9 +30,7 @@ async function loadConversations(loadMore = false) {
             hasMoreConversations = true;
         }
         
-        const response = await fetch(`/chat/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`, {
-            credentials: 'include'
-        });
+        const response = await fetch(`/${baseUrlPath}/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
         const data = await handleResponse(response);
         
         if (!data.success) {
@@ -145,7 +143,7 @@ async function createNewConversation() {
             throw new Error('No plugin selected');
         }
 
-        const response = await fetch('/chat/api/conversations.php', {
+        const response = await fetch(`/${baseUrlPath}/api/conversations.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -264,9 +262,7 @@ async function loadConversation(conversationId) {
     }
 
     try {
-        const response = await fetch(`/chat/api/conversations.php?id=${conversationId}`, {
-            credentials: 'include'
-        });
+        const response = await fetch(`/${baseUrlPath}/api/conversations.php?id=${conversationId}`);
         const data = await handleResponse(response);
         
         if (!data.success) {
@@ -336,7 +332,7 @@ async function sendMessage() {
     showTypingIndicator();
 
     try {
-        const response = await fetch(`/chat/api/conversations.php?id=${currentConversationId}/messages`, {
+        const response = await fetch(`/${baseUrlPath}/api/conversations.php?id=${currentConversationId}/messages`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -418,7 +414,7 @@ function hideUpgradeModal() {
 // Payment functions
 async function initiatePayment(membershipType) {
     try {
-        const response = await fetch('/chat/api/payment.php', {
+        const response = await fetch(`/${baseUrlPath}/api/payment.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -455,31 +451,14 @@ function toggleSidebar() {
 // Load available plugins and populate selector
 async function loadPlugins() {
     try {
-        const response = await fetch('/chat/api/plugins.php');
-        
+        const response = await fetch(`/${baseUrlPath}/api/plugins.php`);
         if (!response.ok) {
             throw new Error('Failed to load plugins');
         }
-        
         const data = await response.json();
-        
-        if (!data.success) {
-            throw new Error(data.error || 'Failed to load plugins');
-        }
-        
-        const pluginSelector = document.getElementById('pluginSelector');
-        pluginSelector.innerHTML = ''; // Clear existing options
-        
-        data.plugins.forEach(plugin => {
-            const option = document.createElement('option');
-            option.value = plugin.id;
-            option.textContent = plugin.name;
-            if (data.selected_plugin === plugin.id) {
-                option.selected = true;
-            }
-            pluginSelector.appendChild(option);
-        });
+        displayPlugins(data.plugins);
     } catch (error) {
+        console.error('Error loading plugins:', error);
         showError('Failed to load plugins');
     }
 }

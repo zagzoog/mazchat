@@ -14,7 +14,7 @@ if (!isset($_SESSION['chat_session_id'])) {
 }
 
 // Load configuration
-$config = require_once 'config.php';
+require_once __DIR__ . '/path_config.php';
 
 // Ensure required database columns exist
 require_once 'app/models/Message.php';
@@ -30,16 +30,17 @@ $usageStatsModel->ensureColumns();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نظام المطابقة الذكي</title>
-    <link href="/chat/public/css/chat.css" rel="stylesheet">
+    <link href="<?php echo getFullUrlPath('public/css/chat.css'); ?>" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <?php if ($config['development_mode']): ?>
-        <script src="/chat/public/js/chat.dev.js" defer></script>
+    <?php if ($current_config['development_mode']): ?>
+        <script src="<?php echo getFullUrlPath('public/js/chat.dev.js'); ?>" defer></script>
     <?php else: ?>
-        <script src="/chat/public/js/chat.js" defer></script>
+        <script src="<?php echo getFullUrlPath('public/js/chat.js'); ?>" defer></script>
     <?php endif; ?>
     <script>
-        window.conversationsPerPage = <?php echo json_encode($config['conversations_per_page']); ?>;
+        window.conversationsPerPage = <?php echo json_encode($current_config['conversations_per_page']); ?>;
+        window.baseUrlPath = <?php echo json_encode($base_url_path); ?>;
     </script>
 </head>
 <body>

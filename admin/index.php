@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once __DIR__ . '/../path_config.php';
 require_once __DIR__ . '/../app/utils/ResponseCompressor.php';
 require_once __DIR__ . '/../db_config.php';
 require_once __DIR__ . '/../app/utils/Logger.php';
@@ -14,7 +15,7 @@ define('ADMIN_PANEL', true);
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: /chat/login.php');
+    header('Location: <?php echo getFullUrlPath("login.php"); ?>');
     exit;
 }
 
@@ -23,7 +24,7 @@ $userModel = new User();
 $user = $userModel->findById($_SESSION['user_id']);
 
 if (!$user || !$userModel->isAdmin($_SESSION['user_id'])) {
-    header('Location: /chat/index.php');
+    header('Location: <?php echo getFullUrlPath("index.php"); ?>');
     exit;
 }
 
@@ -321,7 +322,7 @@ $recentConversations = $conversationModel->getRecentConversations(5);
                     <div class="card-body">
                         <h5 class="card-title">إدارة المستخدمين</h5>
                         <p class="card-text">إدارة المستخدمين وعضوياتهم</p>
-                        <a href="/chat/admin/users.php" class="btn btn-primary">
+                        <a href="<?php echo getFullUrlPath('admin/users.php'); ?>" class="btn btn-primary">
                             <i class="fas fa-users"></i> عرض المستخدمين
                         </a>
                     </div>
@@ -332,7 +333,7 @@ $recentConversations = $conversationModel->getRecentConversations(5);
                     <div class="card-body">
                         <h5 class="card-title">إعدادات النظام</h5>
                         <p class="card-text">تكوين إعدادات النظام العامة</p>
-                        <a href="/chat/admin/settings.php" class="btn btn-primary">
+                        <a href="<?php echo getFullUrlPath('admin/settings.php'); ?>" class="btn btn-primary">
                             <i class="fas fa-cog"></i> الإعدادات
                         </a>
                     </div>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once __DIR__ . '/../path_config.php';
 require_once __DIR__ . '/../app/utils/ResponseCompressor.php';
 require_once __DIR__ . '/../db_config.php';
 require_once __DIR__ . '/../app/utils/Logger.php';
@@ -12,7 +13,7 @@ define('ADMIN_PANEL', true);
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: /chat/login.php');
+    header('Location: ' . getFullUrlPath('login.php'));
     exit;
 }
 

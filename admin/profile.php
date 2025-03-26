@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once __DIR__ . '/../path_config.php';
 require_once __DIR__ . '/../app/models/User.php';
 require_once __DIR__ . '/../app/utils/Logger.php';
 
@@ -8,7 +9,7 @@ define('ADMIN_PANEL', true);
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: /chat/login.php');
+    header('Location: <?php echo getFullUrlPath("login.php"); ?>');
     exit;
 }
 
@@ -137,7 +138,7 @@ $user = $userModel->findById($_SESSION['user_id']);
                     data.new_password = newPassword;
                 }
                 
-                fetch('/chat/api/user/profile.php', {
+                fetch('<?php echo getFullUrlPath("api/user/profile.php"); ?>', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

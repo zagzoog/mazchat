@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const formData = new FormData(form);
             
-            const response = await fetch('/chat/plugins/N8nWebhookHandler/admin_handler.php', {
+            const response = await fetch('<?php echo getFullUrlPath("plugins/N8nWebhookHandler/admin_handler.php"); ?>', {
                 method: 'POST',
                 body: formData
             });

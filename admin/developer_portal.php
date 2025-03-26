@@ -6,6 +6,7 @@ require_once '../app/utils/Logger.php';
 require_once '../app/models/Model.php';
 require_once '../app/models/User.php';
 require_once '../app/models/ApiKey.php';
+require_once __DIR__ . '/../path_config.php';
 
 // Define ADMIN_PANEL constant for navbar access
 define('ADMIN_PANEL', true);
@@ -167,7 +168,7 @@ $apiKeys = $apiKeyModel->getByUserId($_SESSION['user_id']);
                     <p>جميع طلبات API تتطلب مصادقة باستخدام مفتاح API. يجب إرسال المفتاح في رأس الطلب:</p>
                     <pre class="bg-light p-3 rounded"><code>Authorization: Bearer YOUR_API_KEY</code></pre>
                     <div class="mt-3">
-                        <a href="/chat/api/docs/" class="btn btn-primary">
+                        <a href="<?php echo getFullUrlPath('api/docs/'); ?>" class="btn btn-primary">
                             <i class="fas fa-book me-2"></i>عرض توثيق Swagger الكامل
                         </a>
                     </div>
@@ -302,7 +303,7 @@ $apiKeys = $apiKeyModel->getByUserId($_SESSION['user_id']);
         // Function to toggle API key status
         async function toggleApiKey(keyId, newStatus) {
             try {
-                const response = await fetch('/chat/api/developer/keys.php', {
+                const response = await fetch('<?php echo getFullUrlPath("api/developer/keys.php"); ?>', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -331,7 +332,7 @@ $apiKeys = $apiKeyModel->getByUserId($_SESSION['user_id']);
             const formData = new FormData(e.target);
             
             try {
-                const response = await fetch('/chat/api/developer/keys.php', {
+                const response = await fetch('<?php echo getFullUrlPath("api/developer/keys.php"); ?>', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

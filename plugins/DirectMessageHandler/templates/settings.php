@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../../../path_config.php';
 // Ensure this file is included within the admin panel
 if (!defined('ADMIN_PANEL')) {
     die('Direct access not permitted');
@@ -120,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             const formData = new FormData(form);
             
-            const response = await fetch('/chat/plugins/DirectMessageHandler/admin_handler.php', {
+            const response = await fetch('<?php echo getFullUrlPath("plugins/DirectMessageHandler/admin_handler.php"); ?>', {
                 method: 'POST',
                 body: formData
             });
