@@ -1,4 +1,11 @@
 <?php
+/**
+ * Chat Application Configuration
+ * 
+ * @author Mohammed Zagzoog
+ * @version 1.0.0
+ */
+
 // Load environment configuration
 require_once __DIR__ . '/environment.php';
 
