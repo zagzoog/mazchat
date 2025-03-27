@@ -24,21 +24,26 @@ function getBaseUrlPath() {
     // Extract the directory name from the full path
     $dir_name = basename($path);
     
+    // Make sure dir_name doesn't include the domain
+    if (strpos($dir_name, '.com') !== false) {
+        $dir_name = '';  // or adjust as needed
+    }
+    
     return $dir_name;
 }
 
 // Helper function to get the full URL path
 function getFullUrlPath($path = '') {
     global $config, $current_env;
-    $domain = $config[$current_env]['domain_name'];
     
-    // Remove any trailing slashes from domain
-    $domain = rtrim($domain, '/');
+    // Get clean domain
+    $domain = rtrim($config[$current_env]['domain_name'], '/');
     
-    // Ensure path starts with a slash
-    $path = '/' . ltrim($path, '/');
+    // Clean the path and remove public_html if present
+    $path = trim($path, '/');
+    $path = preg_replace('#^public_html/#', '', $path);
     
-    return $domain . $path;
+    return $domain . '/' . $path;
 }
 
 // Helper function to get the full file path
@@ -53,6 +58,20 @@ function getFullFilePath($path = '') {
     $path = '/' . ltrim($path, '/');
     
     return $base_path . $path;
+}
+
+// Helper function to get API URL
+function getApiUrl($endpoint = '') {
+    global $config, $current_env;
+    
+    // Get clean domain
+    $domain = rtrim($config[$current_env]['domain_name'], '/');
+    
+    // Clean the endpoint
+    $endpoint = trim($endpoint, '/');
+    
+    // Build clean URL
+    return $domain . '/api/' . $endpoint;
 }
 
 // Export the base path for use in other files

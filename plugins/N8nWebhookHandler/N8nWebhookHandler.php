@@ -25,7 +25,7 @@ class N8nWebhookHandler extends Plugin {
         
         // Register hooks
         error_log("N8nWebhookHandler: Registering hooks");
-        $this->registerHook('before_send_message', [$this, 'processMessage']);
+       //this->registerHook('before_send_message', [$this, 'processMessage']);
         $this->registerHook('after_send_message', [$this, 'processMessage']);
         $this->registerHook('admin_settings_page', [$this, 'addSettingsPage']);
         
