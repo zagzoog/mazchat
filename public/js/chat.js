@@ -456,10 +456,87 @@ async function loadPlugins() {
             throw new Error('Failed to load plugins');
         }
         const data = await response.json();
-        displayPlugins(data.plugins);
+        
+        if (!data.success) {
+            throw new Error(data.error || 'Failed to load plugins');
+        }
+        
+        const pluginSelector = document.getElementById('pluginSelector');
+        if (!pluginSelector) {
+            throw new Error('Plugin selector not found');
+        }
+        
+        pluginSelector.innerHTML = ''; // Clear existing options
+        
+        if (!data.plugins || !Array.isArray(data.plugins)) {
+            throw new Error('Invalid plugins data received');
+        }
+        
+        data.plugins.forEach(plugin => {
+            const option = document.createElement('option');
+            option.value = plugin.id;
+            option.textContent = plugin.name;
+            if (data.selected_plugin === plugin.id) {
+                option.selected = true;
+            }
+            pluginSelector.appendChild(option);
+        });
+        
+        // Add event listener for plugin selection
+        pluginSelector.addEventListener('change', async function() {
+            try {
+                // Update user preference
+                const response = await fetch(`${window.apiBaseUrl}/user/preferences.php`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        plugin_id: this.value
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to update plugin preference');
+                }
+
+                // If there's an active conversation, update its plugin
+                if (currentConversationId) {
+                    const updateResponse = await fetch(`${window.apiBaseUrl}/conversations.php`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            conversation_id: currentConversationId,
+                            plugin_id: this.value
+                        })
+                    });
+
+                    if (!updateResponse.ok) {
+                        throw new Error('Failed to update conversation plugin');
+                    }
+
+                    // Show a message indicating the plugin has been changed
+                    const chatContainer = document.getElementById('chatContainer');
+                    const systemMessage = document.createElement('div');
+                    systemMessage.className = 'message system';
+                    systemMessage.innerHTML = `
+                        <div class="message-content">
+                            تم تغيير معالج الرسائل. سيتم استخدام المعالج الجديد في الرسائل القادمة.
+                        </div>
+                    `;
+                    chatContainer.appendChild(systemMessage);
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+            } catch (error) {
+                console.error('Error updating plugin preference:', error);
+                showError('فشل في تحديث تفضيلات المعالج');
+            }
+        });
     } catch (error) {
         console.error('Error loading plugins:', error);
-        showError('Failed to load plugins');
+        showError('فشل في تحميل المعالجات المتاحة');
     }
 }
 
