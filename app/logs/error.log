@@ -29533,3 +29533,903 @@ Content-Length: 83
 [28-Mar-2025 12:16:10 Europe/London] Plugin response saved with ID: 173
 [28-Mar-2025 12:16:10 Europe/London] === Message creation process completed successfully ===
 [28-Mar-2025 12:16:10 Europe/London] Sending response to client: {"success":true,"data":{"message":{"id":"172","conversation_id":"150","content":"hi","role":"user"},"assistant_message":{"id":"173","conversation_id":"150","content":"hi","role":"assistant"}}}
+[28-Mar-2025 12:45:00 Europe/London] Checking conversation limit for user 8: current usage = 18, limit = 50
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Loading plugins from directory: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Found plugin directories: Array
+(
+    [0] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/DirectMessageHandler
+    [1] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector
+    [2] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/N8nWebhookHandler
+    [3] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/SameInSameOut
+    [4] => C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/TestPlugin
+)
+
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/DirectMessageHandler/DirectMessageHandler.php
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/DirectMessageHandler/DirectMessageHandler.php
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Creating instance of plugin class: DirectMessageHandler
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Plugin not found in database, creating record for: DirectMessageHandler
+[28-Mar-2025 12:45:00 Europe/London] PluginManager ERROR: Failed to load plugin DirectMessageHandler: SQLSTATE[HY000]: General error: 1364 Field 'slug' doesn't have a default value
+[28-Mar-2025 12:45:00 Europe/London] PluginManager ERROR: #0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(59): PDOStatement->execute()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(12): PluginManager->loadPlugins()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(17): PluginManager->__construct()
+#3 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\messages.php(27): PluginManager::getInstance()
+#4 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\messages.php(240): MessagesController->__construct()
+#5 {main}
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/LLMModelSelector/LLMModelSelector.php
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Creating instance of plugin class: LLMModelSelector
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Plugin not found in database, creating record for: LLMModelSelector
+[28-Mar-2025 12:45:00 Europe/London] PluginManager ERROR: Failed to load plugin LLMModelSelector: SQLSTATE[HY000]: General error: 1364 Field 'slug' doesn't have a default value
+[28-Mar-2025 12:45:00 Europe/London] PluginManager ERROR: #0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(59): PDOStatement->execute()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(12): PluginManager->loadPlugins()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(17): PluginManager->__construct()
+#3 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\messages.php(27): PluginManager::getInstance()
+#4 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\messages.php(240): MessagesController->__construct()
+#5 {main}
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/N8nWebhookHandler/N8nWebhookHandler.php
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/N8nWebhookHandler/N8nWebhookHandler.php
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Creating instance of plugin class: N8nWebhookHandler
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Instantiating plugin with ID: 12
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Constructing with plugin ID: 12
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Constructing plugin
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Construction completed
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Activating plugin: N8nWebhookHandler
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Activating plugin with ID: 12
+[28-Mar-2025 12:45:00 Europe/London] Plugin N8nWebhookHandler: Activated with ID 12
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Creating/checking database tables
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Checking for existing settings
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Activation completed successfully
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Initializing plugin
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Registering hooks
+[28-Mar-2025 12:45:00 Europe/London] Plugin N8nWebhookHandler: Registering hook after_send_message
+[28-Mar-2025 12:45:00 Europe/London] Plugin N8nWebhookHandler: Hooks after registration: Array
+(
+    [after_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => N8nWebhookHandler Object
+                                (
+                                    [name:protected] => N8nWebhookHandler
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => Handles message processing through n8n webhooks
+                                    [author:protected] => System Admin
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:N8nWebhookHandler:private] => 12
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+)
+
+[28-Mar-2025 12:45:00 Europe/London] Plugin N8nWebhookHandler: Registering hook admin_settings_page
+[28-Mar-2025 12:45:00 Europe/London] Plugin N8nWebhookHandler: Hooks after registration: Array
+(
+    [after_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => N8nWebhookHandler Object
+                                (
+                                    [name:protected] => N8nWebhookHandler
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => Handles message processing through n8n webhooks
+                                    [author:protected] => System Admin
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:N8nWebhookHandler:private] => 12
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+    [admin_settings_page] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => N8nWebhookHandler Object
+                                (
+                                    [name:protected] => N8nWebhookHandler
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => Handles message processing through n8n webhooks
+                                    [author:protected] => System Admin
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:N8nWebhookHandler:private] => 12
+                                )
+
+                            [1] => addSettingsPage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+)
+
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Hooks registered: Array
+(
+    [after_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => N8nWebhookHandler Object
+                                (
+                                    [name:protected] => N8nWebhookHandler
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => Handles message processing through n8n webhooks
+                                    [author:protected] => System Admin
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:N8nWebhookHandler:private] => 12
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+    [admin_settings_page] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => N8nWebhookHandler Object
+                                (
+                                    [name:protected] => N8nWebhookHandler
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => Handles message processing through n8n webhooks
+                                    [author:protected] => System Admin
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:N8nWebhookHandler:private] => 12
+                                )
+
+                            [1] => addSettingsPage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+)
+
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Initialization completed
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Initializing plugin: N8nWebhookHandler
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Initializing plugin
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Registering hooks
+[28-Mar-2025 12:45:00 Europe/London] Plugin N8nWebhookHandler: Registering hook after_send_message
+[28-Mar-2025 12:45:00 Europe/London] Plugin N8nWebhookHandler: Hooks after registration: Array
+(
+    [after_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => N8nWebhookHandler Object
+                                (
+                                    [name:protected] => N8nWebhookHandler
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => Handles message processing through n8n webhooks
+                                    [author:protected] => System Admin
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:N8nWebhookHandler:private] => 12
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+)
+
+[28-Mar-2025 12:45:00 Europe/London] Plugin N8nWebhookHandler: Registering hook admin_settings_page
+[28-Mar-2025 12:45:00 Europe/London] Plugin N8nWebhookHandler: Hooks after registration: Array
+(
+    [after_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => N8nWebhookHandler Object
+                                (
+                                    [name:protected] => N8nWebhookHandler
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => Handles message processing through n8n webhooks
+                                    [author:protected] => System Admin
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:N8nWebhookHandler:private] => 12
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+    [admin_settings_page] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => N8nWebhookHandler Object
+                                (
+                                    [name:protected] => N8nWebhookHandler
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => Handles message processing through n8n webhooks
+                                    [author:protected] => System Admin
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:N8nWebhookHandler:private] => 12
+                                )
+
+                            [1] => addSettingsPage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+)
+
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Hooks registered: Array
+(
+    [after_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => N8nWebhookHandler Object
+                                (
+                                    [name:protected] => N8nWebhookHandler
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => Handles message processing through n8n webhooks
+                                    [author:protected] => System Admin
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:N8nWebhookHandler:private] => 12
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+    [admin_settings_page] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => N8nWebhookHandler Object
+                                (
+                                    [name:protected] => N8nWebhookHandler
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => Handles message processing through n8n webhooks
+                                    [author:protected] => System Admin
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:N8nWebhookHandler:private] => 12
+                                )
+
+                            [1] => addSettingsPage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+)
+
+[28-Mar-2025 12:45:00 Europe/London] N8nWebhookHandler: Initialization completed
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Plugin activated and initialized: N8nWebhookHandler
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/SameInSameOut/SameInSameOut.php
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/SameInSameOut/SameInSameOut.php
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Creating instance of plugin class: SameInSameOut
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Instantiating plugin with ID: 13
+[28-Mar-2025 12:45:00 Europe/London] SameInSameOut: Constructing plugin
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Activating plugin: SameInSameOut
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Activated with ID 13
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Registering hook before_send_message
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Hooks after registration: Array
+(
+    [before_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => SameInSameOut Object
+                                (
+                                    [name:protected] => SameInSameOut
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => A simple plugin that returns the exact same text sent by the user
+                                    [author:protected] => System
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:SameInSameOut:private] => 13
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+)
+
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Registering hook after_send_message
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Hooks after registration: Array
+(
+    [before_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => SameInSameOut Object
+                                (
+                                    [name:protected] => SameInSameOut
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => A simple plugin that returns the exact same text sent by the user
+                                    [author:protected] => System
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:SameInSameOut:private] => 13
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+    [after_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => SameInSameOut Object
+                                (
+                                    [name:protected] => SameInSameOut
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => A simple plugin that returns the exact same text sent by the user
+                                    [author:protected] => System
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:SameInSameOut:private] => 13
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+)
+
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Initializing plugin: SameInSameOut
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Registering hook before_send_message
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Hooks after registration: Array
+(
+    [before_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => SameInSameOut Object
+                                (
+                                    [name:protected] => SameInSameOut
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => A simple plugin that returns the exact same text sent by the user
+                                    [author:protected] => System
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:SameInSameOut:private] => 13
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+)
+
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Registering hook after_send_message
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Hooks after registration: Array
+(
+    [before_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => SameInSameOut Object
+                                (
+                                    [name:protected] => SameInSameOut
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => A simple plugin that returns the exact same text sent by the user
+                                    [author:protected] => System
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:SameInSameOut:private] => 13
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+    [after_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => SameInSameOut Object
+                                (
+                                    [name:protected] => SameInSameOut
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => A simple plugin that returns the exact same text sent by the user
+                                    [author:protected] => System
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:SameInSameOut:private] => 13
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+)
+
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Plugin activated and initialized: SameInSameOut
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Checking plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/TestPlugin/TestPlugin.php
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Loading plugin file: C:\Users\zagzo\Downloads\UniServerZ\www\chat/plugins/TestPlugin/TestPlugin.php
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Creating instance of plugin class: TestPlugin
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Plugin not found in database, creating record for: TestPlugin
+[28-Mar-2025 12:45:00 Europe/London] PluginManager ERROR: Failed to load plugin TestPlugin: SQLSTATE[HY000]: General error: 1364 Field 'slug' doesn't have a default value
+[28-Mar-2025 12:45:00 Europe/London] PluginManager ERROR: #0 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(59): PDOStatement->execute()
+#1 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(12): PluginManager->loadPlugins()
+#2 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\plugins\PluginManager.php(17): PluginManager->__construct()
+#3 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\messages.php(27): PluginManager::getInstance()
+#4 C:\Users\zagzo\Downloads\UniServerZ\www\chat\app\api\v1\messages.php(240): MessagesController->__construct()
+#5 {main}
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Loaded plugins: Array
+(
+    [0] => N8nWebhookHandler
+    [1] => SameInSameOut
+)
+
+[28-Mar-2025 12:45:00 Europe/London] PluginManager: Active plugins: Array
+(
+    [0] => N8nWebhookHandler
+    [1] => SameInSameOut
+)
+
+[28-Mar-2025 12:45:00 Europe/London] === Starting message creation process ===
+[28-Mar-2025 12:45:00 Europe/London] User authenticated successfully - User ID: 8
+[28-Mar-2025 12:45:00 Europe/London] Received message data: {"conversation_id":"151","content":"Hello"}
+[28-Mar-2025 12:45:00 Europe/London] Message data validation passed
+[28-Mar-2025 12:45:00 Europe/London] Checking question limit for user 8: current usage = 0, limit = 500
+[28-Mar-2025 12:45:00 Europe/London] Question limit check passed
+[28-Mar-2025 12:45:00 Europe/London] Fetching conversation and plugin info for conversation ID: 151
+[28-Mar-2025 12:45:00 Europe/London] Found conversation - Plugin ID: 13, Plugin Name: SameInSameOut, Plugin Active: yes
+[28-Mar-2025 12:45:00 Europe/London] Created message data structure
+[28-Mar-2025 12:45:00 Europe/London] Attempting to get plugin instance for: SameInSameOut
+[28-Mar-2025 12:45:00 Europe/London] Successfully got plugin instance of class: SameInSameOut
+[28-Mar-2025 12:45:00 Europe/London] Plugin hooks: Array
+(
+    [before_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => SameInSameOut Object
+                                (
+                                    [name:protected] => SameInSameOut
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => A simple plugin that returns the exact same text sent by the user
+                                    [author:protected] => System
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:SameInSameOut:private] => 13
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+    [after_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => SameInSameOut Object
+                                (
+                                    [name:protected] => SameInSameOut
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => A simple plugin that returns the exact same text sent by the user
+                                    [author:protected] => System
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:SameInSameOut:private] => 13
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+)
+
+[28-Mar-2025 12:45:00 Europe/London] Executing before_send_message hook for plugin: SameInSameOut
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Executing hook before_send_message
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Available hooks: Array
+(
+    [before_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => SameInSameOut Object
+                                (
+                                    [name:protected] => SameInSameOut
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => A simple plugin that returns the exact same text sent by the user
+                                    [author:protected] => System
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:SameInSameOut:private] => 13
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+    [after_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => SameInSameOut Object
+                                (
+                                    [name:protected] => SameInSameOut
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => A simple plugin that returns the exact same text sent by the user
+                                    [author:protected] => System
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:SameInSameOut:private] => 13
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+)
+
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Calling hook handler for before_send_message
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Hook handler executed successfully with result: Hello
+[28-Mar-2025 12:45:00 Europe/London] before_send_message hook executed successfully
+[28-Mar-2025 12:45:00 Europe/London] Got response from before_send_message: Hello
+[28-Mar-2025 12:45:00 Europe/London] Saving message to database
+[28-Mar-2025 12:45:00 Europe/London] Message saved successfully with ID: 174
+[28-Mar-2025 12:45:00 Europe/London] Executing after_send_message hook for plugin: SameInSameOut
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Executing hook after_send_message
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Available hooks: Array
+(
+    [before_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => SameInSameOut Object
+                                (
+                                    [name:protected] => SameInSameOut
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => A simple plugin that returns the exact same text sent by the user
+                                    [author:protected] => System
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:SameInSameOut:private] => 13
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+    [after_send_message] => Array
+        (
+            [0] => Array
+                (
+                    [callback] => Array
+                        (
+                            [0] => SameInSameOut Object
+                                (
+                                    [name:protected] => SameInSameOut
+                                    [version:protected] => 1.0.0
+                                    [description:protected] => A simple plugin that returns the exact same text sent by the user
+                                    [author:protected] => System
+                                    [config:protected] => Array
+                                        (
+                                        )
+
+                                    [db:protected] => PDO Object
+                                        (
+                                        )
+
+                                    [hooks:protected] => Array
+ *RECURSION*
+                                    [pluginId:SameInSameOut:private] => 13
+                                )
+
+                            [1] => processMessage
+                        )
+
+                    [priority] => 10
+                )
+
+        )
+
+)
+
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Calling hook handler for after_send_message
+[28-Mar-2025 12:45:00 Europe/London] Plugin SameInSameOut: Hook handler executed successfully with result: Hello
+[28-Mar-2025 12:45:00 Europe/London] after_send_message hook executed successfully
+[28-Mar-2025 12:45:00 Europe/London] Saving plugin response to database: Hello
+[28-Mar-2025 12:45:00 Europe/London] Plugin response saved with ID: 175
+[28-Mar-2025 12:45:00 Europe/London] === Message creation process completed successfully ===
+[28-Mar-2025 12:45:00 Europe/London] Sending response to client: {"success":true,"data":{"message":{"id":"174","conversation_id":"151","content":"Hello","role":"user"},"assistant_message":{"id":"175","conversation_id":"151","content":"Hello","role":"assistant"}}}

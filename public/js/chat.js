@@ -30,7 +30,7 @@ async function loadConversations(loadMore = false) {
             hasMoreConversations = true;
         }
         
-        const response = await fetch(`/${baseUrlPath}/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
+        const response = await fetch(`${window.apiBaseUrl}/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
         const data = await handleResponse(response);
         
         if (!data.success) {

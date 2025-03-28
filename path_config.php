@@ -21,15 +21,13 @@ function getBaseUrlPath() {
     // Remove any trailing slashes
     $path = rtrim($path, '/');
     
-    // Extract the directory name from the full path
-    $dir_name = basename($path);
-    
-    // Make sure dir_name doesn't include the domain
-    if (strpos($dir_name, '.com') !== false) {
-        $dir_name = '';  // or adjust as needed
+    // If the path contains a domain name, return empty string
+    if (strpos($path, '.com') !== false) {
+        return '';
     }
     
-    return $dir_name;
+    // Extract the directory name from the full path
+    return basename($path);
 }
 
 // Helper function to get the full URL path
