@@ -143,7 +143,7 @@ async function createNewConversation() {
             throw new Error('No plugin selected');
         }
 
-        const response = await fetch(`/${baseUrlPath}/api/conversations.php`, {
+        const response = await fetch(`${window.apiBaseUrl}/conversations.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
