@@ -34,9 +34,9 @@ $usageStatsModel->ensureColumns();
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <?php if ($current_config['development_mode']): ?>
-        <script src="<?php echo getFullUrlPath('public/js/chat.dev.js'); ?>" defer></script>
+        <script src="<?php echo getFullUrlPath('public/js/chat.dev.js?v=' . $current_config['version']); ?>" defer></script>
     <?php else: ?>
-        <script src="<?php echo getFullUrlPath('public/js/chat.js'); ?>" defer></script>
+        <script src="<?php echo getFullUrlPath('public/js/chat.js?v=' . $current_config['version']); ?>" defer></script>
     <?php endif; ?>
     <script>
         window.conversationsPerPage = <?php echo json_encode($current_config['conversations_per_page']); ?>;
