@@ -451,7 +451,7 @@ function toggleSidebar() {
 // Load available plugins and populate selector
 async function loadPlugins() {
     try {
-        const response = await fetch(`/${baseUrlPath}/api/plugins.php`);
+        const response = await fetch(`${window.apiBaseUrl}/plugins.php`);
         if (!response.ok) {
             throw new Error('Failed to load plugins');
         }

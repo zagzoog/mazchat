@@ -529,7 +529,7 @@ async function initiatePayment(membershipType) {
 async function loadPlugins() {
     debug.log('Loading plugins');
     try {
-        const response = await fetch(`/${baseUrlPath}/api/plugins.php`);
+        const response = await fetch(`${window.apiBaseUrl}/plugins.php`);
         debug.log('Plugins API response status:', response.status);
         
         if (!response.ok) {
