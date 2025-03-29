@@ -339,7 +339,7 @@ async function sendMessage() {
             throw new Error('No plugin selected');
         }
 
-        const response = await fetch(`/${baseUrlPath}/app/api/v1/messages.php`, {
+        const response = await fetch(`${window.apiBaseUrl}/app/api/v1/messages.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
