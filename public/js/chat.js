@@ -583,27 +583,44 @@ async function loadPlugins() {
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    loadConversations();
-    loadPlugins();
+    console.log('DOM Content Loaded, initializing chat application');
+    
+    // First load plugins, then load conversations
+    loadPlugins().then(() => {
+        console.log('Plugins loaded, loading conversations');
+        loadConversations();
+    }).catch(error => {
+        console.error('Error during initialization:', error);
+        showError('Failed to initialize chat application');
+    });
     
     // Add event listeners
     const messageInput = document.getElementById('messageInput');
     if (messageInput) {
+        console.log('Adding keypress listener to message input');
         messageInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 sendMessage();
             }
         });
+    } else {
+        console.error('Message input not found in DOM');
     }
     
     const sendButton = document.getElementById('sendButton');
     if (sendButton) {
+        console.log('Adding click listener to send button');
         sendButton.addEventListener('click', sendMessage);
+    } else {
+        console.error('Send button not found in DOM');
     }
     
     const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
     if (toggleSidebarBtn) {
+        console.log('Adding click listener to sidebar toggle button');
         toggleSidebarBtn.addEventListener('click', toggleSidebar);
+    } else {
+        console.error('Sidebar toggle button not found in DOM');
     }
 }); 
