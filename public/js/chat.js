@@ -585,21 +585,25 @@ async function loadPlugins() {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM Content Loaded, initializing chat application');
     
-    // First load plugins, then load conversations
-    loadPlugins().then(() => {
-        console.log('Plugins loaded, loading conversations');
-        loadConversations();
-    }).catch(error => {
-        console.error('Error during initialization:', error);
-        showError('Failed to initialize chat application');
-    });
-    
-    // Add event listeners
+    // Initialize send button and message input first
+    const sendButton = document.getElementById('sendButton');
     const messageInput = document.getElementById('messageInput');
+    
+    if (sendButton) {
+        console.log('Found send button, adding click listener');
+        sendButton.addEventListener('click', () => {
+            console.log('Send button clicked');
+            sendMessage();
+        });
+    } else {
+        console.error('Send button not found in DOM');
+    }
+    
     if (messageInput) {
-        console.log('Adding keypress listener to message input');
+        console.log('Found message input, adding keypress listener');
         messageInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
+                console.log('Enter key pressed in message input');
                 e.preventDefault();
                 sendMessage();
             }
@@ -608,19 +612,23 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Message input not found in DOM');
     }
     
-    const sendButton = document.getElementById('sendButton');
-    if (sendButton) {
-        console.log('Adding click listener to send button');
-        sendButton.addEventListener('click', sendMessage);
-    } else {
-        console.error('Send button not found in DOM');
-    }
-    
+    // Initialize sidebar toggle
     const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
     if (toggleSidebarBtn) {
-        console.log('Adding click listener to sidebar toggle button');
+        console.log('Found sidebar toggle button, adding click listener');
         toggleSidebarBtn.addEventListener('click', toggleSidebar);
     } else {
         console.error('Sidebar toggle button not found in DOM');
     }
+    
+    // Load plugins and conversations
+    loadPlugins().then(() => {
+        console.log('Plugins loaded successfully, loading conversations');
+        return loadConversations();
+    }).then(() => {
+        console.log('Conversations loaded successfully');
+    }).catch(error => {
+        console.error('Error during initialization:', error);
+        showError('Failed to initialize chat application');
+    });
 }); 
