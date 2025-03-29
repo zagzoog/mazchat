@@ -30,8 +30,16 @@ async function loadConversations(loadMore = false) {
             hasMoreConversations = true;
         }
         
+        console.log('Loading conversations from:', `${window.baseUrl}/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
         const response = await fetch(`${window.baseUrl}/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
-        const data = await handleResponse(response);
+        
+        if (!response.ok) {
+            console.error('Failed to load conversations:', response.status, response.statusText);
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('Conversations response:', data);
         
         if (!data.success) {
             throw new Error(data.error || 'Failed to load conversations');
@@ -42,10 +50,16 @@ async function loadConversations(loadMore = false) {
         const hasMore = data.hasMore;
         
         if (!conversations) {
+            console.error('No conversations data received');
             throw new Error('No conversations data received');
         }
         
         const sidebar = document.querySelector('.sidebar');
+        if (!sidebar) {
+            console.error('Sidebar element not found');
+            return;
+        }
+        
         let conversationsList = document.querySelector('.conversations-list');
         
         if (!loadMore) {
@@ -70,10 +84,18 @@ async function loadConversations(loadMore = false) {
         }
         
         if (!conversations || conversations.length === 0) {
+            console.log('No conversations found');
             conversationsList.innerHTML = '<div class="text-gray-500 text-center py-4">لا توجد محادثات</div>';
+            
+            // If no conversations and no active conversation, create a new one
+            if (!currentConversationId) {
+                console.log('No active conversation, creating new one');
+                await createNewConversation();
+            }
             return;
         }
         
+        console.log(`Rendering ${conversations.length} conversations`);
         const fragment = document.createDocumentFragment();
         
         conversations.forEach(conv => {
@@ -129,7 +151,14 @@ async function loadConversations(loadMore = false) {
             conversationsList.appendChild(loadMoreBtn);
         }
     } catch (error) {
+        console.error('Error loading conversations:', error);
         showError('Failed to load conversations');
+        
+        // If there's an error and no active conversation, create a new one
+        if (!currentConversationId) {
+            console.log('Error loading conversations, creating new one');
+            await createNewConversation();
+        }
     }
 }
 
