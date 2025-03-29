@@ -462,7 +462,7 @@ function toggleSidebar() {
 // Load available plugins and populate selector
 async function loadPlugins() {
     try {
-        const response = await fetch(`${window.baseUrl}/plugins.php`);
+        const response = await fetch(`${window.baseUrl}/api/plugins.php`);
         if (!response.ok) {
             throw new Error('Failed to load plugins');
         }
@@ -497,7 +497,7 @@ async function loadPlugins() {
         pluginSelector.addEventListener('change', async function() {
             try {
                 // Update user preference
-                const response = await fetch(`${window.baseUrl}/user/preferences.php`, {
+                const response = await fetch(`${window.baseUrl}/api/user/preferences.php`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -513,7 +513,7 @@ async function loadPlugins() {
 
                 // If there's an active conversation, update its plugin
                 if (currentConversationId) {
-                    const updateResponse = await fetch(`${window.baseUrl}/conversations.php`, {
+                    const updateResponse = await fetch(`${window.baseUrl}/api/conversations.php`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json'
