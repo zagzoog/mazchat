@@ -339,7 +339,7 @@ async function sendMessage() {
             throw new Error('No plugin selected');
         }
 
-        const response = await fetch(`${window.apiBaseUrl}/conversations.php?id=${currentConversationId}/messages`, {
+        const response = await fetch(`${window.apiBaseUrl}/messages.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -347,6 +347,7 @@ async function sendMessage() {
             credentials: 'include',
             body: JSON.stringify({ 
                 message,
+                conversation_id: currentConversationId,
                 plugin_id: selectedPluginId
             })
         });
