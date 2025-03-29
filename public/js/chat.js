@@ -334,40 +334,43 @@ async function loadConversation(conversationId) {
 
 // Send a message
 async function sendMessage() {
-    if (!currentConversationId || isSending) {
-        return;
-    }
-
+    console.log('Sending message');
     const messageInput = document.getElementById('messageInput');
     const message = messageInput.value.trim();
     
-    if (!message) {
-        return;
-    }
-
-    isSending = true;
-    messageInput.value = '';
+    if (!message) return;
+    
+    // Disable input and button while sending
     messageInput.disabled = true;
-
-    const chatContainer = document.getElementById('chatContainer');
-    const userMessage = createMessageElement({
-        content: message,
-        is_user: true,
-        created_at: new Date()
-    });
-    chatContainer.appendChild(userMessage);
-    chatContainer.scrollTop = chatContainer.scrollHeight;
-
-    showTypingIndicator();
-
+    const sendButton = document.getElementById('sendButton');
+    sendButton.disabled = true;
+    
     try {
-        const pluginSelector = document.getElementById('pluginSelector');
-        const selectedPluginId = pluginSelector.value;
-        
-        if (!selectedPluginId) {
-            throw new Error('No plugin selected');
+        // Check if we have an active conversation
+        if (!currentConversationId) {
+            console.log('No active conversation, creating new one');
+            await createNewConversation();
+            if (!currentConversationId) {
+                return;
+            }
         }
-
+        
+        // Add user message immediately
+        const chatContainer = document.getElementById('chatContainer');
+        const userMessage = createMessageElement({
+            content: message,
+            role: 'user'
+        });
+        chatContainer.appendChild(userMessage);
+        userMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        // Show typing indicator
+        showTypingIndicator();
+        
+        // Clear input
+        messageInput.value = '';
+        
+        // Send the message
         const response = await fetch(`${window.baseUrl}/app/api/v1/messages.php`, {
             method: 'POST',
             headers: {
@@ -379,42 +382,43 @@ async function sendMessage() {
                 content: message
             })
         });
-
         const data = await handleResponse(response);
-
+        console.log('Server response:', data);
+        
         if (!data.success) {
-            if (data.limit_reached) {
-                if (data.limit_type === 'messages') {
-                    showError('لقد وصلت إلى الحد الشهري للرسائل. يرجى ترقية اشتراكك للمتابعة.', true);
-                } else if (data.limit_type === 'tokens') {
-                    showError('لقد وصلت إلى الحد الشهري للرموز. يرجى ترقية اشتراكك للمتابعة.', true);
-                }
+            if (data.limit_reached && data.limit_type === 'questions') {
+                console.warn('Monthly question limit reached');
+                showError('لقد وصلت إلى الحد الشهري للأسئلة. يرجى ترقية اشتراكك للمتابعة.', true);
                 return;
             }
-            throw new Error(data.error || 'Failed to send message');
+            throw new Error(data.error);
         }
-
+        
+        // Hide typing indicator
         hideTypingIndicator();
-
-        // Handle the nested response structure
+        
+        // Handle the response structure
         const messageData = data.data?.data;
         if (messageData && messageData.assistant_message) {
+            console.log('Adding assistant response to chat:', messageData.assistant_message);
             const assistantMessage = createMessageElement({
                 content: messageData.assistant_message.content,
-                role: 'assistant',
-                created_at: new Date()
+                role: 'assistant'
             });
             chatContainer.appendChild(assistantMessage);
             assistantMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            console.log('No assistant response in the data:', data);
         }
-
-        await loadConversations();
+        
     } catch (error) {
+        console.error('Error sending message:', error);
+        showError('حدث خطأ أثناء إرسال الرسالة');
         hideTypingIndicator();
-        showError('Failed to send message');
     } finally {
-        isSending = false;
+        // Re-enable input and button
         messageInput.disabled = false;
+        sendButton.disabled = false;
         messageInput.focus();
     }
 }
