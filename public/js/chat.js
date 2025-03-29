@@ -30,7 +30,7 @@ async function loadConversations(loadMore = false) {
             hasMoreConversations = true;
         }
         
-        const response = await fetch(`${window.apiBaseUrl}/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
+        const response = await fetch(`/${baseUrlPath}/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
         const data = await handleResponse(response);
         
         if (!data.success) {
@@ -143,7 +143,7 @@ async function createNewConversation() {
             throw new Error('No plugin selected');
         }
 
-        const response = await fetch(`${window.apiBaseUrl}/conversations.php`, {
+        const response = await fetch(`/${baseUrlPath}/api/conversations.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -262,7 +262,7 @@ async function loadConversation(conversationId) {
     }
 
     try {
-        const response = await fetch(`${window.apiBaseUrl}/messages.php?conversation_id=${conversationId}`);
+        const response = await fetch(`/${baseUrlPath}/api/messages.php?conversation_id=${conversationId}`);
         const data = await handleResponse(response);
         
         if (!data.success) {
@@ -339,7 +339,7 @@ async function sendMessage() {
             throw new Error('No plugin selected');
         }
 
-        const response = await fetch(`${window.baseUrl}/app/api/v1/messages.php`, {
+        const response = await fetch(`/${baseUrlPath}/app/api/v1/messages.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
