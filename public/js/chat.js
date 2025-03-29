@@ -367,12 +367,13 @@ async function sendMessage() {
 
         hideTypingIndicator();
 
-        // Handle the response structure
+        // Handle the nested response structure
         const messageData = data.data?.data;
         if (messageData && messageData.assistant_message) {
             const assistantMessage = createMessageElement({
                 content: messageData.assistant_message.content,
-                role: 'assistant'
+                role: 'assistant',
+                created_at: new Date()
             });
             chatContainer.appendChild(assistantMessage);
             assistantMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
