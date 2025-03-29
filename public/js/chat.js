@@ -619,7 +619,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Initialize sidebar toggle
-    const toggleSidebarBtn = document.getElementById('toggleSidebarBtn');
+    const toggleSidebarBtn = document.querySelector('.toggle-sidebar');
     if (toggleSidebarBtn) {
         console.log('Found sidebar toggle button, adding click listener');
         toggleSidebarBtn.addEventListener('click', toggleSidebar);
