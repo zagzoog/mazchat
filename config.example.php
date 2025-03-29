@@ -1,6 +1,6 @@
 <?php
 return [
-    'version' => '1.0.21',
+    'version' => '1.0.22',
     'development_mode' => true,
     'conversations_per_page' => 10,
     'max_message_length' => 1000,

@@ -30,7 +30,7 @@ async function loadConversations(loadMore = false) {
             hasMoreConversations = true;
         }
         
-        const response = await fetch(`/${baseUrlPath}/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
+        const response = await fetch(`${window.baseUrl}/api/conversations.php?limit=${window.conversationsPerPage}&offset=${currentOffset}`);
         const data = await handleResponse(response);
         
         if (!data.success) {
@@ -143,7 +143,7 @@ async function createNewConversation() {
             throw new Error('No plugin selected');
         }
 
-        const response = await fetch(`/${baseUrlPath}/api/conversations.php`, {
+        const response = await fetch(`${window.baseUrl}/api/conversations.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -262,7 +262,7 @@ async function loadConversation(conversationId) {
     }
 
     try {
-        const response = await fetch(`/${baseUrlPath}/api/messages.php?conversation_id=${conversationId}`);
+        const response = await fetch(`${window.baseUrl}/api/messages.php?conversation_id=${conversationId}`);
         const data = await handleResponse(response);
         
         if (!data.success) {
@@ -339,7 +339,7 @@ async function sendMessage() {
             throw new Error('No plugin selected');
         }
 
-        const response = await fetch(`/${baseUrlPath}/app/api/v1/messages.php`, {
+        const response = await fetch(`${window.baseUrl}/app/api/v1/messages.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -425,7 +425,7 @@ function hideUpgradeModal() {
 // Payment functions
 async function initiatePayment(membershipType) {
     try {
-        const response = await fetch(`/${baseUrlPath}/api/payment.php`, {
+        const response = await fetch(`${window.baseUrl}/api/payment.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -462,7 +462,7 @@ function toggleSidebar() {
 // Load available plugins and populate selector
 async function loadPlugins() {
     try {
-        const response = await fetch(`${window.apiBaseUrl}/plugins.php`);
+        const response = await fetch(`${window.baseUrl}/plugins.php`);
         if (!response.ok) {
             throw new Error('Failed to load plugins');
         }
@@ -497,7 +497,7 @@ async function loadPlugins() {
         pluginSelector.addEventListener('change', async function() {
             try {
                 // Update user preference
-                const response = await fetch(`${window.apiBaseUrl}/user/preferences.php`, {
+                const response = await fetch(`${window.baseUrl}/user/preferences.php`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -513,7 +513,7 @@ async function loadPlugins() {
 
                 // If there's an active conversation, update its plugin
                 if (currentConversationId) {
-                    const updateResponse = await fetch(`${window.apiBaseUrl}/conversations.php`, {
+                    const updateResponse = await fetch(`${window.baseUrl}/conversations.php`, {
                         method: 'PUT',
                         headers: {
                             'Content-Type': 'application/json'
