@@ -488,7 +488,7 @@ async function initiatePayment(membershipType) {
 function toggleSidebar() {
     console.log('Toggle sidebar called');
     const sidebar = document.querySelector('.sidebar');
-    const mainContent = document.querySelector('.main-content');
+    const mainContent = document.querySelector('.chat-container');
     
     if (!sidebar) {
         console.error('Sidebar element not found in DOM');
