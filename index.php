@@ -42,6 +42,7 @@ $usageStatsModel->ensureColumns();
         window.conversationsPerPage = <?php echo json_encode($current_config['conversations_per_page']); ?>;
         window.baseUrlPath = <?php echo json_encode($base_url_path); ?>;
         window.apiBaseUrl = <?php echo json_encode(rtrim($current_config['domain_name'], '/') . '/api'); ?>;
+        window.baseUrl = <?php echo json_encode(rtrim($current_config['domain_name'], '/')); ?>;
     </script>
 </head>
 <body>
