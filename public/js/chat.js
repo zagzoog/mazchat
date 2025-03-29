@@ -262,7 +262,7 @@ async function loadConversation(conversationId) {
     }
 
     try {
-        const response = await fetch(`${window.apiBaseUrl}/conversations.php?id=${conversationId}`);
+        const response = await fetch(`${window.apiBaseUrl}/messages.php?conversation_id=${conversationId}`);
         const data = await handleResponse(response);
         
         if (!data.success) {
