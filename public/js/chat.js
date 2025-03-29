@@ -367,14 +367,15 @@ async function sendMessage() {
 
         hideTypingIndicator();
 
-        if (data.message) {
+        // Handle the response structure
+        const messageData = data.data?.data;
+        if (messageData && messageData.assistant_message) {
             const assistantMessage = createMessageElement({
-                content: data.message,
-                is_user: false,
-                created_at: new Date()
+                content: messageData.assistant_message.content,
+                role: 'assistant'
             });
             chatContainer.appendChild(assistantMessage);
-            chatContainer.scrollTop = chatContainer.scrollHeight;
+            assistantMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         await loadConversations();
