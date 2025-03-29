@@ -486,25 +486,17 @@ async function initiatePayment(membershipType) {
 
 // Sidebar toggle functionality
 function toggleSidebar() {
-    console.log('Toggle sidebar called');
     const sidebar = document.querySelector('.sidebar');
-    const mainContent = document.querySelector('.chat-container');
+    const sidebarOverlay = document.querySelector('.sidebar-overlay');
     
-    if (!sidebar) {
-        console.error('Sidebar element not found in DOM');
+    if (!sidebar || !sidebarOverlay) {
+        console.error('Sidebar or overlay elements not found in DOM');
         return;
     }
     
-    if (!mainContent) {
-        console.error('Main content element not found in DOM');
-        return;
-    }
-    
-    if (window.innerWidth <= 768) {
-        console.log('Toggling sidebar for mobile view');
-        sidebar.classList.toggle('show');
-        mainContent.classList.toggle('sidebar-hidden');
-    }
+    sidebar.classList.toggle('open');
+    sidebarOverlay.classList.toggle('active');
+    document.body.style.overflow = sidebar.classList.contains('open') ? 'hidden' : '';
 }
 
 // Load available plugins and populate selector
@@ -632,11 +624,33 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize sidebar toggle
     const toggleSidebarBtn = document.querySelector('.toggle-sidebar');
+    const sidebarOverlay = document.querySelector('.sidebar-overlay');
+    
     if (toggleSidebarBtn) {
         console.log('Found sidebar toggle button, adding click listener');
         toggleSidebarBtn.addEventListener('click', toggleSidebar);
     } else {
         console.error('Sidebar toggle button not found in DOM');
+    }
+    
+    if (sidebarOverlay) {
+        console.log('Found sidebar overlay, adding click listener');
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+    } else {
+        console.error('Sidebar overlay not found in DOM');
+    }
+    
+    // Close sidebar when clicking on a conversation
+    const conversationsList = document.querySelector('.conversations-list');
+    if (conversationsList) {
+        console.log('Found conversations list, adding click listener');
+        conversationsList.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                toggleSidebar();
+            }
+        });
+    } else {
+        console.error('Conversations list not found in DOM');
     }
     
     // Load plugins and conversations
