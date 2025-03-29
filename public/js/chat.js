@@ -250,11 +250,13 @@ function createMessageElement(msg) {
     const contentDiv = document.createElement('div');
     contentDiv.className = 'message-content';
     
-    // Add timestamp
-    const timestampDiv = document.createElement('div');
-    timestampDiv.className = 'message-timestamp';
-    timestampDiv.textContent = formatTimestamp(new Date(msg.created_at));
-    contentDiv.appendChild(timestampDiv);
+    // Add timestamp only if created_at exists
+    if (msg.created_at) {
+        const timestampDiv = document.createElement('div');
+        timestampDiv.className = 'message-timestamp';
+        timestampDiv.textContent = formatTimestamp(new Date(msg.created_at));
+        contentDiv.appendChild(timestampDiv);
+    }
     
     // Format message content
     const formattedContent = isUser ? 
