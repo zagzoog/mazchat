@@ -486,10 +486,22 @@ async function initiatePayment(membershipType) {
 
 // Sidebar toggle functionality
 function toggleSidebar() {
+    console.log('Toggle sidebar called');
     const sidebar = document.querySelector('.sidebar');
     const mainContent = document.querySelector('.main-content');
     
+    if (!sidebar) {
+        console.error('Sidebar element not found in DOM');
+        return;
+    }
+    
+    if (!mainContent) {
+        console.error('Main content element not found in DOM');
+        return;
+    }
+    
     if (window.innerWidth <= 768) {
+        console.log('Toggling sidebar for mobile view');
         sidebar.classList.toggle('show');
         mainContent.classList.toggle('sidebar-hidden');
     }
