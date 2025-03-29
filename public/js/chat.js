@@ -332,13 +332,23 @@ async function sendMessage() {
     showTypingIndicator();
 
     try {
+        const pluginSelector = document.getElementById('pluginSelector');
+        const selectedPluginId = pluginSelector.value;
+        
+        if (!selectedPluginId) {
+            throw new Error('No plugin selected');
+        }
+
         const response = await fetch(`${window.apiBaseUrl}/conversations.php?id=${currentConversationId}/messages`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
-            body: JSON.stringify({ message })
+            body: JSON.stringify({ 
+                message,
+                plugin_id: selectedPluginId
+            })
         });
 
         const data = await handleResponse(response);
