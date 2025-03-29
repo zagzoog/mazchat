@@ -332,7 +332,7 @@ async function sendMessage() {
     showTypingIndicator();
 
     try {
-        const response = await fetch(`/${baseUrlPath}/api/conversations.php?id=${currentConversationId}/messages`, {
+        const response = await fetch(`${window.apiBaseUrl}/conversations.php?id=${currentConversationId}/messages`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
