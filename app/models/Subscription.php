@@ -4,11 +4,15 @@
  * 
  * Handles subscription-related database operations
  */
+
+require_once __DIR__ . '/../config/db_config.php';
+
 class Subscription {
     private $db;
 
     public function __construct() {
-        $this->db = Database::getInstance()->getConnection();
+        global $pdo;
+        $this->db = $pdo;
     }
 
     /**
