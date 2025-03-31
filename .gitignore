@@ -44,6 +44,8 @@ access_log
 /logs/*.log.old
 /logs/*.log.bak
 /logs/*.log.backup
+/app/logs/error.log
+/app/logs/*.log
 
 # Cache files
 *.cache

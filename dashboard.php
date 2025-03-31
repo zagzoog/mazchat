@@ -505,7 +505,7 @@ require_once __DIR__ . '/path_config.php';
         // Fetch dashboard data
         async function fetchDashboardData() {
             try {
-                const response = await fetch(`/${baseUrlPath}/api/dashboard.php`);
+                const response = await fetch(`<?php echo getApiUrl('dashboard.php'); ?>`);
                 const data = await response.json();
                 
                 if (data.error) {
