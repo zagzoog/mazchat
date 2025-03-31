@@ -12,7 +12,7 @@ require_once __DIR__ . '/environment.php';
 // Webhook URLs
 $config = [
     'test' => [
-        'version' => '1.0.42',
+        'version' => '1.0.43',
         'domain_name' => 'http://localhost/chat',
         'directory_path' => '/c:/Users/zagzo/Downloads/UniServerZ/www/chat',
         'webhook_url' => 'https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f',
@@ -67,7 +67,7 @@ $config = [
         'paypal_mode' => 'sandbox'
     ],
     'production' => [
-        'version' => '1.0.42',
+        'version' => '1.0.43',
         'domain_name' => 'https://n9ib.com',
         'directory_path' => '/home/n9ib/public_html',
         'webhook_url' => 'https://n8n.mazcode.com/webhook/b0e277cb-a3ab-40be-9c7d-2048c6bbad8f',
