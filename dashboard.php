@@ -22,6 +22,7 @@ require_once __DIR__ . '/path_config.php';
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         window.baseUrlPath = <?php echo json_encode($base_url_path); ?>;
+        window.baseUrl = <?php echo json_encode(rtrim($current_config['domain_name'], '/')); ?>;
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap');
@@ -505,7 +506,7 @@ require_once __DIR__ . '/path_config.php';
         // Fetch dashboard data
         async function fetchDashboardData() {
             try {
-                const response = await fetch(`/${baseUrlPath}/api/dashboard.php`);
+                const response = await fetch(`/${baseUrl}/api/dashboard.php`);
                 const data = await response.json();
                 
                 if (data.error) {
@@ -654,7 +655,7 @@ require_once __DIR__ . '/path_config.php';
         // Payment functions
         async function initiatePayment(membershipType) {
             try {
-                const response = await fetch(`/${baseUrlPath}/api/create_payment.php`, {
+                const response = await fetch(`/${baseUrl}/api/create_payment.php`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
