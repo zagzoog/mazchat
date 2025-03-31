@@ -11,8 +11,7 @@ class Subscription {
     private $db;
 
     public function __construct() {
-        global $pdo;
-        $this->db = $pdo;
+        $this->db = getDBConnection();
     }
 
     /**
