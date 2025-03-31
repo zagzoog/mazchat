@@ -1,21 +1,23 @@
 <?php
 session_start();
 
+// Load required classes
+require_once __DIR__ . '/../app/models/User.php';
+require_once __DIR__ . '/../app/models/Subscription.php';
+require_once __DIR__ . '/../path_config.php';
+
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: <?php echo getFullUrlPath("login.php"); ?>');
+    header('Location: ' . getFullUrlPath('login.php'));
     exit;
 }
-
-// Load configuration
-require_once __DIR__ . '/../path_config.php';
 
 // Check if user is admin
 $user = new User();
 $userData = $user->findById($_SESSION['user_id']);
 
 if (!$userData || $userData['role'] !== 'admin') {
-    header('Location: <?php echo getFullUrlPath("index.php"); ?>');
+    header('Location: ' . getFullUrlPath('index.php'));
     exit;
 }
 
@@ -24,7 +26,7 @@ $subscriptionId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
 if (!$subscriptionId) {
     $_SESSION['error_message'] = "لم يتم تحديد الاشتراك";
-    header('Location: <?php echo getFullUrlPath("admin/subscriptions.php"); ?>');
+    header('Location: ' . getFullUrlPath('admin/subscriptions.php'));
     exit;
 }
 
@@ -34,7 +36,7 @@ $subscriptionData = $subscription->findById($subscriptionId);
 
 if (!$subscriptionData) {
     $_SESSION['error_message'] = "لم يتم العثور على الاشتراك";
-    header('Location: <?php echo getFullUrlPath("admin/subscriptions.php"); ?>');
+    header('Location: ' . getFullUrlPath('admin/subscriptions.php'));
     exit;
 }
 
@@ -43,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $subscription->update($subscriptionId, $_POST);
         $_SESSION['success_message'] = "تم تحديث الاشتراك بنجاح";
-        header('Location: <?php echo getFullUrlPath("admin/subscriptions.php"); ?>');
+        header('Location: ' . getFullUrlPath('admin/subscriptions.php'));
         exit;
     } catch (Exception $e) {
         $error = $e->getMessage();
