@@ -9,18 +9,21 @@ require_once __DIR__ . '/../app/models/User.php';
 // Define ADMIN_PANEL constant for navbar access
 define('ADMIN_PANEL', true);
 
+// Load configuration
+require_once __DIR__ . '/../path_config.php';
+
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: /chat/login.php');
+    header('Location: ' . getFullUrlPath('login.php'));
     exit;
 }
 
 // Check if user is admin
 $userModel = new User();
-$user = $userModel->findById($_SESSION['user_id']);
+$userData = $userModel->findById($_SESSION['user_id']);
 
-if (!$user || !$userModel->isAdmin($_SESSION['user_id'])) {
-    header('Location: /chat/index.php');
+if (!$userData || $userData['role'] !== 'admin') {
+    header('Location: ' . getFullUrlPath('index.php'));
     exit;
 }
 
@@ -31,14 +34,14 @@ $userToEdit = null;
 // Get user ID from URL
 $userId = $_GET['id'] ?? '';
 if (empty($userId)) {
-    header('Location: /chat/admin/users.php');
+    header('Location: ' . getFullUrlPath('admin/users.php'));
     exit;
 }
 
 // Get user data
 $userToEdit = $userModel->findById($userId);
 if (!$userToEdit) {
-    header('Location: /chat/admin/users.php');
+    header('Location: ' . getFullUrlPath('admin/users.php'));
     exit;
 }
 
@@ -85,6 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             'user_id' => $userId,
                             'username' => $username
                         ]);
+                        header('Location: ' . getFullUrlPath('admin/users.php'));
+                        exit;
                     } else {
                         $error = 'حدث خطأ أثناء تحديث بيانات المستخدم';
                     }
@@ -139,7 +144,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <div class="alert alert-success">
                             <?php echo $success; ?>
                             <br>
-                            <a href="/chat/admin/users.php" class="btn btn-primary mt-2">
+                            <a href="<?php echo getFullUrlPath('admin/users.php'); ?>" class="btn btn-primary mt-2">
                                 <i class="fas fa-arrow-right"></i> العودة إلى قائمة المستخدمين
                             </a>
                         </div>
@@ -171,7 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
 
                             <div class="d-flex justify-content-between">
-                                <a href="/chat/admin/users.php" class="btn btn-secondary">
+                                <a href="<?php echo getFullUrlPath('admin/users.php'); ?>" class="btn btn-secondary">
                                     <i class="fas fa-arrow-right"></i> إلغاء
                                 </a>
                                 <button type="submit" class="btn btn-primary">

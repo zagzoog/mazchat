@@ -11,41 +11,36 @@ define('ADMIN_PANEL', true);
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: /chat/login.php');
+    header('Location: <?php echo getFullUrlPath("login.php"); ?>');
     exit;
 }
 
-// Check if user is admin
-$userModel = new User();
-$user = $userModel->findById($_SESSION['user_id']);
+// Load configuration
+require_once __DIR__ . '/../path_config.php';
 
-if (!$user || !$userModel->isAdmin($_SESSION['user_id'])) {
-    header('Location: /chat/index.php');
+// Check if user is admin
+$user = new User();
+$userData = $user->findById($_SESSION['user_id']);
+
+if (!$userData || $userData['role'] !== 'admin') {
+    header('Location: <?php echo getFullUrlPath("index.php"); ?>');
     exit;
 }
 
 // Handle user actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['action'])) {
-        switch ($_POST['action']) {
-            case 'delete':
-                if (isset($_POST['user_id'])) {
-                    $userModel->delete($_POST['user_id']);
-                }
-                break;
-            case 'toggle_status':
-                if (isset($_POST['user_id'])) {
-                    $userModel->toggleStatus($_POST['user_id']);
-                }
-                break;
-            case 'change_role':
-                if (isset($_POST['user_id']) && isset($_POST['role'])) {
-                    $userModel->updateRole($_POST['user_id'], $_POST['role']);
-                }
-                break;
+    try {
+        if (isset($_POST['action'])) {
+            if ($_POST['action'] === 'delete') {
+                $user->delete($_POST['user_id']);
+            } elseif ($_POST['action'] === 'toggle_status') {
+                $user->toggleStatus($_POST['user_id']);
+            }
         }
-        header('Location: /chat/admin/users.php');
+        header('Location: <?php echo getFullUrlPath("admin/users.php"); ?>');
         exit;
+    } catch (Exception $e) {
+        $error = $e->getMessage();
     }
 }
 
@@ -53,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 $limit = 10;
 $offset = ($page - 1) * $limit;
-$users = $userModel->getAll($limit, $offset);
-$totalUsers = $userModel->countAll();
+$users = $user->getAll($limit, $offset);
+$totalUsers = $user->countAll();
 $totalPages = ceil($totalUsers / $limit);
 ?>
 <!DOCTYPE html>
@@ -155,7 +150,7 @@ $totalPages = ceil($totalUsers / $limit);
                                 <td><?php echo isset($user['created_at']) ? date('Y/m/d H:i', strtotime($user['created_at'])) : 'غير محدد'; ?></td>
                                 <td>
                                     <div class="btn-group">
-                                        <a href="/chat/admin/user_edit.php?id=<?php echo $user['id']; ?>" class="btn btn-sm btn-primary">
+                                        <a href="<?php echo getFullUrlPath('admin/user_edit.php?id=' . $user['id']); ?>" class="btn btn-sm btn-primary">
                                             <i class="fas fa-edit"></i>
                                         </a>
                                         <form method="POST" class="d-inline" onsubmit="return confirm('هل أنت متأكد من حذف هذا المستخدم؟');">

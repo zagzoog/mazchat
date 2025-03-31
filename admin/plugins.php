@@ -22,7 +22,7 @@ $userModel = new User();
 $user = $userModel->findById($_SESSION['user_id']);
 
 if (!$user || !$userModel->isAdmin($_SESSION['user_id'])) {
-    header('Location: /chat/index.php');
+    header('Location: ' . getFullUrlPath('index.php'));
     exit;
 }
 
@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } catch (Exception $e) {
             $_SESSION['error_message'] = "حدث خطأ: " . $e->getMessage();
         }
-        header('Location: /chat/admin/plugins.php');
+        header('Location: ' . getFullUrlPath('admin/plugins.php'));
         exit;
     }
 }
@@ -156,10 +156,10 @@ $availablePlugins = $pluginModel->getAvailablePlugins();
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h1>إدارة الإضافات</h1>
                     <div>
-                        <a href="/chat/docs/plugin_development.md" class="btn btn-info me-2" target="_blank">
+                        <a href="<?php echo getFullUrlPath('docs/plugin_development.md'); ?>" class="btn btn-info me-2" target="_blank">
                             <i class="fas fa-book"></i> دليل تطوير الإضافات
                         </a>
-                        <a href="/chat/admin/plugin_add.php" class="btn btn-primary">
+                        <a href="<?php echo getFullUrlPath('admin/plugin_add.php'); ?>" class="btn btn-primary">
                             <i class="fas fa-plus"></i> إضافة إضافة جديدة
                         </a>
                     </div>
@@ -202,7 +202,7 @@ $availablePlugins = $pluginModel->getAvailablePlugins();
                                 </button>
                             </form>
                             <?php endif; ?>
-                            <a href="/chat/admin/plugin_edit.php?id=<?php echo $plugin['id']; ?>" class="btn btn-primary">
+                            <a href="<?php echo getFullUrlPath('admin/plugin_edit.php?id=' . $plugin['id']); ?>" class="btn btn-primary">
                                 <i class="fas fa-edit"></i> تعديل
                             </a>
                             <form method="POST" class="d-inline" onsubmit="return confirm('هل أنت متأكد من حذف هذه الإضافة؟');">

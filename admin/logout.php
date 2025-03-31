@@ -2,6 +2,9 @@
 session_start();
 require_once '../app/utils/Logger.php';
 
+// Load configuration
+require_once __DIR__ . '/../path_config.php';
+
 // Log the logout action
 Logger::log("Admin user logged out", 'INFO', [
     'user_id' => $_SESSION['user_id'] ?? null,
@@ -20,5 +23,5 @@ if (isset($_COOKIE[session_name()])) {
 session_destroy();
 
 // Redirect to login page
-header('Location: /chat/login.php');
+header('Location: ' . getFullUrlPath('login.php'));
 exit; 

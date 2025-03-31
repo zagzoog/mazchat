@@ -14,16 +14,19 @@ define('ADMIN_PANEL', true);
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: /chat/login.php');
+    header('Location: <?php echo getFullUrlPath("login.php"); ?>');
     exit;
 }
 
-// Check if user is admin
-$userModel = new User();
-$user = $userModel->findById($_SESSION['user_id']);
+// Load configuration
+require_once __DIR__ . '/../path_config.php';
 
-if (!$user || !$userModel->isAdmin($_SESSION['user_id'])) {
-    header('Location: /chat/index.php');
+// Check if user is admin
+$user = new User();
+$userData = $user->findById($_SESSION['user_id']);
+
+if (!$userData || $userData['role'] !== 'admin') {
+    header('Location: <?php echo getFullUrlPath("index.php"); ?>');
     exit;
 }
 

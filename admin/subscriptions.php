@@ -12,16 +12,19 @@ define('ADMIN_PANEL', true);
 
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: /chat/login.php');
+    header('Location: <?php echo getFullUrlPath("login.php"); ?>');
     exit;
 }
 
-// Check if user is admin
-$userModel = new User();
-$user = $userModel->findById($_SESSION['user_id']);
+// Load configuration
+require_once __DIR__ . '/../path_config.php';
 
-if (!$user || !$userModel->isAdmin($_SESSION['user_id'])) {
-    header('Location: /chat/index.php');
+// Check if user is admin
+$user = new User();
+$userData = $user->findById($_SESSION['user_id']);
+
+if (!$userData || $userData['role'] !== 'admin') {
+    header('Location: <?php echo getFullUrlPath("index.php"); ?>');
     exit;
 }
 
@@ -31,30 +34,25 @@ $subscriptionStats = $membershipModel->getSubscriptionStats();
 
 // Handle subscription updates
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['action'])) {
-        switch ($_POST['action']) {
-            case 'update':
-                if (isset($_POST['user_id']) && isset($_POST['type']) && isset($_POST['duration'])) {
-                    $membershipModel->updateMembership(
-                        $_POST['user_id'],
-                        $_POST['type'],
-                        $_POST['duration']
-                    );
-                }
-                break;
-            case 'cancel':
-                if (isset($_POST['user_id'])) {
-                    $membershipModel->cancelMembership($_POST['user_id']);
-                }
-                break;
+    try {
+        if (isset($_POST['action'])) {
+            if ($_POST['action'] === 'add') {
+                $subscription->create($_POST);
+            } elseif ($_POST['action'] === 'edit') {
+                $subscription->update($_POST['id'], $_POST);
+            } elseif ($_POST['action'] === 'delete') {
+                $subscription->delete($_POST['id']);
+            }
         }
-        header('Location: /chat/admin/subscriptions.php');
+        header('Location: <?php echo getFullUrlPath("admin/subscriptions.php"); ?>');
         exit;
+    } catch (Exception $e) {
+        $error = $e->getMessage();
     }
 }
 
 // Get all users with their subscriptions
-$users = $userModel->getAllUsersWithSubscriptions();
+$users = $user->getAllUsersWithSubscriptions();
 ?>
 
 <!DOCTYPE html>
@@ -229,9 +227,9 @@ $users = $userModel->getAllUsersWithSubscriptions();
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary" onclick="showUpdateModal(<?php echo $user['id']; ?>, '<?php echo $user['membership_type']; ?>')">
+                                    <a href="<?php echo getFullUrlPath('admin/subscription_edit.php?id=' . $user['id']); ?>" class="btn btn-primary">
                                         <i class="fas fa-edit"></i>
-                                    </button>
+                                    </a>
                                     <form method="POST" class="d-inline" onsubmit="return confirm('هل أنت متأكد من إلغاء الاشتراك؟');">
                                         <input type="hidden" name="action" value="cancel">
                                         <input type="hidden" name="user_id" value="<?php echo $user['id']; ?>">

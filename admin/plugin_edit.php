@@ -10,18 +10,21 @@ require_once __DIR__ . '/../app/models/User.php';
 // Define ADMIN_PANEL constant for navbar access
 define('ADMIN_PANEL', true);
 
+// Load configuration
+require_once __DIR__ . '/../path_config.php';
+
 // Check if user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header('Location: /chat/login.php');
+    header('Location: ' . getFullUrlPath('login.php'));
     exit;
 }
 
 // Check if user is admin
-$userModel = new User();
-$user = $userModel->findById($_SESSION['user_id']);
+$user = new User();
+$userData = $user->findById($_SESSION['user_id']);
 
-if (!$user || !$userModel->isAdmin($_SESSION['user_id'])) {
-    header('Location: /chat/index.php');
+if (!$userData || $userData['role'] !== 'admin') {
+    header('Location: ' . getFullUrlPath('index.php'));
     exit;
 }
 
@@ -30,7 +33,7 @@ $pluginId = isset($_GET['id']) ? $_GET['id'] : null;
 
 if (!$pluginId) {
     $_SESSION['error_message'] = "لم يتم تحديد الإضافة";
-    header('Location: /chat/admin/plugins.php');
+    header('Location: ' . getFullUrlPath('admin/plugins.php'));
     exit;
 }
 
@@ -42,7 +45,7 @@ $plugin = $pluginModel->findById($pluginId);
 
 if (!$plugin) {
     $_SESSION['error_message'] = "لم يتم العثور على الإضافة";
-    header('Location: /chat/admin/plugins.php');
+    header('Location: ' . getFullUrlPath('admin/plugins.php'));
     exit;
 }
 
@@ -70,45 +73,11 @@ if (file_exists($pluginFile)) {
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
-        // Handle general plugin settings
-        $name = $_POST['name'] ?? $plugin['name'];
-        $description = $_POST['description'] ?? $plugin['description'];
-        $author = $_POST['author'] ?? $plugin['author'];
-        $version = $_POST['version'] ?? $plugin['version'];
-        $is_active = isset($_POST['is_active']) ? 1 : 0;
-        
-        // Update plugin
-        if ($pluginModel->update($pluginId, [
-            'name' => $name,
-            'description' => $description,
-            'author' => $author,
-            'version' => $version,
-            'is_active' => $is_active
-        ])) {
-            $_SESSION['success_message'] = "تم تحديث الإضافة بنجاح";
-        } else {
-            $_SESSION['error_message'] = "فشل في تحديث الإضافة";
-        }
-
-        // Handle plugin-specific settings
-        if (isset($pluginInstance) && method_exists($pluginInstance, 'addSettingsPage')) {
-            // Get the plugin's settings action name
-            $settingsAction = strtolower($pluginClass) . '_settings';
-            
-            // Check if this is a plugin-specific settings submission
-            if (isset($_POST['action']) && $_POST['action'] === $settingsAction) {
-                // Let the plugin handle its own settings
-                if (method_exists($pluginInstance, 'handleSettingsUpdate')) {
-                    $pluginInstance->handleSettingsUpdate($_POST);
-                    $_SESSION['success_message'] = "تم تحديث إعدادات الإضافة بنجاح";
-                }
-            }
-        }
-        
-        header('Location: /chat/admin/plugins.php');
+        $plugin->update($_POST['id'], $_POST);
+        header('Location: ' . getFullUrlPath('admin/plugins.php'));
         exit;
     } catch (Exception $e) {
-        $_SESSION['error_message'] = "حدث خطأ: " . $e->getMessage();
+        $error = $e->getMessage();
     }
 }
 ?>
@@ -161,7 +130,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <h4 class="mb-0">الإعدادات العامة</h4>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="">
+                        <form action="<?php echo getFullUrlPath('admin/plugin_edit.php'); ?>" method="POST">
                             <div class="mb-3">
                                 <label for="name" class="form-label">اسم الإضافة</label>
                                 <input type="text" class="form-control" id="name" name="name" value="<?php echo htmlspecialchars($plugin['name']); ?>" required>
@@ -188,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                             
                             <div class="d-flex justify-content-between">
-                                <a href="/chat/admin/plugins.php" class="btn btn-secondary">
+                                <a href="<?php echo getFullUrlPath('admin/plugins.php'); ?>" class="btn btn-secondary">
                                     <i class="fas fa-arrow-right"></i> رجوع
                                 </a>
                                 <button type="submit" class="btn btn-primary">
