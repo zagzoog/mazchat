@@ -21,20 +21,22 @@ require_once __DIR__ . '/ApiController.php';
 class MessagesController extends ApiController {
     private $pluginManager;
     private $userId;
+    protected $isTestMode = false;
 
-    public function __construct() {
-        parent::__construct();
+    public function __construct($isTest = false) {
+        parent::__construct($isTest);
         $this->pluginManager = PluginManager::getInstance();
-        // echo "<pre>";
-        // print_r($this->pluginManager);
-        // echo "</pre>";
-        // die;
+        $this->isTestMode = $isTest;
         
         // Get user ID from session
         $this->userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
     }
 
     private function isAuthenticated() {
+        if ($this->isTestMode) {
+            return true;
+        }
+        
         if (!$this->userId) {
             $this->sendError('Unauthorized - Please log in', 401);
             return false;
@@ -44,6 +46,7 @@ class MessagesController extends ApiController {
 
     public function createMessage() {
         error_log("=== Starting message creation process ===");
+        error_log("Session data: " . print_r($_SESSION, true));
         
         if (!$this->isAuthenticated()) {
             error_log("Authentication failed - user not logged in");
@@ -52,29 +55,36 @@ class MessagesController extends ApiController {
         
         error_log("User authenticated successfully - User ID: " . $this->userId);
 
-        $data = json_decode(file_get_contents('php://input'), true);
-        error_log("Received message data: " . json_encode($data));
+        $rawInput = file_get_contents('php://input');
+        error_log("Raw input received: " . $rawInput);
+        
+        $data = json_decode($rawInput, true);
+        error_log("Decoded message data: " . json_encode($data));
         
         if (!$data || !isset($data['conversation_id']) || !isset($data['content'])) {
             error_log("Invalid message data - missing required fields");
+            error_log("Data received: " . print_r($data, true));
             $this->sendError('Conversation ID and content are required', 400);
             return;
         }
         error_log("Message data validation passed");
 
         try {
-            // Check question limit before proceeding
-            require_once dirname(__DIR__, 3) . '/app/models/Membership.php';
-            $membership = new Membership();
-            if (!$membership->checkQuestionLimit($this->userId)) {
-                error_log("User " . $this->userId . " has reached their monthly question limit");
-                $this->sendError('You have reached your monthly question limit. Please upgrade your membership to continue.', 403, [
-                    'limit_reached' => true,
-                    'limit_type' => 'questions'
-                ]);
-                return;
+            // Skip question limit check in test mode
+            if (!$this->isTestMode) {
+                error_log("Checking question limit for user: " . $this->userId);
+                require_once dirname(__DIR__, 3) . '/app/models/Membership.php';
+                $membership = new Membership();
+                if (!$membership->checkQuestionLimit($this->userId)) {
+                    error_log("User " . $this->userId . " has reached their monthly question limit");
+                    $this->sendError('You have reached your monthly question limit. Please upgrade your membership to continue.', 403, [
+                        'limit_reached' => true,
+                        'limit_type' => 'questions'
+                    ]);
+                    return;
+                }
+                error_log("Question limit check passed");
             }
-            error_log("Question limit check passed");
 
             error_log("Fetching conversation and plugin info for conversation ID: " . $data['conversation_id']);
             // Check if conversation exists and user has access, and get the plugin info
@@ -82,9 +92,10 @@ class MessagesController extends ApiController {
                 SELECT c.id, c.plugin_id, p.name as plugin_name, p.is_active as plugin_active
                 FROM conversations c
                 LEFT JOIN plugins p ON c.plugin_id = p.id 
-                WHERE c.id = ? AND c.user_id = ?
+                WHERE c.id = ? AND (c.user_id = ? OR ? = true)
             ");
-            $stmt->execute([$data['conversation_id'], $this->userId]);
+            error_log("Executing query with params: " . print_r([$data['conversation_id'], $this->userId, $this->isTestMode], true));
+            $stmt->execute([$data['conversation_id'], $this->userId, $this->isTestMode]);
             $conversation = $stmt->fetch(PDO::FETCH_ASSOC);
             
             if (!$conversation) {
@@ -102,14 +113,13 @@ class MessagesController extends ApiController {
                 'content' => $data['content'],
                 'role' => 'user'
             ];
-            error_log("Created message data structure");
+            error_log("Created message data structure: " . print_r($message, true));
 
             $pluginResponse = null;
             $assistantMessage = null;
 
-            // Only process through plugin if one is assigned to the conversation
+            // Process through plugin if one is assigned to the conversation
             if ($conversation['plugin_id'] && $conversation['plugin_active']) {
-                
                 error_log("Attempting to get plugin instance for: " . $conversation['plugin_name']);
                 $plugin = $this->pluginManager->getPlugin($conversation['plugin_name']);
                 
@@ -117,12 +127,26 @@ class MessagesController extends ApiController {
                     error_log("Successfully got plugin instance of class: " . get_class($plugin));
                     error_log("Plugin hooks: " . print_r($plugin->getHooks(), true));
                     
+                    // Execute before_send_message hook
                     error_log("Executing before_send_message hook for plugin: " . $conversation['plugin_name']);
                     try {
                         $pluginResponse = $plugin->executeHook('before_send_message', [$message]);
                         error_log("before_send_message hook executed successfully");
                         if ($pluginResponse) {
                             error_log("Got response from before_send_message: " . $pluginResponse);
+                            
+                            // Save the before_send_message response
+                            $stmt = $this->db->prepare("
+                                INSERT INTO messages (conversation_id, role, content) 
+                                VALUES (?, 'assistant', ?)
+                            ");
+                            error_log("Executing before hook message insert with params: " . print_r([$message['conversation_id'], $pluginResponse], true));
+                            $stmt->execute([
+                                $message['conversation_id'],
+                                $pluginResponse
+                            ]);
+                            $beforeMessageId = $this->db->lastInsertId();
+                            error_log("Before hook response saved with ID: " . $beforeMessageId);
                         }
                     } catch (Exception $e) {
                         error_log("ERROR executing before_send_message hook: " . $e->getMessage());
@@ -136,49 +160,48 @@ class MessagesController extends ApiController {
                          ", plugin_active: " . ($conversation['plugin_active'] ?? 'no'));
             }
 
-            error_log("Saving message to database");
-            // Create message
+            error_log("Saving user message to database");
+            // Create user message
             $stmt = $this->db->prepare("
                 INSERT INTO messages (conversation_id, role, content) 
                 VALUES (?, ?, ?)
             ");
+            error_log("Executing user message insert with params: " . print_r([$message['conversation_id'], $message['role'], $message['content']], true));
             $stmt->execute([
                 $message['conversation_id'],
                 $message['role'],
                 $message['content']
             ]);
             $messageId = $this->db->lastInsertId();
-            error_log("Message saved successfully with ID: " . $messageId);
+            error_log("User message saved successfully with ID: " . $messageId);
 
             // Process after_send_message hook if plugin exists
-            if ($conversation['plugin_id'] && $conversation['plugin_active'] && isset($plugin)) {
+            if ($plugin) {
                 error_log("Executing after_send_message hook for plugin: " . $conversation['plugin_name']);
                 try {
                     $afterResponse = $plugin->executeHook('after_send_message', [$message]);
                     error_log("after_send_message hook executed successfully");
                     
-                    // Use the response from either hook (prioritize after_send_message)
-                    $finalResponse = $afterResponse ?: $pluginResponse;
-                    
-                    // Save the plugin response as a new message if we got one
-                    if ($finalResponse) {
-                        error_log("Saving plugin response to database: " . $finalResponse);
+                    // Save the after_send_message response
+                    if ($afterResponse) {
+                        error_log("Saving after_send_message response to database: " . $afterResponse);
                         $stmt = $this->db->prepare("
                             INSERT INTO messages (conversation_id, role, content) 
                             VALUES (?, 'assistant', ?)
                         ");
+                        error_log("Executing after hook message insert with params: " . print_r([$message['conversation_id'], $afterResponse], true));
                         $stmt->execute([
                             $message['conversation_id'],
-                            $finalResponse
+                            $afterResponse
                         ]);
-                        $assistantMessageId = $this->db->lastInsertId();
-                        error_log("Plugin response saved with ID: " . $assistantMessageId);
+                        $afterMessageId = $this->db->lastInsertId();
+                        error_log("After hook response saved with ID: " . $afterMessageId);
                         
-                        // Create the assistant message object for the response
+                        // Use the after_send_message response as the final assistant message
                         $assistantMessage = [
-                            'id' => $assistantMessageId,
+                            'id' => $afterMessageId,
                             'conversation_id' => $message['conversation_id'],
-                            'content' => $finalResponse,
+                            'content' => $afterResponse,
                             'role' => 'assistant'
                         ];
                     }
@@ -188,32 +211,21 @@ class MessagesController extends ApiController {
                 }
             }
 
-            error_log("=== Message creation process completed successfully ===");
-            
-            // Include both the user message and assistant response in the API response
+            // Prepare response
             $response = [
                 'success' => true,
                 'data' => [
-                    'message' => [
-                        'id' => $messageId,
-                        'conversation_id' => $message['conversation_id'],
-                        'content' => $message['content'],
-                        'role' => 'user'
-                    ],
-                    'assistant_message' => $assistantMessage ? [
-                        'id' => $assistantMessage['id'],
-                        'conversation_id' => $assistantMessage['conversation_id'],
-                        'content' => $assistantMessage['content'],
-                        'role' => 'assistant'
-                    ] : null
+                    'message_id' => $messageId,
+                    'assistant_message' => $assistantMessage
                 ]
             ];
-            error_log("Sending response to client: " . json_encode($response));
-            $this->sendResponse($response, 'Message sent successfully');
+            error_log("Sending response: " . print_r($response, true));
+            $this->sendResponse($response);
+            
         } catch (Exception $e) {
-            error_log("ERROR in message creation: " . $e->getMessage());
-            error_log("Stack trace: " . $e->getTraceAsString());
-            $this->sendError($e->getMessage(), 500);
+            error_log("ERROR in createMessage: " . $e->getMessage());
+            error_log($e->getTraceAsString());
+            $this->sendError('Error creating message: ' . $e->getMessage(), 500);
         }
     }
 
@@ -236,6 +248,18 @@ class MessagesController extends ApiController {
     }
 }
 
-// Initialize controller and handle the request
-$controller = new MessagesController();
-$controller->handleRequest(); 
+// Handle the request
+if (php_sapi_name() !== 'cli') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $controller = new MessagesController();
+        $controller->createMessage();
+    } else {
+        header('Content-Type: application/json');
+        http_response_code(405);
+        echo json_encode([
+            'success' => false,
+            'message' => 'Method not allowed',
+            'data' => null
+        ]);
+    }
+} 

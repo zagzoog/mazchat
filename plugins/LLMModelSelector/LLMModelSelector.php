@@ -4,12 +4,12 @@ require_once dirname(__DIR__, 2) . "/app/plugins/Plugin.php";
 
 class LLMModelSelector extends Plugin {
     public function __construct() {
+        parent::__construct();
+        
         $this->name = 'LLMModelSelector';
         $this->version = '1.0.0';
         $this->description = 'Allows selection of different LLM models for chat responses';
         $this->author = 'Your Name';
-        
-        parent::__construct();
     }
     
     public function initialize() {

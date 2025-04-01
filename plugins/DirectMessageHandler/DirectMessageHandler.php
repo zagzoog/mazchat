@@ -7,13 +7,13 @@ class DirectMessageHandler extends Plugin {
     private $activeModel;
 
     public function __construct($pluginId = null) {
+        parent::__construct();
+        
         $this->name = 'DirectMessageHandler';
         $this->version = '1.0.0';
         $this->description = 'Handles message processing directly through configured AI providers';
         $this->author = 'System Admin';
         $this->pluginId = $pluginId;
-        
-        parent::__construct();
     }
     
     public function initialize() {

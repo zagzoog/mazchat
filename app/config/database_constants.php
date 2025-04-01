@@ -1,7 +1,4 @@
 <?php
-require_once __DIR__ . '/app/config/database_constants.php';
-require_once __DIR__ . '/app/utils/DatabasePool.php';
-
 // Get the current domain
 $current_domain = $_SERVER['HTTP_HOST'];
 
@@ -21,27 +18,4 @@ if (!defined('DB_NAME')) {
         // Default configuration or error handling
         die('Domain not configured for database access');
     }
-}
-
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('log_errors', 1);
-ini_set('error_log', __DIR__ . '/app/logs/error.log');
-
-function getDBConnection() {
-    static $pool = null;
-    
-    if ($pool === null) {
-        $pool = DatabasePool::getInstance();
-    }
-    
-    return $pool->getConnection();
-}
-
-// Register shutdown function to clean up connections
-register_shutdown_function(function() {
-    $pool = DatabasePool::getInstance();
-    if ($pool) {
-        $pool->cleanup();
-    }
-}); 
+} 

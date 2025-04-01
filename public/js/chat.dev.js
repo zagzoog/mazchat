@@ -360,11 +360,14 @@ function hideTypingIndicator() {
 
 // Send a message
 async function sendMessage() {
-    debug.log('Sending message');
+    debug.log('Starting message send process');
     const messageInput = document.getElementById('messageInput');
     const message = messageInput.value.trim();
     
-    if (!message) return;
+    if (!message) {
+        debug.warn('Empty message, ignoring send request');
+        return;
+    }
     
     // Disable input and button while sending
     messageInput.disabled = true;
@@ -377,8 +380,10 @@ async function sendMessage() {
             debug.log('No active conversation, creating new one');
             await createNewConversation();
             if (!currentConversationId) {
-                return;
+                debug.error('Failed to create new conversation');
+                throw new Error('Failed to create new conversation');
             }
+            debug.log('New conversation created:', currentConversationId);
         }
         
         // Add user message immediately
@@ -389,12 +394,20 @@ async function sendMessage() {
         });
         chatContainer.appendChild(userMessage);
         userMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        debug.log('User message added to chat');
         
         // Show typing indicator
         showTypingIndicator();
         
         // Clear input
         messageInput.value = '';
+        
+        // Prepare request data
+        const requestData = {
+            conversation_id: currentConversationId,
+            content: message
+        };
+        debug.log('Sending request to server:', requestData);
         
         // Send the message
         const response = await fetch(`/${baseUrlPath}/app/api/v1/messages.php`, {
@@ -403,21 +416,59 @@ async function sendMessage() {
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
-            body: JSON.stringify({
-                conversation_id: currentConversationId,
-                content: message
-            })
+            body: JSON.stringify(requestData)
         });
-        const data = await handleResponse(response);
-        debug.log('Server response:', data);
         
+        // Log response status
+        debug.log('Server response status:', response.status);
+        
+        // Handle different response statuses
+        if (!response.ok) {
+            if (response.status === 401) {
+                debug.error('Unauthorized - Session may have expired');
+                showError('Your session has expired. Please refresh the page and try again.');
+                return;
+            }
+            if (response.status === 403) {
+                debug.error('Forbidden - Access denied');
+                showError('You do not have permission to send messages.');
+                return;
+            }
+            if (response.status === 429) {
+                debug.error('Rate limit exceeded');
+                showError('Too many requests. Please wait a moment before trying again.');
+                return;
+            }
+            if (response.status === 500) {
+                debug.error('Server error');
+                showError('A server error occurred. Please try again later.');
+                return;
+            }
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        // Parse and validate response
+        const data = await handleResponse(response);
+        debug.log('Parsed server response:', data);
+        
+        // Validate response structure
+        if (!data || typeof data !== 'object') {
+            debug.error('Invalid response format:', data);
+            throw new Error('Invalid response format from server');
+        }
+        
+        // Handle error responses
         if (!data.success) {
             if (data.limit_reached && data.limit_type === 'questions') {
                 debug.warn('Monthly question limit reached');
                 showError('لقد وصلت إلى الحد الشهري للأسئلة. يرجى ترقية اشتراكك للمتابعة.', true);
                 return;
             }
-            throw new Error(data.error);
+            if (data.error) {
+                debug.error('Server returned error:', data.error);
+                throw new Error(data.error);
+            }
+            throw new Error('Unknown error from server');
         }
         
         // Hide typing indicator
@@ -425,27 +476,46 @@ async function sendMessage() {
         
         // Handle the response structure
         const messageData = data.data?.data;
+        debug.log('Message data from response:', messageData);
+        
         if (messageData && messageData.assistant_message) {
-            debug.log('Adding assistant response to chat:', messageData.assistant_message);
+            debug.log('Processing assistant message:', messageData.assistant_message);
+            
+            // Validate assistant message format
+            if (!messageData.assistant_message.content || !messageData.assistant_message.role) {
+                debug.error('Invalid assistant message format:', messageData.assistant_message);
+                throw new Error('Invalid assistant message format');
+            }
+            
             const assistantMessage = createMessageElement({
                 content: messageData.assistant_message.content,
-                role: 'assistant'
+                role: messageData.assistant_message.role
             });
             chatContainer.appendChild(assistantMessage);
             assistantMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            debug.log('Assistant message added to chat');
         } else {
-            debug.log('No assistant response in the data:', data);
+            debug.warn('No assistant message in response:', data);
+            // Don't throw error, just log warning
         }
         
     } catch (error) {
-        debug.error('Error sending message:', error);
+        debug.error('Error in sendMessage:', error);
+        debug.error('Error stack:', error.stack);
         showError('حدث خطأ أثناء إرسال الرسالة');
         hideTypingIndicator();
+        
+        // Remove the user message if it was added but the request failed
+        const lastMessage = chatContainer.lastElementChild;
+        if (lastMessage && lastMessage.classList.contains('user')) {
+            lastMessage.remove();
+        }
     } finally {
         // Re-enable input and button
         messageInput.disabled = false;
         sendButton.disabled = false;
         messageInput.focus();
+        debug.log('Message send process completed');
     }
 }
 
@@ -458,33 +528,43 @@ function showError(message, isLimitError = false) {
     if (isLimitError) {
         errorDiv.innerHTML = `
             <div class="flex items-center justify-between p-4 bg-yellow-50 border-l-4 border-yellow-400">
-                <div class="flex items-center">
+                <div class="flex">
                     <div class="flex-shrink-0">
-                        <i class="fas fa-exclamation-triangle text-yellow-400"></i>
+                        <svg class="h-5 w-5 text-yellow-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                        </svg>
                     </div>
-                    <div class="mr-3">
+                    <div class="ml-3">
                         <p class="text-sm text-yellow-700">${message}</p>
                     </div>
-                </div>
-                <div class="flex-shrink-0">
-                    <button onclick="showUpgradeModal()" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
-                        <i class="fas fa-arrow-up mr-2"></i>
-                        ترقية الاشتراك
-                    </button>
                 </div>
             </div>
         `;
     } else {
-        errorDiv.textContent = message;
+        errorDiv.innerHTML = `
+            <div class="flex items-center justify-between p-4 bg-red-50 border-l-4 border-red-400">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-red-700">${message}</p>
+                    </div>
+                </div>
+            </div>
+        `;
     }
     
-    document.body.appendChild(errorDiv);
+    const chatContainer = document.getElementById('chatContainer');
+    chatContainer.appendChild(errorDiv);
+    errorDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
     
-    if (!isLimitError) {
-        setTimeout(() => {
-            errorDiv.remove();
-        }, 3000);
-    }
+    // Auto-remove error after 5 seconds
+    setTimeout(() => {
+        errorDiv.remove();
+    }, 5000);
 }
 
 // Modal functions

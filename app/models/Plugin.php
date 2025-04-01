@@ -52,14 +52,19 @@ class PluginModel extends Model {
                         $className = $pluginName;
                         
                         if (class_exists($className)) {
-                            $plugin = new $className();
-                            $availablePlugins[] = [
-                                'name' => $plugin->getName(),
-                                'version' => $plugin->getVersion(),
-                                'description' => $plugin->getDescription(),
-                                'author' => $plugin->getAuthor(),
-                                'is_active' => false // Always false for available plugins
-                            ];
+                            try {
+                                $plugin = new $className(null);
+                                $availablePlugins[] = [
+                                    'name' => $plugin->getName(),
+                                    'version' => $plugin->getVersion(),
+                                    'description' => $plugin->getDescription(),
+                                    'author' => $plugin->getAuthor(),
+                                    'is_active' => false // Always false for available plugins
+                                ];
+                            } catch (Exception $e) {
+                                error_log("Error instantiating plugin {$pluginName}: " . $e->getMessage());
+                                continue;
+                            }
                         }
                     }
                 }
